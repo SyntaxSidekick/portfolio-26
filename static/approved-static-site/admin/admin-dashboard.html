@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Riad Kilani portfolio administration dashboard">
+  <title>Riad Kilani Admin Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin-dashboard.css">
+  <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+  <script src="admin-dashboard.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+
+  <div class="admin-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Administration navigation">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">RK</div>
+        <div class="brand-copy">
+          <span class="brand-name"><b>Riad</b> Kilani</span>
+          <span class="brand-role">Admin</span>
+        </div>
+        <button class="icon-button sidebar-close" type="button" data-close-sidebar aria-label="Close navigation">
+          <i data-lucide="x"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a class="nav-item is-active" href="#dashboard" aria-current="page">
+          <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
+        </a>
+
+        <div class="nav-group is-open">
+          <button class="nav-item nav-trigger" type="button" aria-expanded="true">
+            <i data-lucide="notebook-text"></i><span>Posts</span><i class="chevron" data-lucide="chevron-down"></i>
+          </button>
+          <div class="subnav">
+            <a href="#all-posts">All Posts</a>
+            <a href="#add-post">Add New</a>
+            <a href="#categories">Categories</a>
+            <a href="#tags">Tags</a>
+          </div>
+        </div>
+
+        <div class="nav-group is-open">
+          <button class="nav-item nav-trigger" type="button" aria-expanded="true">
+            <i data-lucide="briefcase-business"></i><span>Portfolio</span><i class="chevron" data-lucide="chevron-down"></i>
+          </button>
+          <div class="subnav">
+            <a href="#projects">All Projects</a>
+            <a href="#add-project">Add New</a>
+            <a href="#project-categories">Categories</a>
+            <a href="#technologies">Technologies</a>
+          </div>
+        </div>
+
+        <a class="nav-item" href="#media"><i data-lucide="image"></i><span>Media</span></a>
+        <a class="nav-item" href="#pages"><i data-lucide="file"></i><span>Pages</span></a>
+        <a class="nav-item" href="#comments">
+          <i data-lucide="message-square"></i><span>Comments</span><span class="count-badge">12</span>
+        </a>
+        <a class="nav-item" href="#appearance"><i data-lucide="paintbrush"></i><span>Appearance</span></a>
+        <a class="nav-item" href="#users"><i data-lucide="user"></i><span>Users</span></a>
+        <a class="nav-item" href="#tools"><i data-lucide="wrench"></i><span>Tools</span></a>
+        <a class="nav-item" href="#settings"><i data-lucide="settings"></i><span>Settings</span></a>
+        <a class="nav-item" href="#seo"><i data-lucide="circle-help"></i><span>SEO</span><span class="status-dot success"></span></a>
+        <a class="nav-item" href="#analytics"><i data-lucide="chart-no-axes-column"></i><span>Analytics</span></a>
+      </nav>
+
+      <button class="collapse-button" type="button" data-collapse-sidebar>
+        <i data-lucide="circle-chevron-left"></i><span>Collapse Menu</span>
+      </button>
+    </aside>
+
+    <div class="workspace">
+      <header class="topbar">
+        <button class="icon-button menu-button" type="button" data-open-sidebar aria-label="Open navigation">
+          <i data-lucide="menu"></i>
+        </button>
+
+        <form class="search" role="search">
+          <i data-lucide="search"></i>
+          <label class="sr-only" for="site-search">Search dashboard</label>
+          <input id="site-search" type="search" placeholder="Search..." autocomplete="off">
+          <kbd>⌘K</kbd>
+        </form>
+
+        <div class="topbar-actions">
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" aria-pressed="false">
+            <i data-lucide="sun"></i>
+            <span class="theme-track"><span class="theme-thumb"></span></span>
+          </button>
+
+          <button class="icon-button notification-button" type="button" aria-label="Notifications">
+            <i data-lucide="bell"></i><span class="notification-count">8</span>
+          </button>
+
+          <button class="profile-button" type="button" aria-expanded="false">
+            <span class="avatar avatar-photo">RK</span>
+            <span class="profile-copy"><strong>Riad Kilani</strong><small>Administrator</small></span>
+            <i data-lucide="chevron-down"></i>
+          </button>
+        </div>
+      </header>
+
+      <main id="main-content" class="dashboard">
+        <section class="page-heading" id="dashboard">
+          <div>
+            <h1>Dashboard</h1>
+            <p>Welcome back, Riad! Here's what's happening with your site.</p>
+          </div>
+          <div class="heading-actions">
+            <a class="button button-secondary" href="#view-site">View Site <i data-lucide="external-link"></i></a>
+            <button class="button button-primary" type="button"><i data-lucide="plus"></i>New Post</button>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Site statistics">
+          <article class="stat-card">
+            <div><p>Total Posts</p><strong>156</strong><span class="trend up">↑ 12 this month</span></div>
+            <span class="stat-icon blue"><i data-lucide="file"></i></span>
+          </article>
+          <article class="stat-card">
+            <div><p>Portfolio Projects</p><strong>24</strong><span class="trend up">↑ 3 this month</span></div>
+            <span class="stat-icon purple"><i data-lucide="briefcase-business"></i></span>
+          </article>
+          <article class="stat-card">
+            <div><p>Total Views</p><strong>48.7K</strong><span class="trend up">↑ 18.2% <small>vs last month</small></span></div>
+            <span class="stat-icon blue"><i data-lucide="eye"></i></span>
+          </article>
+          <article class="stat-card">
+            <div><p>Avg. Engagement</p><strong>4m 32s</strong><span class="trend up">↑ 8.1% <small>vs last month</small></span></div>
+            <span class="stat-icon green"><i data-lucide="activity"></i></span>
+          </article>
+          <article class="stat-card">
+            <div><p>Comments</p><strong>98</strong><span class="trend up">↑ 15 this month</span></div>
+            <span class="stat-icon yellow"><i data-lucide="message-circle"></i></span>
+          </article>
+          <article class="stat-card">
+            <div><p>Subscribers</p><strong>2.1K</strong><span class="trend up">↑ 7.3% <small>vs last month</small></span></div>
+            <span class="stat-icon pink"><i data-lucide="users"></i></span>
+          </article>
+        </section>
+
+        <section class="dashboard-grid primary-grid">
+          <article class="panel analytics-panel">
+            <div class="panel-header">
+              <h2>Analytics Overview</h2>
+              <select aria-label="Analytics date range">
+                <option>Last 30 Days</option>
+                <option>Last 7 Days</option>
+                <option>Last 90 Days</option>
+              </select>
+            </div>
+            <div class="analytics-summary">
+              <div><span>Total Views</span><strong>48.7K <small>↑ 18.2%</small></strong></div>
+              <div><span>Unique Visitors</span><strong>28.3K <small>↑ 15.7%</small></strong></div>
+              <div><span>Page Views</span><strong>72.1K <small>↑ 20.5%</small></strong></div>
+            </div>
+            <div class="chart-wrap"><canvas id="trafficChart" aria-label="Thirty day traffic line chart"></canvas></div>
+            <a class="panel-link" href="#full-analytics">View full analytics <i data-lucide="arrow-right"></i></a>
+          </article>
+
+          <article class="panel traffic-panel">
+            <div class="panel-header"><h2>Traffic Sources</h2></div>
+            <div class="traffic-content">
+              <div class="donut-wrap">
+                <canvas id="sourceChart" aria-label="Traffic source donut chart"></canvas>
+                <div class="donut-label"><strong>48.7K</strong><span>Total</span></div>
+              </div>
+              <ul class="legend">
+                <li><span class="legend-dot source-organic"></span><span>Organic Search</span><strong>62%</strong></li>
+                <li><span class="legend-dot source-direct"></span><span>Direct</span><strong>18%</strong></li>
+                <li><span class="legend-dot source-social"></span><span>Social</span><strong>10%</strong></li>
+                <li><span class="legend-dot source-referral"></span><span>Referral</span><strong>6%</strong></li>
+                <li><span class="legend-dot source-other"></span><span>Other</span><strong>4%</strong></li>
+              </ul>
+            </div>
+            <a class="panel-link" href="#traffic-report">View full report <i data-lucide="arrow-right"></i></a>
+          </article>
+
+          <article class="panel comments-panel">
+            <div class="panel-header">
+              <h2>Recent Comments</h2>
+              <a href="#all-comments">View all</a>
+            </div>
+            <div class="comment-list">
+              <article class="comment">
+                <span class="avatar">JC</span>
+                <div><strong>James Carter</strong><p>Great article on CSS Grid! Helped me fix a...</p></div>
+                <time datetime="2026-07-19T16:00">2h ago</time><span class="unread-dot"></span>
+              </article>
+              <article class="comment">
+                <span class="avatar">SJ</span>
+                <div><strong>Sarah Johnson</strong><p>Really insightful post on accessibility...</p></div>
+                <time datetime="2026-07-19T13:00">5h ago</time><span class="unread-dot"></span>
+              </article>
+              <article class="comment">
+                <span class="avatar">AM</span>
+                <div><strong>Alex Martinez</strong><p>The TypeScript tips are 🔥 Super helpful!</p></div>
+                <time datetime="2026-07-18">1d ago</time><span class="unread-dot"></span>
+              </article>
+              <article class="comment">
+                <span class="avatar">PS</span>
+                <div><strong>Priya Shah</strong><p>Love your content. Keep up the amazing...</p></div>
+                <time datetime="2026-07-17">2d ago</time><span class="unread-dot"></span>
+              </article>
+            </div>
+          </article>
+        </section>
+
+        <section class="dashboard-grid secondary-grid">
+          <article class="panel">
+            <div class="panel-header">
+              <h2>Recent Blog Posts</h2>
+              <a href="#all-posts">View all posts</a>
+            </div>
+            <div class="post-list">
+              <article class="post-row">
+                <span class="thumbnail thumb-css">CSS</span>
+                <div class="row-main"><strong>Native CSS Is Quietly Replacing Sass, But It Isn't...</strong><span class="tag blue-tag">Web Development</span></div>
+                <div class="row-meta"><span class="published">● Published</span><span>Jan 16, 2025 · 2.4K views</span></div>
+              </article>
+              <article class="post-row">
+                <span class="thumbnail thumb-ts">TS</span>
+                <div class="row-main"><strong>Everyday Types Explained (From the Ground Up)</strong><span class="tag blue-tag">TypeScript</span></div>
+                <div class="row-meta"><span class="published">● Published</span><span>Jan 14, 2025 · 1.8K views</span></div>
+              </article>
+              <article class="post-row">
+                <span class="thumbnail thumb-future">26</span>
+                <div class="row-main"><strong>2026: CSS Features You Must Know</strong><span class="tag neutral-tag">CSS</span></div>
+                <div class="row-meta"><span class="published">● Published</span><span>Jan 10, 2025 · 3.1K views</span></div>
+              </article>
+              <article class="post-row">
+                <span class="thumbnail thumb-js">60</span>
+                <div class="row-main"><strong>60 JavaScript Projects in 60 Days</strong><span class="tag neutral-tag">JavaScript</span></div>
+                <div class="row-meta"><span class="draft">● Draft</span><span>Dec 31, 2024 · —</span></div>
+              </article>
+              <article class="post-row">
+                <span class="thumbnail thumb-code">JS</span>
+                <div class="row-main"><strong>JavaScript vs TypeScript: What Actually Changes</strong><span class="tag blue-tag">TypeScript</span></div>
+                <div class="row-meta"><span class="published">● Published</span><span>Dec 30, 2024 · 2.0K views</span></div>
+              </article>
+            </div>
+          </article>
+
+          <article class="panel portfolio-panel">
+            <div class="panel-header">
+              <h2>Latest Portfolio Projects</h2>
+              <a href="#all-projects">View all projects <i data-lucide="arrow-right"></i></a>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>Project</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><div class="project-cell"><span class="project-thumb project-one"></span><div><strong>SyntaxSidekick</strong><small>Coding Blog & Resource Hub</small></div></div></td>
+                    <td><span class="tag blue-tag">Web Development</span></td>
+                    <td><span class="tag green-tag">Published</span></td>
+                    <td>Mar 28, 2025</td>
+                    <td class="actions"><button aria-label="View SyntaxSidekick"><i data-lucide="eye"></i></button><button aria-label="Edit SyntaxSidekick"><i data-lucide="pencil"></i></button><button aria-label="More SyntaxSidekick actions"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="project-cell"><span class="project-thumb project-two"></span><div><strong>Abosify</strong><small>Business Autopilot OS</small></div></div></td>
+                    <td><span class="tag purple-tag">Web Application</span></td>
+                    <td><span class="tag green-tag">Published</span></td>
+                    <td>Feb 15, 2025</td>
+                    <td class="actions"><button aria-label="View Abosify"><i data-lucide="eye"></i></button><button aria-label="Edit Abosify"><i data-lucide="pencil"></i></button><button aria-label="More Abosify actions"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="project-cell"><span class="project-thumb project-three"></span><div><strong>VirtuEd Online</strong><small>E-Learning Platform</small></div></div></td>
+                    <td><span class="tag purple-tag">Web Application</span></td>
+                    <td><span class="tag green-tag">Published</span></td>
+                    <td>Jan 05, 2025</td>
+                    <td class="actions"><button aria-label="View VirtuEd"><i data-lucide="eye"></i></button><button aria-label="Edit VirtuEd"><i data-lucide="pencil"></i></button><button aria-label="More VirtuEd actions"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="project-cell"><span class="project-thumb project-four"></span><div><strong>Bonnier Design System</strong><small>Design System & Component Library</small></div></div></td>
+                    <td><span class="tag green-tag">Design System</span></td>
+                    <td><span class="tag green-tag">Published</span></td>
+                    <td>Dec 12, 2024</td>
+                    <td class="actions"><button aria-label="View Bonnier"><i data-lucide="eye"></i></button><button aria-label="Edit Bonnier"><i data-lucide="pencil"></i></button><button aria-label="More Bonnier actions"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                  <tr>
+                    <td><div class="project-cell"><span class="project-thumb project-five"></span><div><strong>Time 2 Visit (Vistana)</strong><small>Travel & Hospitality Platform</small></div></div></td>
+                    <td><span class="tag blue-tag">Web Development</span></td>
+                    <td><span class="tag green-tag">Published</span></td>
+                    <td>Nov 20, 2024</td>
+                    <td class="actions"><button aria-label="View Time 2 Visit"><i data-lucide="eye"></i></button><button aria-label="Edit Time 2 Visit"><i data-lucide="pencil"></i></button><button aria-label="More Time 2 Visit actions"><i data-lucide="ellipsis"></i></button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <footer class="dashboard-footer">
+          <p>Thank you for creating with <a href="#wordpress">◉ WordPress.</a></p>
+          <p>Version 6.6.2</p>
+        </footer>
+      </main>
+    </div>
+  </div>
+
+  <div class="sidebar-scrim" data-close-sidebar></div>
+</body>
+</html>

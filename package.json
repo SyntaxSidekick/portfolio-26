@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-2026-workspace",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.14.0",
+  "scripts": {
+    "dev": "pnpm dev:web",
+    "dev:web": "pnpm --filter @portfolio/web dev",
+    "dev:admin": "pnpm --filter @portfolio/admin dev",
+    "dev:api": "pnpm --filter @portfolio/api dev",
+    "build": "pnpm -r build",
+    "lint": "pnpm -r lint",
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

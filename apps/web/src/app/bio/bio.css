@@ -1,0 +1,1393 @@
+/* =========================================================
+   BIO
+   Original source: bio/page.css
+   ========================================================= */
+
+body[data-page="bio"] {
+  --bio-bg: #030a11;
+  --bio-bg-deep: #02070c;
+  --bio-panel: rgba(7, 17, 26, 0.92);
+  --bio-panel-soft: rgba(11, 24, 35, 0.82);
+  --bio-panel-hover: rgba(14, 34, 48, 0.92);
+
+  --bio-text: #f3f7fb;
+  --bio-muted: #a8b6c4;
+  --bio-subtle: #748595;
+
+  --bio-blue: #1591ff;
+  --bio-blue-bright: #4aaaff;
+  --bio-blue-dark: #0b65bb;
+  --bio-purple: #a744ef;
+
+  --bio-border: rgba(92, 143, 184, 0.24);
+  --bio-border-strong: rgba(58, 158, 242, 0.52);
+  --bio-border-purple: rgba(167, 68, 239, 0.48);
+
+  --bio-radius-sm: 0.35rem;
+  --bio-radius-md: 0.6rem;
+  --bio-radius-lg: 0.9rem;
+
+  --bio-container: 87.5rem;
+
+  --bio-heading-font:
+    "Trajan Pro 3",
+    "Trajan Pro",
+    Cinzel,
+    Georgia,
+    serif;
+
+  --bio-body-font:
+    "DM Sans",
+    Arial,
+    sans-serif;
+
+  --bio-shadow:
+    0 1.5rem 4rem rgba(0, 0, 0, 0.3),
+    0 0 2rem rgba(0, 119, 255, 0.05);
+}
+
+body[data-page="bio"] *,
+body[data-page="bio"] *::before,
+body[data-page="bio"] *::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body[data-page="bio"] {
+  margin: 0;
+  background:
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(0, 119, 255, 0.08),
+      transparent 25rem
+    ),
+    radial-gradient(
+      circle at 8% 15%,
+      rgba(0, 119, 255, 0.04),
+      transparent 22rem
+    ),
+    linear-gradient(
+      180deg,
+      #02080e,
+      #030a11 42%,
+      #02070c
+    );
+  color: var(--bio-text);
+  font-family: var(--bio-body-font);
+}
+
+body[data-page="bio"] a {
+  color: inherit;
+}
+
+body[data-page="bio"] button,
+body[data-page="bio"] a {
+  font: inherit;
+}
+
+body[data-page="bio"] img,
+body[data-page="bio"] svg {
+  display: block;
+}
+
+body[data-page="bio"] img {
+  max-width: 100%;
+}
+
+/* ==========================================================
+   PAGE
+========================================================== */
+
+#bio-page {
+  position: relative;
+  overflow: hidden;
+  padding:
+    clamp(3rem, 5vw, 5rem)
+    1.5rem
+    4rem;
+  isolation: isolate;
+}
+
+body[data-page="bio"] #bio-page::before,
+body[data-page="bio"] #bio-page::after {
+  position: absolute;
+  z-index: -1;
+  width: 34rem;
+  height: 34rem;
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(21, 145, 255, 0.2) 0 1px,
+      transparent 1.5px
+    );
+  background-size: 0.68rem 0.68rem;
+  content: "";
+  pointer-events: none;
+  mask-image:
+    radial-gradient(
+      circle,
+      #000,
+      transparent 70%
+    );
+}
+
+body[data-page="bio"] #bio-page::before {
+  top: -12rem;
+  right: -10rem;
+}
+
+body[data-page="bio"] #bio-page::after {
+  top: 20rem;
+  left: -20rem;
+  opacity: 0.3;
+}
+
+body[data-page="bio"] #bio-page .bio-container {
+  width: min(100%, var(--bio-container));
+  margin-inline: auto;
+}
+
+body[data-page="bio"] #bio-page h1,
+body[data-page="bio"] #bio-page h2,
+body[data-page="bio"] #bio-page h3,
+body[data-page="bio"] #bio-page p,
+body[data-page="bio"] #bio-page dl,
+body[data-page="bio"] #bio-page dd,
+body[data-page="bio"] #bio-page blockquote,
+body[data-page="bio"] #bio-page ul,
+body[data-page="bio"] #bio-page ol {
+  margin-top: 0;
+}
+
+body[data-page="bio"] #bio-page h1,
+body[data-page="bio"] #bio-page h2 {
+  font-family: var(--bio-heading-font);
+  font-weight: 500;
+}
+
+body[data-page="bio"] #bio-page h2 {
+  margin-bottom: 0.55rem;
+  color: var(--bio-blue-bright);
+  font-size: clamp(1.4rem, 2vw, 1.9rem);
+  letter-spacing: 0.025em;
+  line-height: 1.2;
+}
+
+body[data-page="bio"] #bio-page p {
+  line-height: 1.7;
+}
+
+body[data-page="bio"] #bio-page .bio-eyebrow,
+body[data-page="bio"] #bio-page .section-eyebrow {
+  margin-bottom: 0.5rem;
+  color: var(--bio-blue-bright);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+/* ==========================================================
+   INTRODUCTION
+========================================================== */
+
+#bio-page .bio-intro {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(32rem, 0.9fr);
+  gap: clamp(3rem, 5vw, 5.5rem);
+  align-items: center;
+  margin-bottom: clamp(3.5rem, 6vw, 5rem);
+}
+
+body[data-page="bio"] #bio-page .bio-intro__content {
+  width: 100%;
+  max-width: 46rem;
+}
+
+body[data-page="bio"] #bio-page .bio-heading-group {
+  margin-bottom: 1.25rem;
+}
+
+body[data-page="bio"] #bio-page .bio-heading-group h1 {
+  margin-bottom: 0.65rem;
+  color: var(--bio-text);
+  font-size: clamp(2.4rem, 3.75vw, 3.55rem);
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+
+body[data-page="bio"] #bio-page .bio-heading-group h1 span {
+  color: var(--bio-blue-bright);
+}
+
+body[data-page="bio"] #bio-page .bio-role {
+  margin-bottom: 0;
+  color: var(--bio-text);
+  font-size: clamp(0.78rem, 1vw, 0.92rem);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+body[data-page="bio"] #bio-page .bio-role span {
+  margin-inline: 0.3rem;
+  color: var(--bio-subtle);
+}
+
+body[data-page="bio"] #bio-page .bio-lede {
+  max-width: 42rem;
+  margin-bottom: 1.5rem;
+  color: var(--bio-muted);
+  font-size: clamp(0.9rem, 1.1vw, 1rem);
+  line-height: 1.65;
+}
+
+body[data-page="bio"] #bio-page .bio-metrics {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 0.65rem;
+  max-width: 39rem;
+  margin-bottom: 1.15rem;
+}
+
+body[data-page="bio"] #bio-page .bio-metric {
+  display: grid;
+  min-height: 6rem;
+  padding: 0.9rem 0.6rem;
+  border: 1px solid var(--bio-border-strong);
+  border-radius: 0.45rem;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 24, 35, 0.92),
+      rgba(5, 12, 18, 0.9)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.035),
+    0 0 1.3rem rgba(0, 121, 226, 0.035);
+  place-content: center;
+  text-align: center;
+}
+
+body[data-page="bio"] #bio-page .bio-metric dt {
+  margin-bottom: 0.3rem;
+  color: var(--bio-blue-bright);
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+body[data-page="bio"] #bio-page .bio-metric dd {
+  max-width: 6.5rem;
+  margin: 0 auto;
+  color: var(--bio-text);
+  font-size: 0.63rem;
+  line-height: 1.35;
+}
+
+body[data-page="bio"] #bio-page .bio-availability {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1.2rem;
+  margin-bottom: 0;
+  padding: 0;
+  color: var(--bio-muted);
+  font-size: 0.68rem;
+  list-style: none;
+}
+
+body[data-page="bio"] #bio-page .bio-availability li {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+body[data-page="bio"] #bio-page .bio-availability svg {
+  width: 0.85rem;
+  height: 0.85rem;
+  color: var(--bio-blue-bright);
+  stroke-width: 1.8;
+}
+
+body[data-page="bio"] #bio-page .bio-availability li:nth-child(2) svg {
+  width: 0.55rem;
+  height: 0.55rem;
+  fill: var(--bio-blue);
+}
+
+/* ==========================================================
+   PROFILE AND QUOTE CARD
+========================================================== */
+
+#bio-page .bio-quote-card {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    minmax(14rem, 1.1fr)
+    minmax(13rem, 0.9fr);
+  gap: clamp(1.5rem, 3vw, 2.4rem);
+  align-items: center;
+  width: 100%;
+  min-height: 21rem;
+  padding: clamp(1.75rem, 3vw, 2.4rem);
+  overflow: hidden;
+  border: 1px solid var(--bio-border-strong);
+  border-radius: var(--bio-radius-lg);
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 20, 30, 0.97),
+      rgba(4, 11, 17, 0.96)
+    );
+  box-shadow:
+    var(--bio-shadow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      circle at 76% 15%,
+      rgba(0, 132, 255, 0.13),
+      transparent 13rem
+    );
+  content: "";
+  pointer-events: none;
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card::after {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 62%;
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(27, 156, 255, 0.22) 0 1px,
+      transparent 1.4px
+    );
+  background-size: 0.55rem 0.55rem;
+  content: "";
+  opacity: 0.42;
+  mask-image:
+    radial-gradient(
+      circle at 48% 52%,
+      #000,
+      transparent 70%
+    );
+  pointer-events: none;
+}
+
+body[data-page="bio"] #bio-page .bio-portrait-wrap {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(100%, 15rem);
+  margin-inline: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  place-items: center;
+}
+
+body[data-page="bio"] #bio-page .bio-portrait-wrap::before {
+  position: absolute;
+  inset: -0.5rem;
+  padding: 0.28rem;
+  border-radius: inherit;
+  background:
+    conic-gradient(
+      from 20deg,
+      var(--bio-blue),
+      var(--bio-purple),
+      #58df5c,
+      var(--bio-blue),
+      var(--bio-purple)
+    );
+  box-shadow:
+    0 0 1rem rgba(0, 141, 255, 0.5),
+    0 0 2rem rgba(100, 49, 221, 0.2);
+  content: "";
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+body[data-page="bio"] #bio-page .bio-portrait-wrap::after {
+  position: absolute;
+  inset: 0.12rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: inherit;
+  content: "";
+  pointer-events: none;
+}
+
+body[data-page="bio"] #bio-page .bio-portrait-glow {
+  position: absolute;
+  inset: 10%;
+  border-radius: 50%;
+  background: rgba(21, 145, 255, 0.22);
+  filter: blur(2rem);
+}
+
+body[data-page="bio"] #bio-page .bio-portrait {
+  position: relative;
+  z-index: 1;
+  width: 92%;
+  height: 92%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card blockquote {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  margin: 0;
+}
+
+body[data-page="bio"] #bio-page .quote-mark {
+  display: block;
+  height: 2rem;
+  margin-bottom: 0.35rem;
+  color: var(--bio-blue-bright);
+  font-family: Georgia, serif;
+  font-size: 3.2rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card blockquote p {
+  margin-bottom: 0.9rem;
+  color: #dce6ee;
+  font-size: clamp(0.9rem, 1.15vw, 1.03rem);
+  line-height: 1.7;
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card blockquote footer {
+  text-align: right;
+}
+
+body[data-page="bio"] #bio-page .bio-quote-card cite {
+  color: var(--bio-blue-bright);
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+  line-height: 1;
+}
+
+/* ==========================================================
+   SECTION HEADINGS
+========================================================== */
+
+#bio-page .section-heading {
+  margin-bottom: clamp(1.5rem, 3vw, 2.3rem);
+  text-align: center;
+}
+
+body[data-page="bio"] #bio-page .section-heading p:last-child {
+  max-width: 52rem;
+  margin: 0 auto;
+  color: var(--bio-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   PROCESS
+========================================================== */
+
+#bio-page .bio-section {
+  position: relative;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  padding: clamp(1.75rem, 3vw, 2.6rem);
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-lg);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(8, 18, 27, 0.8),
+      rgba(4, 11, 17, 0.82)
+    );
+  box-shadow: var(--bio-shadow);
+}
+
+body[data-page="bio"] #bio-page .process-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns:
+    repeat(6, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 0;
+  padding: 2.3rem 0 0;
+  list-style: none;
+}
+
+body[data-page="bio"] #bio-page .process-grid::before {
+  position: absolute;
+  top: 1.05rem;
+  right: 7.5%;
+  left: 7.5%;
+  height: 1px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(29, 148, 255, 0.6) 8%,
+      rgba(29, 148, 255, 0.6) 92%,
+      transparent
+    );
+  content: "";
+}
+
+body[data-page="bio"] #bio-page .process-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+body[data-page="bio"] #bio-page .process-number {
+  position: absolute;
+  top: -2.55rem;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 1.9rem;
+  height: 1.9rem;
+  border: 1px solid rgba(87, 181, 255, 0.45);
+  border-radius: 50%;
+  background:
+    linear-gradient(
+      135deg,
+      #158ff1,
+      #075db3
+    );
+  box-shadow:
+    0 0 1rem rgba(21, 145, 255, 0.25);
+  font-size: 0.75rem;
+  font-weight: 700;
+  place-items: center;
+  transform: translateX(-50%);
+}
+
+body[data-page="bio"] #bio-page .process-number::after {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--bio-blue);
+  box-shadow:
+    0 0 0.7rem var(--bio-blue);
+  content: "";
+  transform: translateX(-50%);
+}
+
+body[data-page="bio"] #bio-page .process-card {
+  flex: 1;
+  min-height: 18.5rem;
+  padding: 1.85rem 0.9rem 1.2rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 22, 32, 0.88),
+      rgba(5, 12, 18, 0.85)
+    );
+  text-align: center;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+body[data-page="bio"] #bio-page .process-card:hover {
+  border-color: var(--bio-border-strong);
+  box-shadow:
+    0 0.9rem 2rem rgba(0, 0, 0, 0.23),
+    0 0 1.5rem rgba(21, 145, 255, 0.05);
+  transform: translateY(-0.2rem);
+}
+
+body[data-page="bio"] #bio-page .process-card svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0 auto 1rem;
+  color: var(--bio-blue-bright);
+  stroke-width: 1.3;
+}
+
+body[data-page="bio"] #bio-page .process-card h3 {
+  min-height: 3.3rem;
+  margin-bottom: 0.9rem;
+  color: var(--bio-blue-bright);
+  font-family: var(--bio-heading-font);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+body[data-page="bio"] #bio-page .process-card p {
+  margin-bottom: 0;
+  color: #c0ccd6;
+  font-size: 0.73rem;
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   SKILLS AND ACHIEVEMENTS LAYOUT
+========================================================== */
+
+#bio-page .skills-achievements-layout {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 2.55fr)
+    minmax(18rem, 0.8fr);
+  gap: clamp(2rem, 4vw, 3.25rem);
+  margin-bottom: clamp(3rem, 5vw, 4rem);
+}
+
+body[data-page="bio"] #bio-page .skills-section {
+  min-width: 0;
+}
+
+body[data-page="bio"] #bio-page .skills-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+/* ==========================================================
+   SKILL CARDS
+========================================================== */
+
+#bio-page .skill-group {
+  position: relative;
+  min-height: 17rem;
+  padding: 1.1rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(9, 20, 29, 0.9),
+      rgba(4, 11, 17, 0.88)
+    );
+  box-shadow:
+    0 0.8rem 2rem rgba(0, 0, 0, 0.15);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+body[data-page="bio"] #bio-page .skill-group::before {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: -1px;
+  height: 2px;
+  border-radius:
+    var(--bio-radius-md)
+    var(--bio-radius-md)
+    0
+    0;
+  background:
+    linear-gradient(
+      90deg,
+      var(--bio-blue),
+      var(--bio-purple)
+    );
+  content: "";
+}
+
+body[data-page="bio"] #bio-page .skill-group:hover {
+  border-color: var(--bio-border-strong);
+  box-shadow:
+    0 1rem 2.5rem rgba(0, 0, 0, 0.22),
+    0 0 1.5rem rgba(21, 145, 255, 0.06);
+  transform: translateY(-0.2rem);
+}
+
+body[data-page="bio"] #bio-page .skill-group--tools {
+  min-height: 20rem;
+}
+
+body[data-page="bio"] #bio-page .skill-group__header {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  min-height: 3.65rem;
+  margin-bottom: 0.9rem;
+}
+
+body[data-page="bio"] #bio-page .skill-group__header > svg {
+  flex: 0 0 auto;
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-top: 0.05rem;
+  color: var(--bio-blue-bright);
+  stroke-width: 1.6;
+}
+
+body[data-page="bio"] #bio-page .skill-group__header h3 {
+  margin-bottom: 0.18rem;
+  color: var(--bio-blue-bright);
+  font-size: 0.78rem;
+  letter-spacing: 0.025em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+body[data-page="bio"] #bio-page .skill-group__header p {
+  margin-bottom: 0;
+  color: var(--bio-subtle);
+  font-size: 0.64rem;
+  line-height: 1.4;
+}
+
+body[data-page="bio"] #bio-page .skill-group ul {
+  display: grid;
+  gap: 0.38rem;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-page="bio"] #bio-page .skill-group li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  min-height: 1.85rem;
+  padding: 0.33rem 0.5rem;
+  border: 1px solid rgba(131, 164, 190, 0.45);
+  border-radius: 0.24rem;
+  background: rgba(14, 27, 37, 0.76);
+  color: #dce5ec;
+  font-size: 0.68rem;
+  line-height: 1.3;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+body[data-page="bio"] #bio-page .skill-group li:hover {
+  border-color: var(--bio-blue-bright);
+  background: rgba(18, 48, 69, 0.88);
+  transform: translateX(0.15rem);
+}
+
+body[data-page="bio"] #bio-page .skill-dot {
+  flex: 0 0 auto;
+  width: 0.68rem;
+  height: 0.68rem;
+  border-radius: 0.14rem;
+  background: currentColor;
+  box-shadow:
+    0 0 0.5rem currentColor;
+  color: var(--bio-blue);
+}
+
+/* Core engineering */
+
+#bio-page .skill-dot.html {
+  color: #f26430;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.css {
+  color: #258bd2;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.js {
+  color: #f0d43a;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.ts {
+  color: #3178c6;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.sql {
+  color: #4ba2d8;
+}
+
+/* Frameworks */
+
+#bio-page .skill-dot.react {
+  color: #61dafb;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.next {
+  color: #f5f5f5;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.vue {
+  color: #42b883;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.node {
+  color: #68a063;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.wordpress {
+  color: #21759b;
+}
+
+/* Architecture */
+
+#bio-page .skill-dot.architecture,
+body[data-page="bio"] #bio-page .skill-dot.micro,
+body[data-page="bio"] #bio-page .skill-dot.component,
+body[data-page="bio"] #bio-page .skill-dot.webcomponents,
+body[data-page="bio"] #bio-page .skill-dot.api {
+  color: var(--bio-blue-bright);
+}
+
+/* UX */
+
+#bio-page .skill-dot.interaction,
+body[data-page="bio"] #bio-page .skill-dot.ux,
+body[data-page="bio"] #bio-page .skill-dot.journeys,
+body[data-page="bio"] #bio-page .skill-dot.ia,
+body[data-page="bio"] #bio-page .skill-dot.responsive {
+  color: #42a5f5;
+}
+
+/* Design systems */
+
+#bio-page .skill-dot.design,
+body[data-page="bio"] #bio-page .skill-dot.tokens,
+body[data-page="bio"] #bio-page .skill-dot.library,
+body[data-page="bio"] #bio-page .skill-dot.patterns,
+body[data-page="bio"] #bio-page .skill-dot.documentation {
+  color: #a45ee8;
+}
+
+/* Design tools */
+
+#bio-page .skill-dot.figma {
+  color: #a259ff;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.balsamiq {
+  color: #f6bd16;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.invision {
+  color: #ff3366;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.photoshop {
+  color: #31a8ff;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.illustrator {
+  color: #ff9a00;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.indesign {
+  color: #ff3366;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.xd {
+  color: #ff61f6;
+}
+
+/* Quality */
+
+#bio-page .skill-dot.accessibility,
+body[data-page="bio"] #bio-page .skill-dot.lighthouse,
+body[data-page="bio"] #bio-page .skill-dot.playwright,
+body[data-page="bio"] #bio-page .skill-dot.jest,
+body[data-page="bio"] #bio-page .skill-dot.seo {
+  color: #38bdf8;
+}
+
+/* Delivery */
+
+#bio-page .skill-dot.git {
+  color: #f05032;
+}
+
+body[data-page="bio"] #bio-page .skill-dot.cicd,
+body[data-page="bio"] #bio-page .skill-dot.vite,
+body[data-page="bio"] #bio-page .skill-dot.storybook,
+body[data-page="bio"] #bio-page .skill-dot.agile {
+  color: #4dabf7;
+}
+
+/* AI */
+
+#bio-page .skill-dot.ai,
+body[data-page="bio"] #bio-page .skill-dot.copilot,
+body[data-page="bio"] #bio-page .skill-dot.claude,
+body[data-page="bio"] #bio-page .skill-dot.codex,
+body[data-page="bio"] #bio-page .skill-dot.automation {
+  color: #b35cf0;
+}
+
+/* ==========================================================
+   ADDITIONAL EXPERIENCE
+========================================================== */
+
+#bio-page .additional-experience {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  background:
+    rgba(7, 16, 24, 0.78);
+}
+
+body[data-page="bio"] #bio-page .additional-experience h3 {
+  margin-bottom: 0.4rem;
+  color: var(--bio-blue-bright);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+body[data-page="bio"] #bio-page .additional-experience p {
+  margin-bottom: 0;
+  color: var(--bio-muted);
+  font-size: 0.73rem;
+  line-height: 1.65;
+}
+
+/* ==========================================================
+   ACHIEVEMENTS
+========================================================== */
+
+#bio-page .achievements-section {
+  padding-left: clamp(0rem, 2vw, 1rem);
+  border-left: 1px solid rgba(95, 133, 164, 0.14);
+}
+
+body[data-page="bio"] #bio-page .achievements-list {
+  display: grid;
+  gap: 1rem;
+}
+
+body[data-page="bio"] #bio-page .achievement-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.9rem;
+  align-items: center;
+  min-height: 8.6rem;
+  padding: 1rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-md);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(9, 20, 29, 0.9),
+      rgba(4, 11, 17, 0.86)
+    );
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+body[data-page="bio"] #bio-page .achievement-card:hover {
+  border-color: var(--bio-border-strong);
+  box-shadow:
+    0 0.8rem 2rem rgba(0, 0, 0, 0.2);
+  transform: translateY(-0.18rem);
+}
+
+body[data-page="bio"] #bio-page .achievement-icon {
+  display: grid;
+  width: 3.5rem;
+  height: 3.5rem;
+  border: 1px solid var(--bio-blue);
+  border-radius: 50%;
+  box-shadow:
+    inset 0 0 1.1rem rgba(21, 145, 255, 0.08),
+    0 0 1rem rgba(21, 145, 255, 0.05);
+  place-items: center;
+}
+
+body[data-page="bio"] #bio-page .achievement-icon svg {
+  width: 1.55rem;
+  height: 1.55rem;
+  color: var(--bio-blue-bright);
+  stroke-width: 1.4;
+}
+
+body[data-page="bio"] #bio-page .achievement-card h3 {
+  margin-bottom: 0.3rem;
+  color: var(--bio-blue-bright);
+  font-size: 0.79rem;
+}
+
+body[data-page="bio"] #bio-page .achievement-card p {
+  margin-bottom: 0;
+  color: var(--bio-muted);
+  font-size: 0.73rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================
+   CTA
+========================================================== */
+
+#bio-page .bio-cta {
+  display: grid;
+  grid-template-columns:
+    auto
+    minmax(0, 1fr)
+    auto;
+  gap: 1.35rem;
+  align-items: center;
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  padding: clamp(1.3rem, 2.5vw, 1.85rem);
+  border: 1px solid var(--bio-border-purple);
+  border-radius: var(--bio-radius-md);
+  background:
+    linear-gradient(
+      100deg,
+      rgba(35, 17, 55, 0.42),
+      rgba(8, 18, 27, 0.84) 30%,
+      rgba(7, 16, 23, 0.9)
+    );
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 2rem rgba(145, 56, 217, 0.05);
+}
+
+body[data-page="bio"] #bio-page .bio-cta__icon {
+  display: grid;
+  width: 4.2rem;
+  height: 4.2rem;
+  border: 1px solid #a650ef;
+  border-radius: 50%;
+  background:
+    rgba(23, 20, 48, 0.52);
+  box-shadow:
+    inset 0 0 1.4rem rgba(151, 63, 227, 0.15),
+    0 0 1.5rem rgba(151, 63, 227, 0.1);
+  place-items: center;
+}
+
+body[data-page="bio"] #bio-page .bio-cta__icon svg {
+  width: 1.85rem;
+  height: 1.85rem;
+  color: #f5e9ff;
+}
+
+body[data-page="bio"] #bio-page .bio-cta__content h2 {
+  margin-bottom: 0.3rem;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+}
+
+body[data-page="bio"] #bio-page .bio-cta__content p:last-child {
+  max-width: 48rem;
+  margin-bottom: 0;
+  color: var(--bio-muted);
+  font-size: 0.82rem;
+}
+
+body[data-page="bio"] #bio-page .bio-button {
+  display: inline-flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 11.5rem;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--bio-border-strong);
+  border-radius: 0.25rem;
+  background:
+    rgba(5, 18, 29, 0.84);
+  color: var(--bio-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+body[data-page="bio"] #bio-page .bio-button:hover {
+  border-color: var(--bio-blue-bright);
+  background:
+    rgba(11, 47, 74, 0.8);
+  box-shadow:
+    0 0 1.4rem rgba(21, 145, 255, 0.12);
+  transform: translateY(-0.15rem);
+}
+
+body[data-page="bio"] #bio-page .bio-button svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+/* ==========================================================
+   CONNECT
+========================================================== */
+
+#bio-page .connect-section {
+  text-align: center;
+}
+
+body[data-page="bio"] #bio-page .connect-section .section-heading {
+  margin-bottom: 1.4rem;
+}
+
+body[data-page="bio"] #bio-page .social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  justify-content: center;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body[data-page="bio"] #bio-page .social-links a {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  justify-content: center;
+  min-width: 9.5rem;
+  min-height: 3rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--bio-border);
+  border-radius: var(--bio-radius-sm);
+  background:
+    rgba(6, 14, 20, 0.75);
+  color: var(--bio-text);
+  font-size: 0.74rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+body[data-page="bio"] #bio-page .social-links a:hover {
+  border-color: var(--bio-blue-bright);
+  background:
+    rgba(10, 38, 58, 0.8);
+  color: var(--bio-blue-bright);
+  transform: translateY(-0.18rem);
+}
+
+body[data-page="bio"] #bio-page .social-links svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+body[data-page="bio"] #bio-page a:focus-visible {
+  outline: 2px solid var(--bio-blue-bright);
+  outline-offset: 4px;
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 75rem) {
+  #bio-page .bio-intro {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(28rem, 0.9fr);
+    gap: 2.75rem;
+  }
+
+  #bio-page .bio-heading-group h1 {
+    white-space: normal;
+  }
+
+  #bio-page .process-grid {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+    gap: 3.5rem 1rem;
+  }
+
+  #bio-page .process-grid::before {
+    display: none;
+  }
+
+  #bio-page .process-card {
+    min-height: 16.5rem;
+  }
+
+  #bio-page .skills-achievements-layout {
+    grid-template-columns: 1fr;
+  }
+
+  #bio-page .achievements-section {
+    padding-left: 0;
+    border-left: 0;
+  }
+
+  #bio-page .achievements-list {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 60rem) {
+body[data-page="bio"] #bio-page {
+    padding-inline: 1.1rem;
+  }
+
+body[data-page="bio"] #bio-page .bio-intro {
+    grid-template-columns: 1fr;
+  }
+
+body[data-page="bio"] #bio-page .bio-intro__content {
+    max-width: none;
+  }
+
+body[data-page="bio"] #bio-page .bio-quote-card {
+    max-width: 46rem;
+    margin-inline: auto;
+  }
+
+body[data-page="bio"] #bio-page .skills-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+body[data-page="bio"] #bio-page {
+    padding-top: 2.5rem;
+  }
+
+body[data-page="bio"] #bio-page .bio-heading-group h1 {
+    font-size: clamp(2.1rem, 11vw, 3rem);
+    white-space: normal;
+  }
+
+body[data-page="bio"] #bio-page .bio-role {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+body[data-page="bio"] #bio-page .bio-role span {
+    display: none;
+  }
+
+body[data-page="bio"] #bio-page .bio-metrics {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+    max-width: none;
+  }
+
+body[data-page="bio"] #bio-page .bio-availability {
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+body[data-page="bio"] #bio-page .bio-quote-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+  }
+
+body[data-page="bio"] #bio-page .bio-portrait-wrap {
+    width: min(13rem, 70vw);
+  }
+
+body[data-page="bio"] #bio-page .bio-quote-card blockquote {
+    max-width: 25rem;
+    margin-inline: auto;
+  }
+
+body[data-page="bio"] #bio-page .bio-quote-card blockquote footer {
+    text-align: center;
+  }
+
+body[data-page="bio"] #bio-page .process-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+body[data-page="bio"] #bio-page .process-card {
+    min-height: auto;
+  }
+
+body[data-page="bio"] #bio-page .skills-grid,
+body[data-page="bio"] #bio-page .achievements-list {
+    grid-template-columns: 1fr;
+  }
+
+body[data-page="bio"] #bio-page .skill-group,
+body[data-page="bio"] #bio-page .skill-group--tools {
+    min-height: auto;
+  }
+
+body[data-page="bio"] #bio-page .bio-cta {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+body[data-page="bio"] #bio-page .bio-cta__icon {
+    margin-inline: auto;
+  }
+
+body[data-page="bio"] #bio-page .bio-button {
+    width: 100%;
+  }
+
+body[data-page="bio"] #bio-page .social-links {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+body[data-page="bio"] #bio-page .social-links li:last-child {
+    grid-column: 1 / -1;
+  }
+
+body[data-page="bio"] #bio-page .social-links a {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 26rem) {
+body[data-page="bio"] #bio-page .bio-metrics,
+body[data-page="bio"] #bio-page .social-links {
+    grid-template-columns: 1fr;
+  }
+
+body[data-page="bio"] #bio-page .social-links li:last-child {
+    grid-column: auto;
+  }
+
+body[data-page="bio"] #bio-page .bio-section {
+    padding-inline: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+body[data-page="bio"] #bio-page *,
+body[data-page="bio"] #bio-page *::before,
+body[data-page="bio"] #bio-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+

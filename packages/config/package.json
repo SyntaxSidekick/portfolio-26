@@ -1,0 +1,15 @@
+{
+  "name": "@portfolio/config",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --noEmit --pretty false",
+    "lint": "tsc --noEmit --pretty false",
+    "typecheck": "tsc --noEmit --pretty false",
+    "test": "node -e \"console.log('No config tests configured yet')\""
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

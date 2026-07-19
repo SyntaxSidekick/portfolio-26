@@ -1,0 +1,1118 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A front-end and UX engineering article by Riad Kilani.">
+  <meta name="color-scheme" content="dark light">
+  <title>Article | Riad Kilani</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="blog-single">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" id="site-header">
+  <div class="site-header-container">
+    <a
+      class="site-header-logo"
+      href="index.html"
+      aria-label="Riad Kilani home"
+    >
+      <img
+        src="/assets/images/riad-kilani-logo.svg"
+        alt="Riad Kilani, UX Engineer and Front-end Architect"
+      >
+    </a>
+
+    <nav
+      class="site-header-nav"
+      id="site-header-nav"
+      aria-label="Primary navigation"
+    >
+      <a href="bio.html">Bio</a>
+      <a href="portfolio.html">
+        Portfolio
+      </a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="site-header-actions">
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to light theme"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-icon theme-toggle-icon-sun">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.42 1.42"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.42"></path>
+            </svg>
+          </span>
+
+          <span class="theme-toggle-icon theme-toggle-icon-moon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"></path>
+            </svg>
+          </span>
+
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
+
+      <a class="site-header-cta" href="contact.html">
+        <span>Let’s Connect</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="m14 7 5 5-5 5"></path>
+        </svg>
+      </a>
+
+      <button
+        class="mobile-menu-toggle"
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<a class="skip-link" href="#blog-article">Skip to article content</a>
+
+<main class="blog-post-page">
+  <div class="blog-background-grid" aria-hidden="true"></div>
+  <div class="blog-background-glow blog-background-glow-one" aria-hidden="true"></div>
+  <div class="blog-background-glow blog-background-glow-two" aria-hidden="true"></div>
+
+  <div class="reading-progress-fixed" aria-hidden="true">
+    <span id="fixed-reading-progress"></span>
+  </div>
+
+  <div class="blog-container">
+    <a class="back-to-articles" href="#">
+      <span aria-hidden="true">←</span>
+      Back to All Articles
+    </a>
+
+    <div class="blog-post-layout">
+      <article class="blog-article" id="blog-article">
+        <header class="article-header">
+          <a class="article-category" href="#">Web Development</a>
+
+          <h1>
+            Native CSS Is Quietly Replacing Sass, But It Isn’t Replacing the
+            Need for Sass
+          </h1>
+
+          <p class="article-description">
+            Native CSS is evolving faster than ever with nesting, variables,
+            and <code>@scope</code>. Here’s what that means for your workflow,
+            projects, and the future of Sass.
+          </p>
+
+          <div class="article-meta-layout">
+            <div class="article-author">
+              <img
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&q=85"
+                alt="Portrait of Riad Kilani"
+              />
+
+              <div>
+                <strong>Riad Kilani</strong>
+
+                <div class="article-meta">
+                  <time datetime="2025-06-11">June 11, 2025</time>
+                  <span aria-hidden="true">•</span>
+                  <span>8 min read</span>
+                  <span aria-hidden="true">•</span>
+                  <a href="#comments">12 Comments</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="article-sharing">
+              <span>Share this article</span>
+
+              <div class="sharing-buttons">
+                <button
+                  class="round-button share-button"
+                  type="button"
+                  data-platform="x"
+                  aria-label="Share article on X"
+                >
+                  X
+                </button>
+
+                <button
+                  class="round-button share-button"
+                  type="button"
+                  data-platform="linkedin"
+                  aria-label="Share article on LinkedIn"
+                >
+                  in
+                </button>
+
+                <button
+                  class="round-button copy-article-link"
+                  type="button"
+                  aria-label="Copy article link"
+                >
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M10.6 13.4a1 1 0 0 1 0-1.4l3.2-3.2a3 3 0 0 1 4.2 4.2l-2.3 2.3a3 3 0 0 1-4.2 0 1 1 0 1 1 1.4-1.4 1 1 0 0 0 1.4 0l2.3-2.3a1 1 0 0 0-1.4-1.4L12 13.4a1 1 0 0 1-1.4 0Z"
+                    />
+                    <path
+                      d="M13.4 10.6a1 1 0 0 1 0 1.4l-3.2 3.2A3 3 0 0 1 6 11l2.3-2.3a3 3 0 0 1 4.2 0 1 1 0 1 1-1.4 1.4 1 1 0 0 0-1.4 0l-2.3 2.3a1 1 0 0 0 1.4 1.4l3.2-3.2a1 1 0 0 1 1.4 0Z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <figure class="article-featured-image">
+          <img
+            src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=90"
+            alt="Development interface showing code and design panels"
+          />
+
+          <span class="featured-image-overlay" aria-hidden="true"></span>
+
+          <div class="featured-image-graphic" aria-hidden="true">
+            <span class="sass-logo">Sass</span>
+            <span class="graphic-divider">+</span>
+            <span class="css-logo">CSS</span>
+          </div>
+        </figure>
+
+        <div class="article-reading-progress">
+          <span>Reading Progress</span>
+
+          <div
+            class="progress-track"
+            role="progressbar"
+            aria-label="Article reading progress"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <span id="article-reading-progress"></span>
+          </div>
+
+          <strong id="article-reading-value">0%</strong>
+        </div>
+
+        <nav class="article-table-of-contents" aria-label="Table of contents">
+          <button
+            class="mobile-toc-button"
+            type="button"
+            aria-expanded="true"
+            aria-controls="article-toc-list"
+          >
+            <span>Table of Contents</span>
+            <span class="mobile-toc-icon" aria-hidden="true">−</span>
+          </button>
+
+          <ol id="article-toc-list">
+            <li>
+              <a href="#variables">Variables: Compile-Time vs Runtime</a>
+            </li>
+
+            <li>
+              <a href="#nesting">Nesting: Without a Preprocessor</a>
+            </li>
+
+            <li>
+              <a href="#container-queries">
+                From Media Queries to Container Queries
+              </a>
+            </li>
+
+            <li>
+              <a href="#runtime-theming">
+                Runtime Theming Changes Everything
+              </a>
+            </li>
+
+            <li>
+              <a href="#sass-wins">Where Sass Still Wins</a>
+            </li>
+
+            <li>
+              <a href="#evolution">This Is Evolution, Not Replacement</a>
+            </li>
+          </ol>
+        </nav>
+
+        <div class="article-content">
+          <p class="article-summary">
+            <strong>TL;DR:</strong> Native CSS has absorbed most of what made
+            Sass essential. Variables, nesting, cascade controls, container
+            queries, and runtime theming now live natively in the language.
+            That does not make Sass obsolete. It changes its role. Sass moves
+            from required infrastructure to an optional build-time power tool.
+          </p>
+
+          <p>
+            If you write dashboards, interfaces, or design systems, this shift
+            is important. Native CSS is becoming capable enough to manage much
+            of the work that once required an additional preprocessing layer.
+          </p>
+
+          <section class="article-section" id="variables">
+            <header class="section-heading">
+              <span>01</span>
+
+              <div>
+                <h2>Variables: Compile-Time vs Runtime</h2>
+
+                <p>
+                  Sass variables are resolved at build time. Once compiled,
+                  the value is frozen into the output.
+                </p>
+              </div>
+            </header>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>SCSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-variable">$primary</span>: <span class="code-value">#006fed</span>;
+
+<span class="code-selector">.button</span> {
+  <span class="code-property">background</span>: <span class="code-variable">$primary</span>;
+}</code></pre>
+            </div>
+
+            <p>
+              Native CSS variables live at runtime and can be changed without
+              rebuilding the application.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>CSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-selector">:root</span> {
+  <span class="code-property">--primary</span>: <span class="code-value">#006fed</span>;
+}
+
+<span class="code-selector">.button</span> {
+  <span class="code-property">background</span>: <span class="code-function">var</span>(<span class="code-property">--primary</span>);
+}</code></pre>
+            </div>
+
+            <p>
+              You can now swap an entire design system in real time without
+              recompiling your CSS.
+            </p>
+          </section>
+
+          <section class="article-section" id="nesting">
+            <header class="section-heading">
+              <span>02</span>
+
+              <div>
+                <h2>Nesting: Without a Preprocessor</h2>
+
+                <p>
+                  What once required Sass now works directly inside modern CSS.
+                </p>
+              </div>
+            </header>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>CSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-selector">.card</span> {
+  <span class="code-property">padding</span>: <span class="code-value">1rem</span>;
+
+  <span class="code-selector">.title</span> {
+    <span class="code-property">font-size</span>: <span class="code-value">1.25rem</span>;
+  }
+
+  <span class="code-selector">&amp;:hover</span> {
+    <span class="code-property">border-color</span>: <span class="code-function">var</span>(<span class="code-property">--accent</span>);
+  }
+}</code></pre>
+            </div>
+
+            <p>
+              The syntax looks familiar, but this is real CSS. There is no
+              compilation step, abstraction layer, or preprocessing dependency.
+            </p>
+          </section>
+
+          <aside class="article-callout">
+            <span class="callout-icon" aria-hidden="true">&lt;/&gt;</span>
+
+            <div>
+              <strong>The important distinction</strong>
+
+              <p>
+                Native CSS is not simply duplicating Sass one feature at a
+                time. It is solving many of the same problems through a runtime
+                browser platform rather than a build-time language.
+              </p>
+            </div>
+          </aside>
+
+          <section class="article-section" id="container-queries">
+            <header class="section-heading">
+              <span>03</span>
+
+              <div>
+                <h2>From Media Queries to Container Queries</h2>
+
+                <p>
+                  Traditional responsive design centered on viewport
+                  breakpoints.
+                </p>
+              </div>
+            </header>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>CSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-keyword">@media</span> (<span class="code-property">min-width</span>: <span class="code-value">768px</span>) {
+  <span class="code-selector">.card</span> {
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr 1fr</span>;
+  }
+}</code></pre>
+            </div>
+
+            <p>
+              Modern CSS lets components respond to their own available space.
+            </p>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>CSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-selector">.card-wrapper</span> {
+  <span class="code-property">container-type</span>: <span class="code-value">inline-size</span>;
+}
+
+<span class="code-keyword">@container</span> (<span class="code-property">min-width</span>: <span class="code-value">600px</span>) {
+  <span class="code-selector">.card</span> {
+    <span class="code-property">grid-template-columns</span>: <span class="code-value">1fr 1fr</span>;
+  }
+}</code></pre>
+            </div>
+
+            <p>
+              The layout now listens to its component instead of the screen,
+              making reusable components more predictable across pages,
+              sidebars, dashboards, and modal layouts.
+            </p>
+          </section>
+
+          <section class="article-section" id="runtime-theming">
+            <header class="section-heading">
+              <span>04</span>
+
+              <div>
+                <h2>Runtime Theming Changes Everything</h2>
+
+                <p>
+                  Sass can generate themes, but native CSS can change them
+                  instantly in the browser.
+                </p>
+              </div>
+            </header>
+
+            <div class="code-block">
+              <div class="code-header">
+                <span>CSS</span>
+
+                <button class="copy-code-button" type="button">
+                  Copy
+                </button>
+              </div>
+
+              <pre><code><span class="code-selector">:root</span> {
+  <span class="code-property">--surface</span>: <span class="code-value">#07111d</span>;
+  <span class="code-property">--text</span>: <span class="code-value">#f7fbff</span>;
+}
+
+<span class="code-selector">[data-theme="light"]</span> {
+  <span class="code-property">--surface</span>: <span class="code-value">#ffffff</span>;
+  <span class="code-property">--text</span>: <span class="code-value">#08111f</span>;
+}</code></pre>
+            </div>
+
+            <p>
+              There is no duplication, recompilation, or need to pass theme
+              values through every individual component.
+            </p>
+
+            <ul class="article-feature-list">
+              <li>
+                <span aria-hidden="true">✓</span>
+                User-selectable themes
+              </li>
+
+              <li>
+                <span aria-hidden="true">✓</span>
+                Brand-specific interface themes
+              </li>
+
+              <li>
+                <span aria-hidden="true">✓</span>
+                Accessibility preferences
+              </li>
+
+              <li>
+                <span aria-hidden="true">✓</span>
+                Runtime design-token updates
+              </li>
+            </ul>
+          </section>
+
+          <section class="article-section" id="sass-wins">
+            <header class="section-heading">
+              <span>05</span>
+
+              <div>
+                <h2>Where Sass Still Wins</h2>
+
+                <p>
+                  Sass remains valuable when build-time logic provides a real
+                  architectural advantage.
+                </p>
+              </div>
+            </header>
+
+            <div class="comparison-grid">
+              <article>
+                <span class="comparison-label">Native CSS</span>
+
+                <h3>Runtime capabilities</h3>
+
+                <ul>
+                  <li>Dynamic custom properties</li>
+                  <li>Container queries</li>
+                  <li>Native cascade layers</li>
+                  <li>Browser-level theming</li>
+                  <li>Progressive enhancement</li>
+                </ul>
+              </article>
+
+              <article>
+                <span class="comparison-label">Sass</span>
+
+                <h3>Build-time capabilities</h3>
+
+                <ul>
+                  <li>Complex functions and loops</li>
+                  <li>Programmatic token generation</li>
+                  <li>Large utility generators</li>
+                  <li>Advanced color transformations</li>
+                  <li>Compile-time design logic</li>
+                </ul>
+              </article>
+            </div>
+
+            <p>
+              A modern architecture can use native CSS for browser behavior
+              while reserving Sass for build-time tasks it performs especially
+              well.
+            </p>
+          </section>
+
+          <section class="article-section" id="evolution">
+            <header class="section-heading">
+              <span>06</span>
+
+              <div>
+                <h2>This Is Evolution, Not Replacement</h2>
+
+                <p>
+                  The future is not Sass versus CSS. It is understanding what
+                  belongs in the browser and what belongs in the build process.
+                </p>
+              </div>
+            </header>
+
+            <blockquote>
+              <p>
+                Use native CSS for runtime behavior. Use Sass when build-time
+                automation genuinely improves the system.
+              </p>
+            </blockquote>
+
+            <p>
+              Sass is not disappearing. Its responsibilities are becoming more
+              focused. That is a sign of a maturing platform, not the death of
+              a tool.
+            </p>
+          </section>
+
+          <a class="continue-reading-button" href="#">
+            Continue Reading
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+
+        <footer class="article-footer" id="comments">
+          <div class="article-feedback">
+            <span>Was this article helpful?</span>
+
+            <button
+              class="feedback-button"
+              type="button"
+              data-feedback="helpful"
+              aria-label="Mark this article as helpful"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7 10v10H3V10h4Zm4 10H9V9.6l3.7-6.1a1.4 1.4 0 0 1 2.6.8L15 9h4.2a2 2 0 0 1 2 2.3l-1 7a2 2 0 0 1-2 1.7H11Z"
+                />
+              </svg>
+            </button>
+
+            <button
+              class="feedback-button"
+              type="button"
+              data-feedback="not-helpful"
+              aria-label="Mark this article as not helpful"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M17 14V4h4v10h-4ZM13 4h2v10.4l-3.7 6.1a1.4 1.4 0 0 1-2.6-.8L9 15H4.8a2 2 0 0 1-2-2.3l1-7A2 2 0 0 1 5.8 4H13Z"
+                />
+              </svg>
+            </button>
+
+            <span class="feedback-message" aria-live="polite"></span>
+          </div>
+
+          <nav class="article-navigation" aria-label="Article navigation">
+            <a href="#" class="previous-article">
+              <span class="navigation-arrow" aria-hidden="true">←</span>
+
+              <span>
+                <small>Previous Article</small>
+                <strong>60 JavaScript Projects in 60 Days</strong>
+              </span>
+            </a>
+
+            <a class="all-articles-link" href="#" aria-label="View all articles">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="6" height="6" rx="1"></rect>
+                <rect x="15" y="3" width="6" height="6" rx="1"></rect>
+                <rect x="3" y="15" width="6" height="6" rx="1"></rect>
+                <rect x="15" y="15" width="6" height="6" rx="1"></rect>
+              </svg>
+            </a>
+
+            <a href="#" class="next-article">
+              <span>
+                <small>Next Article</small>
+                <strong>TypeScript From the Ground Up, Day 3</strong>
+              </span>
+
+              <span class="navigation-arrow" aria-hidden="true">→</span>
+            </a>
+          </nav>
+        </footer>
+      </article>
+
+      <aside class="article-sidebar">
+        <div class="article-sidebar-inner">
+          <section class="sidebar-card author-sidebar-card">
+            <h2>About the Author</h2>
+
+            <div class="sidebar-author">
+              <img
+                src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&q=85"
+                alt="Portrait of Riad Kilani"
+              />
+
+              <div>
+                <strong>Riad Kilani</strong>
+
+                <p>
+                  UX Engineer and Front-End Architect focused on performance,
+                  accessibility, and developer experience.
+                </p>
+              </div>
+            </div>
+
+            <a class="sidebar-text-link" href="#">
+              View full bio
+              <span aria-hidden="true">→</span>
+            </a>
+          </section>
+
+          <nav class="sidebar-card sidebar-toc" aria-label="On this page">
+            <h2>On This Page</h2>
+
+            <ol>
+              <li>
+                <a href="#variables">Variables: Compile-Time vs Runtime</a>
+              </li>
+
+              <li>
+                <a href="#nesting">Nesting: Without a Preprocessor</a>
+              </li>
+
+              <li>
+                <a href="#container-queries">
+                  From Media Queries to Container Queries
+                </a>
+              </li>
+
+              <li>
+                <a href="#runtime-theming">
+                  Runtime Theming Changes Everything
+                </a>
+              </li>
+
+              <li>
+                <a href="#sass-wins">Where Sass Still Wins</a>
+              </li>
+
+              <li>
+                <a href="#evolution">This Is Evolution, Not Replacement</a>
+              </li>
+            </ol>
+          </nav>
+
+          <section class="sidebar-card recent-articles-card">
+            <h2>Recent Articles</h2>
+
+            <div class="recent-articles-list">
+              <a class="recent-article" href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=240&q=80"
+                  alt=""
+                />
+
+                <span>
+                  <strong>
+                    Native CSS Is Quietly Replacing Sass, But It Isn’t Replacing
+                    the Need for Sass
+                  </strong>
+
+                  <small>Jun 11, 2025</small>
+                </span>
+              </a>
+
+              <a class="recent-article" href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=240&q=80"
+                  alt=""
+                />
+
+                <span>
+                  <strong>TypeScript From the Ground Up, Day 3</strong>
+                  <small>Jun 10, 2025</small>
+                </span>
+              </a>
+
+              <a class="recent-article" href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=240&q=80"
+                  alt=""
+                />
+
+                <span>
+                  <strong>60 JavaScript Projects in 60 Days</strong>
+                  <small>Jun 10, 2025</small>
+                </span>
+              </a>
+
+              <a class="recent-article" href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=240&q=80"
+                  alt=""
+                />
+
+                <span>
+                  <strong>
+                    JavaScript vs TypeScript: What Actually Changes
+                  </strong>
+
+                  <small>Jun 9, 2025</small>
+                </span>
+              </a>
+
+              <a class="recent-article" href="#">
+                <img
+                  src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=240&q=80"
+                  alt=""
+                />
+
+                <span>
+                  <strong>Learn TypeScript in 10 Minutes</strong>
+                  <small>Jun 7, 2025</small>
+                </span>
+              </a>
+            </div>
+          </section>
+
+          <section class="sidebar-card tags-sidebar-card">
+            <h2>Tags</h2>
+
+            <div class="article-tags">
+              <a href="#">CSS</a>
+              <a href="#">Sass</a>
+              <a href="#">Web Development</a>
+              <a href="#">JavaScript</a>
+              <a href="#">TypeScript</a>
+              <a href="#">Performance</a>
+              <a href="#">Frontend</a>
+              <a href="#">Tutorial</a>
+            </div>
+          </section>
+
+          <section class="sidebar-card newsletter-sidebar-card">
+            <span class="newsletter-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path
+                  d="M3 5h18v14H3V5Zm2 2v.4l7 5 7-5V7H5Zm14 10V9.8l-7 5-7-5V17h14Z"
+                />
+              </svg>
+            </span>
+
+            <div>
+              <h2>Stay Ahead. Get Weekly Insights.</h2>
+
+              <p>
+                Join 2,500+ developers getting practical tips, tutorials, and
+                resources delivered to their inbox every week.
+              </p>
+            </div>
+
+            <div class="newsletter-form">
+              <label class="sr-only" for="newsletter-email">
+                Email address
+              </label>
+
+              <input
+                id="newsletter-email"
+                type="email"
+                placeholder="Enter your email address"
+              />
+
+              <button id="newsletter-submit" type="button">
+                Subscribe
+              </button>
+            </div>
+
+            <small>No spam. Unsubscribe anytime.</small>
+
+            <p class="newsletter-message" aria-live="polite"></p>
+          </section>
+
+          <section class="sidebar-card explore-sidebar-card">
+            <span class="explore-icon" aria-hidden="true">&lt;/&gt;</span>
+
+            <h2>Build Better. Ship Faster.</h2>
+
+            <p>
+              Explore practical tutorials, in-depth guides, and real-world
+              insights on modern front-end development.
+            </p>
+
+            <a class="sidebar-text-link" href="#">
+              Explore All Articles
+              <span aria-hidden="true">→</span>
+            </a>
+          </section>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="toast-message" id="toast-message" aria-live="polite"></div>
+</main>
+<footer class="site-footer" id="site-footer">
+  <div class="footer-container">
+    <div class="footer-main">
+      <section class="footer-intro" aria-labelledby="footer-about-title">
+        <a class="footer-logo" href="index.html" aria-label="Riad Kilani home">
+          <img
+            src="/assets/images/riad-kilani-logo.svg"
+            alt="Riad Kilani, UX Engineer and Front-end Architect"
+          >
+        </a>
+
+        <h2 class="screen-reader-text" id="footer-about-title">
+          About Riad Kilani
+        </h2>
+
+        <p class="footer-description">
+          I design and engineer accessible, high-performance digital
+          experiences that solve problems, drive results, and make an impact.
+        </p>
+
+        <nav class="footer-socials" aria-label="Social links">
+          <a
+            href="https://www.linkedin.com/in/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <path d="M8 10v7"></path>
+              <path d="M8 7v.01"></path>
+              <path d="M12 17v-4a3 3 0 0 1 6 0v4"></path>
+              <path d="M12 10v7"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://github.com/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15 1.5a13.4 13.4 0 0 0-7 0C5 0 3.8 0 3.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 2.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path>
+              <path d="M8 19c-3 .9-3-1.5-4.2-2"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://codepen.io/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="CodePen"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 2 9 6v8l-9 6-9-6V8l9-6Z"></path>
+              <path d="m3 8 9 6 9-6"></path>
+              <path d="m3 16 9-6 9 6"></path>
+              <path d="M12 2v8"></path>
+              <path d="M12 14v8"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://x.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4l16 16"></path>
+              <path d="M20 4 4 20"></path>
+            </svg>
+          </a>
+
+          <a
+            href="mailto:hello@riadkilani.com"
+            aria-label="Email Riad Kilani"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m3 7 9 6 9-6"></path>
+            </svg>
+          </a>
+        </nav>
+      </section>
+
+      <nav class="footer-column" aria-labelledby="footer-navigation-title">
+        <h2 id="footer-navigation-title">Navigation</h2>
+
+        <ul>
+          <li>
+            <a href="bio.html">
+              <span>Bio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="portfolio.html">
+              <span>Portfolio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="blog.html">
+              <span>Blog</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="contact.html">
+              <span>Contact</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-expertise-title">
+        <h2 id="footer-expertise-title">Expertise</h2>
+
+        <ul>
+          <li>
+            <a href="bio.html#front-end-engineering">
+              Front-end Engineering
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#ux-product-design">
+              UX &amp; Product Design
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#design-systems">
+              Design Systems
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#accessibility">
+              Accessibility
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#performance">
+              Performance
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-resources-title">
+        <h2 id="footer-resources-title">Resources</h2>
+
+        <ul>
+          <li>
+            <a href="portfolio.html">Case Studies</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Articles</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Guides</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Resources</a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="footer-contact" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Let’s Connect</h2>
+
+        <p>
+          Have a project or opportunity in mind? I’d love to hear from you.
+        </p>
+
+        <a class="footer-cta" href="contact.html">
+          <span>Start a Conversation</span>
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m14 7 5 5-5 5"></path>
+          </svg>
+        </a>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="privacy.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+
+          <span>Privacy Policy</span>
+        </a>
+
+        <span class="footer-legal-divider" aria-hidden="true"></span>
+
+        <a href="terms.html">Terms of Use</a>
+      </nav>
+
+      <p class="footer-copyright">
+        © <span id="footer-year">2026</span> Riad Kilani. All rights reserved.
+      </p>
+
+      <button
+        class="back-to-top"
+        id="back-to-top"
+        type="button"
+      >
+        <span>Back to Top</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="m6 11 6-6 6 6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+    <script src="js/scripts.js" defer></script>
+</body>
+</html>

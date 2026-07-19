@@ -1,0 +1,1547 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Articles and resources about front-end development, UX engineering, accessibility, and design systems.">
+  <meta name="color-scheme" content="dark light">
+  <title>Blog | Riad Kilani</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&family=JetBrains+Mono:wght@400;500&family=Libre+Baskerville:wght@400;700&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="blog">
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="site-header" id="site-header">
+  <div class="site-header-container">
+    <a
+      class="site-header-logo"
+      href="index.html"
+      aria-label="Riad Kilani home"
+    >
+      <img
+        src="/assets/images/riad-kilani-logo.svg"
+        alt="Riad Kilani, UX Engineer and Front-end Architect"
+      >
+    </a>
+
+    <nav
+      class="site-header-nav"
+      id="site-header-nav"
+      aria-label="Primary navigation"
+    >
+      <a href="bio.html">Bio</a>
+      <a href="portfolio.html">
+        Portfolio
+      </a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="site-header-actions">
+      <button
+        class="theme-toggle"
+        id="theme-toggle"
+        type="button"
+        aria-label="Switch to light theme"
+        aria-pressed="false"
+      >
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-icon theme-toggle-icon-sun">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3.5"></circle>
+              <path d="M12 2v2"></path>
+              <path d="M12 20v2"></path>
+              <path d="m4.93 4.93 1.42 1.42"></path>
+              <path d="m17.66 17.66 1.41 1.41"></path>
+              <path d="M2 12h2"></path>
+              <path d="M20 12h2"></path>
+              <path d="m6.34 17.66-1.41 1.41"></path>
+              <path d="m19.07 4.93-1.41 1.42"></path>
+            </svg>
+          </span>
+
+          <span class="theme-toggle-icon theme-toggle-icon-moon">
+            <svg viewBox="0 0 24 24">
+              <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"></path>
+            </svg>
+          </span>
+
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
+
+      <a class="site-header-cta" href="contact.html">
+        <span>Let’s Connect</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14"></path>
+          <path d="m14 7 5 5-5 5"></path>
+        </svg>
+      </a>
+
+      <button
+        class="mobile-menu-toggle"
+        id="mobile-menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="site-header-nav"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div id="main-content">
+<main id="blog-index">
+  <section class="blog-page" aria-labelledby="blog-page-title">
+    <div class="blog-container">
+
+      <!-- Page Header -->
+      <header class="blog-hero">
+        <p class="blog-eyebrow">SyntaxSidekick Insights</p>
+
+        <h1 id="blog-page-title">Insights &amp; Articles</h1>
+
+        <p class="blog-hero-description">
+          Practical tutorials, in-depth guides, and real-world insights
+          on modern front-end development, design, and technology.
+        </p>
+
+        <span class="blog-hero-accent" aria-hidden="true"></span>
+      </header>
+
+      <!-- Filters, Search and Sorting -->
+      <section
+        class="blog-controls"
+        aria-label="Filter and search blog articles"
+      >
+        <div
+          class="blog-filters"
+          role="group"
+          aria-label="Filter articles by content type"
+        >
+          <button
+            class="blog-filter is-active"
+            type="button"
+            data-filter="all"
+            aria-pressed="true"
+          >
+            All
+          </button>
+
+          <button
+            class="blog-filter"
+            type="button"
+            data-filter="tutorial"
+            aria-pressed="false"
+          >
+            Tutorials
+          </button>
+
+          <button
+            class="blog-filter"
+            type="button"
+            data-filter="guide"
+            aria-pressed="false"
+          >
+            Guides
+          </button>
+
+          <button
+            class="blog-filter"
+            type="button"
+            data-filter="article"
+            aria-pressed="false"
+          >
+            Articles
+          </button>
+
+          <button
+            class="blog-filter"
+            type="button"
+            data-filter="news"
+            aria-pressed="false"
+          >
+            News
+          </button>
+
+          <button
+            class="blog-filter"
+            type="button"
+            data-filter="opinion"
+            aria-pressed="false"
+          >
+            Opinion
+          </button>
+        </div>
+
+        <div class="blog-tools">
+          <label class="blog-search">
+            <span class="sr-only">Search articles</span>
+
+            <input
+              id="blog-search-input"
+              type="search"
+              placeholder="Search articles..."
+              autocomplete="off"
+            />
+
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+            >
+              <path
+                d="m21 21-4.35-4.35m2.35-5.65a8 8 0 1 1-16 0 8 8 0 0 1 16 0Z"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+              />
+            </svg>
+          </label>
+
+          <label class="blog-sort">
+            <span class="sr-only">Sort articles</span>
+
+            <select id="blog-sort-select">
+              <option value="latest">Sort by: Latest</option>
+              <option value="oldest">Sort by: Oldest</option>
+              <option value="title">Sort by: Title</option>
+              <option value="reading-time">Sort by: Reading Time</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <p
+        id="blog-status"
+        class="blog-status sr-only"
+        role="status"
+        aria-live="polite"
+      ></p>
+
+      <!-- Featured Post -->
+      <article
+        class="featured-post"
+        data-post
+        data-type="article"
+        data-date="2025-06-18"
+        data-reading-time="8"
+        data-title="Native CSS Is Quietly Replacing Sass, but It Isn’t Replacing the Need for Sass"
+        aria-labelledby="featured-post-title"
+      >
+        <div class="featured-post-media">
+          <span class="featured-label">Featured</span>
+
+          <img
+            class="featured-post-image"
+            src="https://placehold.co/1200x675/061525/45a7ff?text=Native+CSS+vs+Sass"
+            alt="CSS and Sass development interfaces displayed beside a CSS shield"
+            width="1200"
+            height="675"
+          />
+        </div>
+
+        <div class="featured-post-content">
+          <p class="article-meta">
+            <time datetime="2025-06-18">Jun 18, 2025</time>
+            <span>8 min read</span>
+          </p>
+
+          <h2 id="featured-post-title">
+            <a href="#native-css-sass">
+              Native CSS Is Quietly Replacing Sass, but It Isn’t Replacing
+              the Need for Sass
+            </a>
+          </h2>
+
+          <p class="featured-post-description">
+            Native CSS is evolving faster than ever with nesting, variables,
+            and <code>@scope</code>. Here’s what that means for your workflow,
+            projects, and the future of Sass.
+          </p>
+
+          <div class="featured-post-footer">
+            <ul class="article-tags" aria-label="Article topics">
+              <li class="article-tag">CSS</li>
+              <li class="article-tag">Sass</li>
+              <li class="article-tag">Web Development</li>
+              <li class="article-tag">Front-End</li>
+            </ul>
+
+            <a class="article-link" href="#native-css-sass">
+              Read More
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Blog Listing -->
+      <section class="articles-section" aria-labelledby="articles-title">
+        <h2 id="articles-title" class="sr-only">Latest articles</h2>
+
+        <div id="article-grid" class="article-grid">
+
+          <!-- Post 1 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="tutorial"
+            data-date="2025-06-16"
+            data-reading-time="6"
+            data-title="TypeScript From the Ground Up, Day 3"
+          >
+            <a
+              class="article-card-media"
+              href="#typescript-day-three"
+              aria-label="Read TypeScript From the Ground Up, Day 3"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/071529/4db4ff?text=TypeScript+Day+3"
+                alt="TypeScript code examples with the TypeScript logo"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-16">Jun 16, 2025</time>
+                <span>6 min read</span>
+              </p>
+
+              <h3>
+                <a href="#typescript-day-three">
+                  TypeScript From the Ground Up, Day 3
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Arrays, tuples, and custom types. Level up your TypeScript
+                skills with practical examples.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">TypeScript</li>
+                <li class="article-tag">Tutorial</li>
+                <li class="article-tag">JavaScript</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 2 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="article"
+            data-date="2025-06-15"
+            data-reading-time="7"
+            data-title="2026 CSS Features You Must Know"
+          >
+            <a
+              class="article-card-media"
+              href="#css-features-2026"
+              aria-label="Read 2026 CSS Features You Must Know"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/132038/f6a83b?text=2026+CSS+Features"
+                alt="Modern interface displaying CSS features and development tools"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-15">Jun 15, 2025</time>
+                <span>7 min read</span>
+              </p>
+
+              <h3>
+                <a href="#css-features-2026">
+                  2026 CSS Features You Must Know
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Container queries, style queries, and more. Explore the latest
+                CSS features changing the game.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">CSS</li>
+                <li class="article-tag">Web Development</li>
+                <li class="article-tag">Front-End</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 3 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="tutorial"
+            data-date="2025-06-12"
+            data-reading-time="5"
+            data-title="60 JavaScript Projects in 60 Days"
+          >
+            <a
+              class="article-card-media"
+              href="#javascript-projects"
+              aria-label="Read 60 JavaScript Projects in 60 Days"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/1a1232/fbcf34?text=60+JavaScript+Projects"
+                alt="Graphic reading 60 JavaScript Projects in 60 Days"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-12">Jun 12, 2025</time>
+                <span>5 min read</span>
+              </p>
+
+              <h3>
+                <a href="#javascript-projects">
+                  60 JavaScript Projects in 60 Days
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Build your JavaScript skills by building real-world projects.
+                One project a day to mastery.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">JavaScript</li>
+                <li class="article-tag">Projects</li>
+                <li class="article-tag">Beginner</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 4 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="article"
+            data-date="2025-06-10"
+            data-reading-time="6"
+            data-title="JavaScript vs TypeScript: What Actually Changes"
+          >
+            <a
+              class="article-card-media"
+              href="#javascript-vs-typescript"
+              aria-label="Read JavaScript vs TypeScript: What Actually Changes"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/071a31/58aaff?text=JavaScript+vs+TypeScript"
+                alt="JavaScript and TypeScript logos displayed side by side"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-10">Jun 10, 2025</time>
+                <span>6 min read</span>
+              </p>
+
+              <h3>
+                <a href="#javascript-vs-typescript">
+                  JavaScript vs TypeScript: What Actually Changes
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                A practical comparison of JavaScript and TypeScript. See what
+                really changes under the hood.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">JavaScript</li>
+                <li class="article-tag">TypeScript</li>
+                <li class="article-tag">Comparison</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 5 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="tutorial"
+            data-date="2025-06-09"
+            data-reading-time="8"
+            data-title="TypeScript Basics for Beginners"
+          >
+            <a
+              class="article-card-media"
+              href="#typescript-basics"
+              aria-label="Read TypeScript Basics for Beginners"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/061629/56aaff?text=TypeScript+Basics"
+                alt="TypeScript code editor and TypeScript logo"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-09">Jun 9, 2025</time>
+                <span>8 min read</span>
+              </p>
+
+              <h3>
+                <a href="#typescript-basics">
+                  TypeScript Basics for Beginners
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Start your TypeScript journey the right way. Learn types,
+                interfaces, and practical examples.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">TypeScript</li>
+                <li class="article-tag">Tutorial</li>
+                <li class="article-tag">Beginner</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 6 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="guide"
+            data-date="2025-06-07"
+            data-reading-time="4"
+            data-title="Learn TypeScript in 10 Minutes"
+          >
+            <a
+              class="article-card-media"
+              href="#typescript-ten-minutes"
+              aria-label="Read Learn TypeScript in 10 Minutes"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/4a21c9/ffffff?text=Learn+TypeScript+in+10+Minutes"
+                alt="Graphic reading Learn TypeScript in 10 Minutes"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-07">Jun 7, 2025</time>
+                <span>4 min read</span>
+              </p>
+
+              <h3>
+                <a href="#typescript-ten-minutes">
+                  Learn TypeScript in 10 Minutes
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Get productive with TypeScript fast. Essential concepts
+                explained in plain English.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">TypeScript</li>
+                <li class="article-tag">Tutorial</li>
+                <li class="article-tag">JavaScript</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 7 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="opinion"
+            data-date="2025-06-03"
+            data-reading-time="5"
+            data-title="Why Great UX Feels Invisible"
+          >
+            <a
+              class="article-card-media"
+              href="#invisible-ux"
+              aria-label="Read Why Great UX Feels Invisible"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/e9f7ff/4aa8d8?text=Invisible+UX"
+                alt="Minimal abstract interface representing invisible user experience design"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-03">Jun 3, 2025</time>
+                <span>5 min read</span>
+              </p>
+
+              <h3>
+                <a href="#invisible-ux">
+                  Why Great UX Feels Invisible
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                The invisible work behind seamless experiences. Explore the
+                principles of great UX design.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Design</li>
+                <li class="article-tag">UX</li>
+                <li class="article-tag">User Experience</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 8 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="guide"
+            data-date="2025-06-01"
+            data-reading-time="7"
+            data-title="Web Accessibility: A Complete Guide to Building Inclusive Websites"
+          >
+            <a
+              class="article-card-media"
+              href="#web-accessibility-guide"
+              aria-label="Read Web Accessibility: A Complete Guide to Building Inclusive Websites"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/249dd1/ffffff?text=Web+Accessibility"
+                alt="People using accessible digital interfaces and assistive technology"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-06-01">Jun 1, 2025</time>
+                <span>7 min read</span>
+              </p>
+
+              <h3>
+                <a href="#web-accessibility-guide">
+                  Web Accessibility: A Complete Guide to Building Inclusive
+                  Websites
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Make your websites accessible to everyone with practical
+                recommendations, patterns, and best practices.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Accessibility</li>
+                <li class="article-tag">Guide</li>
+                <li class="article-tag">Web Development</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 9 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="article"
+            data-date="2025-05-30"
+            data-reading-time="6"
+            data-title="How Material Design Motion Improves Perceived Performance in React Applications"
+          >
+            <a
+              class="article-card-media"
+              href="#material-design-motion"
+              aria-label="Read How Material Design Motion Improves Perceived Performance in React Applications"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/3030ae/49e0ef?text=Material+Motion"
+                alt="React and Material Design motion graphics"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-30">May 30, 2025</time>
+                <span>6 min read</span>
+              </p>
+
+              <h3>
+                <a href="#material-design-motion">
+                  How Material Design Motion Improves Perceived Performance
+                  in React Applications
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Use purposeful motion to keep users engaged and improve
+                perceived speed in React applications.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">React</li>
+                <li class="article-tag">Design</li>
+                <li class="article-tag">Performance</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 10 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="tutorial"
+            data-date="2025-05-27"
+            data-reading-time="9"
+            data-title="Building an Accessible Navigation System"
+          >
+            <a
+              class="article-card-media"
+              href="#accessible-navigation"
+              aria-label="Read Building an Accessible Navigation System"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/08192c/53baff?text=Accessible+Navigation"
+                alt="Accessible navigation menu interface"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-27">May 27, 2025</time>
+                <span>9 min read</span>
+              </p>
+
+              <h3>
+                <a href="#accessible-navigation">
+                  Building an Accessible Navigation System
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Create navigation that works with keyboards, screen readers,
+                touch devices, and reduced-motion preferences.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Accessibility</li>
+                <li class="article-tag">Navigation</li>
+                <li class="article-tag">JavaScript</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 11 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="news"
+            data-date="2025-05-22"
+            data-reading-time="7"
+            data-title="The State of Front-End Development"
+          >
+            <a
+              class="article-card-media"
+              href="#state-of-front-end"
+              aria-label="Read The State of Front-End Development"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/071526/5ac0ff?text=Front-End+Development"
+                alt="Modern front-end development tools and interfaces"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-22">May 22, 2025</time>
+                <span>7 min read</span>
+              </p>
+
+              <h3>
+                <a href="#state-of-front-end">
+                  The State of Front-End Development
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                A look at the tools, standards, and browser capabilities
+                shaping modern front-end work.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Front-End</li>
+                <li class="article-tag">News</li>
+                <li class="article-tag">Web Development</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 12 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="guide"
+            data-date="2025-05-19"
+            data-reading-time="10"
+            data-title="Design Systems That Developers Actually Use"
+          >
+            <a
+              class="article-card-media"
+              href="#usable-design-systems"
+              aria-label="Read Design Systems That Developers Actually Use"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/101a2c/a788ff?text=Design+Systems"
+                alt="Design system components and interface tokens"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-19">May 19, 2025</time>
+                <span>10 min read</span>
+              </p>
+
+              <h3>
+                <a href="#usable-design-systems">
+                  Design Systems That Developers Actually Use
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Create a design system that stays useful, maintainable, and
+                connected to production code.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Design Systems</li>
+                <li class="article-tag">React</li>
+                <li class="article-tag">CSS</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 13 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="opinion"
+            data-date="2025-05-15"
+            data-reading-time="6"
+            data-title="Stop Treating Accessibility as a Final Checklist"
+          >
+            <a
+              class="article-card-media"
+              href="#accessibility-checklist"
+              aria-label="Read Stop Treating Accessibility as a Final Checklist"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/092135/5bc0ff?text=Accessibility+First"
+                alt="Accessibility-first product development workflow"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-15">May 15, 2025</time>
+                <span>6 min read</span>
+              </p>
+
+              <h3>
+                <a href="#accessibility-checklist">
+                  Stop Treating Accessibility as a Final Checklist
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Accessibility works best when it is integrated into design,
+                architecture, development, and testing.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Accessibility</li>
+                <li class="article-tag">UX</li>
+                <li class="article-tag">Development</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 14 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="tutorial"
+            data-date="2025-05-11"
+            data-reading-time="8"
+            data-title="Modern CSS Layout Patterns"
+          >
+            <a
+              class="article-card-media"
+              href="#modern-css-layouts"
+              aria-label="Read Modern CSS Layout Patterns"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/07172a/43b9ff?text=Modern+CSS+Layouts"
+                alt="Responsive CSS Grid and Flexbox layouts"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-11">May 11, 2025</time>
+                <span>8 min read</span>
+              </p>
+
+              <h3>
+                <a href="#modern-css-layouts">
+                  Modern CSS Layout Patterns
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Practical Grid and Flexbox patterns for responsive, resilient,
+                and maintainable application layouts.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">CSS</li>
+                <li class="article-tag">Layout</li>
+                <li class="article-tag">Responsive Design</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 15 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="article"
+            data-date="2025-05-08"
+            data-reading-time="9"
+            data-title="AI-Assisted Development Without Losing Control"
+          >
+            <a
+              class="article-card-media"
+              href="#ai-assisted-development"
+              aria-label="Read AI-Assisted Development Without Losing Control"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/121839/6e96ff?text=AI-Assisted+Development"
+                alt="Developer using AI-assisted coding tools"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-08">May 8, 2025</time>
+                <span>9 min read</span>
+              </p>
+
+              <h3>
+                <a href="#ai-assisted-development">
+                  AI-Assisted Development Without Losing Control
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Use AI tools to accelerate development while keeping
+                architecture, accessibility, and quality in your hands.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">AI</li>
+                <li class="article-tag">Development</li>
+                <li class="article-tag">Workflow</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 16 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="guide"
+            data-date="2025-05-04"
+            data-reading-time="8"
+            data-title="Core Web Vitals for Real Applications"
+          >
+            <a
+              class="article-card-media"
+              href="#core-web-vitals"
+              aria-label="Read Core Web Vitals for Real Applications"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/06202a/4bd3b8?text=Core+Web+Vitals"
+                alt="Performance metrics and Core Web Vitals dashboard"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-04">May 4, 2025</time>
+                <span>8 min read</span>
+              </p>
+
+              <h3>
+                <a href="#core-web-vitals">
+                  Core Web Vitals for Real Applications
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Move beyond perfect demos and improve performance in
+                content-heavy, production-scale applications.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">Performance</li>
+                <li class="article-tag">Core Web Vitals</li>
+                <li class="article-tag">SEO</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 17 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="news"
+            data-date="2025-05-01"
+            data-reading-time="5"
+            data-title="What Changed in React This Month"
+          >
+            <a
+              class="article-card-media"
+              href="#react-news"
+              aria-label="Read What Changed in React This Month"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/07182b/61dafb?text=React+News"
+                alt="React logo and development updates"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-05-01">May 1, 2025</time>
+                <span>5 min read</span>
+              </p>
+
+              <h3>
+                <a href="#react-news">
+                  What Changed in React This Month
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                A practical overview of recent React changes and what they mean
+                for production teams.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">React</li>
+                <li class="article-tag">News</li>
+                <li class="article-tag">JavaScript</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Post 18 -->
+          <article
+            class="article-card"
+            data-post
+            data-type="article"
+            data-date="2025-04-28"
+            data-reading-time="6"
+            data-title="Semantic HTML Is Still a Competitive Advantage"
+          >
+            <a
+              class="article-card-media"
+              href="#semantic-html"
+              aria-label="Read Semantic HTML Is Still a Competitive Advantage"
+            >
+              <img
+                class="article-card-image"
+                src="https://placehold.co/800x450/17202b/f06529?text=Semantic+HTML"
+                alt="Semantic HTML document structure"
+                width="800"
+                height="450"
+              />
+            </a>
+
+            <div class="article-card-content">
+              <p class="article-meta">
+                <time datetime="2025-04-28">Apr 28, 2025</time>
+                <span>6 min read</span>
+              </p>
+
+              <h3>
+                <a href="#semantic-html">
+                  Semantic HTML Is Still a Competitive Advantage
+                </a>
+              </h3>
+
+              <p class="article-card-description">
+                Better document structure improves accessibility, SEO,
+                maintainability, and long-term resilience.
+              </p>
+
+              <ul class="article-tags" aria-label="Article topics">
+                <li class="article-tag">HTML</li>
+                <li class="article-tag">Accessibility</li>
+                <li class="article-tag">SEO</li>
+              </ul>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Empty Search State -->
+        <div id="empty-state" class="blog-empty-state" hidden>
+          <span class="blog-empty-icon" aria-hidden="true">⌕</span>
+
+          <h2>No articles found</h2>
+
+          <p>
+            Try another search term or reset the selected category.
+          </p>
+
+          <button id="reset-filters" class="blog-reset-button" type="button">
+            Reset filters
+          </button>
+        </div>
+      </section>
+
+      <!-- Newsletter -->
+      <aside class="newsletter" aria-labelledby="newsletter-title">
+        <div class="newsletter-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="34" height="34">
+            <path
+              d="M3.5 5.5h17v13h-17z"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            />
+            <path
+              d="m4 6 8 7 8-7"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <div class="newsletter-content">
+          <h2 id="newsletter-title">
+            Stay Ahead. Get Weekly Insights.
+          </h2>
+
+          <p>
+            Join developers receiving practical tips, tutorials, and resources
+            delivered to their inbox every week.
+          </p>
+        </div>
+
+        <form id="newsletter-form" class="newsletter-form">
+          <div class="newsletter-fields">
+            <label class="sr-only" for="newsletter-email">
+              Email address
+            </label>
+
+            <input
+              id="newsletter-email"
+              name="email"
+              type="email"
+              placeholder="Enter your email address"
+              autocomplete="email"
+              required
+            />
+
+            <button type="submit">Subscribe</button>
+          </div>
+
+          <p class="newsletter-note">
+            No spam. Unsubscribe anytime.
+          </p>
+
+          <p
+            id="newsletter-message"
+            class="newsletter-message"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </aside>
+
+      <!-- Pagination -->
+      <nav
+        id="blog-pagination"
+        class="blog-pagination"
+        aria-label="Blog pagination"
+      >
+        <button
+          class="pagination-button pagination-previous"
+          type="button"
+          disabled
+        >
+          ‹ Prev
+        </button>
+
+        <button
+          class="pagination-button is-current"
+          type="button"
+          aria-current="page"
+          data-page="1"
+        >
+          1
+        </button>
+
+        <button
+          class="pagination-button"
+          type="button"
+          data-page="2"
+        >
+          2
+        </button>
+
+        <button
+          class="pagination-button"
+          type="button"
+          data-page="3"
+        >
+          3
+        </button>
+
+        <button
+          class="pagination-button"
+          type="button"
+          data-page="4"
+        >
+          4
+        </button>
+
+        <span class="pagination-ellipsis" aria-hidden="true">…</span>
+
+        <button
+          class="pagination-button"
+          type="button"
+          data-page="10"
+        >
+          10
+        </button>
+
+        <button
+          class="pagination-button pagination-next"
+          type="button"
+        >
+          Next ›
+        </button>
+      </nav>
+
+    </div>
+  </section>
+</main>
+</div>
+<footer class="site-footer" id="site-footer">
+  <div class="footer-container">
+    <div class="footer-main">
+      <section class="footer-intro" aria-labelledby="footer-about-title">
+        <a class="footer-logo" href="index.html" aria-label="Riad Kilani home">
+          <img
+            src="/assets/images/riad-kilani-logo.svg"
+            alt="Riad Kilani, UX Engineer and Front-end Architect"
+          >
+        </a>
+
+        <h2 class="screen-reader-text" id="footer-about-title">
+          About Riad Kilani
+        </h2>
+
+        <p class="footer-description">
+          I design and engineer accessible, high-performance digital
+          experiences that solve problems, drive results, and make an impact.
+        </p>
+
+        <nav class="footer-socials" aria-label="Social links">
+          <a
+            href="https://www.linkedin.com/in/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+              <path d="M8 10v7"></path>
+              <path d="M8 7v.01"></path>
+              <path d="M12 17v-4a3 3 0 0 1 6 0v4"></path>
+              <path d="M12 10v7"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://github.com/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15 1.5a13.4 13.4 0 0 0-7 0C5 0 3.8 0 3.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 2.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4"></path>
+              <path d="M8 19c-3 .9-3-1.5-4.2-2"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://codepen.io/riadkilani"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="CodePen"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m12 2 9 6v8l-9 6-9-6V8l9-6Z"></path>
+              <path d="m3 8 9 6 9-6"></path>
+              <path d="m3 16 9-6 9 6"></path>
+              <path d="M12 2v8"></path>
+              <path d="M12 14v8"></path>
+            </svg>
+          </a>
+
+          <a
+            href="https://x.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="X"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 4l16 16"></path>
+              <path d="M20 4 4 20"></path>
+            </svg>
+          </a>
+
+          <a
+            href="mailto:hello@riadkilani.com"
+            aria-label="Email Riad Kilani"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+              <path d="m3 7 9 6 9-6"></path>
+            </svg>
+          </a>
+        </nav>
+      </section>
+
+      <nav class="footer-column" aria-labelledby="footer-navigation-title">
+        <h2 id="footer-navigation-title">Navigation</h2>
+
+        <ul>
+          <li>
+            <a href="bio.html">
+              <span>Bio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="portfolio.html">
+              <span>Portfolio</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="blog.html">
+              <span>Blog</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+
+          <li>
+            <a href="contact.html">
+              <span>Contact</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m9 18 6-6-6-6"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-expertise-title">
+        <h2 id="footer-expertise-title">Expertise</h2>
+
+        <ul>
+          <li>
+            <a href="bio.html#front-end-engineering">
+              Front-end Engineering
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#ux-product-design">
+              UX &amp; Product Design
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#design-systems">
+              Design Systems
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#accessibility">
+              Accessibility
+            </a>
+          </li>
+
+          <li>
+            <a href="bio.html#performance">
+              Performance
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <nav class="footer-column" aria-labelledby="footer-resources-title">
+        <h2 id="footer-resources-title">Resources</h2>
+
+        <ul>
+          <li>
+            <a href="portfolio.html">Case Studies</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Articles</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Guides</a>
+          </li>
+
+          <li>
+            <a href="blog.html">Resources</a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="footer-contact" aria-labelledby="footer-contact-title">
+        <h2 id="footer-contact-title">Let’s Connect</h2>
+
+        <p>
+          Have a project or opportunity in mind? I’d love to hear from you.
+        </p>
+
+        <a class="footer-cta" href="contact.html">
+          <span>Start a Conversation</span>
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M5 12h14"></path>
+            <path d="m14 7 5 5-5 5"></path>
+          </svg>
+        </a>
+      </section>
+    </div>
+
+    <div class="footer-bottom">
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="privacy.html">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"></path>
+            <path d="m9 12 2 2 4-4"></path>
+          </svg>
+
+          <span>Privacy Policy</span>
+        </a>
+
+        <span class="footer-legal-divider" aria-hidden="true"></span>
+
+        <a href="terms.html">Terms of Use</a>
+      </nav>
+
+      <p class="footer-copyright">
+        © <span id="footer-year">2026</span> Riad Kilani. All rights reserved.
+      </p>
+
+      <button
+        class="back-to-top"
+        id="back-to-top"
+        type="button"
+      >
+        <span>Back to Top</span>
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 19V5"></path>
+          <path d="m6 11 6-6 6 6"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</footer>
+    <script src="js/scripts.js" defer></script>
+</body>
+</html>

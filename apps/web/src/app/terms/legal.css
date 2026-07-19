@@ -1,0 +1,30 @@
+/* =========================================================
+   PRIVACY, TERMS, AND 404
+   ========================================================= */
+
+body[data-page="privacy"] main,
+body[data-page="terms"] main {
+  max-width: 900px;
+  min-height: 70vh;
+  margin: 0 auto;
+  padding: 10rem 2rem 6rem;
+}
+
+body[data-page="privacy"] h1,
+body[data-page="terms"] h1 {
+  margin-bottom: 1.5rem;
+}
+
+body[data-page="privacy"] p,
+body[data-page="terms"] p {
+  max-width: 70ch;
+  line-height: 1.8;
+}
+
+body[data-page="not-found"] main {
+  display: grid;
+  min-height: 100vh;
+  place-content: center;
+  padding: 2rem;
+  text-align: center;
+}
