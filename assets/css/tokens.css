@@ -1,0 +1,235 @@
+:root {
+  /*=== Home ===*/
+   color-scheme: dark;
+
+  --page-background: #050b11;
+  --page-background-soft: #08111a;
+  --surface: rgba(12, 21, 30, 0.78);
+  --surface-strong: #0b141d;
+  --surface-hover: #101c27;
+
+  --border: rgba(148, 185, 213, 0.13);
+  --border-strong: rgba(38, 153, 255, 0.32);
+
+  --text: #f4f7fa;
+  --text-soft: #aab6c2;
+  --text-muted: #778592;
+
+  --accent: #149bff;
+  --accent-bright: #39b0ff;
+  --accent-dark: #0873c8;
+  --success: #32b7ff;
+
+  --font-heading: "Libre Baskerville", Georgia, serif;
+  --font-body: "DM Sans", Arial, sans-serif;
+
+  --radius-small: 6px;
+  --radius-medium: 10px;
+  --radius-large: 14px;
+
+  --shadow-card:
+    0 18px 45px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.025);
+
+  --shadow-button:
+    0 10px 28px rgba(0, 129, 255, 0.25),
+    0 0 22px rgba(0, 129, 255, 0.12);
+/*=== Bio ===*/
+    --bio-bg: #030a11;
+  --bio-bg-deep: #02070c;
+  --bio-panel: rgba(7, 17, 26, 0.92);
+  --bio-panel-soft: rgba(11, 24, 35, 0.82);
+  --bio-panel-hover: rgba(14, 34, 48, 0.92);
+
+  --bio-text: #f3f7fb;
+  --bio-muted: #a8b6c4;
+  --bio-subtle: #748595;
+
+  --bio-blue: #1591ff;
+  --bio-blue-bright: #4aaaff;
+  --bio-blue-dark: #0b65bb;
+  --bio-purple: #a744ef;
+
+  --bio-border: rgba(92, 143, 184, 0.24);
+  --bio-border-strong: rgba(58, 158, 242, 0.52);
+  --bio-border-purple: rgba(167, 68, 239, 0.48);
+
+  --bio-radius-sm: 0.35rem;
+  --bio-radius-md: 0.6rem;
+  --bio-radius-lg: 0.9rem;
+
+  --bio-container: 87.5rem;
+
+  --bio-heading-font:
+    "Trajan Pro 3",
+    "Trajan Pro",
+    Cinzel,
+    Georgia,
+    serif;
+
+  --bio-body-font:
+    "DM Sans",
+    Arial,
+    sans-serif;
+
+  --bio-shadow:
+    0 1.5rem 4rem rgba(0, 0, 0, 0.3),
+    0 0 2rem rgba(0, 119, 255, 0.05);
+
+    /*=== Portfolio ===*/
+     --portfolio-bg: #020810;
+  --portfolio-bg-deep: #01060c;
+  --portfolio-panel: #07111b;
+  --portfolio-panel-alt: #091522;
+  --portfolio-panel-soft: rgba(9, 21, 34, 0.82);
+
+  --portfolio-border: rgba(103, 153, 194, 0.22);
+  --portfolio-border-strong: rgba(42, 151, 255, 0.62);
+  --portfolio-border-purple: rgba(196, 74, 255, 0.66);
+
+  --portfolio-text: #f4f8fc;
+  --portfolio-text-soft: #d2dce6;
+  --portfolio-muted: #9cacbc;
+
+  --portfolio-blue: #168fff;
+  --portfolio-blue-light: #58b6ff;
+  --portfolio-cyan: #36c5ff;
+  --portfolio-purple: #bb49ff;
+  --portfolio-purple-light: #dd84ff;
+
+  --portfolio-success: #5bcf87;
+
+  --portfolio-font-display: "Cinzel", Georgia, serif;
+  --portfolio-font-body: "DM Sans", Arial, sans-serif;
+
+  --portfolio-radius-sm: 0.4rem;
+  --portfolio-radius-md: 0.65rem;
+  --portfolio-radius-lg: 0.9rem;
+
+  --portfolio-container: 87.5rem;
+  --portfolio-gutter: clamp(1rem, 4vw, 2.5rem);
+
+  --project-bg: #030b14;
+  --project-bg-deep: #01060c;
+  --project-panel: rgba(8, 20, 32, 0.94);
+  --project-panel-deep: rgba(4, 13, 22, 0.98);
+  --project-border: rgba(88, 145, 191, 0.22);
+  --project-border-strong: rgba(31, 145, 242, 0.55);
+  --project-text: #f5f8fb;
+  --project-text-soft: #c4d0db;
+  --project-muted: #8fa1b2;
+  --project-blue: #1695ff;
+  --project-blue-light: #54b7ff;
+  --project-pink: #ef5b9f;
+  --project-green: #64d667;
+  --project-purple: #bc52ff;
+  --project-font-display: "Cinzel", Georgia, serif;
+  --project-font-body: "DM Sans", Arial, sans-serif;
+  --project-container: 1400px;
+  --project-gutter: clamp(1rem, 4vw, 2.5rem);
+  --project-radius-sm: 0.4rem;
+  --project-radius-md: 0.7rem;
+  --project-radius-lg: 0.9rem;
+
+    /*=== Blog ===*/
+--blog-bg: #020a13;
+  --blog-bg-deep: #010711;
+  --blog-panel: #07111d;
+  --blog-panel-alt: #091726;
+  --blog-panel-soft: rgba(7, 17, 29, 0.82);
+
+  --blog-border: rgba(88, 157, 224, 0.2);
+  --blog-border-strong: rgba(35, 146, 255, 0.72);
+
+  --blog-text: #f5f9fd;
+  --blog-muted: #a5b4c4;
+  --blog-muted-dark: #7f91a3;
+
+  --blog-accent: #1591ff;
+  --blog-accent-light: #67bcff;
+  --blog-accent-dark: #0c65cf;
+
+  --blog-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.34),
+    0 0 40px rgba(0, 119, 255, 0.06);
+
+  --blog-shadow-hover:
+    0 24px 55px rgba(0, 0, 0, 0.42),
+    0 0 28px rgba(21, 145, 255, 0.14);
+
+  --blog-radius-sm: 0.45rem;
+  --blog-radius-md: 0.72rem;
+  --blog-radius-lg: 1rem;
+
+  --blog-bg: #020812;
+  --blog-bg-deep: #01050b;
+  --blog-panel: rgba(6, 16, 29, 0.88);
+  --blog-panel-solid: #07111e;
+  --blog-panel-soft: rgba(10, 23, 39, 0.72);
+
+  --blog-text: #f5f8fc;
+  --blog-text-secondary: #a7b5c8;
+  --blog-text-muted: #73849a;
+
+  --blog-accent: #168dff;
+  --blog-accent-light: #62b9ff;
+  --blog-accent-dark: #0c5fc7;
+  --blog-accent-soft: rgba(22, 141, 255, 0.12);
+  --blog-accent-glow: rgba(22, 141, 255, 0.3);
+
+  --blog-border: rgba(116, 161, 207, 0.2);
+  --blog-border-strong: rgba(22, 141, 255, 0.72);
+  --blog-border-soft: rgba(255, 255, 255, 0.07);
+
+  --blog-success: #4ed39a;
+  --blog-sass: #f067a6;
+
+  --code-yellow: #e6ca6d;
+  --code-purple: #c792ea;
+  --code-green: #8bd49c;
+  --code-blue: #82aaff;
+
+  --blog-display-font: "Cinzel", Georgia, serif;
+  --blog-body-font: "DM Sans", Arial, sans-serif;
+  --blog-code-font: "JetBrains Mono", Consolas, monospace;
+
+  --blog-container: 1400px;
+
+  --blog-radius-small: 6px;
+  --blog-radius-medium: 10px;
+  --blog-radius-large: 16px;
+
+  --blog-panel-shadow: 0 22px 60px rgba(0, 0, 0, 0.22);
+  --blog-blue-shadow: 0 0 32px rgba(22, 141, 255, 0.15);
+
+    /*=== Contact ===*/
+
+  /*=== Header ===*/
+  --header-container-width: 1400px;
+  --header-height: 106px;
+  --header-height-scrolled: 82px;
+
+  --header-bg: rgba(3, 12, 22, 0.96);
+  --header-bg-scrolled: rgba(2, 10, 18, 0.9);
+  --header-border: rgba(67, 150, 214, 0.2);
+
+  --header-text: #f3f7fb;
+  --header-muted: #9ba8b6;
+
+  --header-blue: #239eff;
+  --header-blue-light: #52b6ff;
+  --header-blue-dark: #086cae;
+
+  --header-button-bg: rgba(5, 24, 42, 0.88);
+  --header-transition: 200ms ease;
+
+  /*=== Footer ===*/
+  --footer-background: #020a12;
+  --footer-text: #f1f6fa;
+  --footer-muted: #9caaba;
+  --footer-blue: #2d9fff;
+  --footer-blue-light: #58b8ff;
+  --footer-border: rgba(66, 147, 208, 0.3);
+  --footer-radius: 9px;
+  --footer-transition: 180ms ease;
+}
