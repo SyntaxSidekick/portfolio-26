@@ -4,19 +4,10 @@
    ========================================================= */
 
 body[data-page="bio"] {
-  --bio-bg: #030a11;
-  --bio-bg-deep: #02070c;
-  --bio-panel: rgba(7, 17, 26, 0.92);
-  --bio-panel-soft: rgba(11, 24, 35, 0.82);
-  --bio-panel-hover: rgba(14, 34, 48, 0.92);
-
-  --bio-text: #f3f7fb;
   --bio-muted: #a8b6c4;
   --bio-subtle: #748595;
 
-  --bio-blue: #1591ff;
   --bio-blue-bright: #4aaaff;
-  --bio-blue-dark: #0b65bb;
   --bio-purple: #a744ef;
 
   --bio-border: rgba(92, 143, 184, 0.24);
@@ -25,9 +16,6 @@ body[data-page="bio"] {
 
   --bio-radius-sm: 0.35rem;
   --bio-radius-md: 0.6rem;
-  --bio-radius-lg: 0.9rem;
-
-  --bio-container: 87.5rem;
 
   --bio-heading-font:
     "Trajan Pro 3",
@@ -35,11 +23,6 @@ body[data-page="bio"] {
     Cinzel,
     Georgia,
     serif;
-
-  --bio-body-font:
-    "DM Sans",
-    Arial,
-    sans-serif;
 
   --bio-shadow:
     0 1.5rem 4rem rgba(0, 0, 0, 0.3),
@@ -75,8 +58,8 @@ body[data-page="bio"] {
       #030a11 42%,
       #02070c
     );
-  color: var(--bio-text);
-  font-family: var(--bio-body-font);
+  color: var(--text-bright);
+  font-family: var(--font-body);
 }
 
 body[data-page="bio"] a {
@@ -146,7 +129,7 @@ body[data-page="bio"] #bio-page::after {
 }
 
 body[data-page="bio"] #bio-page .bio-container {
-  width: min(100%, var(--bio-container));
+  width: min(100%, var(--container-wide-rem));
   margin-inline: auto;
 }
 
@@ -216,7 +199,7 @@ body[data-page="bio"] #bio-page .bio-heading-group {
 
 body[data-page="bio"] #bio-page .bio-heading-group h1 {
   margin-bottom: 0.65rem;
-  color: var(--bio-text);
+  color: var(--text-bright);
   font-size: clamp(2.4rem, 3.75vw, 3.55rem);
   letter-spacing: 0.01em;
   line-height: 1.05;
@@ -229,7 +212,7 @@ body[data-page="bio"] #bio-page .bio-heading-group h1 span {
 
 body[data-page="bio"] #bio-page .bio-role {
   margin-bottom: 0;
-  color: var(--bio-text);
+  color: var(--text-bright);
   font-size: clamp(0.78rem, 1vw, 0.92rem);
   font-weight: 700;
   line-height: 1.5;
@@ -287,7 +270,7 @@ body[data-page="bio"] #bio-page .bio-metric dt {
 body[data-page="bio"] #bio-page .bio-metric dd {
   max-width: 6.5rem;
   margin: 0 auto;
-  color: var(--bio-text);
+  color: var(--text-bright);
   font-size: 0.63rem;
   line-height: 1.35;
 }
@@ -310,17 +293,15 @@ body[data-page="bio"] #bio-page .bio-availability li {
 }
 
 body[data-page="bio"] #bio-page .bio-availability svg {
-  width: 0.85rem;
-  height: 0.85rem;
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 1rem;
   color: var(--bio-blue-bright);
+  fill: none;
+  stroke: currentColor;
   stroke-width: 1.8;
 }
 
-body[data-page="bio"] #bio-page .bio-availability li:nth-child(2) svg {
-  width: 0.55rem;
-  height: 0.55rem;
-  fill: var(--bio-blue);
-}
 
 /* ==========================================================
    PROFILE AND QUOTE CARD
@@ -339,7 +320,7 @@ body[data-page="bio"] #bio-page .bio-availability li:nth-child(2) svg {
   padding: clamp(1.75rem, 3vw, 2.4rem);
   overflow: hidden;
   border: 1px solid var(--bio-border-strong);
-  border-radius: var(--bio-radius-lg);
+  border-radius: var(--radius-page-lg);
   background:
     linear-gradient(
       135deg,
@@ -405,10 +386,10 @@ body[data-page="bio"] #bio-page .bio-portrait-wrap::before {
   background:
     conic-gradient(
       from 20deg,
-      var(--bio-blue),
+      var(--color-brand-blue),
       var(--bio-purple),
       #58df5c,
-      var(--bio-blue),
+      var(--color-brand-blue),
       var(--bio-purple)
     );
   box-shadow:
@@ -509,7 +490,7 @@ body[data-page="bio"] #bio-page .section-heading p:last-child {
   margin-bottom: clamp(3rem, 6vw, 5rem);
   padding: clamp(1.75rem, 3vw, 2.6rem);
   border: 1px solid var(--bio-border);
-  border-radius: var(--bio-radius-lg);
+  border-radius: var(--radius-page-lg);
   background:
     linear-gradient(
       180deg,
@@ -584,9 +565,9 @@ body[data-page="bio"] #bio-page .process-number::after {
   width: 0.4rem;
   height: 0.4rem;
   border-radius: 50%;
-  background: var(--bio-blue);
+  background: var(--color-brand-blue);
   box-shadow:
-    0 0 0.7rem var(--bio-blue);
+    0 0 0.7rem var(--color-brand-blue);
   content: "";
   transform: translateX(-50%);
 }
@@ -705,7 +686,7 @@ body[data-page="bio"] #bio-page .skill-group::before {
   background:
     linear-gradient(
       90deg,
-      var(--bio-blue),
+      var(--color-brand-blue),
       var(--bio-purple)
     );
   content: "";
@@ -796,7 +777,7 @@ body[data-page="bio"] #bio-page .skill-dot {
   background: currentColor;
   box-shadow:
     0 0 0.5rem currentColor;
-  color: var(--bio-blue);
+  color: var(--color-brand-blue);
 }
 
 /* Core engineering */
@@ -1010,7 +991,7 @@ body[data-page="bio"] #bio-page .achievement-icon {
   display: grid;
   width: 3.5rem;
   height: 3.5rem;
-  border: 1px solid var(--bio-blue);
+  border: 1px solid var(--color-brand-blue);
   border-radius: 50%;
   box-shadow:
     inset 0 0 1.1rem rgba(21, 145, 255, 0.08),
@@ -1109,7 +1090,7 @@ body[data-page="bio"] #bio-page .bio-button {
   border-radius: 0.25rem;
   background:
     rgba(5, 18, 29, 0.84);
-  color: var(--bio-text);
+  color: var(--text-bright);
   font-size: 0.76rem;
   font-weight: 700;
   text-decoration: none;
@@ -1168,7 +1149,7 @@ body[data-page="bio"] #bio-page .social-links a {
   border-radius: var(--bio-radius-sm);
   background:
     rgba(6, 14, 20, 0.75);
-  color: var(--bio-text);
+  color: var(--text-bright);
   font-size: 0.74rem;
   font-weight: 600;
   text-decoration: none;
@@ -1190,6 +1171,8 @@ body[data-page="bio"] #bio-page .social-links a:hover {
 body[data-page="bio"] #bio-page .social-links svg {
   width: 1.25rem;
   height: 1.25rem;
+  fill: none;
+  stroke: currentColor;
 }
 
 body[data-page="bio"] #bio-page a:focus-visible {

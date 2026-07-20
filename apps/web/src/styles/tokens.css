@@ -24,8 +24,21 @@
   --page-background-soft: #08111a;
   --text: #f4f7fa;
   --text-soft: #aab6c2;
+  --text-bright: #f3f7fb;
+  --text-page: #f5f8fc;
+  --color-page-ink: #020a13;
+  --color-page-ink-deep: #010711;
+  --color-brand-blue: #1591ff;
+  --container-wide: 1400px;
+  --container-wide-rem: 87.5rem;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+  --radius-small: 6px;
+  --radius-medium: 10px;
+  --radius-page-lg: 0.9rem;
   --font-heading: "Libre Baskerville", Georgia, serif;
   --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Cinzel", Georgia, serif;
+  --font-code: "JetBrains Mono", Consolas, monospace;
 }
 
 html[data-theme="light"] {

@@ -6,29 +6,14 @@
 body[data-page="home"] {
   color-scheme: dark;
 
-  --page-background: #050b11;
-  --page-background-soft: #08111a;
-  --surface: rgba(12, 21, 30, 0.78);
-  --surface-strong: #0b141d;
   --surface-hover: #101c27;
 
   --border: rgba(148, 185, 213, 0.13);
-  --border-strong: rgba(38, 153, 255, 0.32);
 
-  --text: #f4f7fa;
-  --text-soft: #aab6c2;
   --text-muted: #778592;
 
   --accent: #149bff;
   --accent-bright: #39b0ff;
-  --accent-dark: #0873c8;
-  --success: #32b7ff;
-
-  --font-heading: "Libre Baskerville", Georgia, serif;
-  --font-body: "DM Sans", Arial, sans-serif;
-
-  --radius-small: 6px;
-  --radius-medium: 10px;
   --radius-large: 14px;
 
   --shadow-card:

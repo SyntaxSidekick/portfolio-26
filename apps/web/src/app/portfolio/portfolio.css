@@ -7,7 +7,6 @@
 
 #portfolio-page {
   --bg: #020913;
-  --bg-soft: #06121f;
   --panel: rgba(7, 20, 33, 0.94);
   --panel-2: rgba(5, 15, 25, 0.96);
   --text: #f4f8fc;
@@ -18,8 +17,6 @@
   --green: #42dc91;
   --gold: #f6bd28;
   --border: rgba(105, 154, 196, 0.23);
-  --container: 1400px;
-  --gutter: clamp(1rem, 4vw, 2.5rem);
   min-height: 100vh;
   overflow: hidden;
   color: var(--text);
@@ -40,7 +37,7 @@
 #portfolio-page button { font: inherit; }
 
 #portfolio-page .portfolio-container {
-  width: min(calc(100% - (var(--gutter) * 2)), var(--container));
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container-wide));
   margin-inline: auto;
 }
 
@@ -493,8 +490,8 @@
   #portfolio-page .portfolio-category-filters,
   #portfolio-page .portfolio-source-nav {
     display: flex;
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
+    margin-inline: calc(var(--page-gutter) * -1);
+    padding-inline: var(--page-gutter);
     overflow-x: auto;
     border-right: 0;
     border-left: 0;
@@ -535,19 +532,12 @@ body[data-page="portfolio-single"] #project-single-page {
   --project-border-strong: rgba(31, 145, 242, 0.55);
   --project-text: #f5f8fb;
   --project-text-soft: #c4d0db;
-  --project-muted: #8fa1b2;
   --project-blue: #1695ff;
   --project-blue-light: #54b7ff;
   --project-pink: #ef5b9f;
   --project-green: #64d667;
   --project-purple: #bc52ff;
-  --project-font-display: "Cinzel", Georgia, serif;
-  --project-font-body: "DM Sans", Arial, sans-serif;
-  --project-container: 1400px;
-  --project-gutter: clamp(1rem, 4vw, 2.5rem);
   --project-radius-sm: 0.4rem;
-  --project-radius-md: 0.7rem;
-  --project-radius-lg: 0.9rem;
 
   min-height: 100vh;
   overflow: hidden;
@@ -555,7 +545,7 @@ body[data-page="portfolio-single"] #project-single-page {
   background:
     radial-gradient(circle at 50% 0, rgba(20, 96, 164, 0.1), transparent 38rem),
     linear-gradient(180deg, var(--project-bg-deep), var(--project-bg) 45%, #06111c);
-  font-family: var(--project-font-body);
+  font-family: var(--font-body);
   line-height: 1.6;
 }
 
@@ -586,7 +576,7 @@ body[data-page="portfolio-single"] #project-single-page a {
 }
 
 body[data-page="portfolio-single"] #project-single-page .project-container {
-  width: min(calc(100% - (var(--project-gutter) * 2)), var(--project-container));
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--container-wide));
   margin-inline: auto;
 }
 
@@ -636,7 +626,7 @@ body[data-page="portfolio-single"] #project-single-page .project-badge {
 
 body[data-page="portfolio-single"] #project-single-page h1,
 body[data-page="portfolio-single"] #project-single-page h2 {
-  font-family: var(--project-font-display);
+  font-family: var(--font-display);
   font-weight: 400;
 }
 
@@ -797,7 +787,7 @@ body[data-page="portfolio-single"] #project-single-page .metrics-grid,
 body[data-page="portfolio-single"] #project-single-page .panel,
 body[data-page="portfolio-single"] #project-single-page .cta-panel {
   border: 1px solid var(--project-border);
-  border-radius: var(--project-radius-lg);
+  border-radius: var(--radius-page-lg);
   background: linear-gradient(145deg, var(--project-panel), var(--project-panel-deep));
   box-shadow:
     0 1rem 3rem rgba(0, 0, 0, 0.16),

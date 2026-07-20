@@ -1,5 +1,32 @@
 import type { Metadata } from "next";
 import "./bio.css";
+import {
+  Accessibility,
+  ArrowRight,
+  BadgeCheck,
+  Blocks,
+  Braces,
+  BriefcaseBusiness,
+  Circle,
+  Code2,
+  Gauge,
+  GitBranch,
+  Globe2,
+  Layers3,
+  Mail,
+  MousePointerClick,
+  Network,
+  Palette,
+  PanelsTopLeft,
+  PenTool,
+  Rocket,
+  Search,
+  Send,
+  ShieldCheck,
+  Sparkles,
+  TrendingUp,
+  Workflow,
+} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Riad Kilani | UX Engineer & Front-End Architect",
@@ -62,17 +89,17 @@ function BioPageContent() {
 
         <ul className="bio-availability" aria-label="Professional availability">
           <li>
-            <i data-lucide="globe-2" aria-hidden="true"></i>
+            <Circle aria-hidden="true" />
             Remote Friendly
           </li>
 
           <li>
-            <i data-lucide="circle" aria-hidden="true"></i>
+            <Globe2 aria-hidden="true" />
             Available for Opportunities
           </li>
 
           <li>
-            <i data-lucide="briefcase-business" aria-hidden="true"></i>
+            <BriefcaseBusiness aria-hidden="true" />
             Contract, Consulting &amp; Full-Time
           </li>
         </ul>
@@ -128,7 +155,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">1</span>
 
           <article className="process-card">
-            <i data-lucide="search" aria-hidden="true"></i>
+            <Search aria-hidden="true" />
 
             <h3>Discovery<br />&amp; Strategy</h3>
 
@@ -143,7 +170,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">2</span>
 
           <article className="process-card">
-            <i data-lucide="workflow" aria-hidden="true"></i>
+            <Workflow aria-hidden="true" />
 
             <h3>Experience<br />Architecture</h3>
 
@@ -158,7 +185,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">3</span>
 
           <article className="process-card">
-            <i data-lucide="pen-tool" aria-hidden="true"></i>
+            <PenTool aria-hidden="true" />
 
             <h3>Interactive<br />Design</h3>
 
@@ -173,7 +200,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">4</span>
 
           <article className="process-card">
-            <i data-lucide="code-2" aria-hidden="true"></i>
+            <Code2 aria-hidden="true" />
 
             <h3>Engineering<br />&amp; Integration</h3>
 
@@ -188,7 +215,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">5</span>
 
           <article className="process-card">
-            <i data-lucide="shield-check" aria-hidden="true"></i>
+            <ShieldCheck aria-hidden="true" />
 
             <h3>Quality<br />&amp; Accessibility</h3>
 
@@ -203,7 +230,7 @@ function BioPageContent() {
           <span className="process-number" aria-hidden="true">6</span>
 
           <article className="process-card">
-            <i data-lucide="gauge" aria-hidden="true"></i>
+            <Gauge aria-hidden="true" />
 
             <h3>Performance<br />&amp; Optimization</h3>
 
@@ -237,7 +264,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="braces" aria-hidden="true"></i>
+              <Braces aria-hidden="true" />
 
               <div>
                 <h3>Core Engineering</h3>
@@ -276,7 +303,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="blocks" aria-hidden="true"></i>
+              <Blocks aria-hidden="true" />
 
               <div>
                 <h3>Frameworks &amp; Platforms</h3>
@@ -315,7 +342,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="network" aria-hidden="true"></i>
+              <Network aria-hidden="true" />
 
               <div>
                 <h3>Front-End Architecture</h3>
@@ -354,7 +381,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="mouse-pointer-click" aria-hidden="true"></i>
+              <MousePointerClick aria-hidden="true" />
 
               <div>
                 <h3>UX &amp; Interactive Design</h3>
@@ -393,7 +420,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="panels-top-left" aria-hidden="true"></i>
+              <PanelsTopLeft aria-hidden="true" />
 
               <div>
                 <h3>Design Systems</h3>
@@ -432,7 +459,7 @@ function BioPageContent() {
           
           <article className="skill-group skill-group--tools">
             <header className="skill-group__header">
-              <i data-lucide="palette" aria-hidden="true"></i>
+              <Palette aria-hidden="true" />
 
               <div>
                 <h3>Design &amp; Prototyping Tools</h3>
@@ -481,7 +508,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="badge-check" aria-hidden="true"></i>
+              <BadgeCheck aria-hidden="true" />
 
               <div>
                 <h3>Quality &amp; Performance</h3>
@@ -520,7 +547,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="git-branch" aria-hidden="true"></i>
+              <GitBranch aria-hidden="true" />
 
               <div>
                 <h3>Delivery &amp; Workflow</h3>
@@ -559,7 +586,7 @@ function BioPageContent() {
           
           <article className="skill-group">
             <header className="skill-group__header">
-              <i data-lucide="sparkles" aria-hidden="true"></i>
+              <Sparkles aria-hidden="true" />
 
               <div>
                 <h3>AI-Assisted Development</h3>
@@ -621,7 +648,7 @@ function BioPageContent() {
         <div className="achievements-list">
           <article className="achievement-card">
             <div className="achievement-icon" aria-hidden="true">
-              <i data-lucide="layers-3"></i>
+              <Layers3 />
             </div>
 
             <div>
@@ -637,7 +664,7 @@ function BioPageContent() {
 
           <article className="achievement-card">
             <div className="achievement-icon" aria-hidden="true">
-              <i data-lucide="rocket"></i>
+              <Rocket />
             </div>
 
             <div>
@@ -652,7 +679,7 @@ function BioPageContent() {
 
           <article className="achievement-card">
             <div className="achievement-icon" aria-hidden="true">
-              <i data-lucide="gauge"></i>
+              <Gauge />
             </div>
 
             <div>
@@ -667,7 +694,7 @@ function BioPageContent() {
 
           <article className="achievement-card">
             <div className="achievement-icon" aria-hidden="true">
-              <i data-lucide="trending-up"></i>
+              <TrendingUp />
             </div>
 
             <div>
@@ -683,7 +710,7 @@ function BioPageContent() {
 
           <article className="achievement-card">
             <div className="achievement-icon" aria-hidden="true">
-              <i data-lucide="accessibility"></i>
+              <Accessibility />
             </div>
 
             <div>
@@ -702,7 +729,7 @@ function BioPageContent() {
     
     <section className="bio-cta" aria-labelledby="cta-heading">
       <div className="bio-cta__icon" aria-hidden="true">
-        <i data-lucide="send"></i>
+        <Send />
       </div>
 
       <div className="bio-cta__content">
@@ -719,7 +746,7 @@ function BioPageContent() {
 
       <a className="bio-button" href="#contact">
         <span>Get In Touch</span>
-        <i data-lucide="arrow-right" aria-hidden="true"></i>
+        <ArrowRight aria-hidden="true" />
       </a>
     </section>
 
@@ -742,7 +769,13 @@ function BioPageContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i data-lucide="linkedin" aria-hidden="true"></i>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2" />
+                <path d="M8 10v7" />
+                <path d="M8 7v.01" />
+                <path d="M12 17v-4a3 3 0 0 1 6 0v4" />
+                <path d="M12 10v7" />
+              </svg>
               <span>LinkedIn</span>
             </a>
           </li>
@@ -753,7 +786,10 @@ function BioPageContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i data-lucide="github" aria-hidden="true"></i>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15 1.5a13.4 13.4 0 0 0-7 0C5 0 3.8 0 3.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 2.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4" />
+                <path d="M8 19c-3 .9-3-1.5-4.2-2" />
+              </svg>
               <span>GitHub</span>
             </a>
           </li>
@@ -764,7 +800,13 @@ function BioPageContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i data-lucide="codepen" aria-hidden="true"></i>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m12 2 9 6v8l-9 6-9-6V8l9-6Z" />
+                <path d="m3 8 9 6 9-6" />
+                <path d="m3 16 9-6 9 6" />
+                <path d="M12 2v8" />
+                <path d="M12 14v8" />
+              </svg>
               <span>CodePen</span>
             </a>
           </li>
@@ -775,14 +817,17 @@ function BioPageContent() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <i data-lucide="twitter" aria-hidden="true"></i>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 4l16 16" />
+                <path d="M20 4 4 20" />
+              </svg>
               <span>X</span>
             </a>
           </li>
 
           <li>
             <a href="mailto:career@riadkilani.com">
-              <i data-lucide="mail" aria-hidden="true"></i>
+              <Mail aria-hidden="true" />
               <span>Email</span>
             </a>
           </li>

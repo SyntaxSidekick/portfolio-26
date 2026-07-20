@@ -9,14 +9,6 @@ type SiteShellProps = Readonly<{
   children: ReactNode;
 }>;
 
-declare global {
-  interface Window {
-    lucide?: {
-      createIcons: () => void;
-    };
-  }
-}
-
 const navigationItems = [
   { href: "/bio", label: "Bio" },
   { href: "/portfolio", label: "Portfolio" },
@@ -59,31 +51,6 @@ export function SiteShell({ children }: SiteShellProps) {
 
   useEffect(() => {
     document.body.dataset.page = getPageScope(pathname);
-  }, [pathname]);
-
-  useEffect(() => {
-    const renderLucideIcons = () => window.lucide?.createIcons();
-
-    if (window.lucide) {
-      renderLucideIcons();
-      return;
-    }
-
-    const existingScript = document.querySelector<HTMLScriptElement>("script[data-lucide-loader]");
-
-    if (existingScript) {
-      existingScript.addEventListener("load", renderLucideIcons);
-      return () => existingScript.removeEventListener("load", renderLucideIcons);
-    }
-
-    const script = document.createElement("script");
-    script.src = "https://unpkg.com/lucide@latest/dist/umd/lucide.min.js";
-    script.defer = true;
-    script.dataset.lucideLoader = "true";
-    script.addEventListener("load", renderLucideIcons);
-    document.head.appendChild(script);
-
-    return () => script.removeEventListener("load", renderLucideIcons);
   }, [pathname]);
 
   useEffect(() => {

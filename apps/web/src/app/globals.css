@@ -1,43 +1,5 @@
 @import "../styles/globals.css";
 
-:root {
-  --header-container-width: 1400px;
-  --header-height: 106px;
-  --header-height-scrolled: 82px;
-  --header-bg-scrolled: rgba(2, 10, 18, 0.9);
-  --header-border: rgba(67, 150, 214, 0.2);
-  --header-text: #f3f7fb;
-  --header-muted: #9ba8b6;
-  --header-blue: #239eff;
-  --header-blue-light: #52b6ff;
-  --header-blue-dark: #086cae;
-  --header-transition: 200ms ease;
-  --footer-background: #020a12;
-  --footer-text: #f1f6fa;
-  --footer-muted: #9caaba;
-  --footer-blue: #2d9fff;
-  --footer-blue-light: #58b8ff;
-  --footer-border: rgba(66, 147, 208, 0.3);
-  --footer-radius: 9px;
-  --footer-transition: 180ms ease;
-  --page-background: #050b11;
-  --page-background-soft: #08111a;
-  --text: #f4f7fa;
-  --text-soft: #aab6c2;
-  --font-heading: "Libre Baskerville", Georgia, serif;
-  --font-body: "DM Sans", Arial, sans-serif;
-}
-
-html[data-theme="light"] {
-  --header-text: #132437;
-  --header-muted: #536475;
-  --header-border: rgba(17, 99, 158, 0.2);
-  --page-background: #f5f9fc;
-  --page-background-soft: #eaf3fa;
-  --text: #132437;
-  --text-soft: #536475;
-}
-
 * {
   box-sizing: border-box;
 }

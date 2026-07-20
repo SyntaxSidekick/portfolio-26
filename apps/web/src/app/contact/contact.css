@@ -4,19 +4,10 @@
    ========================================================= */
 
 body[data-page="contact"] {
-  --contact-bg: #020a13;
-  --contact-bg-deep: #010711;
-  --contact-panel: rgba(4, 15, 27, 0.82);
-  --contact-panel-strong: rgba(5, 17, 31, 0.94);
   --contact-border: rgba(117, 153, 190, 0.2);
-  --contact-border-strong: rgba(33, 148, 255, 0.4);
-  --contact-text: #f5f8fc;
   --contact-muted: #9daabc;
   --contact-muted-light: #c2cad5;
-  --contact-blue: #1591ff;
   --contact-blue-light: #4ea9ff;
-  --contact-purple: #8728d8;
-  --contact-purple-light: #a04dff;
   --contact-gradient: linear-gradient(
     90deg,
     #197dff 0%,
@@ -27,7 +18,6 @@ body[data-page="contact"] {
     0 20px 60px rgba(0, 0, 0, 0.28),
     0 0 40px rgba(16, 117, 221, 0.05);
   --contact-radius: 8px;
-  --contact-container: 1400px;
 }
 
 body[data-page="contact"] *,
@@ -42,7 +32,7 @@ html {
 
 body[data-page="contact"] {
   margin: 0;
-  background: var(--contact-bg-deep);
+  background: var(--color-page-ink-deep);
 }
 
 body[data-page="contact"] button,
@@ -80,7 +70,7 @@ body[data-page="contact"] #contact-page {
   position: relative;
   min-height: 100vh;
   overflow: hidden;
-  color: var(--contact-text);
+  color: var(--text-page);
   background:
     radial-gradient(
       circle at 10% 30%,
@@ -118,7 +108,7 @@ body[data-page="contact"] #contact-page::before {
 body[data-page="contact"] .contact-container {
   position: relative;
   z-index: 1;
-  width: min(calc(100% - 40px), var(--contact-container));
+  width: min(calc(100% - 40px), var(--container-wide));
   margin-inline: auto;
 }
 
@@ -424,7 +414,7 @@ body[data-page="contact"] .form-field label {
 body[data-page="contact"] .form-field input,
 body[data-page="contact"] .form-field textarea {
   width: 100%;
-  color: var(--contact-text);
+  color: var(--text-page);
   border: 1px solid rgba(118, 145, 173, 0.34);
   border-radius: 7px;
   outline: none;
@@ -465,7 +455,7 @@ body[data-page="contact"] .form-field textarea:hover {
 
 body[data-page="contact"] .form-field input:focus,
 body[data-page="contact"] .form-field textarea:focus {
-  border-color: var(--contact-blue);
+  border-color: var(--color-brand-blue);
   box-shadow:
     0 0 0 3px rgba(21, 145, 255, 0.12),
     0 0 24px rgba(21, 145, 255, 0.08);
@@ -675,7 +665,7 @@ body[data-page="contact"] .contact-cta__link {
   align-items: center;
   justify-content: center;
   padding: 0 20px;
-  color: var(--contact-text);
+  color: var(--text-page);
   font-size: 0.76rem;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -731,7 +721,7 @@ body[data-page="contact"] .contact-cta__link {
 
 @media (max-width: 640px) {
 body[data-page="contact"] .contact-container {
-    width: min(calc(100% - 28px), var(--contact-container));
+    width: min(calc(100% - 28px), var(--container-wide));
   }
 
 body[data-page="contact"] .contact-hero__content {
