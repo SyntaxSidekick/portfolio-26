@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 function PortfolioIndexContent() {
   return (
     <div id="main-content">
-<main>
+<main id="portfolio-page">
     <section className="portfolio-hero" aria-labelledby="portfolio-title">
       <div className="portfolio-container">
         <p className="portfolio-kicker">Portfolio</p>
