@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { RotatingRoles } from "./rotating-roles";
+import { ArrowRight, MessageCircle, MapPin } from "lucide-react";
 
 export function HeroSection() {
   return (
@@ -21,16 +22,16 @@ export function HeroSection() {
             </p>
 
             <div className="hero-actions">
-              <Link className="button button-primary" href="#featured-work">
-                <span>View My Work</span>
-                <span aria-hidden="true">&rarr;</span>
-              </Link>
+  <Link className="button button-primary" href="#featured-work">
+    <span>View My Work</span>
+    <ArrowRight aria-hidden="true" />
+  </Link>
 
-              <Link className="button button-secondary" href="/contact">
-                <span>Let's Talk</span>
-                <span aria-hidden="true">&#9673;</span>
-              </Link>
-            </div>
+  <Link className="button button-secondary" href="/contact">
+    <span>Let's Talk</span>
+    <MessageCircle aria-hidden="true" />
+  </Link>
+</div>
           </div>
 
           <div className="hero-profile">
@@ -43,7 +44,7 @@ export function HeroSection() {
                 </div>
 
                 <div className="location-badge">
-                  <span aria-hidden="true">&#9679;</span>
+                  <span aria-hidden="true"><MapPin aria-hidden="true" /></span>
                   Based in Orlando, FL
                 </div>
               </div>

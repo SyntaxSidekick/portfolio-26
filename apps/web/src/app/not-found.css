@@ -1,4 +1,4 @@
-body[data-page="not-found"] main {
+.not-found main {
   display: grid;
   min-height: 100vh;
   place-content: center;

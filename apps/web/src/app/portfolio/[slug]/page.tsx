@@ -9,7 +9,7 @@ type PageProps = Readonly<{
 
 function PortfolioProjectContent() {
   return (
-    <main id="project-single-page" className="project-single-main">
+    <main id="project-single-page" className="page project-single">
       <section className="project-hero" aria-labelledby="project-title">
         <div className="project-container">
           <a className="back-link" href="/portfolio">

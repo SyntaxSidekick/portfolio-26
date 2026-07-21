@@ -8,8 +8,7 @@ export const metadata: Metadata = {
 
 function BlogIndexContent() {
   return (
-    <div id="main-content">
-<main id="blog-index">
+<main id="blog-index" className="page blog">
   <section className="blog-page" aria-labelledby="blog-page-title">
     <div className="blog-container">
 
@@ -838,7 +837,7 @@ function BlogIndexContent() {
           >
             <a
               className="article-card-media"
-              href="#modern-css-layouts"
+              href=".modern-css-layouts"
               aria-label="Read Modern CSS Layout Patterns"
             >
               <img
@@ -857,7 +856,7 @@ function BlogIndexContent() {
               </p>
 
               <h3>
-                <a href="#modern-css-layouts">
+                <a href=".modern-css-layouts">
                   Modern CSS Layout Patterns
                 </a>
               </h3>
@@ -886,7 +885,7 @@ function BlogIndexContent() {
           >
             <a
               className="article-card-media"
-              href="#ai-assisted-development"
+              href=".ai-assisted-development"
               aria-label="Read AI-Assisted Development Without Losing Control"
             >
               <img
@@ -905,7 +904,7 @@ function BlogIndexContent() {
               </p>
 
               <h3>
-                <a href="#ai-assisted-development">
+                <a href=".ai-assisted-development">
                   AI-Assisted Development Without Losing Control
                 </a>
               </h3>
@@ -934,7 +933,7 @@ function BlogIndexContent() {
           >
             <a
               className="article-card-media"
-              href="#core-web-vitals"
+              href=".core-web-vitals"
               aria-label="Read Core Web Vitals for Real Applications"
             >
               <img
@@ -953,7 +952,7 @@ function BlogIndexContent() {
               </p>
 
               <h3>
-                <a href="#core-web-vitals">
+                <a href=".core-web-vitals">
                   Core Web Vitals for Real Applications
                 </a>
               </h3>
@@ -982,7 +981,7 @@ function BlogIndexContent() {
           >
             <a
               className="article-card-media"
-              href="#react-news"
+              href=".react-news"
               aria-label="Read What Changed in React This Month"
             >
               <img
@@ -1001,7 +1000,7 @@ function BlogIndexContent() {
               </p>
 
               <h3>
-                <a href="#react-news">
+                <a href=".react-news">
                   What Changed in React This Month
                 </a>
               </h3>
@@ -1030,7 +1029,7 @@ function BlogIndexContent() {
           >
             <a
               className="article-card-media"
-              href="#semantic-html"
+              href=".semantic-html"
               aria-label="Read Semantic HTML Is Still a Competitive Advantage"
             >
               <img
@@ -1049,7 +1048,7 @@ function BlogIndexContent() {
               </p>
 
               <h3>
-                <a href="#semantic-html">
+                <a href=".semantic-html">
                   Semantic HTML Is Still a Competitive Advantage
                 </a>
               </h3>
@@ -1215,7 +1214,6 @@ function BlogIndexContent() {
     </div>
   </section>
 </main>
-</div>
   );
 }
 

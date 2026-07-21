@@ -3,12 +3,12 @@
    ========================================================= */
 
 function initSharedHeaderNavigationAndTheme() {
-const header = document.querySelector("#site-header");
-  const navigation = document.querySelector("#site-header-nav");
-  const menuToggle = document.querySelector("#mobile-menu-toggle");
-  const themeToggle = document.querySelector("#theme-toggle");
+const header = document.querySelector(".site-header");
+  const navigation = document.querySelector(".site-header-nav");
+  const menuToggle = document.querySelector(".mobile-menu-toggle");
+  const themeToggle = document.querySelector(".theme-toggle");
   const navigationLinks = document.querySelectorAll(
-    "#site-header-nav a"
+    ".site-header-nav a"
   );
 
   if (!header || !navigation || !menuToggle || !themeToggle) {
@@ -274,7 +274,7 @@ function initPortfolio() {
   }
 
 (() => {
-  const page = document.querySelector("#portfolio-page");
+  const page = document.querySelector(".portfolio-page");
   if (!page) return;
 
   const filters = [...page.querySelectorAll(".category-filter")];
@@ -405,7 +405,7 @@ function initPortfolioSingle() {
   }
 
 (() => {
-  const page = document.querySelector("#project-single-page");
+  const page = document.querySelector(".project-single-page");
 
   if (!page) {
     return;
@@ -761,21 +761,21 @@ const state = {
 };
 
 const featuredPostContainer = document.querySelector(
-  "#featured-post, .featured-post"
+  ".featured-post, .featured-post"
 );
-const articleGrid = document.querySelector("#article-grid");
-const pagination = document.querySelector("#blog-pagination");
-const emptyState = document.querySelector("#empty-state");
-const statusMessage = document.querySelector("#blog-status");
+const articleGrid = document.querySelector(".article-grid");
+const pagination = document.querySelector(".blog-pagination");
+const emptyState = document.querySelector(".empty-state");
+const statusMessage = document.querySelector(".blog-status");
 
 const filterButtons = document.querySelectorAll(".blog-filter");
-const searchInput = document.querySelector("#blog-search-input");
-const sortSelect = document.querySelector("#blog-sort-select");
-const resetButton = document.querySelector("#reset-filters");
+const searchInput = document.querySelector(".blog-search-input");
+const sortSelect = document.querySelector(".blog-sort-select");
+const resetButton = document.querySelector(".reset-filters");
 
-const newsletterForm = document.querySelector("#newsletter-form");
-const newsletterEmail = document.querySelector("#newsletter-email");
-const newsletterMessage = document.querySelector("#newsletter-message");
+const newsletterForm = document.querySelector(".newsletter-form");
+const newsletterEmail = document.querySelector(".newsletter-email");
+const newsletterMessage = document.querySelector(".newsletter-message");
 
 function formatDate(dateString) {
   return new Intl.DateTimeFormat("en-US", {
@@ -1173,15 +1173,15 @@ function initBlogSingle() {
     return;
   }
 
-const article = document.querySelector("#blog-article");
+const article = document.querySelector(".blog-article");
 const articleProgressBar = document.querySelector(
-  "#article-reading-progress"
+  ".article-reading-progress"
 );
 const fixedProgressBar = document.querySelector(
-  "#fixed-reading-progress"
+  ".fixed-reading-progress"
 );
 const readingValue = document.querySelector(
-  "#article-reading-value"
+  ".article-reading-value"
 );
 const progressTrack = document.querySelector(".progress-track");
 
@@ -1205,7 +1205,7 @@ const tocLinks = [
   )
 ];
 
-const toast = document.querySelector("#toast-message");
+const toast = document.querySelector(".toast-message");
 
 let toastTimer;
 
@@ -1459,11 +1459,11 @@ feedbackButtons.forEach((button) => {
 /* Newsletter */
 
 const newsletterInput = document.querySelector(
-  "#newsletter-email"
+  ".newsletter-email"
 );
 
 const newsletterButton = document.querySelector(
-  "#newsletter-submit"
+  ".newsletter-submit"
 );
 
 const newsletterMessage = document.querySelector(
@@ -1546,9 +1546,9 @@ function initContact() {
     return;
   }
 
-const contactForm = document.querySelector("#contact-form");
+const contactForm = document.querySelector(".contact-form");
 const submitButton = contactForm?.querySelector(".contact-submit");
-const statusMessage = document.querySelector("#contact-status");
+const statusMessage = document.querySelector(".contact-status");
 
 const fields = [
   {
@@ -1738,9 +1738,9 @@ contactForm?.addEventListener("submit", async (event) => {
    ========================================================= */
 
 function initFooterAndBackToTop() {
-const footer = document.querySelector("#site-footer");
-  const yearElement = document.querySelector("#footer-year");
-  const backToTopButton = document.querySelector("#back-to-top");
+const footer = document.querySelector(".site-footer");
+  const yearElement = document.querySelector(".footer-year");
+  const backToTopButton = document.querySelector(".back-to-top");
 
   if (!footer) {
     return;

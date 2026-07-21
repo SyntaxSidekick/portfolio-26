@@ -1,3 +1,14 @@
+import {
+  faCodepen,
+  faGithub,
+  faLinkedin,
+  faXTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { Mail, MapPin } from "lucide-react";
+
 export function ContactSection() {
   return (
     <section className="section contact-section" id="contact">
@@ -7,7 +18,8 @@ export function ContactSection() {
             <p className="eyebrow">Let's Build Something Great</p>
 
             <h2>
-              I&rsquo;m currently open<br />
+              I&rsquo;m currently open
+              <br />
               to new opportunities.
             </h2>
 
@@ -27,30 +39,61 @@ export function ContactSection() {
           </div>
 
           <div className="contact-details">
-            <a className="button button-primary contact-button" href="mailto:hello@riadkilani.com">
+            <a
+              className="button button-primary contact-button"
+              href="mailto:hello@riadkilani.com"
+            >
               <span>Let's Connect</span>
               <span aria-hidden="true">&rarr;</span>
             </a>
 
             <p>Or reach out directly</p>
 
-            <address>
+            <address className="footer-address">
               <a href="mailto:hello@riadkilani.com">
-                <span aria-hidden="true">&#9993;</span>
-                hello@riadkilani.com
+                <Mail aria-hidden="true" />
+                <span>hello@riadkilani.com</span>
               </a>
 
               <span>
-                <span aria-hidden="true">&#8982;</span>
-                Orlando, FL
+                <MapPin aria-hidden="true" />
+                <span>Orlando, FL</span>
               </span>
             </address>
 
             <div className="social-links" aria-label="Social links">
-              <a href="#" aria-label="LinkedIn">in</a>
-              <a href="#" aria-label="GitHub">GH</a>
-              <a href="#" aria-label="CodePen">CP</a>
-              <a href="#" aria-label="X">X</a>
+              <a
+                href="https://www.linkedin.com/in/riadkilani"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+              <a
+                href="https://github.com/riadkilani"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <FontAwesomeIcon icon={faGithub} />
+              </a>
+              <a
+                href="https://codepen.io/riadkilani"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="CodePen"
+              >
+                <FontAwesomeIcon icon={faCodepen} />
+              </a>
+              <a
+                href="https://x.com/riadkilani"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="X"
+              >
+                <FontAwesomeIcon icon={faXTwitter} />
+              </a>
             </div>
           </div>
         </div>

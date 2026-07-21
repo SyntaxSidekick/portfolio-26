@@ -9,8 +9,8 @@ type PageProps = Readonly<{
 
 function BlogArticleContent() {
   return (
-    <div id="main-content">
-<main className="blog-post-page">
+
+<main id="blog-post" className="page blog-single">
   <div className="blog-background-grid" aria-hidden="true"></div>
   <div className="blog-background-glow blog-background-glow-one" aria-hidden="true"></div>
   <div className="blog-background-glow blog-background-glow-two" aria-hidden="true"></div>
@@ -56,7 +56,7 @@ function BlogArticleContent() {
                   <span aria-hidden="true">•</span>
                   <span>8 min read</span>
                   <span aria-hidden="true">•</span>
-                  <a href="#comments">12 Comments</a>
+                  <a href=".comments">12 Comments</a>
                 </div>
               </div>
             </div>
@@ -147,31 +147,31 @@ function BlogArticleContent() {
 
           <ol id="article-toc-list">
             <li>
-              <a href="#variables">Variables: Compile-Time vs Runtime</a>
+              <a href=".variables">Variables: Compile-Time vs Runtime</a>
             </li>
 
             <li>
-              <a href="#nesting">Nesting: Without a Preprocessor</a>
+              <a href=".nesting">Nesting: Without a Preprocessor</a>
             </li>
 
             <li>
-              <a href="#container-queries">
+              <a href=".container-queries">
                 From Media Queries to Container Queries
               </a>
             </li>
 
             <li>
-              <a href="#runtime-theming">
+              <a href=".runtime-theming">
                 Runtime Theming Changes Everything
               </a>
             </li>
 
             <li>
-              <a href="#sass-wins">Where Sass Still Wins</a>
+              <a href=".sass-wins">Where Sass Still Wins</a>
             </li>
 
             <li>
-              <a href="#evolution">This Is Evolution, Not Replacement</a>
+              <a href=".evolution">This Is Evolution, Not Replacement</a>
             </li>
           </ol>
         </nav>
@@ -214,7 +214,7 @@ function BlogArticleContent() {
                 </button>
               </div>
 
-              <pre><code><span className="code-variable">$primary</span>: <span className="code-value">#006fed</span>;
+              <pre><code><span className="code-variable">$primary</span>: <span className="code-value">.006fed</span>;
 
 <span className="code-selector">.button</span> {'{'}
   <span className="code-property">background</span>: <span className="code-variable">$primary</span>;
@@ -236,7 +236,7 @@ function BlogArticleContent() {
               </div>
 
               <pre><code><span className="code-selector">:root</span> {'{'}
-  <span className="code-property">--primary</span>: <span className="code-value">#006fed</span>;
+  <span className="code-property">--primary</span>: <span className="code-value">.006fed</span>;
 {'}'}
 
 <span className="code-selector">.button</span> {'{'}
@@ -390,13 +390,13 @@ function BlogArticleContent() {
               </div>
 
               <pre><code><span className="code-selector">:root</span> {'{'}
-  <span className="code-property">--surface</span>: <span className="code-value">#07111d</span>;
-  <span className="code-property">--text</span>: <span className="code-value">#f7fbff</span>;
+  <span className="code-property">--surface</span>: <span className="code-value">.07111d</span>;
+  <span className="code-property">--text</span>: <span className="code-value">.f7fbff</span>;
 {'}'}
 
 <span className="code-selector">[data-theme="light"]</span> {'{'}
-  <span className="code-property">--surface</span>: <span className="code-value">#ffffff</span>;
-  <span className="code-property">--text</span>: <span className="code-value">#08111f</span>;
+  <span className="code-property">--surface</span>: <span className="code-value">.ffffff</span>;
+  <span className="code-property">--text</span>: <span className="code-value">.08111f</span>;
 {'}'}</code></pre>
             </div>
 
@@ -609,31 +609,31 @@ function BlogArticleContent() {
 
             <ol>
               <li>
-                <a href="#variables">Variables: Compile-Time vs Runtime</a>
+                <a href=".variables">Variables: Compile-Time vs Runtime</a>
               </li>
 
               <li>
-                <a href="#nesting">Nesting: Without a Preprocessor</a>
+                <a href=".nesting">Nesting: Without a Preprocessor</a>
               </li>
 
               <li>
-                <a href="#container-queries">
+                <a href=".container-queries">
                   From Media Queries to Container Queries
                 </a>
               </li>
 
               <li>
-                <a href="#runtime-theming">
+                <a href=".runtime-theming">
                   Runtime Theming Changes Everything
                 </a>
               </li>
 
               <li>
-                <a href="#sass-wins">Where Sass Still Wins</a>
+                <a href=".sass-wins">Where Sass Still Wins</a>
               </li>
 
               <li>
-                <a href="#evolution">This Is Evolution, Not Replacement</a>
+                <a href=".evolution">This Is Evolution, Not Replacement</a>
               </li>
             </ol>
           </nav>
@@ -787,7 +787,7 @@ function BlogArticleContent() {
 
   <div className="toast-message" id="toast-message" aria-live="polite"></div>
 </main>
-</div>
+
   );
 }
 

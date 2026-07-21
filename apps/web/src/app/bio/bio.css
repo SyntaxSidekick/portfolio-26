@@ -3,7 +3,7 @@
    Original source: bio/page.css
    ========================================================= */
 
-body[data-page="bio"] {
+.bio {
   --bio-muted: #a8b6c4;
   --bio-subtle: #748595;
 
@@ -29,17 +29,10 @@ body[data-page="bio"] {
     0 0 2rem rgba(0, 119, 255, 0.05);
 }
 
-body[data-page="bio"] *,
-body[data-page="bio"] *::before,
-body[data-page="bio"] *::after {
-  box-sizing: border-box;
-}
 
-html {
-  color-scheme: dark;
-}
 
-body[data-page="bio"] {
+
+.bio {
   margin: 0;
   background:
     radial-gradient(
@@ -54,29 +47,29 @@ body[data-page="bio"] {
     ),
     linear-gradient(
       180deg,
-      #02080e,
-      #030a11 42%,
-      #02070c
+      .02080e,
+      .030a11 42%,
+      .02070c
     );
   color: var(--text-bright);
   font-family: var(--font-body);
 }
 
-body[data-page="bio"] a {
+.bio a {
   color: inherit;
 }
 
-body[data-page="bio"] button,
-body[data-page="bio"] a {
+.bio button,
+.bio a {
   font: inherit;
 }
 
-body[data-page="bio"] img,
-body[data-page="bio"] svg {
+.bio img,
+.bio svg {
   display: block;
 }
 
-body[data-page="bio"] img {
+.bio img {
   max-width: 100%;
 }
 
@@ -84,7 +77,7 @@ body[data-page="bio"] img {
    PAGE
 ========================================================== */
 
-#bio-page {
+.bio {
   position: relative;
   overflow: hidden;
   padding:
@@ -94,8 +87,8 @@ body[data-page="bio"] img {
   isolation: isolate;
 }
 
-body[data-page="bio"] #bio-page::before,
-body[data-page="bio"] #bio-page::after {
+.bio::before,
+.bio::after {
   position: absolute;
   z-index: -1;
   width: 34rem;
@@ -112,46 +105,46 @@ body[data-page="bio"] #bio-page::after {
   mask-image:
     radial-gradient(
       circle,
-      #000,
+      .000,
       transparent 70%
     );
 }
 
-body[data-page="bio"] #bio-page::before {
+.bio::before {
   top: -12rem;
   right: -10rem;
 }
 
-body[data-page="bio"] #bio-page::after {
+.bio::after {
   top: 20rem;
   left: -20rem;
   opacity: 0.3;
 }
 
-body[data-page="bio"] #bio-page .bio-container {
+.bio .bio-container {
   width: min(100%, var(--container-wide-rem));
   margin-inline: auto;
 }
 
-body[data-page="bio"] #bio-page h1,
-body[data-page="bio"] #bio-page h2,
-body[data-page="bio"] #bio-page h3,
-body[data-page="bio"] #bio-page p,
-body[data-page="bio"] #bio-page dl,
-body[data-page="bio"] #bio-page dd,
-body[data-page="bio"] #bio-page blockquote,
-body[data-page="bio"] #bio-page ul,
-body[data-page="bio"] #bio-page ol {
+.bio h1,
+.bio h2,
+.bio h3,
+.bio p,
+.bio dl,
+.bio dd,
+.bio blockquote,
+.bio ul,
+.bio ol {
   margin-top: 0;
 }
 
-body[data-page="bio"] #bio-page h1,
-body[data-page="bio"] #bio-page h2 {
+.bio h1,
+.bio h2 {
   font-family: var(--bio-heading-font);
   font-weight: 500;
 }
 
-body[data-page="bio"] #bio-page h2 {
+.bio h2 {
   margin-bottom: 0.55rem;
   color: var(--bio-blue-bright);
   font-size: clamp(1.4rem, 2vw, 1.9rem);
@@ -159,12 +152,12 @@ body[data-page="bio"] #bio-page h2 {
   line-height: 1.2;
 }
 
-body[data-page="bio"] #bio-page p {
+.bio p {
   line-height: 1.7;
 }
 
-body[data-page="bio"] #bio-page .bio-eyebrow,
-body[data-page="bio"] #bio-page .section-eyebrow {
+.bio .bio-eyebrow,
+.bio .section-eyebrow {
   margin-bottom: 0.5rem;
   color: var(--bio-blue-bright);
   font-size: 0.7rem;
@@ -178,7 +171,7 @@ body[data-page="bio"] #bio-page .section-eyebrow {
    INTRODUCTION
 ========================================================== */
 
-#bio-page .bio-intro {
+.bio .bio-intro {
   display: grid;
   grid-template-columns:
     minmax(0, 1.1fr)
@@ -188,16 +181,16 @@ body[data-page="bio"] #bio-page .section-eyebrow {
   margin-bottom: clamp(3.5rem, 6vw, 5rem);
 }
 
-body[data-page="bio"] #bio-page .bio-intro__content {
+.bio .bio-intro__content {
   width: 100%;
   max-width: 46rem;
 }
 
-body[data-page="bio"] #bio-page .bio-heading-group {
+.bio .bio-heading-group {
   margin-bottom: 1.25rem;
 }
 
-body[data-page="bio"] #bio-page .bio-heading-group h1 {
+.bio .bio-heading-group h1 {
   margin-bottom: 0.65rem;
   color: var(--text-bright);
   font-size: clamp(2.4rem, 3.75vw, 3.55rem);
@@ -206,11 +199,11 @@ body[data-page="bio"] #bio-page .bio-heading-group h1 {
   white-space: nowrap;
 }
 
-body[data-page="bio"] #bio-page .bio-heading-group h1 span {
+.bio .bio-heading-group h1 span {
   color: var(--bio-blue-bright);
 }
 
-body[data-page="bio"] #bio-page .bio-role {
+.bio .bio-role {
   margin-bottom: 0;
   color: var(--text-bright);
   font-size: clamp(0.78rem, 1vw, 0.92rem);
@@ -218,12 +211,12 @@ body[data-page="bio"] #bio-page .bio-role {
   line-height: 1.5;
 }
 
-body[data-page="bio"] #bio-page .bio-role span {
+.bio .bio-role span {
   margin-inline: 0.3rem;
   color: var(--bio-subtle);
 }
 
-body[data-page="bio"] #bio-page .bio-lede {
+.bio .bio-lede {
   max-width: 42rem;
   margin-bottom: 1.5rem;
   color: var(--bio-muted);
@@ -231,7 +224,7 @@ body[data-page="bio"] #bio-page .bio-lede {
   line-height: 1.65;
 }
 
-body[data-page="bio"] #bio-page .bio-metrics {
+.bio .bio-metrics {
   display: grid;
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
@@ -240,7 +233,7 @@ body[data-page="bio"] #bio-page .bio-metrics {
   margin-bottom: 1.15rem;
 }
 
-body[data-page="bio"] #bio-page .bio-metric {
+.bio .bio-metric {
   display: grid;
   min-height: 6rem;
   padding: 0.9rem 0.6rem;
@@ -259,7 +252,7 @@ body[data-page="bio"] #bio-page .bio-metric {
   text-align: center;
 }
 
-body[data-page="bio"] #bio-page .bio-metric dt {
+.bio .bio-metric dt {
   margin-bottom: 0.3rem;
   color: var(--bio-blue-bright);
   font-size: clamp(1.35rem, 2vw, 1.8rem);
@@ -267,7 +260,7 @@ body[data-page="bio"] #bio-page .bio-metric dt {
   line-height: 1;
 }
 
-body[data-page="bio"] #bio-page .bio-metric dd {
+.bio .bio-metric dd {
   max-width: 6.5rem;
   margin: 0 auto;
   color: var(--text-bright);
@@ -275,7 +268,7 @@ body[data-page="bio"] #bio-page .bio-metric dd {
   line-height: 1.35;
 }
 
-body[data-page="bio"] #bio-page .bio-availability {
+.bio .bio-availability {
   display: flex;
   flex-wrap: wrap;
   gap: 0.65rem 1.2rem;
@@ -286,13 +279,13 @@ body[data-page="bio"] #bio-page .bio-availability {
   list-style: none;
 }
 
-body[data-page="bio"] #bio-page .bio-availability li {
+.bio .bio-availability li {
   display: inline-flex;
   gap: 0.4rem;
   align-items: center;
 }
 
-body[data-page="bio"] #bio-page .bio-availability svg {
+.bio .bio-availability svg {
   flex: 0 0 auto;
   width: 1rem;
   height: 1rem;
@@ -307,7 +300,7 @@ body[data-page="bio"] #bio-page .bio-availability svg {
    PROFILE AND QUOTE CARD
 ========================================================== */
 
-#bio-page .bio-quote-card {
+.bio .bio-quote-card {
   position: relative;
   display: grid;
   grid-template-columns:
@@ -332,7 +325,7 @@ body[data-page="bio"] #bio-page .bio-availability svg {
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card::before {
+.bio .bio-quote-card::before {
   position: absolute;
   inset: 0;
   background:
@@ -345,7 +338,7 @@ body[data-page="bio"] #bio-page .bio-quote-card::before {
   pointer-events: none;
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card::after {
+.bio .bio-quote-card::after {
   position: absolute;
   inset: 0 auto 0 0;
   width: 62%;
@@ -361,13 +354,13 @@ body[data-page="bio"] #bio-page .bio-quote-card::after {
   mask-image:
     radial-gradient(
       circle at 48% 52%,
-      #000,
+      .000,
       transparent 70%
     );
   pointer-events: none;
 }
 
-body[data-page="bio"] #bio-page .bio-portrait-wrap {
+.bio .bio-portrait-wrap {
   position: relative;
   z-index: 1;
   display: grid;
@@ -378,7 +371,7 @@ body[data-page="bio"] #bio-page .bio-portrait-wrap {
   place-items: center;
 }
 
-body[data-page="bio"] #bio-page .bio-portrait-wrap::before {
+.bio .bio-portrait-wrap::before {
   position: absolute;
   inset: -0.5rem;
   padding: 0.28rem;
@@ -388,7 +381,7 @@ body[data-page="bio"] #bio-page .bio-portrait-wrap::before {
       from 20deg,
       var(--color-brand-blue),
       var(--bio-purple),
-      #58df5c,
+      .58df5c,
       var(--color-brand-blue),
       var(--bio-purple)
     );
@@ -397,12 +390,12 @@ body[data-page="bio"] #bio-page .bio-portrait-wrap::before {
     0 0 2rem rgba(100, 49, 221, 0.2);
   content: "";
   mask:
-    linear-gradient(#000 0 0) content-box,
-    linear-gradient(#000 0 0);
+    linear-gradient(.000 0 0) content-box,
+    linear-gradient(.000 0 0);
   mask-composite: exclude;
 }
 
-body[data-page="bio"] #bio-page .bio-portrait-wrap::after {
+.bio .bio-portrait-wrap::after {
   position: absolute;
   inset: 0.12rem;
   border: 1px solid rgba(255, 255, 255, 0.18);
@@ -411,7 +404,7 @@ body[data-page="bio"] #bio-page .bio-portrait-wrap::after {
   pointer-events: none;
 }
 
-body[data-page="bio"] #bio-page .bio-portrait-glow {
+.bio .bio-portrait-glow {
   position: absolute;
   inset: 10%;
   border-radius: 50%;
@@ -419,7 +412,7 @@ body[data-page="bio"] #bio-page .bio-portrait-glow {
   filter: blur(2rem);
 }
 
-body[data-page="bio"] #bio-page .bio-portrait {
+.bio .bio-portrait {
   position: relative;
   z-index: 1;
   width: 92%;
@@ -428,14 +421,14 @@ body[data-page="bio"] #bio-page .bio-portrait {
   object-fit: cover;
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card blockquote {
+.bio .bio-quote-card blockquote {
   position: relative;
   z-index: 1;
   width: 100%;
   margin: 0;
 }
 
-body[data-page="bio"] #bio-page .quote-mark {
+.bio .quote-mark {
   display: block;
   height: 2rem;
   margin-bottom: 0.35rem;
@@ -446,18 +439,18 @@ body[data-page="bio"] #bio-page .quote-mark {
   opacity: 0.75;
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card blockquote p {
+.bio .bio-quote-card blockquote p {
   margin-bottom: 0.9rem;
   color: #dce6ee;
   font-size: clamp(0.9rem, 1.15vw, 1.03rem);
   line-height: 1.7;
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card blockquote footer {
+.bio .bio-quote-card blockquote footer {
   text-align: right;
 }
 
-body[data-page="bio"] #bio-page .bio-quote-card cite {
+.bio .bio-quote-card cite {
   color: var(--bio-blue-bright);
   font-family: "Great Vibes", cursive;
   font-size: clamp(1.7rem, 2.4vw, 2.2rem);
@@ -468,12 +461,12 @@ body[data-page="bio"] #bio-page .bio-quote-card cite {
    SECTION HEADINGS
 ========================================================== */
 
-#bio-page .section-heading {
+.bio .section-heading {
   margin-bottom: clamp(1.5rem, 3vw, 2.3rem);
   text-align: center;
 }
 
-body[data-page="bio"] #bio-page .section-heading p:last-child {
+.bio .section-heading p:last-child {
   max-width: 52rem;
   margin: 0 auto;
   color: var(--bio-muted);
@@ -485,7 +478,7 @@ body[data-page="bio"] #bio-page .section-heading p:last-child {
    PROCESS
 ========================================================== */
 
-#bio-page .bio-section {
+.bio .bio-section {
   position: relative;
   margin-bottom: clamp(3rem, 6vw, 5rem);
   padding: clamp(1.75rem, 3vw, 2.6rem);
@@ -500,7 +493,7 @@ body[data-page="bio"] #bio-page .section-heading p:last-child {
   box-shadow: var(--bio-shadow);
 }
 
-body[data-page="bio"] #bio-page .process-grid {
+.bio .process-grid {
   position: relative;
   display: grid;
   grid-template-columns:
@@ -511,7 +504,7 @@ body[data-page="bio"] #bio-page .process-grid {
   list-style: none;
 }
 
-body[data-page="bio"] #bio-page .process-grid::before {
+.bio .process-grid::before {
   position: absolute;
   top: 1.05rem;
   right: 7.5%;
@@ -528,13 +521,13 @@ body[data-page="bio"] #bio-page .process-grid::before {
   content: "";
 }
 
-body[data-page="bio"] #bio-page .process-item {
+.bio .process-item {
   position: relative;
   display: flex;
   flex-direction: column;
 }
 
-body[data-page="bio"] #bio-page .process-number {
+.bio .process-number {
   position: absolute;
   top: -2.55rem;
   left: 50%;
@@ -547,8 +540,8 @@ body[data-page="bio"] #bio-page .process-number {
   background:
     linear-gradient(
       135deg,
-      #158ff1,
-      #075db3
+      .158ff1,
+      .075db3
     );
   box-shadow:
     0 0 1rem rgba(21, 145, 255, 0.25);
@@ -558,7 +551,7 @@ body[data-page="bio"] #bio-page .process-number {
   transform: translateX(-50%);
 }
 
-body[data-page="bio"] #bio-page .process-number::after {
+.bio .process-number::after {
   position: absolute;
   top: calc(100% + 0.35rem);
   left: 50%;
@@ -572,7 +565,7 @@ body[data-page="bio"] #bio-page .process-number::after {
   transform: translateX(-50%);
 }
 
-body[data-page="bio"] #bio-page .process-card {
+.bio .process-card {
   flex: 1;
   min-height: 18.5rem;
   padding: 1.85rem 0.9rem 1.2rem;
@@ -591,7 +584,7 @@ body[data-page="bio"] #bio-page .process-card {
     transform 180ms ease;
 }
 
-body[data-page="bio"] #bio-page .process-card:hover {
+.bio .process-card:hover {
   border-color: var(--bio-border-strong);
   box-shadow:
     0 0.9rem 2rem rgba(0, 0, 0, 0.23),
@@ -599,7 +592,7 @@ body[data-page="bio"] #bio-page .process-card:hover {
   transform: translateY(-0.2rem);
 }
 
-body[data-page="bio"] #bio-page .process-card svg {
+.bio .process-card svg {
   width: 2.5rem;
   height: 2.5rem;
   margin: 0 auto 1rem;
@@ -607,7 +600,7 @@ body[data-page="bio"] #bio-page .process-card svg {
   stroke-width: 1.3;
 }
 
-body[data-page="bio"] #bio-page .process-card h3 {
+.bio .process-card h3 {
   min-height: 3.3rem;
   margin-bottom: 0.9rem;
   color: var(--bio-blue-bright);
@@ -617,7 +610,7 @@ body[data-page="bio"] #bio-page .process-card h3 {
   line-height: 1.4;
 }
 
-body[data-page="bio"] #bio-page .process-card p {
+.bio .process-card p {
   margin-bottom: 0;
   color: #c0ccd6;
   font-size: 0.73rem;
@@ -628,7 +621,7 @@ body[data-page="bio"] #bio-page .process-card p {
    SKILLS AND ACHIEVEMENTS LAYOUT
 ========================================================== */
 
-#bio-page .skills-achievements-layout {
+.bio .skills-achievements-layout {
   display: grid;
   grid-template-columns:
     minmax(0, 2.55fr)
@@ -637,11 +630,11 @@ body[data-page="bio"] #bio-page .process-card p {
   margin-bottom: clamp(3rem, 5vw, 4rem);
 }
 
-body[data-page="bio"] #bio-page .skills-section {
+.bio .skills-section {
   min-width: 0;
 }
 
-body[data-page="bio"] #bio-page .skills-grid {
+.bio .skills-grid {
   display: grid;
   grid-template-columns:
     repeat(3, minmax(0, 1fr));
@@ -652,7 +645,7 @@ body[data-page="bio"] #bio-page .skills-grid {
    SKILL CARDS
 ========================================================== */
 
-#bio-page .skill-group {
+.bio .skill-group {
   position: relative;
   min-height: 17rem;
   padding: 1.1rem;
@@ -672,7 +665,7 @@ body[data-page="bio"] #bio-page .skills-grid {
     transform 180ms ease;
 }
 
-body[data-page="bio"] #bio-page .skill-group::before {
+.bio .skill-group::before {
   position: absolute;
   top: -1px;
   right: -1px;
@@ -692,7 +685,7 @@ body[data-page="bio"] #bio-page .skill-group::before {
   content: "";
 }
 
-body[data-page="bio"] #bio-page .skill-group:hover {
+.bio .skill-group:hover {
   border-color: var(--bio-border-strong);
   box-shadow:
     0 1rem 2.5rem rgba(0, 0, 0, 0.22),
@@ -700,11 +693,11 @@ body[data-page="bio"] #bio-page .skill-group:hover {
   transform: translateY(-0.2rem);
 }
 
-body[data-page="bio"] #bio-page .skill-group--tools {
+.bio .skill-group--tools {
   min-height: 20rem;
 }
 
-body[data-page="bio"] #bio-page .skill-group__header {
+.bio .skill-group__header {
   display: flex;
   gap: 0.7rem;
   align-items: flex-start;
@@ -712,7 +705,7 @@ body[data-page="bio"] #bio-page .skill-group__header {
   margin-bottom: 0.9rem;
 }
 
-body[data-page="bio"] #bio-page .skill-group__header > svg {
+.bio .skill-group__header > svg {
   flex: 0 0 auto;
   width: 1.3rem;
   height: 1.3rem;
@@ -721,7 +714,7 @@ body[data-page="bio"] #bio-page .skill-group__header > svg {
   stroke-width: 1.6;
 }
 
-body[data-page="bio"] #bio-page .skill-group__header h3 {
+.bio .skill-group__header h3 {
   margin-bottom: 0.18rem;
   color: var(--bio-blue-bright);
   font-size: 0.78rem;
@@ -730,14 +723,14 @@ body[data-page="bio"] #bio-page .skill-group__header h3 {
   text-transform: uppercase;
 }
 
-body[data-page="bio"] #bio-page .skill-group__header p {
+.bio .skill-group__header p {
   margin-bottom: 0;
   color: var(--bio-subtle);
   font-size: 0.64rem;
   line-height: 1.4;
 }
 
-body[data-page="bio"] #bio-page .skill-group ul {
+.bio .skill-group ul {
   display: grid;
   gap: 0.38rem;
   margin-bottom: 0;
@@ -745,7 +738,7 @@ body[data-page="bio"] #bio-page .skill-group ul {
   list-style: none;
 }
 
-body[data-page="bio"] #bio-page .skill-group li {
+.bio .skill-group li {
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -763,13 +756,13 @@ body[data-page="bio"] #bio-page .skill-group li {
     transform 160ms ease;
 }
 
-body[data-page="bio"] #bio-page .skill-group li:hover {
+.bio .skill-group li:hover {
   border-color: var(--bio-blue-bright);
   background: rgba(18, 48, 69, 0.88);
   transform: translateX(0.15rem);
 }
 
-body[data-page="bio"] #bio-page .skill-dot {
+.bio .skill-dot {
   flex: 0 0 auto;
   width: 0.68rem;
   height: 0.68rem;
@@ -782,138 +775,138 @@ body[data-page="bio"] #bio-page .skill-dot {
 
 /* Core engineering */
 
-#bio-page .skill-dot.html {
+.bio .skill-dot.html {
   color: #f26430;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.css {
+.bio .skill-dot.css {
   color: #258bd2;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.js {
+.bio .skill-dot.js {
   color: #f0d43a;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.ts {
+.bio .skill-dot.ts {
   color: #3178c6;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.sql {
+.bio .skill-dot.sql {
   color: #4ba2d8;
 }
 
 /* Frameworks */
 
-#bio-page .skill-dot.react {
+.bio .skill-dot.react {
   color: #61dafb;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.next {
+.bio .skill-dot.next {
   color: #f5f5f5;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.vue {
+.bio .skill-dot.vue {
   color: #42b883;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.node {
+.bio .skill-dot.node {
   color: #68a063;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.wordpress {
+.bio .skill-dot.wordpress {
   color: #21759b;
 }
 
 /* Architecture */
 
-#bio-page .skill-dot.architecture,
-body[data-page="bio"] #bio-page .skill-dot.micro,
-body[data-page="bio"] #bio-page .skill-dot.component,
-body[data-page="bio"] #bio-page .skill-dot.webcomponents,
-body[data-page="bio"] #bio-page .skill-dot.api {
+.bio .skill-dot.architecture,
+.bio .skill-dot.micro,
+.bio .skill-dot.component,
+.bio .skill-dot.webcomponents,
+.bio .skill-dot.api {
   color: var(--bio-blue-bright);
 }
 
 /* UX */
 
-#bio-page .skill-dot.interaction,
-body[data-page="bio"] #bio-page .skill-dot.ux,
-body[data-page="bio"] #bio-page .skill-dot.journeys,
-body[data-page="bio"] #bio-page .skill-dot.ia,
-body[data-page="bio"] #bio-page .skill-dot.responsive {
+.bio .skill-dot.interaction,
+.bio .skill-dot.ux,
+.bio .skill-dot.journeys,
+.bio .skill-dot.ia,
+.bio .skill-dot.responsive {
   color: #42a5f5;
 }
 
 /* Design systems */
 
-#bio-page .skill-dot.design,
-body[data-page="bio"] #bio-page .skill-dot.tokens,
-body[data-page="bio"] #bio-page .skill-dot.library,
-body[data-page="bio"] #bio-page .skill-dot.patterns,
-body[data-page="bio"] #bio-page .skill-dot.documentation {
+.bio .skill-dot.design,
+.bio .skill-dot.tokens,
+.bio .skill-dot.library,
+.bio .skill-dot.patterns,
+.bio .skill-dot.documentation {
   color: #a45ee8;
 }
 
 /* Design tools */
 
-#bio-page .skill-dot.figma {
+.bio .skill-dot.figma {
   color: #a259ff;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.balsamiq {
+.bio .skill-dot.balsamiq {
   color: #f6bd16;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.invision {
+.bio .skill-dot.invision {
   color: #ff3366;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.photoshop {
+.bio .skill-dot.photoshop {
   color: #31a8ff;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.illustrator {
+.bio .skill-dot.illustrator {
   color: #ff9a00;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.indesign {
+.bio .skill-dot.indesign {
   color: #ff3366;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.xd {
+.bio .skill-dot.xd {
   color: #ff61f6;
 }
 
 /* Quality */
 
-#bio-page .skill-dot.accessibility,
-body[data-page="bio"] #bio-page .skill-dot.lighthouse,
-body[data-page="bio"] #bio-page .skill-dot.playwright,
-body[data-page="bio"] #bio-page .skill-dot.jest,
-body[data-page="bio"] #bio-page .skill-dot.seo {
+.bio .skill-dot.accessibility,
+.bio .skill-dot.lighthouse,
+.bio .skill-dot.playwright,
+.bio .skill-dot.jest,
+.bio .skill-dot.seo {
   color: #38bdf8;
 }
 
 /* Delivery */
 
-#bio-page .skill-dot.git {
+.bio .skill-dot.git {
   color: #f05032;
 }
 
-body[data-page="bio"] #bio-page .skill-dot.cicd,
-body[data-page="bio"] #bio-page .skill-dot.vite,
-body[data-page="bio"] #bio-page .skill-dot.storybook,
-body[data-page="bio"] #bio-page .skill-dot.agile {
+.bio .skill-dot.cicd,
+.bio .skill-dot.vite,
+.bio .skill-dot.storybook,
+.bio .skill-dot.agile {
   color: #4dabf7;
 }
 
 /* AI */
 
-#bio-page .skill-dot.ai,
-body[data-page="bio"] #bio-page .skill-dot.copilot,
-body[data-page="bio"] #bio-page .skill-dot.claude,
-body[data-page="bio"] #bio-page .skill-dot.codex,
-body[data-page="bio"] #bio-page .skill-dot.automation {
+.bio .skill-dot.ai,
+.bio .skill-dot.copilot,
+.bio .skill-dot.claude,
+.bio .skill-dot.codex,
+.bio .skill-dot.automation {
   color: #b35cf0;
 }
 
@@ -921,7 +914,7 @@ body[data-page="bio"] #bio-page .skill-dot.automation {
    ADDITIONAL EXPERIENCE
 ========================================================== */
 
-#bio-page .additional-experience {
+.bio .additional-experience {
   margin-top: 1rem;
   padding: 1rem 1.1rem;
   border: 1px solid var(--bio-border);
@@ -930,7 +923,7 @@ body[data-page="bio"] #bio-page .skill-dot.automation {
     rgba(7, 16, 24, 0.78);
 }
 
-body[data-page="bio"] #bio-page .additional-experience h3 {
+.bio .additional-experience h3 {
   margin-bottom: 0.4rem;
   color: var(--bio-blue-bright);
   font-size: 0.75rem;
@@ -938,7 +931,7 @@ body[data-page="bio"] #bio-page .additional-experience h3 {
   text-transform: uppercase;
 }
 
-body[data-page="bio"] #bio-page .additional-experience p {
+.bio .additional-experience p {
   margin-bottom: 0;
   color: var(--bio-muted);
   font-size: 0.73rem;
@@ -949,17 +942,17 @@ body[data-page="bio"] #bio-page .additional-experience p {
    ACHIEVEMENTS
 ========================================================== */
 
-#bio-page .achievements-section {
+.bio .achievements-section {
   padding-left: clamp(0rem, 2vw, 1rem);
   border-left: 1px solid rgba(95, 133, 164, 0.14);
 }
 
-body[data-page="bio"] #bio-page .achievements-list {
+.bio .achievements-list {
   display: grid;
   gap: 1rem;
 }
 
-body[data-page="bio"] #bio-page .achievement-card {
+.bio .achievement-card {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0.9rem;
@@ -980,14 +973,14 @@ body[data-page="bio"] #bio-page .achievement-card {
     transform 180ms ease;
 }
 
-body[data-page="bio"] #bio-page .achievement-card:hover {
+.bio .achievement-card:hover {
   border-color: var(--bio-border-strong);
   box-shadow:
     0 0.8rem 2rem rgba(0, 0, 0, 0.2);
   transform: translateY(-0.18rem);
 }
 
-body[data-page="bio"] #bio-page .achievement-icon {
+.bio .achievement-icon {
   display: grid;
   width: 3.5rem;
   height: 3.5rem;
@@ -999,20 +992,20 @@ body[data-page="bio"] #bio-page .achievement-icon {
   place-items: center;
 }
 
-body[data-page="bio"] #bio-page .achievement-icon svg {
+.bio .achievement-icon svg {
   width: 1.55rem;
   height: 1.55rem;
   color: var(--bio-blue-bright);
   stroke-width: 1.4;
 }
 
-body[data-page="bio"] #bio-page .achievement-card h3 {
+.bio .achievement-card h3 {
   margin-bottom: 0.3rem;
   color: var(--bio-blue-bright);
   font-size: 0.79rem;
 }
 
-body[data-page="bio"] #bio-page .achievement-card p {
+.bio .achievement-card p {
   margin-bottom: 0;
   color: var(--bio-muted);
   font-size: 0.73rem;
@@ -1023,7 +1016,7 @@ body[data-page="bio"] #bio-page .achievement-card p {
    CTA
 ========================================================== */
 
-#bio-page .bio-cta {
+.bio .bio-cta {
   display: grid;
   grid-template-columns:
     auto
@@ -1047,11 +1040,11 @@ body[data-page="bio"] #bio-page .achievement-card p {
     0 0 2rem rgba(145, 56, 217, 0.05);
 }
 
-body[data-page="bio"] #bio-page .bio-cta__icon {
+.bio .bio-cta__icon {
   display: grid;
   width: 4.2rem;
   height: 4.2rem;
-  border: 1px solid #a650ef;
+  border: 1px solid .a650ef;
   border-radius: 50%;
   background:
     rgba(23, 20, 48, 0.52);
@@ -1061,25 +1054,25 @@ body[data-page="bio"] #bio-page .bio-cta__icon {
   place-items: center;
 }
 
-body[data-page="bio"] #bio-page .bio-cta__icon svg {
+.bio .bio-cta__icon svg {
   width: 1.85rem;
   height: 1.85rem;
   color: #f5e9ff;
 }
 
-body[data-page="bio"] #bio-page .bio-cta__content h2 {
+.bio .bio-cta__content h2 {
   margin-bottom: 0.3rem;
   font-size: clamp(1.1rem, 2vw, 1.55rem);
 }
 
-body[data-page="bio"] #bio-page .bio-cta__content p:last-child {
+.bio .bio-cta__content p:last-child {
   max-width: 48rem;
   margin-bottom: 0;
   color: var(--bio-muted);
   font-size: 0.82rem;
 }
 
-body[data-page="bio"] #bio-page .bio-button {
+.bio .bio-button {
   display: inline-flex;
   gap: 1.5rem;
   align-items: center;
@@ -1101,7 +1094,7 @@ body[data-page="bio"] #bio-page .bio-button {
     transform 180ms ease;
 }
 
-body[data-page="bio"] #bio-page .bio-button:hover {
+.bio .bio-button:hover {
   border-color: var(--bio-blue-bright);
   background:
     rgba(11, 47, 74, 0.8);
@@ -1110,7 +1103,7 @@ body[data-page="bio"] #bio-page .bio-button:hover {
   transform: translateY(-0.15rem);
 }
 
-body[data-page="bio"] #bio-page .bio-button svg {
+.bio .bio-button svg {
   width: 1rem;
   height: 1rem;
 }
@@ -1119,15 +1112,15 @@ body[data-page="bio"] #bio-page .bio-button svg {
    CONNECT
 ========================================================== */
 
-#bio-page .connect-section {
+.bio .connect-section {
   text-align: center;
 }
 
-body[data-page="bio"] #bio-page .connect-section .section-heading {
+.bio .connect-section .section-heading {
   margin-bottom: 1.4rem;
 }
 
-body[data-page="bio"] #bio-page .social-links {
+.bio .social-links {
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
@@ -1137,7 +1130,7 @@ body[data-page="bio"] #bio-page .social-links {
   list-style: none;
 }
 
-body[data-page="bio"] #bio-page .social-links a {
+.bio .social-links a {
   display: inline-flex;
   gap: 0.65rem;
   align-items: center;
@@ -1160,7 +1153,7 @@ body[data-page="bio"] #bio-page .social-links a {
     transform 180ms ease;
 }
 
-body[data-page="bio"] #bio-page .social-links a:hover {
+.bio .social-links a:hover {
   border-color: var(--bio-blue-bright);
   background:
     rgba(10, 38, 58, 0.8);
@@ -1168,14 +1161,14 @@ body[data-page="bio"] #bio-page .social-links a:hover {
   transform: translateY(-0.18rem);
 }
 
-body[data-page="bio"] #bio-page .social-links svg {
+.bio .social-links svg {
   width: 1.25rem;
   height: 1.25rem;
   fill: none;
   stroke: currentColor;
 }
 
-body[data-page="bio"] #bio-page a:focus-visible {
+.bio a:focus-visible {
   outline: 2px solid var(--bio-blue-bright);
   outline-offset: 4px;
 }
@@ -1185,188 +1178,188 @@ body[data-page="bio"] #bio-page a:focus-visible {
 ========================================================== */
 
 @media (max-width: 75rem) {
-  #bio-page .bio-intro {
+  .bio .bio-intro {
     grid-template-columns:
       minmax(0, 1fr)
       minmax(28rem, 0.9fr);
     gap: 2.75rem;
   }
 
-  #bio-page .bio-heading-group h1 {
+  .bio .bio-heading-group h1 {
     white-space: normal;
   }
 
-  #bio-page .process-grid {
+  .bio .process-grid {
     grid-template-columns:
       repeat(3, minmax(0, 1fr));
     gap: 3.5rem 1rem;
   }
 
-  #bio-page .process-grid::before {
+  .bio .process-grid::before {
     display: none;
   }
 
-  #bio-page .process-card {
+  .bio .process-card {
     min-height: 16.5rem;
   }
 
-  #bio-page .skills-achievements-layout {
+  .bio .skills-achievements-layout {
     grid-template-columns: 1fr;
   }
 
-  #bio-page .achievements-section {
+  .bio .achievements-section {
     padding-left: 0;
     border-left: 0;
   }
 
-  #bio-page .achievements-list {
+  .bio .achievements-list {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 60rem) {
-body[data-page="bio"] #bio-page {
+.bio {
     padding-inline: 1.1rem;
   }
 
-body[data-page="bio"] #bio-page .bio-intro {
+.bio .bio-intro {
     grid-template-columns: 1fr;
   }
 
-body[data-page="bio"] #bio-page .bio-intro__content {
+.bio .bio-intro__content {
     max-width: none;
   }
 
-body[data-page="bio"] #bio-page .bio-quote-card {
+.bio .bio-quote-card {
     max-width: 46rem;
     margin-inline: auto;
   }
 
-body[data-page="bio"] #bio-page .skills-grid {
+.bio .skills-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 42rem) {
-body[data-page="bio"] #bio-page {
+.bio {
     padding-top: 2.5rem;
   }
 
-body[data-page="bio"] #bio-page .bio-heading-group h1 {
+.bio .bio-heading-group h1 {
     font-size: clamp(2.1rem, 11vw, 3rem);
     white-space: normal;
   }
 
-body[data-page="bio"] #bio-page .bio-role {
+.bio .bio-role {
     display: flex;
     flex-direction: column;
     gap: 0.1rem;
   }
 
-body[data-page="bio"] #bio-page .bio-role span {
+.bio .bio-role span {
     display: none;
   }
 
-body[data-page="bio"] #bio-page .bio-metrics {
+.bio .bio-metrics {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
     max-width: none;
   }
 
-body[data-page="bio"] #bio-page .bio-availability {
+.bio .bio-availability {
     flex-direction: column;
     gap: 0.55rem;
   }
 
-body[data-page="bio"] #bio-page .bio-quote-card {
+.bio .bio-quote-card {
     grid-template-columns: 1fr;
     min-height: auto;
     padding: 1.75rem 1.25rem;
     text-align: center;
   }
 
-body[data-page="bio"] #bio-page .bio-portrait-wrap {
+.bio .bio-portrait-wrap {
     width: min(13rem, 70vw);
   }
 
-body[data-page="bio"] #bio-page .bio-quote-card blockquote {
+.bio .bio-quote-card blockquote {
     max-width: 25rem;
     margin-inline: auto;
   }
 
-body[data-page="bio"] #bio-page .bio-quote-card blockquote footer {
+.bio .bio-quote-card blockquote footer {
     text-align: center;
   }
 
-body[data-page="bio"] #bio-page .process-grid {
+.bio .process-grid {
     grid-template-columns: 1fr;
     gap: 3.5rem;
   }
 
-body[data-page="bio"] #bio-page .process-card {
+.bio .process-card {
     min-height: auto;
   }
 
-body[data-page="bio"] #bio-page .skills-grid,
-body[data-page="bio"] #bio-page .achievements-list {
+.bio .skills-grid,
+.bio .achievements-list {
     grid-template-columns: 1fr;
   }
 
-body[data-page="bio"] #bio-page .skill-group,
-body[data-page="bio"] #bio-page .skill-group--tools {
+.bio .skill-group,
+.bio .skill-group--tools {
     min-height: auto;
   }
 
-body[data-page="bio"] #bio-page .bio-cta {
+.bio .bio-cta {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
-body[data-page="bio"] #bio-page .bio-cta__icon {
+.bio .bio-cta__icon {
     margin-inline: auto;
   }
 
-body[data-page="bio"] #bio-page .bio-button {
+.bio .bio-button {
     width: 100%;
   }
 
-body[data-page="bio"] #bio-page .social-links {
+.bio .social-links {
     display: grid;
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 
-body[data-page="bio"] #bio-page .social-links li:last-child {
+.bio .social-links li:last-child {
     grid-column: 1 / -1;
   }
 
-body[data-page="bio"] #bio-page .social-links a {
+.bio .social-links a {
     width: 100%;
     min-width: 0;
   }
 }
 
 @media (max-width: 26rem) {
-body[data-page="bio"] #bio-page .bio-metrics,
-body[data-page="bio"] #bio-page .social-links {
+.bio .bio-metrics,
+.bio .social-links {
     grid-template-columns: 1fr;
   }
 
-body[data-page="bio"] #bio-page .social-links li:last-child {
+.bio .social-links li:last-child {
     grid-column: auto;
   }
 
-body[data-page="bio"] #bio-page .bio-section {
+.bio .bio-section {
     padding-inline: 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-body[data-page="bio"] #bio-page *,
-body[data-page="bio"] #bio-page *::before,
-body[data-page="bio"] #bio-page *::after {
+.bio *,
+.bio *::before,
+.bio *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;

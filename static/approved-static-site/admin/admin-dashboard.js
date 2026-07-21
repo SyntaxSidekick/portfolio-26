@@ -4,8 +4,8 @@
   const root = document.documentElement;
   const body = document.body;
   const themeToggle = document.querySelector("[data-theme-toggle]");
-  const searchInput = document.querySelector("#site-search");
-  const sidebar = document.querySelector("#sidebar");
+  const searchInput = document.querySelector(".site-search");
+  const sidebar = document.querySelector(".sidebar");
 
   const storedTheme = localStorage.getItem("riad-admin-theme");
   if (storedTheme === "light" || storedTheme === "dark") {
@@ -77,7 +77,7 @@
   }
 
   function drawLineChart() {
-    const canvas = document.querySelector("#trafficChart");
+    const canvas = document.querySelector(".trafficChart");
     if (!canvas) return;
 
     const { ctx, width, height } = setCanvasSize(canvas, 146);
@@ -147,12 +147,12 @@
   }
 
   function drawDonutChart() {
-    const canvas = document.querySelector("#sourceChart");
+    const canvas = document.querySelector(".sourceChart");
     if (!canvas) return;
 
     const { ctx, width, height } = setCanvasSize(canvas, 145);
     const values = [62,18,10,6,4];
-    const colors = ["#137be8","#7d3fc2","#31ad73","#f2b323","#a5adb6"];
+    const colors = [".137be8",".7d3fc2",".31ad73",".f2b323",".a5adb6"];
     const cx = width / 2;
     const cy = height / 2;
     const radius = Math.min(width, height) * .42;

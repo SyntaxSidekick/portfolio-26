@@ -56,7 +56,7 @@ export function FeaturedWorkSection() {
 
         <div className="section-action">
           <Link className="button button-primary" href="#">
-            <span aria-hidden="true">&#9635;</span>
+            <span aria-hidden="true">&.9635;</span>
             <span>View Full Portfolio</span>
             <span aria-hidden="true">&rarr;</span>
           </Link>

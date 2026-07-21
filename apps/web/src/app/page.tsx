@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="home-main" id="main-content">
+    <main id="main-content" className="page home">
       <HeroSection />
       <CapabilitiesSection />
       <FeaturedWorkSection />

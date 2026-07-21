@@ -6,10 +6,10 @@
 
 ## Shared behavior
 
-- Header lookup through `#site-header`.
-- Primary navigation lookup through `#site-header-nav`.
-- Mobile menu toggle through `#mobile-menu-toggle`.
-- Theme toggle through `#theme-toggle`.
+- Header lookup through `.site-header`.
+- Primary navigation lookup through `.site-header-nav`.
+- Mobile menu toggle through `.mobile-menu-toggle`.
+- Theme toggle through `.theme-toggle`.
 - Active navigation state based on current path.
 - Header scrolled state based on `window.scrollY`.
 - Menu closes on outside click, Escape, navigation link click, and desktop resize.

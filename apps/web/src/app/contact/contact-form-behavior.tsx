@@ -23,8 +23,8 @@ function getFieldError(field: HTMLInputElement | HTMLTextAreaElement) {
 
 export function ContactFormBehavior() {
   useEffect(() => {
-    const form = document.querySelector<HTMLFormElement>("#contact-form");
-    const status = document.querySelector<HTMLElement>("#contact-status");
+    const form = document.querySelector<HTMLFormElement>(".contact-form");
+    const status = document.querySelector<HTMLElement>(".contact-status");
 
     if (!form || !status) {
       return;

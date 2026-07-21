@@ -1,59 +1,90 @@
-const capabilities = [
+import type { LucideIcon } from "lucide-react";
+import {
+  PersonStanding,
+  Blocks,
+  CodeXml,
+  CircleGauge,
+  LayoutPanelLeft,
+  Sparkles,
+} from "lucide-react";
+
+type Capability = {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+};
+
+const capabilities: Capability[] = [
   {
-    icon: "</>",
+    icon: CodeXml,
     title: "Front-End Architecture",
-    description: "Scalable, maintainable front-end systems with modern best practices."
+    description:
+      "Scalable, maintainable front-end systems with modern best practices.",
   },
   {
-    icon: "▱",
+    icon: Blocks,
     title: "Design Systems",
-    description: "Building reusable component libraries that ensure consistency and speed."
+    description:
+      "Building reusable component libraries that ensure consistency and speed.",
   },
   {
-    icon: "◎",
+    icon: PersonStanding,
     title: "Accessibility",
-    description: "WCAG-compliant experiences that are inclusive and usable for everyone."
+    description:
+      "WCAG-compliant experiences that are inclusive and usable for everyone.",
   },
   {
-    icon: "◴",
+    icon: CircleGauge,
     title: "Performance",
-    description: "Optimized for speed, Core Web Vitals, and exceptional user experiences."
+    description:
+      "Optimized for speed, Core Web Vitals, and exceptional user experiences.",
   },
   {
-    icon: "◢",
+    icon: LayoutPanelLeft,
     title: "UX Engineering",
-    description: "Bridging the gap between design and development seamlessly."
+    description:
+      "Bridging the gap between design and development seamlessly.",
   },
   {
-    icon: "⌘",
+    icon: Sparkles,
     title: "AI Development",
-    description: "Leveraging AI tools to build smarter, faster, and more efficient solutions."
-  }
+    description:
+      "Leveraging AI tools to build smarter, faster, and more efficient solutions.",
+  },
 ];
 
 export function CapabilitiesSection() {
   return (
-    <section className="section capabilities" aria-labelledby="capabilities-title">
+    <section
+      className="section capabilities"
+      aria-labelledby="capabilities-title"
+    >
       <div className="container">
         <header className="section-header">
           <p className="eyebrow">What I Do</p>
 
           <h2 id="capabilities-title">
-            Engineering better experiences<br />
+            Engineering better experiences
+            <br />
             through <span>clean code and thoughtful design.</span>
           </h2>
         </header>
 
         <div className="capability-grid">
-          {capabilities.map((capability) => (
-            <article className="capability-card" key={capability.title}>
-              <div className="capability-icon" aria-hidden="true">
-                {capability.icon}
-              </div>
-              <h3>{capability.title}</h3>
-              <p>{capability.description}</p>
-            </article>
-          ))}
+          {capabilities.map((capability) => {
+            const Icon = capability.icon;
+
+            return (
+              <article className="capability-card" key={capability.title}>
+                <div className="capability-icon" aria-hidden="true">
+                  <Icon />
+                </div>
+
+                <h3>{capability.title}</h3>
+                <p>{capability.description}</p>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>

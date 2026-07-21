@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 function PortfolioIndexContent() {
   return (
-    <div id="main-content">
-<main id="portfolio-page">
+
+<main id="portfolio-page" className="page portfolio">
     <section className="portfolio-hero" aria-labelledby="portfolio-title">
       <div className="portfolio-container">
         <p className="portfolio-kicker">Portfolio</p>
@@ -39,10 +39,10 @@ function PortfolioIndexContent() {
         </div>
 
         <nav className="portfolio-source-nav" aria-label="Portfolio sections">
-          <a href="#case-studies"><span aria-hidden="true">▥</span> Case Studies</a>
-          <a href="#github-projects"><span aria-hidden="true">●</span> GitHub Projects</a>
-          <a href="#design-projects"><span aria-hidden="true">◇</span> Design Projects</a>
-          <a href="#codepen-experiments"><span aria-hidden="true">⬢</span> Code Experiments</a>
+          <a href=".case-studies"><span aria-hidden="true">▥</span> Case Studies</a>
+          <a href=".github-projects"><span aria-hidden="true">●</span> GitHub Projects</a>
+          <a href=".design-projects"><span aria-hidden="true">◇</span> Design Projects</a>
+          <a href=".codepen-experiments"><span aria-hidden="true">⬢</span> Code Experiments</a>
         </nav>
       </div>
     </section>
@@ -83,7 +83,7 @@ function PortfolioIndexContent() {
               <p className="project-type">Travel Booking Platform</p>
               <p>Complete travel platform with increased bookings through modern UX/UI and performance optimization.</p>
               <ul className="tag-list"><li>Vue.js</li><li>Vite</li><li>Pinia</li><li>SCSS</li></ul>
-              <a className="project-link" href="#time2visit">View Case Study <span>→</span></a>
+              <a className="project-link" href=".time2visit">View Case Study <span>→</span></a>
             </div>
           </article>
 
@@ -141,7 +141,7 @@ function PortfolioIndexContent() {
           </article>
         </div>
 
-        <a className="section-action" href="#all-case-studies">View All Case Studies <span>→</span></a>
+        <a className="section-action" href=".all-case-studies">View All Case Studies <span>→</span></a>
       </div>
     </section>
 
@@ -162,7 +162,7 @@ function PortfolioIndexContent() {
             <h3>RK Design System</h3>
             <p>Reusable component library with accessible, scalable UI components.</p>
             <div className="compact-meta"><span>TypeScript</span><span>★ 128</span></div>
-            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href="#demo">Live Demo</a></div>
+            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href=".demo">Live Demo</a></div>
           </article>
 
           <article className="compact-card" data-category="web tools">
@@ -170,7 +170,7 @@ function PortfolioIndexContent() {
             <h3>Portfolio Template</h3>
             <p>Modern portfolio template built with React, accessible CSS, and motion.</p>
             <div className="compact-meta"><span>React</span><span>★ 96</span></div>
-            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href="#demo">Live Demo</a></div>
+            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href=".demo">Live Demo</a></div>
           </article>
 
           <article className="compact-card" data-category="tools">
@@ -178,7 +178,7 @@ function PortfolioIndexContent() {
             <h3>TaskFlow API</h3>
             <p>RESTful API for task management with authentication and real-time updates.</p>
             <div className="compact-meta"><span>Node.js</span><span>★ 74</span></div>
-            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href="#demo">Live Demo</a></div>
+            <div className="compact-actions"><a href="https://github.com/" target="_blank" rel="noopener noreferrer">View Repository</a><a href=".demo">Live Demo</a></div>
           </article>
 
           <article className="compact-card" data-category="tools">
@@ -219,7 +219,7 @@ function PortfolioIndexContent() {
             <h3>Mobile Banking App</h3>
             <p>Modern mobile banking experience and interaction concept.</p>
             <div className="compact-meta"><span>Figma</span></div>
-            <div className="compact-actions"><a href="#mobile-banking">View Design</a></div>
+            <div className="compact-actions"><a href=".mobile-banking">View Design</a></div>
           </article>
 
           <article className="compact-card" data-category="design systems">
@@ -239,7 +239,7 @@ function PortfolioIndexContent() {
           </article>
         </div>
 
-        <a className="section-action section-action--purple" href="#all-design-projects">View All Design Projects <span>→</span></a>
+        <a className="section-action section-action--purple" href=".all-design-projects">View All Design Projects <span>→</span></a>
       </div>
     </section>
 
@@ -300,7 +300,7 @@ function PortfolioIndexContent() {
             <h2>Have a Project in Mind?</h2>
             <p>I’m always open to discussing new opportunities, solving complex challenges, and creating impactful digital experiences.</p>
           </div>
-          <a href="#contact">Let’s Connect <span>→</span></a>
+          <a href=".contact">Let’s Connect <span>→</span></a>
         </div>
       </div>
     </section>
@@ -319,7 +319,7 @@ function PortfolioIndexContent() {
       </div>
     </section>
   </main>
-</div>
+
   );
 }
 

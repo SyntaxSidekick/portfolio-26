@@ -13,7 +13,7 @@
   <script src="admin-dashboard.js" defer></script>
 </head>
 <body>
-  <a class="skip-link" href="#main-content">Skip to dashboard content</a>
+  <a class="skip-link" href=".main-content">Skip to dashboard content</a>
 
   <div class="admin-shell">
     <aside class="sidebar" id="sidebar" aria-label="Administration navigation">
@@ -29,7 +29,7 @@
       </div>
 
       <nav class="sidebar-nav">
-        <a class="nav-item is-active" href="#dashboard" aria-current="page">
+        <a class="nav-item is-active" href=".dashboard" aria-current="page">
           <i data-lucide="layout-dashboard"></i><span>Dashboard</span>
         </a>
 
@@ -38,10 +38,10 @@
             <i data-lucide="notebook-text"></i><span>Posts</span><i class="chevron" data-lucide="chevron-down"></i>
           </button>
           <div class="subnav">
-            <a href="#all-posts">All Posts</a>
-            <a href="#add-post">Add New</a>
-            <a href="#categories">Categories</a>
-            <a href="#tags">Tags</a>
+            <a href=".all-posts">All Posts</a>
+            <a href=".add-post">Add New</a>
+            <a href=".categories">Categories</a>
+            <a href=".tags">Tags</a>
           </div>
         </div>
 
@@ -50,24 +50,24 @@
             <i data-lucide="briefcase-business"></i><span>Portfolio</span><i class="chevron" data-lucide="chevron-down"></i>
           </button>
           <div class="subnav">
-            <a href="#projects">All Projects</a>
-            <a href="#add-project">Add New</a>
-            <a href="#project-categories">Categories</a>
-            <a href="#technologies">Technologies</a>
+            <a href=".projects">All Projects</a>
+            <a href=".add-project">Add New</a>
+            <a href=".project-categories">Categories</a>
+            <a href=".technologies">Technologies</a>
           </div>
         </div>
 
-        <a class="nav-item" href="#media"><i data-lucide="image"></i><span>Media</span></a>
-        <a class="nav-item" href="#pages"><i data-lucide="file"></i><span>Pages</span></a>
-        <a class="nav-item" href="#comments">
+        <a class="nav-item" href=".media"><i data-lucide="image"></i><span>Media</span></a>
+        <a class="nav-item" href=".pages"><i data-lucide="file"></i><span>Pages</span></a>
+        <a class="nav-item" href=".comments">
           <i data-lucide="message-square"></i><span>Comments</span><span class="count-badge">12</span>
         </a>
-        <a class="nav-item" href="#appearance"><i data-lucide="paintbrush"></i><span>Appearance</span></a>
-        <a class="nav-item" href="#users"><i data-lucide="user"></i><span>Users</span></a>
-        <a class="nav-item" href="#tools"><i data-lucide="wrench"></i><span>Tools</span></a>
-        <a class="nav-item" href="#settings"><i data-lucide="settings"></i><span>Settings</span></a>
-        <a class="nav-item" href="#seo"><i data-lucide="circle-help"></i><span>SEO</span><span class="status-dot success"></span></a>
-        <a class="nav-item" href="#analytics"><i data-lucide="chart-no-axes-column"></i><span>Analytics</span></a>
+        <a class="nav-item" href=".appearance"><i data-lucide="paintbrush"></i><span>Appearance</span></a>
+        <a class="nav-item" href=".users"><i data-lucide="user"></i><span>Users</span></a>
+        <a class="nav-item" href=".tools"><i data-lucide="wrench"></i><span>Tools</span></a>
+        <a class="nav-item" href=".settings"><i data-lucide="settings"></i><span>Settings</span></a>
+        <a class="nav-item" href=".seo"><i data-lucide="circle-help"></i><span>SEO</span><span class="status-dot success"></span></a>
+        <a class="nav-item" href=".analytics"><i data-lucide="chart-no-axes-column"></i><span>Analytics</span></a>
       </nav>
 
       <button class="collapse-button" type="button" data-collapse-sidebar>
@@ -113,7 +113,7 @@
             <p>Welcome back, Riad! Here's what's happening with your site.</p>
           </div>
           <div class="heading-actions">
-            <a class="button button-secondary" href="#view-site">View Site <i data-lucide="external-link"></i></a>
+            <a class="button button-secondary" href=".view-site">View Site <i data-lucide="external-link"></i></a>
             <button class="button button-primary" type="button"><i data-lucide="plus"></i>New Post</button>
           </div>
         </section>
@@ -161,7 +161,7 @@
               <div><span>Page Views</span><strong>72.1K <small>↑ 20.5%</small></strong></div>
             </div>
             <div class="chart-wrap"><canvas id="trafficChart" aria-label="Thirty day traffic line chart"></canvas></div>
-            <a class="panel-link" href="#full-analytics">View full analytics <i data-lucide="arrow-right"></i></a>
+            <a class="panel-link" href=".full-analytics">View full analytics <i data-lucide="arrow-right"></i></a>
           </article>
 
           <article class="panel traffic-panel">
@@ -179,13 +179,13 @@
                 <li><span class="legend-dot source-other"></span><span>Other</span><strong>4%</strong></li>
               </ul>
             </div>
-            <a class="panel-link" href="#traffic-report">View full report <i data-lucide="arrow-right"></i></a>
+            <a class="panel-link" href=".traffic-report">View full report <i data-lucide="arrow-right"></i></a>
           </article>
 
           <article class="panel comments-panel">
             <div class="panel-header">
               <h2>Recent Comments</h2>
-              <a href="#all-comments">View all</a>
+              <a href=".all-comments">View all</a>
             </div>
             <div class="comment-list">
               <article class="comment">
@@ -216,7 +216,7 @@
           <article class="panel">
             <div class="panel-header">
               <h2>Recent Blog Posts</h2>
-              <a href="#all-posts">View all posts</a>
+              <a href=".all-posts">View all posts</a>
             </div>
             <div class="post-list">
               <article class="post-row">
@@ -250,7 +250,7 @@
           <article class="panel portfolio-panel">
             <div class="panel-header">
               <h2>Latest Portfolio Projects</h2>
-              <a href="#all-projects">View all projects <i data-lucide="arrow-right"></i></a>
+              <a href=".all-projects">View all projects <i data-lucide="arrow-right"></i></a>
             </div>
             <div class="table-wrap">
               <table>
@@ -298,7 +298,7 @@
         </section>
 
         <footer class="dashboard-footer">
-          <p>Thank you for creating with <a href="#wordpress">◉ WordPress.</a></p>
+          <p>Thank you for creating with <a href=".wordpress">◉ WordPress.</a></p>
           <p>Version 6.6.2</p>
         </footer>
       </main>

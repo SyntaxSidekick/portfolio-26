@@ -33,3 +33,19 @@
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.7;
 }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  margin: 0 0 14px;
+  padding: 4px 9px;
+  border: 1px solid rgba(24, 154, 255, 0.5);
+  border-radius: 3px;
+  color: var(--accent-bright);
+  background: rgba(10, 112, 184, 0.08);
+  font-size: 0.62rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}

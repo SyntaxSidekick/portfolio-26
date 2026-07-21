@@ -9,8 +9,8 @@ export const metadata: Metadata = {
 
 function ContactPageContent() {
   return (
-    <div id="main-content">
-<main id="contact-page">
+
+<main id="contact-page" className="page contact">
   <section className="contact-hero" aria-labelledby="contact-title">
     <div className="contact-container">
       <span className="contact-hero__decoration contact-hero__decoration--left" aria-hidden="true"></span>
@@ -283,7 +283,7 @@ function ContactPageContent() {
     </div>
   </section>
 </main>
-</div>
+
   );
 }
 
