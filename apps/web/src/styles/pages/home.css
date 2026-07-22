@@ -718,6 +718,8 @@ html[data-theme="light"] .home .trusted-logo img {
 .home .article-image {
   display: block;
   aspect-ratio: 16 / 7.1;
+  background:
+    linear-gradient(135deg, rgba(40, 153, 234, 0.16), rgba(8, 16, 28, 0.98));
   overflow: hidden;
 }
 

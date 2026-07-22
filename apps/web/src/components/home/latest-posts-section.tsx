@@ -1,7 +1,13 @@
 import Link from "next/link";
-import { homeLatestPosts } from "@/data/home-latest-posts";
+import { ArticleGrid } from "@/components/blog/ArticleGrid";
+import {
+  getSyntaxSidekickArticles,
+  HOME_ARTICLE_LIMIT
+} from "@/lib/syntax-sidekick";
 
-export function LatestPostsSection() {
+export async function LatestPostsSection() {
+  const articles = await getSyntaxSidekickArticles(HOME_ARTICLE_LIMIT);
+
   return (
     <section className="section articles" aria-labelledby="articles-title">
       <div className="container">
@@ -14,36 +20,13 @@ export function LatestPostsSection() {
             </h2>
           </header>
 
-          <Link className="text-link section-link" href="#">
+          <Link className="text-link section-link" href="/blog">
             View all articles
             <span aria-hidden="true">&rarr;</span>
           </Link>
         </div>
 
-        <div className="article-grid">
-          {homeLatestPosts.map((post) => (
-            <article className="article-card" key={post.title}>
-              <Link className="article-image" href="#">
-                <img src={post.imageSrc} alt={post.imageAlt} />
-              </Link>
-
-              <div className="article-body">
-                <time dateTime={post.datetime}>{post.date}</time>
-
-                <h3>
-                  <Link href="#">{post.title}</Link>
-                </h3>
-
-                <p>{post.excerpt}</p>
-
-                <footer className="article-footer">
-                  <span>{post.category}</span>
-                  <span>{post.readTime}</span>
-                </footer>
-              </div>
-            </article>
-          ))}
-        </div>
+        <ArticleGrid articles={articles} variant="home" />
       </div>
     </section>
   );
