@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "./blog-single.css";
+import "@/styles/pages/blog-single.css";
 import { blogPosts } from "@/data/blog-posts";
 
 type PageProps = Readonly<{
@@ -10,7 +10,7 @@ type PageProps = Readonly<{
 function BlogArticleContent() {
   return (
 
-<main id="blog-post" className="page blog-single">
+<main id="blog-post" className="page blog-single blog-post-page">
   <div className="blog-background-grid" aria-hidden="true"></div>
   <div className="blog-background-glow blog-background-glow-one" aria-hidden="true"></div>
   <div className="blog-background-glow blog-background-glow-two" aria-hidden="true"></div>

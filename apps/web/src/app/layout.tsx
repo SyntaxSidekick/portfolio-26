@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import "./globals.css";
-import { SiteShell } from "@/components/site-shell";
+import "@/styles/globals.css";
+import { SiteShell } from "@/components/site/site-shell";
 
 export const metadata: Metadata = {
   title: "Riad Kilani | Senior Front-End Engineer & UX Engineer",

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./portfolio.css";
+import "@/styles/pages/portfolio.css";
 
 export const metadata: Metadata = {
   title: "Portfolio | Riad Kilani",

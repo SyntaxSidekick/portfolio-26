@@ -1,7 +1,9 @@
-@import "./tokens.css";
-@import "./reset.css";
-@import "./base.css";
-@import "./typography.css";
-@import "./accessibility.css";
-@import "./utilities.css";
-@import "./components.css";
+@import "./base/reset.css";
+@import "./abstracts/tokens.css";
+@import "./base/base.css";
+@import "./base/typography.css";
+@import "./base/accessibility.css";
+@import "./utilities/utilities.css";
+@import "./components/components.css";
+@import "./layout/header.css";
+@import "./layout/footer.css";

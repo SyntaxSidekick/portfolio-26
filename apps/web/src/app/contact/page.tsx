@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./contact.css";
-import { ContactFormBehavior } from "./contact-form-behavior";
+import "@/styles/pages/contact.css";
+import { ContactFormBehavior } from "@/components/contact/contact-form-behavior";
 
 export const metadata: Metadata = {
   title: "Contact Riad Kilani",

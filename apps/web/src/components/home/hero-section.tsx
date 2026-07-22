@@ -80,26 +80,29 @@ export function HeroSection() {
           <p>Trusted by forward-thinking companies</p>
 
           <div className="trusted-logos">
-            <span>BONNIER</span>
-
-            <span className="logo-vistana">
-              VISTANA
-              <small>Signature Experiences</small>
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/bonnier-logo.png" alt="Bonnier" />
             </span>
 
-            <span>VirtuEd</span>
-
-            <span className="logo-andor">
-              ANDOR
-              <small>HEALTH</small>
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/vistana-logo.png" alt="Vistana Signature Experiences" />
             </span>
 
-            <span className="logo-bmi">
-              BMI
-              <small>ELITE</small>
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/virtued-logo.png" alt="VirtuEd" />
             </span>
 
-            <span>SyntaxSidekick</span>
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/andor-logo.png" alt="Andor Health" />
+            </span>
+
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/logos-BMI-Elite-1.png" alt="BMI Elite" />
+            </span>
+
+            <span className="trusted-logo">
+              <img src="/assets/images/brands/syntaxsidekick-logo.png" alt="SyntaxSidekick" />
+            </span>
           </div>
         </div>
       </div>

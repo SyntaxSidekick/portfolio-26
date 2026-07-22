@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import "./portfolio-single.css";
+import "@/styles/pages/portfolio-single.css";
 import { portfolioProjects } from "@/data/portfolio-projects";
 
 type PageProps = Readonly<{

@@ -13,10 +13,10 @@
   --project-pink: #ef5b9f;
   --project-green: #64d667;
   --project-purple: #bc52ff;
-  --project-font-display: "Cinzel", Georgia, serif;
-  --project-font-body: "DM Sans", Arial, sans-serif;
-  --project-container: 1400px;
-  --project-gutter: clamp(1rem, 4vw, 2.5rem);
+  --project-font-display: var(--font-display);
+  --project-font-body: var(--font-body);
+  --project-container: var(--container-wide);
+  --project-gutter: var(--page-gutter);
   --project-radius-sm: 0.4rem;
   --project-radius-md: 0.7rem;
   --project-radius-lg: 0.9rem;

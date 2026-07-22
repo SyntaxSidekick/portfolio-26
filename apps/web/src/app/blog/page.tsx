@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./blog.css";
+import "@/styles/pages/blog.css";
 
 export const metadata: Metadata = {
   title: "Blog | Riad Kilani",

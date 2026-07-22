@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "./bio.css";
+import "@/styles/pages/bio.css";
 import {
   Accessibility,
   ArrowRight,
