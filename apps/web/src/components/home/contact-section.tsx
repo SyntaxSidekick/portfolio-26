@@ -5,8 +5,7 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { FontAwesomeSvg } from "@/lib/fontAwesomeIcon";
 import { Mail, MapPin } from "lucide-react";
 
 export function ContactSection() {
@@ -68,7 +67,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
               >
-                <FontAwesomeIcon icon={faLinkedin} />
+                <FontAwesomeSvg icon={faLinkedin} />
               </a>
               <a
                 href="https://github.com/riadkilani"
@@ -76,7 +75,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 aria-label="GitHub"
               >
-                <FontAwesomeIcon icon={faGithub} />
+                <FontAwesomeSvg icon={faGithub} />
               </a>
               <a
                 href="https://codepen.io/riadkilani"
@@ -84,7 +83,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 aria-label="CodePen"
               >
-                <FontAwesomeIcon icon={faCodepen} />
+                <FontAwesomeSvg icon={faCodepen} />
               </a>
               <a
                 href="https://x.com/riadkilani"
@@ -92,7 +91,7 @@ export function ContactSection() {
                 rel="noopener noreferrer"
                 aria-label="X"
               >
-                <FontAwesomeIcon icon={faXTwitter} />
+                <FontAwesomeSvg icon={faXTwitter} />
               </a>
             </div>
           </div>

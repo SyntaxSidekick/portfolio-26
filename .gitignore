@@ -12,3 +12,7 @@ coverage/
 *.log
 .DS_Store
 Thumbs.db
+storage/media/originals/*
+storage/media/generated/*
+!storage/media/originals/.gitkeep
+!storage/media/generated/.gitkeep

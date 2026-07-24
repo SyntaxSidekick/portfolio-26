@@ -9,8 +9,7 @@ import {
   faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import { FontAwesomeSvg } from "@/lib/fontAwesomeIcon";
 import { Mail } from "lucide-react";
 
 export function SiteFooter() {
@@ -43,19 +42,19 @@ export function SiteFooter() {
 
             <nav className="footer-socials" aria-label="Social links">
               <a href="https://www.linkedin.com/in/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <FontAwesomeIcon icon={faLinkedin} />
+                <FontAwesomeSvg icon={faLinkedin} />
               </a>
 
               <a href="https://github.com/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <FontAwesomeIcon icon={faGithub} />
+                <FontAwesomeSvg icon={faGithub} />
               </a>
 
               <a href="https://codepen.io/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="CodePen">
-                <FontAwesomeIcon icon={faCodepen} />
+                <FontAwesomeSvg icon={faCodepen} />
               </a>
 
               <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
-                 <FontAwesomeIcon icon={faXTwitter} />
+                 <FontAwesomeSvg icon={faXTwitter} />
               </a>
 
               <a href="mailto:hello@riadkilani.com" aria-label="Email Riad Kilani">

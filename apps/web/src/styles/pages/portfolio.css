@@ -1,84 +1,834 @@
+/* 
+Edit
+
+
+
+
+Edit
+
+
+1000017582.png
+Now give me each design on its own. That means generate a mockup of just the left design and then one for the right design they're exactly the same You just splitting them into two different images
+
+Edit
+
+
+Edit
+
+
+We should autofill all possible technologies and allow to checkmark which is relevant to the project
+
+Technologies link should prefill everything
+
+
+on technologies that don't have icons it should just be a generic with the initials and the brand color. 
+
+Today 3:50 PM
+image(122).png
+portfolio-single-mockup(4).png
+This needs to be a little more intuitive and needs to have fields matching portfolio single mockup
+
+
+image(123).png
+image(124).png
+This is better
+
+We now need a media manager in place. We should be able to upload/manage images. 
+
+We have e a media page in admin
+
+I want the media manager to be similar to wordpress. 
+
+The first image is the project creation form. We should be able to upload images there and it would save in the media manager directory/file uploads wherever that may be
+
+app/public/assets is currently where images file is. do we use that and then have it store under portfolio, gallery, or whatever?
+
+Generate a featured image for SyntaxSidekick
+
+Edit
+
+
+Edit
+
+
+Edit
+
+
+Edit
+
+
+
+Pasted text(23).txt
+Document
+there is so much duplicated css in here
+
+
+Yes. This file is duplicating global foundations and creating separate systems for the portfolio index and portfolio single page. 
+
+
+The biggest problems are:
+
+Two separate page-level token systems:
+
+--portfolio-*
+
+--project-*
+
+Repeated resets for box-sizing, images, links, typography, and reduced motion.
+
+Separate container implementations:
+
+.portfolio-container
+
+.project-container
+
+Separate button systems:
+
+.section-action
+
+.button
+
+.button-primary
+
+.button-secondary
+
+.cta-button
+
+Card rules are split between:
+
+.card
+
+.project-card
+
+.compact-card
+
+.panel
+
+.metrics-grid
+
+.cta-panel
+
+The same grid-child divider logic is duplicated for .metrics-grid and .results-grid.
+
+The same responsive rules repeatedly target both grids.
+
+Technology badge styles are scattered across .tag-list, .technology-tags, .compact-meta, and .technology-icon-fallback.
+
+Focus and reduced-motion rules are repeated for both pages.
+
+The single-page selector is absurdly over-scoped:
+
+.portfolio-single .project-single-page .some-selector
+You should only need:
+
+.project-single-page .some-selector
+or, in many places, simply:
+
+.some-selector
+when the class is unique.
+
+There are also broken values that need fixing:
+
+linear-gradient(180deg, .010710, ...)
+padding: #7rem 1.2rem;
+transition-duration: #01ms;
+border: 1px solid .258ff5;
+linear-gradient(135deg, .168fff, .0a5fd0);
+border: 0.35rem solid .070d14;
+linear-gradient(..., .d94b77)
+Those are invalid because the hexadecimal colors are missing #, while some normal numeric values incorrectly contain #.
+
+Correct cleanup direction
+Global tokens
+Move the shared palette, spacing, typography, borders, radii, containers, and motion into the global token files: */
+
+:root {
+  --color-canvas: #020913;
+  --color-surface: rgba(7, 20, 33, 0.94);
+  --color-surface-deep: rgba(5, 15, 25, 0.96);
+
+  --color-text: #f4f8fc;
+  --color-text-muted: #b9c7d6;
+
+  --color-brand: #168fff;
+  --color-brand-light: #58b8ff;
+  --color-success: #42dc91;
+  --color-accent: #c65cff;
+  --color-warning: #f6bd28;
+
+  --border-subtle: rgba(105, 154, 196, 0.23);
+
+  --radius-sm: 0.4rem;
+  --radius-md: 0.7rem;
+  --radius-lg: 0.9rem;
+
+  --container-wide: 87.5rem;
+  --page-gutter: clamp(1rem, 4vw, 2.5rem);
+
+  --transition-fast: 180ms ease;
+}
+/* Global foundations
+These do not belong in portfolio.css: */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg {
+  display: block;
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.container {
+  width: min(
+    calc(100% - (var(--page-gutter) * 2)),
+    var(--container-wide)
+  );
+  margin-inline: auto;
+}
+/* One shared card foundation */
+.card {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(
+    145deg,
+    var(--color-surface),
+    var(--color-surface-deep)
+  );
+}
+
+.card-interactive {
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.card-interactive:hover {
+  border-color: color-mix(
+    in srgb,
+    var(--color-brand) 50%,
+    transparent
+  );
+  transform: translateY(-4px);
+}
+/* Then .project-card, .compact-card, .panel, and .cta-panel should only define their differences.
+
+One shared button foundation */
+.button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.75rem 1.25rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.button:hover {
+  transform: translateY(-2px);
+}
+
+.button-primary {
+  color: #fff;
+  background: linear-gradient(135deg, #168fff, #0a5fd0);
+}
+
+.button-secondary {
+  border-color: var(--border-subtle);
+  color: var(--color-text);
+  background: rgba(7, 17, 28, 0.72);
+}
+/* Combine metrics and results behavior
+Both are essentially stat grids. Give them a shared base: */
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.stat-grid > div {
+  padding-inline: 1.5rem;
+  border-right: 1px solid var(--border-subtle);
+}
+
+.stat-grid > div:first-child {
+  padding-left: 0;
+}
+
+.stat-grid > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+/* Then: */
+
+.metrics-grid {
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.results-grid {
+  margin-top: var(--space-md);
+}
+/* What should remain in this page file
+Only portfolio-specific layout and presentation:
+
+Portfolio index:
+- hero layout
+- filters
+- portfolio grids
+- section color variants
+- portfolio CTA layout
+
+Portfolio single:
+- project hero composition
+- desktop/mobile preview positioning
+- challenge/solution layout
+- results layout differences
+- project details
+- case-study CTA layout
+The reset, container, button, card, focus, media, typography, tokens, visually hidden utility, and reduced-motion foundation should all be removed from this file.
+
+The final nested rule at the bottom also needs to go: */
+
+.page.portfolio {
+  .card.project-card {
+    .card-body {
+      p.card-eyebrow {
+        font-size: .6rem;
+      }
+    }
+  }
+}
+/* Replace it with the direct selector: */
+
+.portfolio .project-card .card-eyebrow {
+  font-size: var(--font-size-xs);
+}
+/* This file should probably shrink by at least 30% to 40% once the global foundations are extracted and the repeated stat, card, button, token, reset, and responsive rules are consolidated.
+
+
+rewrite the stylesheet including everything but comment what could be duplicate and what can be put into component
+
+I rewrote and consolidated the stylesheet while preserving the portfolio index and portfolio single-page rules.
+
+The comments clearly mark:
+
+[GLOBAL DUPLICATE] for rules that likely belong in global/reset/token files
+
+[COMPONENT CANDIDATE] for reusable cards, buttons, tags, stats, panels, headings, and utilities
+
+[PAGE-SPECIFIC] for rules that should remain in the portfolio stylesheet
+
+[PAGE-SPECIFIC BUT FRAGILE] for the technology nth-child() colors
+
+[GLOBAL DUPLICATE OR REMOVE] for suspicious legacy rules
+
+I also fixed the malformed CSS values such as missing # characters, invalid padding, and invalid transition durations.
+
+
+One important item remains intentionally marked rather than removed:
+
+.card {
+  width: 400px;
+}
+That should almost certainly be deleted because it forces every shared card to a fixed width and will interfere with the responsive grids. 
+
+
+It is not commented properly
+
+You’re right. The first version used vague labels instead of clearly stating where each block belongs, what it duplicates, and whether it should stay, move, or be removed.
+
+I corrected the comments throughout the stylesheet. The revised version now uses direct instructions such as: */
+
+/*
+ * MOVE TO: components/cards.css
+ * DUPLICATES: the shared .card surface and interactive hover behavior.
+ *
+ * RECOMMENDED MARKUP:
+ * <article className="card card-interactive project-card">
+ *
+ * KEEP ONLY portfolio-specific card differences in this file.
+ */
+/* It also clearly identifies:
+
+the exact destination file
+
+what the rule duplicates
+
+what should remain page-specific
+
+what should be removed
+
+what requires a markup change
+
+what is temporary
+
+what is fragile, such as the technology nth-child() colors
+
+ 
+
+
+Library
+/
+Portfolio 2026
+/
+portfolio-rewritten-commented.css */
+
+
 /* =========================================================
-   PORTFOLIO INDEX
-   Original source: portfolio/page.css
+   PORTFOLIO PAGES
+   Rewritten and consolidated from portfolio/page.css
+
+   HOW TO READ THESE COMMENTS
+   ---------------------------------------------------------
+   MOVE TO: exact file where the rule should ultimately live.
+   DUPLICATES: existing global/component behavior this repeats.
+   KEEP HERE: rule is specific to the portfolio index or case study.
+   REMOVE: temporary, unsafe, or obsolete rule.
+   REVIEW: rule works, but the implementation should be improved.
+
+   Nothing has been silently deleted. Rules that should move or be
+   removed are preserved and clearly identified beside the code.
    ========================================================= */
 
 
+/* =========================================================
+   SHARED PORTFOLIO FOUNDATIONS
+   ========================================================= */
+
+/*
+ * MOVE TO: tokens/colors.css, tokens/layout.css, tokens/radius.css
+ * DUPLICATES: global design tokens already used by the rest of the site.
+ * KEEP TEMPORARILY: these aliases prevent the current portfolio markup
+ * from breaking while --portfolio-* and --project-* are replaced.
+ *
+ * FINAL GOAL:
+ * Delete these aliases after every rule uses the existing global tokens
+ * directly, for example var(--color-brand) instead of var(--project-blue).
+ */
+.portfolio,
+.project-single-page {
+  --portfolio-bg: var(--color-bg, #010710);
+  --portfolio-text: var(--color-text, #f5f8fb);
+  --portfolio-muted: var(--color-text-muted, #8fa1b2);
+  --portfolio-blue: var(--color-brand, #168fff);
+  --portfolio-blue-strong: var(--color-brand-strong, #258ff5);
+  --portfolio-green: var(--color-success, #64d667);
+  --portfolio-purple: var(--color-accent, #bc52ff);
+  --portfolio-gold: var(--color-warning, #f5cf44);
+  --portfolio-border: var(--border-subtle, rgba(88, 145, 191, 0.22));
+  --portfolio-container: var(--container-wide, 87.5rem);
+  --portfolio-gutter: var(--page-gutter, clamp(1rem, 4vw, 2.5rem));
+
+  --project-bg: var(--portfolio-bg);
+  --project-bg-deep: var(--color-bg-deep, #01060c);
+  --project-panel: var(--color-surface, rgba(8, 20, 32, 0.94));
+  --project-panel-deep: var(--color-surface-deep, rgba(4, 13, 22, 0.98));
+  --project-border: var(--portfolio-border);
+  --project-border-strong: var(--border-brand, rgba(31, 145, 242, 0.55));
+  --project-text: var(--portfolio-text);
+  --project-text-soft: var(--color-text-soft, #c4d0db);
+  --project-muted: var(--portfolio-muted);
+  --project-blue: var(--portfolio-blue);
+  --project-blue-light: var(--color-brand-light, #54b7ff);
+  --project-pink: var(--color-danger-soft, #ef5b9f);
+  --project-green: var(--portfolio-green);
+  --project-purple: var(--portfolio-purple);
+  --project-radius-sm: var(--radius-sm, 0.4rem);
+  --project-radius-md: var(--radius-md, 0.7rem);
+  --project-radius-lg: var(--radius-lg, 0.9rem);
+}
+
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES: the site-wide box-sizing reset.
+ * REMOVE FROM THIS FILE after confirming reset.css is loaded globally.
+ */
+.portfolio,
+.portfolio *,
+.portfolio *::before,
+.portfolio *::after,
+.project-single-page,
+.project-single-page *,
+.project-single-page *::before,
+.project-single-page *::after {
+  box-sizing: border-box;
+}
+
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES:
+ *   img, svg { display: block; }
+ *   img { max-width: 100%; }
+ *   a { color: inherit; }
+ *   button { font: inherit; }
+ *
+ * REMOVE FROM THIS FILE after confirming those global reset rules exist.
+ */
+.portfolio img,
+.project-single-page img,
+.project-single-page svg {
+  display: block;
+}
+
+.portfolio img {
+  width: 100%;
+}
+
+.project-single-page img {
+  max-width: 100%;
+}
+
+.portfolio a,
+.project-single-page a {
+  color: inherit;
+}
+
+.portfolio button {
+  font: inherit;
+}
+
+/*
+ * MOVE TO: layouts/container.css
+ * DUPLICATES: the existing shared .container layout.
+ *
+ * RECOMMENDED MARKUP CHANGE:
+ * Replace className="portfolio-container" and className="project-container"
+ * with className="container".
+ *
+ * REMOVE THIS BLOCK after the markup is updated.
+ */
+.portfolio-container,
+.project-container {
+  width: min(
+    calc(100% - (var(--portfolio-gutter) * 2)),
+    var(--portfolio-container)
+  );
+  margin-inline: auto;
+}
+
+/*
+ * MOVE TO: base/typography.css
+ * DUPLICATES: global display-heading font family and weight.
+ * KEEP HERE ONLY if portfolio headings intentionally differ site-wide.
+ */
+.portfolio h1,
+.portfolio h2,
+.project-single-page h1,
+.project-single-page h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/*
+ * MOVE TO: base/accessibility.css
+ * DUPLICATES: the global :focus-visible treatment for links and buttons.
+ * REMOVE FROM THIS FILE after global focus styling is confirmed.
+ */
+.portfolio :is(a, button):focus-visible,
+.project-single-page a:focus-visible {
+  outline: 3px solid var(--portfolio-blue);
+  outline-offset: 4px;
+}
+
+/*
+ * MOVE TO: base/accessibility.css
+ * DUPLICATES: the site-wide prefers-reduced-motion rule.
+ * REMOVE FROM THIS FILE after global reduced-motion support is confirmed.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio *,
+  .portfolio *::before,
+  .portfolio *::after,
+  .project-single-page *,
+  .project-single-page *::before,
+  .project-single-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   REUSABLE COMPONENT CANDIDATES
+   ========================================================= */
+
+/*
+ * MOVE TO: components/cards.css
+ * DUPLICATES: the shared .card surface and interactive hover behavior.
+ *
+ * RECOMMENDED MARKUP:
+ * <article className="card card-interactive project-card">
+ *
+ * KEEP ONLY portfolio-specific card differences in this file.
+ */
+.portfolio :is(.project-card, .compact-card) {
+  overflow: hidden;
+  border: 1px solid var(--portfolio-border);
+  border-radius: var(--project-radius-lg);
+  background: linear-gradient(
+    145deg,
+    var(--project-panel),
+    var(--project-panel-deep)
+  );
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.portfolio :is(.project-card, .compact-card):hover {
+  border-color: rgba(70, 163, 243, 0.46);
+  transform: translateY(-4px);
+}
+
+/*
+ * MOVE TO: components/badges.css
+ * DUPLICATES: reusable badge font sizing and weight.
+ * KEEP portfolio-specific badge positioning and colors below.
+ */
+.project-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/*
+ * MOVE TO: components/tags.css
+ * DUPLICATES: shared inline tag/badge layout.
+ * KEEP only portfolio-specific tag colors and spacing in this file.
+ */
+.portfolio :is(.tag-list li, .compact-meta span),
+.project-single-page .technology-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(100, 150, 190, 0.35);
+  border-radius: 0.25rem;
+  font-size: 0.72rem;
+}
+
+/*
+ * MOVE TO: components/technology-icon.css
+ * DUPLICATES: TechnologyIcon fallback styling used anywhere technologies render.
+ * REMOVE FROM portfolio.css once TechnologyIcon owns its own stylesheet.
+ */
+.technology-icon-fallback {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  place-items: center;
+  border: 1px solid color-mix(
+    in srgb,
+    var(--technology-color) 70%,
+    white 30%
+  );
+  border-radius: 0.25rem;
+  background: var(--technology-color);
+  color: var(--technology-foreground, #fff);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/*
+ * MOVE TO: components/buttons.css
+ * DUPLICATES: .button, .button-primary, and .button-secondary.
+ *
+ * KEEP HERE ONLY:
+ * page-specific width or placement overrides such as .cta-button.
+ */
+.project-single-page .button {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: var(--project-radius-sm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.project-single-page .button:hover {
+  transform: translateY(-2px);
+}
+
+.project-single-page .button-primary {
+  border-color: #258ff5;
+  color: #fff;
+  background: linear-gradient(135deg, #168fff, #0a5fd0);
+  box-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
+}
+
+.project-single-page .button-secondary {
+  border-color: rgba(125, 159, 188, 0.34);
+  color: var(--project-text);
+  background: rgba(7, 17, 28, 0.72);
+}
+
+/*
+ * MOVE TO: components/panels.css or components/cards.css
+ * DUPLICATES: bordered surface, radius, gradient background, and shadow.
+ *
+ * RECOMMENDED SHARED CLASS:
+ * .surface-panel
+ *
+ * Then apply it to metrics-grid, panel, and cta-panel in JSX.
+ */
+.project-single-page :is(.metrics-grid, .panel, .cta-panel) {
+  border: 1px solid var(--project-border);
+  border-radius: var(--project-radius-lg);
+  background: linear-gradient(
+    145deg,
+    var(--project-panel),
+    var(--project-panel-deep)
+  );
+  box-shadow:
+    0 1rem 3rem rgba(0, 0, 0, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/*
+ * MOVE TO: components/stats.css
+ * DUPLICATES: shared stat-grid divider and first/last child spacing.
+ *
+ * RECOMMENDED SHARED CLASS:
+ * .stat-grid
+ *
+ * KEEP metric-specific and result-specific typography in this file.
+ */
+.project-single-page :is(.metrics-grid, .results-grid) > div {
+  padding-inline: 1.5rem;
+  border-right: 1px solid rgba(105, 145, 178, 0.18);
+}
+
+.project-single-page :is(.metrics-grid, .results-grid) > div:first-child {
+  padding-left: 0;
+}
+
+.project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+
+/* =========================================================
+   PORTFOLIO INDEX
+
+   KEEP IN THIS FILE:
+   - page background
+   - hero composition
+   - portfolio-specific grid column counts
+   - portfolio CTA layout
+   - portfolio-only responsive changes
+
+   MOVE OUT:
+   - resets
+   - tokens
+   - generic cards
+   - generic buttons
+   - generic filters
+   - generic section headings
+   ========================================================= */
 
 .portfolio {
-  --portfolio-bg: #020913;
-  --portfolio-bg-soft: #06121f;
-  --portfolio-panel: rgba(7, 20, 33, 0.94);
-  --portfolio-panel-2: rgba(5, 15, 25, 0.96);
-  --portfolio-text: #f4f8fc;
-  --portfolio-muted: #b9c7d6;
-  --portfolio-blue: #58b8ff;
-  --portfolio-blue-strong: #168fff;
-  --portfolio-purple: #c65cff;
-  --portfolio-green: #42dc91;
-  --portfolio-gold: #f6bd28;
-  --portfolio-border: rgba(105, 154, 196, 0.23);
-  --portfolio-container: var(--container-wide);
-  --portfolio-gutter: var(--page-gutter);
   min-height: 100vh;
   overflow: hidden;
   color: var(--portfolio-text);
   background:
-    radial-gradient(circle at 50% 0, rgba(25, 110, 192, 0.12), transparent 35rem),
-    linear-gradient(180deg, .010710, var(--portfolio-bg) 45%, .04101c);
+    radial-gradient(
+      circle at 50% 0,
+      rgba(25, 110, 192, 0.12),
+      transparent 35rem
+    ),
+    linear-gradient(
+      180deg,
+      #010710,
+      var(--portfolio-bg) 45%,
+      #04101c
+    );
   font-family: var(--font-body);
   line-height: 1.6;
 }
 
-.portfolio,
-.portfolio *,
-.portfolio *::before,
-.portfolio *::after { box-sizing: border-box; }
-
-.portfolio img { display: block; width: 100%; }
-.portfolio a { color: inherit; }
-.portfolio button { font: inherit; }
-
-.portfolio .portfolio-container {
-  width: min(calc(100% - (var(--portfolio-gutter) * 2)), var(--portfolio-container));
-  margin-inline: auto;
-}
-
-.portfolio .portfolio-hero {
+/*
+ * KEEP HERE: portfolio index hero layout.
+ * This background decoration and spacing are unique to this page.
+ */
+.portfolio-hero {
   position: relative;
   padding: clamp(4rem, 8vw, 7rem) 0 2.25rem;
   text-align: center;
 }
 
-.portfolio .portfolio-hero::before,
-.portfolio .portfolio-hero::after {
+.portfolio-hero::before,
+.portfolio-hero::after {
   position: absolute;
   top: 0;
   width: 33rem;
   height: 15rem;
   content: "";
-  opacity: #5;
-  background-image: radial-gradient(circle, rgba(29, 145, 255, .65) 1px, transparent 1.2px);
+  opacity: 0.5;
+  background-image: radial-gradient(
+    circle,
+    rgba(29, 145, 255, 0.65) 1px,
+    transparent 1.2px
+  );
   background-size: 9px 9px;
-  mask-image: linear-gradient(to bottom, black, transparent);
+  mask-image: linear-gradient(to bottom, #000, transparent);
   pointer-events: none;
 }
-.portfolio .portfolio-hero::before { left: -10rem; }
-.portfolio .portfolio-hero::after { right: -10rem; }
 
-.portfolio .portfolio-kicker {
-  margin: 0 0 .55rem;
-  color: var(--portfolio-blue);
-  font-size: #72rem;
-  font-weight: 700;
-  letter-spacing: #22em;
-  text-transform: uppercase;
+.portfolio-hero::before {
+  left: -10rem;
 }
 
-.portfolio h1,
-.portfolio h2 {
-  font-family: var(--font-display);
-  font-weight: 400;
+.portfolio-hero::after {
+  right: -10rem;
+}
+
+/*
+ * MOVE TO: components/eyebrow.css
+ * DUPLICATES: reusable uppercase kicker/eyebrow treatment.
+ * KEEP only a portfolio color override here if required.
+ */
+.portfolio-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--portfolio-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
 }
 
 .portfolio h1 {
@@ -88,76 +838,104 @@
   text-transform: uppercase;
 }
 
-.portfolio h1 span { color: var(--portfolio-blue); }
+.portfolio h1 span {
+  color: var(--portfolio-blue);
+}
 
-.portfolio .portfolio-intro {
+.portfolio-intro {
   max-width: 52rem;
   margin: 1rem auto 0;
   color: var(--portfolio-muted);
   font-size: clamp(1rem, 1.6vw, 1.15rem);
 }
-.portfolio .portfolio-intro strong { color: var(--portfolio-blue); }
 
-.portfolio .portfolio-category-filters,
-.portfolio .portfolio-source-nav {
-  display: grid;
-  gap: #75rem;
-  max-width: 69rem;
-  margin-inline: auto;
-  padding: #8rem;
-  border: 1px solid var(--portfolio-border);
-  border-radius: #75rem;
-  background: rgba(8, 20, 33, .86);
+.portfolio-intro strong {
+  color: var(--portfolio-blue);
 }
 
-.portfolio .portfolio-category-filters {
+/*
+ * MOVE TO: components/filter-nav.css
+ * DUPLICATES: reusable filter/navigation shell, controls, active state,
+ * hover state, and mobile horizontal scrolling.
+ *
+ * KEEP HERE only the portfolio-specific column counts.
+ */
+.portfolio-category-filters,
+.portfolio-source-nav {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 69rem;
+  margin-inline: auto;
+  padding: 0.8rem;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 0.75rem;
+  background: rgba(8, 20, 33, 0.86);
+}
+
+.portfolio-category-filters {
   grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-top: 2.2rem;
 }
 
-.portfolio .portfolio-source-nav {
+.portfolio-source-nav {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: #9rem;
+  margin-top: 0.9rem;
 }
 
-.portfolio .category-filter,
-.portfolio .portfolio-source-nav a {
+.category-filter,
+.portfolio-source-nav a {
   display: flex;
   min-height: 3rem;
   align-items: center;
   justify-content: center;
-  gap: #6rem;
-  padding: #65rem .85rem;
-  border: 1px solid rgba(111, 154, 190, .25);
-  border-radius: #4rem;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(111, 154, 190, 0.25);
+  border-radius: 0.4rem;
   color: var(--portfolio-muted);
-  background: rgba(5, 14, 24, .72);
-  font-size: #86rem;
+  background: rgba(5, 14, 24, 0.72);
+  font-size: 0.86rem;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  transition: #2s ease;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
 }
 
-.portfolio .category-filter:hover,
-.portfolio .category-filter.is-active,
-.portfolio .portfolio-source-nav a:hover {
+.category-filter:hover,
+.category-filter.is-active,
+.portfolio-source-nav a:hover {
   color: #fff;
-  border-color: rgba(77, 175, 255, .75);
-  box-shadow: 0 0 1.2rem rgba(21, 143, 255, .14);
+  border-color: rgba(77, 175, 255, 0.75);
+  box-shadow: 0 0 1.2rem rgba(21, 143, 255, 0.14);
   transform: translateY(-2px);
 }
 
-.portfolio .category-filter.is-active {
-  background: linear-gradient(135deg, rgba(41, 38, 91, .86), rgba(10, 29, 46, .96));
-  border-color: rgba(201, 86, 255, .72);
+.category-filter.is-active {
+  border-color: rgba(201, 86, 255, 0.72);
+  background: linear-gradient(
+    135deg,
+    rgba(41, 38, 91, 0.86),
+    rgba(10, 29, 46, 0.96)
+  );
 }
 
-.portfolio .portfolio-section {
+.portfolio-section {
   padding: clamp(2.2rem, 5vw, 4rem) 0;
 }
 
-.portfolio .section-heading {
+/*
+ * MOVE TO: components/section-heading.css
+ * DUPLICATES: centered heading with decorative side lines and accent variants.
+ *
+ * KEEP HERE only portfolio section spacing if other pages differ.
+ */
+.section-heading {
+  --section-accent: var(--portfolio-blue);
+
   display: grid;
   grid-template-columns: minmax(2rem, 1fr) auto minmax(2rem, 1fr);
   align-items: start;
@@ -167,79 +945,71 @@
   text-align: center;
 }
 
-.portfolio .section-heading h2 {
+.section-heading h2 {
   margin: 0;
-  color: var(--portfolio-blue);
+  color: var(--section-accent);
   font-size: clamp(1.55rem, 3vw, 2.25rem);
   text-transform: uppercase;
 }
 
-.portfolio .section-heading p {
+.section-heading p {
   max-width: 44rem;
-  margin: #55rem auto 0;
+  margin: 0.55rem auto 0;
   color: var(--portfolio-muted);
-  font-size: #9rem;
+  font-size: 0.9rem;
 }
 
-.portfolio .section-line {
+.section-line {
   height: 1px;
   margin-top: 1.2rem;
-  background: linear-gradient(90deg, transparent, var(--portfolio-blue));
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--section-accent)
+  );
 }
 
-.portfolio .section-line:last-child {
-  background: linear-gradient(90deg, var(--portfolio-blue), transparent);
+.section-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--section-accent),
+    transparent
+  );
 }
 
-.portfolio .section-heading--green h2 { color: var(--portfolio-green); }
-.portfolio .section-heading--green .section-line { background: linear-gradient(90deg, transparent, var(--portfolio-green)); }
-.portfolio .section-heading--green .section-line:last-child { background: linear-gradient(90deg, var(--portfolio-green), transparent); }
+.section-heading--green {
+  --section-accent: var(--portfolio-green);
+}
 
-.portfolio .section-heading--purple h2 { color: var(--portfolio-purple); }
-.portfolio .section-heading--purple .section-line { background: linear-gradient(90deg, transparent, var(--portfolio-purple)); }
-.portfolio .section-heading--purple .section-line:last-child { background: linear-gradient(90deg, var(--portfolio-purple), transparent); }
+.section-heading--purple {
+  --section-accent: var(--portfolio-purple);
+}
 
-.portfolio .section-heading--gold h2 { color: var(--portfolio-gold); }
-.portfolio .section-heading--gold .section-line { background: linear-gradient(90deg, transparent, var(--portfolio-gold)); }
-.portfolio .section-heading--gold .section-line:last-child { background: linear-gradient(90deg, var(--portfolio-gold), transparent); }
+.section-heading--gold {
+  --section-accent: var(--portfolio-gold);
+}
 
-.portfolio .project-grid {
+.project-grid {
   display: grid;
   gap: 1rem;
 }
 
-.portfolio .project-grid--case-studies {
+.project-grid--case-studies {
   grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
-.portfolio .project-grid--compact {
+.project-grid--compact {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
-.portfolio .project-card,
-.portfolio .compact-card {
-  overflow: hidden;
-  border: 1px solid var(--portfolio-border);
-  border-radius: #7rem;
-  background: linear-gradient(145deg, var(--portfolio-panel), var(--portfolio-panel-2));
-  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, .18);
-  transition: #22s ease;
-}
-
-.portfolio .project-card:hover,
-.portfolio .compact-card:hover {
-  border-color: rgba(70, 163, 243, .46);
-  transform: translateY(-4px);
-}
-
-.portfolio .project-card__media {
+.project-card__media {
   position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
 }
 
-.portfolio .project-card__media img,
-.portfolio .compact-card > img {
+.project-card__media img,
+.compact-card > img {
   height: 100%;
   object-fit: cover;
 }
@@ -247,125 +1017,153 @@
 .portfolio .project-badge {
   position: absolute;
   z-index: 2;
-  top: #65rem;
+  top: 0.65rem;
   left: 0;
-  padding: #25rem .65rem;
+  padding: 0.25rem 0.65rem;
   border-radius: 0 999px 999px 0;
   background: #743493;
-  font-size: #68rem;
-  font-weight: 700;
 }
 
-.portfolio .project-card__body {
+.project-card__body {
   display: flex;
   min-height: 17.25rem;
   flex-direction: column;
   padding: 1rem;
 }
 
-.portfolio .project-card h3,
-.portfolio .compact-card h3 {
+.project-card h3,
+.compact-card h3 {
   margin: 0;
   color: var(--portfolio-blue);
   font-size: 1rem;
   font-weight: 500;
 }
 
-.portfolio .project-type {
-  margin: #15rem 0 .65rem;
+.project-type {
+  margin: 0.15rem 0 0.65rem;
   color: #a9bfd1;
-  font-size: #75rem;
+  font-size: 0.75rem;
 }
 
-.portfolio .project-card p:not(.project-type),
-.portfolio .compact-card p {
+.project-card p:not(.project-type),
+.compact-card p {
   margin: 0;
   color: var(--portfolio-muted);
-  font-size: #78rem;
+  font-size: 0.78rem;
   line-height: 1.55;
 }
 
-.portfolio .tag-list {
+.tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: #35rem;
-  margin: auto 0 .8rem;
+  gap: 0.35rem;
+  margin: auto 0 0.8rem;
   padding: 1rem 0 0;
   list-style: none;
 }
 
-.portfolio .tag-list li,
-.portfolio .compact-meta span {
-  padding: #2rem .45rem;
-  border: 1px solid rgba(100, 150, 190, .35);
-  border-radius: #22rem;
+.tag-list li,
+.compact-meta span {
+  padding: 0.2rem 0.45rem;
   color: #84c8ff;
-  font-size: #62rem;
+  font-size: 0.62rem;
 }
 
-.portfolio .project-link {
+/*
+ * MOVE TO: components/cards.css
+ * DUPLICATES: reusable card footer link treatment.
+ * RECOMMENDED CLASS: .card-link
+ */
+.project-link {
   display: flex;
   justify-content: center;
-  gap: #55rem;
-  padding-top: #75rem;
-  border-top: 1px solid rgba(106, 145, 176, .16);
+  gap: 0.55rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(106, 145, 176, 0.16);
   color: var(--portfolio-blue);
-  font-size: #76rem;
+  font-size: 0.76rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.portfolio .compact-card {
+.compact-card {
   display: flex;
-  flex-direction: column;
   min-height: 20rem;
-  padding: #85rem;
+  flex-direction: column;
+  padding: 0.85rem;
 }
 
-.portfolio .compact-card > img {
+.compact-card > img {
   height: 8.8rem;
-  margin-bottom: #8rem;
-  border-radius: #35rem;
+  margin-bottom: 0.8rem;
+  border-radius: 0.35rem;
 }
 
-.portfolio .compact-card h3 {
+.compact-card h3 {
   color: #fff;
 }
 
-.portfolio .compact-card p {
-  margin-top: #45rem;
+.compact-card p {
+  margin-top: 0.45rem;
 }
 
-.portfolio .compact-meta {
+.compact-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: #45rem;
+  gap: 0.45rem;
   margin-top: auto;
-  padding-top: #8rem;
+  padding-top: 0.8rem;
 }
 
-.portfolio .compact-actions {
+.compact-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: #45rem;
-  margin-top: #75rem;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
 }
 
-.portfolio .compact-actions a {
+.compact-actions a {
   display: flex;
   min-height: 2.25rem;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(118, 159, 193, .35);
-  border-radius: #3rem;
-  font-size: #67rem;
+  border: 1px solid rgba(118, 159, 193, 0.35);
+  border-radius: 0.3rem;
+  font-size: 0.67rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.portfolio .compact-actions a:only-child { grid-column: 1 / -1; }
+.compact-actions a:only-child {
+  grid-column: 1 / -1;
+}
 
-.portfolio .section-action {
+/*
+ * REVIEW: mixed old and new card class systems.
+ * DUPLICATES: .project-card__media versus .card-media,
+ * .project-link versus .card-link, and page-level .tag-list overrides.
+ *
+ * CHOOSE ONE CARD API and delete the other selectors.
+ * Recommended: .card, .card-media, .card-body, .card-link.
+ */
+.project-card .card-media {
+  aspect-ratio: 16 / 9;
+}
+
+.project-card .tag-list {
+  margin: 0;
+}
+
+.project-card .card-link {
+  margin-top: var(--space-md);
+}
+
+/*
+ * MOVE TO: components/buttons.css
+ * DUPLICATES: reusable centered outlined CTA/button.
+ * Keep only accent custom-property modifiers if this pattern is reused.
+ */
+.section-action {
   display: flex;
   width: fit-content;
   min-width: 15rem;
@@ -374,33 +1172,47 @@
   justify-content: center;
   gap: 1.2rem;
   margin: 1rem auto 0;
-  padding: #65rem 1rem;
-  border: 1px solid var(--portfolio-blue-strong);
-  border-radius: #35rem;
-  background: rgba(6, 18, 30, .88);
-  font-size: #78rem;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--section-action-color, var(--portfolio-blue-strong));
+  border-radius: 0.35rem;
+  background: rgba(6, 18, 30, 0.88);
+  font-size: 0.78rem;
   font-weight: 600;
   text-decoration: none;
 }
 
-.portfolio .section-action--green { border-color: var(--portfolio-green); }
-.portfolio .section-action--purple { border-color: var(--portfolio-purple); }
-.portfolio .section-action--gold { border-color: var(--portfolio-gold); }
+.section-action--green {
+  --section-action-color: var(--portfolio-green);
+}
 
-.portfolio .portfolio-cta { padding: 1rem 0 2rem; }
+.section-action--purple {
+  --section-action-color: var(--portfolio-purple);
+}
 
-.portfolio .portfolio-cta__panel {
+.section-action--gold {
+  --section-action-color: var(--portfolio-gold);
+}
+
+.portfolio-cta {
+  padding: 1rem 0 2rem;
+}
+
+.portfolio-cta__panel {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 1.5rem;
   padding: 1.3rem 1.5rem;
-  border: 1px solid rgba(198, 92, 255, .55);
-  border-radius: #75rem;
-  background: linear-gradient(135deg, rgba(12, 26, 42, .96), rgba(7, 15, 27, .98));
+  border: 1px solid rgba(198, 92, 255, 0.55);
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 26, 42, 0.96),
+    rgba(7, 15, 27, 0.98)
+  );
 }
 
-.portfolio .portfolio-cta__icon {
+.portfolio-cta__icon {
   display: grid;
   width: 4rem;
   aspect-ratio: 1;
@@ -411,87 +1223,114 @@
   font-size: 1.4rem;
 }
 
-.portfolio .portfolio-cta h2,
-.portfolio .portfolio-connect h2 {
+.portfolio-cta h2,
+.portfolio-connect h2 {
   margin: 0;
   color: var(--portfolio-blue);
   font-size: 1.45rem;
 }
 
-.portfolio .portfolio-cta p,
-.portfolio .portfolio-connect p {
-  margin: #3rem 0 0;
+.portfolio-cta p,
+.portfolio-connect p {
+  margin: 0.3rem 0 0;
   color: var(--portfolio-muted);
-  font-size: #84rem;
+  font-size: 0.84rem;
 }
 
-.portfolio .portfolio-cta__panel > a {
+.portfolio-cta__panel > a {
   display: flex;
   min-width: 14rem;
   min-height: 3rem;
   align-items: center;
   justify-content: space-between;
-  padding: #7rem 1.2rem;
+  padding: 0.7rem 1.2rem;
   border: 1px solid transparent;
-  border-radius: #35rem;
+  border-radius: 0.35rem;
   background:
-    linear-gradient(.071421, .071421) padding-box,
-    linear-gradient(90deg, var(--portfolio-blue), var(--portfolio-purple)) border-box;
-  font-size: #82rem;
+    linear-gradient(#071421, #071421) padding-box,
+    linear-gradient(
+      90deg,
+      var(--portfolio-blue),
+      var(--portfolio-purple)
+    ) border-box;
+  font-size: 0.82rem;
   font-weight: 700;
   text-decoration: none;
 }
 
-.portfolio .portfolio-connect {
+.portfolio-connect {
   padding: 2.5rem 0 4rem;
-  border-top: 1px solid rgba(104, 145, 179, .16);
+  border-top: 1px solid rgba(104, 145, 179, 0.16);
   text-align: center;
 }
 
-.portfolio .social-links {
+.social-links {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: #75rem;
+  gap: 0.75rem;
   max-width: 65rem;
   margin: 1.4rem auto 0;
 }
 
-.portfolio .social-links a {
+.social-links a {
   display: flex;
   min-height: 3rem;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--portfolio-border);
-  border-radius: #35rem;
-  background: rgba(6, 17, 28, .8);
-  font-size: #8rem;
+  border-radius: 0.35rem;
+  background: rgba(6, 17, 28, 0.8);
+  font-size: 0.8rem;
   text-decoration: none;
 }
 
+/*
+ * SPLIT THIS RULE:
+ *
+ * MOVE TO: base/reset.css
+ *   [hidden] { display: none !important; }
+ *
+ * KEEP HERE:
+ *   .is-filtered-out { display: none !important; }
+ */
 .portfolio [hidden],
-.portfolio .is-filtered-out { display: none !important; }
-
-.portfolio a:focus-visible,
-.portfolio button:focus-visible {
-  outline: 3px solid var(--portfolio-blue);
-  outline-offset: 4px;
+.portfolio .is-filtered-out {
+  display: none !important;
 }
 
-@media (max-width: 1180px) {
-  .portfolio .project-grid--case-studies { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+/* =========================================================
+   PORTFOLIO INDEX RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 73.75rem) {
+  .project-grid--case-studies {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-@media (max-width: 900px) {
-  .portfolio .portfolio-category-filters { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .portfolio .portfolio-source-nav,
-  .portfolio .project-grid--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .portfolio .project-grid--case-studies { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .portfolio .social-links { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 56.25rem) {
+  .portfolio-category-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-source-nav,
+  .project-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid--case-studies {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .social-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-@media (max-width: 620px) {
-  .portfolio .portfolio-category-filters,
-  .portfolio .portfolio-source-nav {
+@media (max-width: 38.75rem) {
+  .portfolio-category-filters,
+  .portfolio-source-nav {
     display: flex;
     margin-inline: calc(var(--portfolio-gutter) * -1);
     padding-inline: var(--portfolio-gutter);
@@ -500,102 +1339,99 @@
     border-left: 0;
     border-radius: 0;
   }
-  .portfolio .category-filter,
-  .portfolio .portfolio-source-nav a { min-width: max-content; }
-  .portfolio .section-heading { grid-template-columns: 1fr; }
-  .portfolio .section-line { display: none; }
-  .portfolio .project-grid--case-studies,
-  .portfolio .project-grid--compact,
-  .portfolio .social-links { grid-template-columns: 1fr; }
-  .portfolio .portfolio-cta__panel { grid-template-columns: 1fr; text-align: center; }
-  .portfolio .portfolio-cta__icon { margin-inline: auto; }
-  .portfolio .portfolio-cta__panel > a { width: 100%; min-width: 0; }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .portfolio *,
-  .portfolio *::before,
-  .portfolio *::after {
-    scroll-behavior: auto !important;
-    transition-duration: #01ms !important;
-    animation-duration: #01ms !important;
+  .category-filter,
+  .portfolio-source-nav a {
+    min-width: max-content;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .section-line {
+    display: none;
+  }
+
+  .project-grid--case-studies,
+  .project-grid--compact,
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-cta__panel {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .portfolio-cta__icon {
+    margin-inline: auto;
+  }
+
+  .portfolio-cta__panel > a {
+    width: 100%;
+    min-width: 0;
   }
 }
 
+
 /* =========================================================
    PORTFOLIO SINGLE
+
+   KEEP IN THIS FILE:
+   - case-study hero composition
+   - desktop/mobile preview positioning
+   - challenge and solution layout
+   - project metrics/results composition
+   - highlights/details layout
+   - case-study CTA composition
+
+   MOVE OUT:
+   - generic buttons
+   - generic panels
+   - generic statistic grid foundations
+   - technology icon fallback
+   - resets and accessibility utilities
    ========================================================= */
 
-.portfolio-single .project-single-page {
-  --project-bg: #030b14;
-  --project-bg-deep: #01060c;
-  --project-panel: rgba(8, 20, 32, 0.94);
-  --project-panel-deep: rgba(4, 13, 22, 0.98);
-  --project-border: rgba(88, 145, 191, 0.22);
-  --project-border-strong: rgba(31, 145, 242, 0.55);
-  --project-text: #f5f8fb;
-  --project-text-soft: #c4d0db;
-  --project-muted: #8fa1b2;
-  --project-blue: #1695ff;
-  --project-blue-light: #54b7ff;
-  --project-pink: #ef5b9f;
-  --project-green: #64d667;
-  --project-purple: #bc52ff;
-  --project-font-display: var(--font-display);
-  --project-font-body: var(--font-body);
-  --project-container: var(--container-wide);
-  --project-gutter: var(--page-gutter);
-  --project-radius-sm: 0.4rem;
-  --project-radius-md: 0.7rem;
-  --project-radius-lg: 0.9rem;
-
+.project-single-page {
   min-height: 100vh;
   overflow: hidden;
   color: var(--project-text);
   background:
-    radial-gradient(circle at 50% 0, rgba(20, 96, 164, 0.1), transparent 38rem),
-    linear-gradient(180deg, var(--project-bg-deep), var(--project-bg) 45%, .06111c);
-  font-family: var(--project-font-body);
+    radial-gradient(
+      circle at 50% 0,
+      rgba(20, 96, 164, 0.1),
+      transparent 38rem
+    ),
+    linear-gradient(
+      180deg,
+      var(--project-bg-deep),
+      var(--project-bg) 45%,
+      #06111c
+    );
+  font-family: var(--font-body);
   line-height: 1.6;
 }
 
-.portfolio-single .project-single-page,
-.portfolio-single .project-single-page *,
-.portfolio-single .project-single-page *::before,
-.portfolio-single .project-single-page *::after {
-  box-sizing: border-box;
-}
-
-.portfolio-single .project-single-page img,
-.portfolio-single .project-single-page svg {
-  display: block;
-}
-
-.portfolio-single .project-single-page img {
-  max-width: 100%;
-}
-
-.portfolio-single .project-single-page figure,
-.portfolio-single .project-single-page dl,
-.portfolio-single .project-single-page dd {
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES: figure, dl, and dd margin normalization.
+ * REMOVE FROM THIS FILE after the reset is confirmed.
+ */
+.project-single-page :is(figure, dl, dd) {
   margin: 0;
 }
 
-.portfolio-single .project-single-page a {
-  color: inherit;
-}
-
-.portfolio-single .project-single-page .project-container {
-  width: min(calc(100% - (var(--project-gutter) * 2)), var(--project-container));
-  margin-inline: auto;
-}
-
-.portfolio-single .project-single-page .project-hero {
+.project-hero {
   position: relative;
-  padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5.25rem);
+  padding:
+    clamp(2.5rem, 5vw, 4rem)
+    0
+    clamp(3rem, 6vw, 5.25rem);
 }
 
-.portfolio-single .project-single-page .back-link {
+.back-link {
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
@@ -608,19 +1444,19 @@
     transform 180ms ease;
 }
 
-.portfolio-single .project-single-page .back-link:hover {
+.back-link:hover {
   color: var(--project-blue-light);
   transform: translateX(-3px);
 }
 
-.portfolio-single .project-single-page .project-hero-grid {
+.project-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.85fr) minmax(34rem, 1.15fr);
   align-items: center;
   gap: clamp(2.5rem, 6vw, 6rem);
 }
 
-.portfolio-single .project-single-page .project-badge {
+.project-single-page .project-badge {
   display: inline-flex;
   margin-bottom: 1rem;
   padding: 0.28rem 0.7rem;
@@ -628,31 +1464,23 @@
   border-radius: 0.25rem;
   color: var(--project-blue-light);
   background: rgba(6, 31, 52, 0.62);
-  font-size: 0.68rem;
-  font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 
-.portfolio-single .project-single-page h1,
-.portfolio-single .project-single-page h2 {
-  font-family: var(--project-font-display);
-  font-weight: 400;
-}
-
-.portfolio-single .project-single-page h1 {
+.project-single-page h1 {
   margin: 0;
   font-size: clamp(2.6rem, 5.8vw, 5rem);
   line-height: 1.06;
 }
 
-.portfolio-single .project-single-page .project-subtitle {
+.project-subtitle {
   margin: 0.65rem 0 0;
   color: var(--project-blue);
   font-size: clamp(1.15rem, 2.2vw, 1.65rem);
 }
 
-.portfolio-single .project-single-page .project-summary {
+.project-summary {
   max-width: 42rem;
   margin: 1.5rem 0 0;
   color: var(--project-text-soft);
@@ -660,7 +1488,7 @@
   line-height: 1.78;
 }
 
-.portfolio-single .project-single-page .technology-tags {
+.technology-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem;
@@ -669,74 +1497,53 @@
   list-style: none;
 }
 
-.portfolio-single .project-single-page .technology-tags li {
-  display: inline-flex;
-  align-items: center;
+.technology-tags li {
   min-height: 2rem;
-  gap: 0.45rem;
   padding: 0.35rem 0.72rem;
-  border: 1px solid rgba(100, 148, 188, 0.36);
-  border-radius: 0.3rem;
   color: var(--project-text-soft);
   background: rgba(4, 14, 24, 0.64);
-  font-size: 0.72rem;
 }
 
-.portfolio-single .project-single-page .technology-tags li:nth-child(1) { color: #58a9ff; }
+/*
+ * REVIEW AND REPLACE:
+ * These nth-child colors are order-dependent and will become incorrect
+ * whenever technologies are reordered.
+ *
+ * MOVE COLOR OWNERSHIP TO:
+ * TechnologyIcon / technology registry using technology.brandColor.
+ *
+ * REMOVE all four nth-child rules after brandColor is applied inline
+ * through a CSS custom property or inside TechnologyIcon.
+ */
+.technology-tags li:nth-child(1) {
+  color: #58a9ff;
+}
 
-.portfolio-single .project-single-page .technology-tags li:nth-child(2) { color: #ff704f; }
+.technology-tags li:nth-child(2) {
+  color: #ff704f;
+}
 
-.portfolio-single .project-single-page .technology-tags li:nth-child(3) { color: #5fb5ff; }
+.technology-tags li:nth-child(3) {
+  color: #5fb5ff;
+}
 
-.portfolio-single .project-single-page .technology-tags li:nth-child(4) { color: #f5cf44; }
+.technology-tags li:nth-child(4) {
+  color: #f5cf44;
+}
 
-.portfolio-single .project-single-page .project-actions {
+.project-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 2rem;
 }
 
-.portfolio-single .project-single-page .button {
-  display: inline-flex;
-  min-height: 3.25rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: var(--project-radius-sm);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.portfolio-single .project-single-page .button:hover {
-  transform: translateY(-2px);
-}
-
-.portfolio-single .project-single-page .button-primary {
-  border: 1px solid .258ff5;
-  color: white;
-  background: linear-gradient(135deg, .168fff, .0a5fd0);
-  box-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
-}
-
-.portfolio-single .project-single-page .button-secondary {
-  border: 1px solid rgba(125, 159, 188, 0.34);
-  color: var(--project-text);
-  background: rgba(7, 17, 28, 0.72);
-}
-
-.portfolio-single .project-single-page .project-hero-media {
+.project-hero-media {
   position: relative;
   min-height: clamp(24rem, 42vw, 36rem);
 }
 
-.portfolio-single .project-single-page .desktop-preview {
+.desktop-preview {
   position: absolute;
   inset: 0 8% 8% 0;
   overflow: hidden;
@@ -746,13 +1553,14 @@
   box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.42);
 }
 
-.portfolio-single .project-single-page .desktop-preview img {
+.desktop-preview img,
+.mobile-preview img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.portfolio-single .project-single-page .mobile-preview {
+.mobile-preview {
   position: absolute;
   z-index: 2;
   right: 0;
@@ -760,7 +1568,7 @@
   width: clamp(8rem, 15vw, 11rem);
   aspect-ratio: 0.5;
   overflow: hidden;
-  border: 0.35rem solid .070d14;
+  border: 0.35rem solid #070d14;
   border-radius: 1.8rem;
   background: #07111b;
   box-shadow:
@@ -768,7 +1576,7 @@
     0 0 0 1px rgba(136, 164, 188, 0.35);
 }
 
-.portfolio-single .project-single-page .mobile-preview::before {
+.mobile-preview::before {
   position: absolute;
   z-index: 2;
   top: 0.3rem;
@@ -781,67 +1589,44 @@
   transform: translateX(-50%);
 }
 
-.portfolio-single .project-single-page .mobile-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.project-metrics,
+.project-section,
+.project-cta {
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
-.portfolio-single .project-single-page .project-metrics,
-.portfolio-single .project-single-page .project-section,
-.portfolio-single .project-single-page .project-cta {
-  padding: 0 0 clamp(1rem, 2vw, 1.5rem);
-}
-
-.portfolio-single .project-single-page .metrics-grid,
-.portfolio-single .project-single-page .panel,
-.portfolio-single .project-single-page .cta-panel {
-  border: 1px solid var(--project-border);
-  border-radius: var(--project-radius-lg);
-  background: linear-gradient(145deg, var(--project-panel), var(--project-panel-deep));
-  box-shadow:
-    0 1rem 3rem rgba(0, 0, 0, 0.16),
-    inset 0 1px rgba(255, 255, 255, 0.02);
-}
-
-.portfolio-single .project-single-page .metrics-grid {
+.metrics-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   padding: clamp(1.25rem, 3vw, 2rem);
 }
 
-.portfolio-single .project-single-page .metrics-grid > div {
-  padding: 0 1.5rem;
-  border-right: 1px solid rgba(105, 145, 178, 0.18);
+.metrics-grid > div {
   text-align: center;
 }
 
-.portfolio-single .project-single-page .metrics-grid > div:first-child {
-  padding-left: 0;
-}
-
-.portfolio-single .project-single-page .metrics-grid > div:last-child {
-  padding-right: 0;
-  border-right: 0;
-}
-
-.portfolio-single .project-single-page .metrics-grid dt {
+.metrics-grid dt {
   color: var(--project-blue-light);
   font-size: clamp(1.25rem, 2.4vw, 1.75rem);
   font-weight: 600;
 }
 
-.portfolio-single .project-single-page .metrics-grid dd {
+.metrics-grid dd {
   margin-top: 0.3rem;
   color: var(--project-text-soft);
   font-size: 0.78rem;
 }
 
-.portfolio-single .project-single-page .panel {
+.panel {
   padding: clamp(1.6rem, 4vw, 2.5rem);
 }
 
-.portfolio-single .project-single-page .section-label {
+/*
+ * MOVE TO: components/eyebrow.css
+ * DUPLICATES: the same uppercase label pattern as .portfolio-kicker.
+ * Recommended shared class: .eyebrow or .section-label.
+ */
+.section-label {
   margin-bottom: 0.55rem;
   color: var(--project-blue);
   font-size: 0.72rem;
@@ -850,13 +1635,13 @@
   text-transform: uppercase;
 }
 
-.portfolio-single .project-single-page .panel h2,
-.portfolio-single .project-single-page .cta-panel h2 {
+.panel h2,
+.cta-panel h2 {
   margin: 0;
   font-size: clamp(1.7rem, 3vw, 2.35rem);
 }
 
-.portfolio-single .project-single-page .section-intro {
+.section-intro {
   max-width: 63rem;
   margin: 0.85rem 0 0;
   color: var(--project-text-soft);
@@ -864,52 +1649,52 @@
   line-height: 1.72;
 }
 
-.portfolio-single .project-single-page .challenge-solution-grid {
+.challenge-solution-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
   gap: 3rem;
   margin-top: 2rem;
 }
 
-.portfolio-single .project-single-page .challenge-solution-grid article {
+.challenge-solution-grid article {
   padding-right: 2rem;
 }
 
-.portfolio-single .project-single-page .challenge-solution-grid article + article {
+.challenge-solution-grid article + article {
   padding-right: 0;
   padding-left: 3rem;
   border-left: 1px solid rgba(108, 148, 181, 0.2);
 }
 
-.portfolio-single .project-single-page .challenge-solution-grid h3 {
+.challenge-solution-grid h3 {
   margin: 0;
   font-size: 0.86rem;
   font-weight: 700;
   text-transform: uppercase;
 }
 
-.portfolio-single .project-single-page .challenge-block h3 {
+.challenge-block h3 {
   color: var(--project-pink);
 }
 
-.portfolio-single .project-single-page .solution-block h3 {
+.solution-block h3 {
   color: var(--project-green);
 }
 
-.portfolio-single .project-single-page .challenge-solution-grid p {
+.challenge-solution-grid p {
   margin: 0.8rem 0 0;
   color: var(--project-text-soft);
   font-size: 0.86rem;
   line-height: 1.72;
 }
 
-.portfolio-single .project-single-page .results-grid {
+.results-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   margin-top: 1rem;
 }
 
-.portfolio-single .project-single-page .results-grid > div {
+.results-grid > div {
   display: grid;
   grid-template-columns: auto 1fr;
   grid-template-areas:
@@ -917,45 +1702,34 @@
     "icon label";
   align-items: center;
   gap: 0 0.8rem;
-  padding: 0 1.4rem;
-  border-right: 1px solid rgba(105, 145, 178, 0.18);
 }
 
-.portfolio-single .project-single-page .results-grid > div:first-child {
-  padding-left: 0;
-}
-
-.portfolio-single .project-single-page .results-grid > div:last-child {
-  padding-right: 0;
-  border-right: 0;
-}
-
-.portfolio-single .project-single-page .result-icon {
+.result-icon {
   grid-area: icon;
   color: var(--project-blue);
   font-size: 2rem;
 }
 
-.portfolio-single .project-single-page .results-grid dt {
+.results-grid dt {
   grid-area: value;
   color: var(--project-blue-light);
   font-size: 1.45rem;
   font-weight: 500;
 }
 
-.portfolio-single .project-single-page .results-grid dd {
+.results-grid dd {
   grid-area: label;
   color: var(--project-text-soft);
   font-size: 0.72rem;
 }
 
-.portfolio-single .project-single-page .highlights-panel {
+.highlights-panel {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
   gap: 2rem;
 }
 
-.portfolio-single .project-single-page .highlights-list {
+.highlights-list {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.85rem 2rem;
@@ -964,14 +1738,14 @@
   list-style: none;
 }
 
-.portfolio-single .project-single-page .highlights-list li {
+.highlights-list li {
   position: relative;
   padding-left: 1.4rem;
   color: var(--project-text-soft);
   font-size: 0.82rem;
 }
 
-.portfolio-single .project-single-page .highlights-list li::before {
+.highlights-list li::before {
   position: absolute;
   top: 0.12rem;
   left: 0;
@@ -980,40 +1754,40 @@
   font-size: 0.75rem;
 }
 
-.portfolio-single .project-single-page .project-details {
+.project-details {
   padding-left: 2rem;
   border-left: 1px solid rgba(107, 147, 179, 0.2);
 }
 
-.portfolio-single .project-single-page .project-details dl {
+.project-details dl {
   display: grid;
   gap: 0.55rem;
   margin-top: 1rem;
 }
 
-.portfolio-single .project-single-page .project-details dl > div {
+.project-details dl > div {
   display: grid;
   grid-template-columns: 5.5rem 1fr;
   gap: 0.5rem;
 }
 
-.portfolio-single .project-single-page .project-details dt {
+.project-details dt {
   color: var(--project-text);
   font-size: 0.8rem;
   font-weight: 700;
 }
 
-.portfolio-single .project-single-page .project-details dd {
+.project-details dd {
   color: var(--project-text-soft);
   font-size: 0.8rem;
 }
 
-.portfolio-single .project-single-page .project-cta {
+.project-cta {
   padding-top: 0.5rem;
   padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.portfolio-single .project-single-page .cta-panel {
+.cta-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
   align-items: center;
@@ -1021,18 +1795,27 @@
   padding: clamp(1.5rem, 4vw, 2.3rem);
   border-color: transparent;
   background:
-    linear-gradient(145deg, rgba(8, 20, 32, 0.96), rgba(4, 13, 22, 0.98)) padding-box,
-    linear-gradient(90deg, var(--project-blue), var(--project-purple), .d94b77) border-box;
+    linear-gradient(
+      145deg,
+      rgba(8, 20, 32, 0.96),
+      rgba(4, 13, 22, 0.98)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      var(--project-blue),
+      var(--project-purple),
+      #d94b77
+    ) border-box;
 }
 
-.portfolio-single .project-single-page .cta-copy p {
+.cta-copy p {
   max-width: 38rem;
   margin: 0.75rem 0 0;
   color: var(--project-text-soft);
   font-size: 0.86rem;
 }
 
-.portfolio-single .project-single-page .cta-benefits {
+.cta-benefits {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.9rem 1.5rem;
@@ -1042,152 +1825,146 @@
   list-style: none;
 }
 
-.portfolio-single .project-single-page .cta-benefits li {
+.cta-benefits li {
   position: relative;
   padding-left: 1.4rem;
   color: var(--project-text-soft);
   font-size: 0.8rem;
 }
 
-.portfolio-single .project-single-page .cta-benefits li::before {
+.cta-benefits li::before {
   position: absolute;
   left: 0;
   color: var(--project-blue);
   content: "◈";
 }
 
-.portfolio-single .project-single-page .cta-button {
+.cta-button {
   min-width: 12rem;
 }
 
-.portfolio-single .project-single-page a:focus-visible {
-  outline: 3px solid var(--project-blue-light);
-  outline-offset: 4px;
-}
+
+/* =========================================================
+   PORTFOLIO SINGLE RESPONSIVE
+   ========================================================= */
 
 @media (max-width: 70rem) {
-.portfolio-single .project-single-page .project-hero-grid {
+  .project-hero-grid {
     grid-template-columns: 1fr;
   }
 
-.portfolio-single .project-single-page .project-hero-content {
+  .project-hero-content {
     max-width: 48rem;
   }
 
-.portfolio-single .project-single-page .project-hero-media {
+  .project-hero-media {
     min-height: clamp(24rem, 62vw, 36rem);
   }
 
-.portfolio-single .project-single-page .metrics-grid,
-.portfolio-single .project-single-page .results-grid {
+  .metrics-grid,
+  .results-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-.portfolio-single .project-single-page .metrics-grid > div,
-.portfolio-single .project-single-page .results-grid > div {
+  .project-single-page :is(.metrics-grid, .results-grid) > div {
     padding: 1rem;
     border-right: 0;
     border-bottom: 1px solid rgba(105, 145, 178, 0.18);
   }
 
-.portfolio-single .project-single-page .metrics-grid > div:nth-child(odd),
-.portfolio-single .project-single-page .results-grid > div:nth-child(odd) {
+  .project-single-page :is(.metrics-grid, .results-grid) > div:nth-child(odd) {
     border-right: 1px solid rgba(105, 145, 178, 0.18);
   }
 
-.portfolio-single .project-single-page .metrics-grid > div:last-child,
-.portfolio-single .project-single-page .results-grid > div:last-child {
+  .project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
     grid-column: 1 / -1;
     border-right: 0;
     border-bottom: 0;
   }
 
-.portfolio-single .project-single-page .cta-panel {
+  .cta-panel {
     grid-template-columns: 1fr;
   }
 
-.portfolio-single .project-single-page .cta-benefits {
+  .cta-benefits {
     padding: 1.5rem 0;
     border-inline: 0;
     border-block: 1px solid rgba(107, 147, 179, 0.2);
   }
 
-.portfolio-single .project-single-page .cta-button {
+  .cta-button {
     width: 100%;
   }
 }
 
 @media (max-width: 48rem) {
-.portfolio-single .project-single-page .challenge-solution-grid,
-.portfolio-single .project-single-page .highlights-panel {
+  .challenge-solution-grid,
+  .highlights-panel {
     grid-template-columns: 1fr;
   }
 
-.portfolio-single .project-single-page .challenge-solution-grid article,
-.portfolio-single .project-single-page .challenge-solution-grid article + article {
+  .challenge-solution-grid article,
+  .challenge-solution-grid article + article {
     padding: 0;
     border-left: 0;
   }
 
-.portfolio-single .project-single-page .challenge-solution-grid article + article {
+  .challenge-solution-grid article + article {
     padding-top: 1.5rem;
     border-top: 1px solid rgba(108, 148, 181, 0.2);
   }
 
-.portfolio-single .project-single-page .highlights-list {
+  .highlights-list {
     grid-template-columns: 1fr;
   }
 
-.portfolio-single .project-single-page .project-details {
+  .project-details {
     padding: 1.5rem 0 0;
     border-top: 1px solid rgba(107, 147, 179, 0.2);
     border-left: 0;
   }
 
-.portfolio-single .project-single-page .project-actions {
+  .project-actions {
     flex-direction: column;
   }
 
-.portfolio-single .project-single-page .button {
+  .project-single-page .button {
     width: 100%;
   }
 }
 
 @media (max-width: 34rem) {
-.portfolio-single .project-single-page .metrics-grid,
-.portfolio-single .project-single-page .results-grid {
+  .metrics-grid,
+  .results-grid {
     grid-template-columns: 1fr;
   }
 
-.portfolio-single .project-single-page .metrics-grid > div,
-.portfolio-single .project-single-page .metrics-grid > div:nth-child(odd),
-.portfolio-single .project-single-page .results-grid > div,
-.portfolio-single .project-single-page .results-grid > div:nth-child(odd) {
+  .project-single-page :is(.metrics-grid, .results-grid) > div,
+  .project-single-page :is(.metrics-grid, .results-grid) > div:nth-child(odd) {
     grid-column: auto;
     border-right: 0;
   }
 
-.portfolio-single .project-single-page .metrics-grid > div:last-child,
-.portfolio-single .project-single-page .results-grid > div:last-child {
+  .project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
     grid-column: auto;
   }
 
-.portfolio-single .project-single-page .cta-benefits {
+  .cta-benefits {
     grid-template-columns: 1fr;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-.portfolio-single .project-single-page *,
-.portfolio-single .project-single-page *::before,
-.portfolio-single .project-single-page *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-  }
-}
 
-.portfolio-single .project-single-page .reveal-item {
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+/*
+ * MOVE TO: utilities/reveal.css
+ * DUPLICATES: reusable scroll-reveal animation behavior.
+ * Keep JavaScript behavior and CSS class naming consistent site-wide.
+ */
+.reveal-item {
   opacity: 0;
   transform: translateY(18px);
   transition:
@@ -1195,8 +1972,1691 @@
     transform 500ms ease;
 }
 
-.portfolio-single .project-single-page .reveal-item.is-visible {
+.reveal-item.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+
+/* =========================================================
+   TEMPORARY / LEGACY OVERRIDES
+   ========================================================= */
+
+/*
+ * REMOVE:
+ * This forces every shared .card to 400px wide and breaks responsive grids.
+ * It appears to be a temporary debugging rule.
+ */
+.card {
+  width: 400px;
+}
+
+/*
+ * MOVE TO: utilities/layout.css
+ * DUPLICATES: generic inline flex alignment utility.
+ * Consider renaming to a reusable utility such as .cluster or .inline-group.
+ */
+.inline-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/*
+ * KEEP HERE ONLY if portfolio card eyebrows are intentionally smaller.
+ *
+ * OTHERWISE MOVE TO:
+ * components/cards.css as the default .card-eyebrow size.
+ *
+ * This replaces the unnecessary deeply nested native CSS selector.
+ */
+.portfolio .project-card .card-eyebrow {
+  font-size: 0.6rem;
+}
+/* Library
+/
+Portfolio 2026
+/
+portfolio-rewritten-commented.css */
+
+
+/* =========================================================
+   PORTFOLIO PAGES
+   Rewritten and consolidated from portfolio/page.css
+
+   HOW TO READ THESE COMMENTS
+   ---------------------------------------------------------
+   MOVE TO: exact file where the rule should ultimately live.
+   DUPLICATES: existing global/component behavior this repeats.
+   KEEP HERE: rule is specific to the portfolio index or case study.
+   REMOVE: temporary, unsafe, or obsolete rule.
+   REVIEW: rule works, but the implementation should be improved.
+
+   Nothing has been silently deleted. Rules that should move or be
+   removed are preserved and clearly identified beside the code.
+   ========================================================= */
+
+
+/* =========================================================
+   SHARED PORTFOLIO FOUNDATIONS
+   ========================================================= */
+
+/*
+ * MOVE TO: tokens/colors.css, tokens/layout.css, tokens/radius.css
+ * DUPLICATES: global design tokens already used by the rest of the site.
+ * KEEP TEMPORARILY: these aliases prevent the current portfolio markup
+ * from breaking while --portfolio-* and --project-* are replaced.
+ *
+ * FINAL GOAL:
+ * Delete these aliases after every rule uses the existing global tokens
+ * directly, for example var(--color-brand) instead of var(--project-blue).
+ */
+.portfolio,
+.project-single-page {
+  --portfolio-bg: var(--color-bg, #010710);
+  --portfolio-text: var(--color-text, #f5f8fb);
+  --portfolio-muted: var(--color-text-muted, #8fa1b2);
+  --portfolio-blue: var(--color-brand, #168fff);
+  --portfolio-blue-strong: var(--color-brand-strong, #258ff5);
+  --portfolio-green: var(--color-success, #64d667);
+  --portfolio-purple: var(--color-accent, #bc52ff);
+  --portfolio-gold: var(--color-warning, #f5cf44);
+  --portfolio-border: var(--border-subtle, rgba(88, 145, 191, 0.22));
+  --portfolio-container: var(--container-wide, 87.5rem);
+  --portfolio-gutter: var(--page-gutter, clamp(1rem, 4vw, 2.5rem));
+
+  --project-bg: var(--portfolio-bg);
+  --project-bg-deep: var(--color-bg-deep, #01060c);
+  --project-panel: var(--color-surface, rgba(8, 20, 32, 0.94));
+  --project-panel-deep: var(--color-surface-deep, rgba(4, 13, 22, 0.98));
+  --project-border: var(--portfolio-border);
+  --project-border-strong: var(--border-brand, rgba(31, 145, 242, 0.55));
+  --project-text: var(--portfolio-text);
+  --project-text-soft: var(--color-text-soft, #c4d0db);
+  --project-muted: var(--portfolio-muted);
+  --project-blue: var(--portfolio-blue);
+  --project-blue-light: var(--color-brand-light, #54b7ff);
+  --project-pink: var(--color-danger-soft, #ef5b9f);
+  --project-green: var(--portfolio-green);
+  --project-purple: var(--portfolio-purple);
+  --project-radius-sm: var(--radius-sm, 0.4rem);
+  --project-radius-md: var(--radius-md, 0.7rem);
+  --project-radius-lg: var(--radius-lg, 0.9rem);
+}
+
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES: the site-wide box-sizing reset.
+ * REMOVE FROM THIS FILE after confirming reset.css is loaded globally.
+ */
+.portfolio,
+.portfolio *,
+.portfolio *::before,
+.portfolio *::after,
+.project-single-page,
+.project-single-page *,
+.project-single-page *::before,
+.project-single-page *::after {
+  box-sizing: border-box;
+}
+
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES:
+ *   img, svg { display: block; }
+ *   img { max-width: 100%; }
+ *   a { color: inherit; }
+ *   button { font: inherit; }
+ *
+ * REMOVE FROM THIS FILE after confirming those global reset rules exist.
+ */
+.portfolio img,
+.project-single-page img,
+.project-single-page svg {
+  display: block;
+}
+
+.portfolio img {
+  width: 100%;
+}
+
+.project-single-page img {
+  max-width: 100%;
+}
+
+.portfolio a,
+.project-single-page a {
+  color: inherit;
+}
+
+.portfolio button {
+  font: inherit;
+}
+
+/*
+ * MOVE TO: layouts/container.css
+ * DUPLICATES: the existing shared .container layout.
+ *
+ * RECOMMENDED MARKUP CHANGE:
+ * Replace className="portfolio-container" and className="project-container"
+ * with className="container".
+ *
+ * REMOVE THIS BLOCK after the markup is updated.
+ */
+.portfolio-container,
+.project-container {
+  width: min(
+    calc(100% - (var(--portfolio-gutter) * 2)),
+    var(--portfolio-container)
+  );
+  margin-inline: auto;
+}
+
+/*
+ * MOVE TO: base/typography.css
+ * DUPLICATES: global display-heading font family and weight.
+ * KEEP HERE ONLY if portfolio headings intentionally differ site-wide.
+ */
+.portfolio h1,
+.portfolio h2,
+.project-single-page h1,
+.project-single-page h2 {
+  font-family: var(--font-display);
+  font-weight: 400;
+}
+
+/*
+ * MOVE TO: base/accessibility.css
+ * DUPLICATES: the global :focus-visible treatment for links and buttons.
+ * REMOVE FROM THIS FILE after global focus styling is confirmed.
+ */
+.portfolio :is(a, button):focus-visible,
+.project-single-page a:focus-visible {
+  outline: 3px solid var(--portfolio-blue);
+  outline-offset: 4px;
+}
+
+/*
+ * MOVE TO: base/accessibility.css
+ * DUPLICATES: the site-wide prefers-reduced-motion rule.
+ * REMOVE FROM THIS FILE after global reduced-motion support is confirmed.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio *,
+  .portfolio *::before,
+  .portfolio *::after,
+  .project-single-page *,
+  .project-single-page *::before,
+  .project-single-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+
+/* =========================================================
+   REUSABLE COMPONENT CANDIDATES
+   ========================================================= */
+
+/*
+ * MOVE TO: components/cards.css
+ * DUPLICATES: the shared .card surface and interactive hover behavior.
+ *
+ * RECOMMENDED MARKUP:
+ * <article className="card card-interactive project-card">
+ *
+ * KEEP ONLY portfolio-specific card differences in this file.
+ */
+.portfolio :is(.project-card, .compact-card) {
+  overflow: hidden;
+  border: 1px solid var(--portfolio-border);
+  border-radius: var(--project-radius-lg);
+  background: linear-gradient(
+    145deg,
+    var(--project-panel),
+    var(--project-panel-deep)
+  );
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
+.portfolio :is(.project-card, .compact-card):hover {
+  border-color: rgba(70, 163, 243, 0.46);
+  transform: translateY(-4px);
+}
+
+/*
+ * MOVE TO: components/badges.css
+ * DUPLICATES: reusable badge font sizing and weight.
+ * KEEP portfolio-specific badge positioning and colors below.
+ */
+.project-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+/*
+ * MOVE TO: components/tags.css
+ * DUPLICATES: shared inline tag/badge layout.
+ * KEEP only portfolio-specific tag colors and spacing in this file.
+ */
+.portfolio :is(.tag-list li, .compact-meta span),
+.project-single-page .technology-tags li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(100, 150, 190, 0.35);
+  border-radius: 0.25rem;
+  font-size: 0.72rem;
+}
+
+/*
+ * MOVE TO: components/technology-icon.css
+ * DUPLICATES: TechnologyIcon fallback styling used anywhere technologies render.
+ * REMOVE FROM portfolio.css once TechnologyIcon owns its own stylesheet.
+ */
+.technology-icon-fallback {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 1.5rem;
+  place-items: center;
+  border: 1px solid color-mix(
+    in srgb,
+    var(--technology-color) 70%,
+    white 30%
+  );
+  border-radius: 0.25rem;
+  background: var(--technology-color);
+  color: var(--technology-foreground, #fff);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.025em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/*
+ * MOVE TO: components/buttons.css
+ * DUPLICATES: .button, .button-primary, and .button-secondary.
+ *
+ * KEEP HERE ONLY:
+ * page-specific width or placement overrides such as .cta-button.
+ */
+.project-single-page .button {
+  display: inline-flex;
+  min-height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: var(--project-radius-sm);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.project-single-page .button:hover {
+  transform: translateY(-2px);
+}
+
+.project-single-page .button-primary {
+  border-color: #258ff5;
+  color: #fff;
+  background: linear-gradient(135deg, #168fff, #0a5fd0);
+  box-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
+}
+
+.project-single-page .button-secondary {
+  border-color: rgba(125, 159, 188, 0.34);
+  color: var(--project-text);
+  background: rgba(7, 17, 28, 0.72);
+}
+
+/*
+ * MOVE TO: components/panels.css or components/cards.css
+ * DUPLICATES: bordered surface, radius, gradient background, and shadow.
+ *
+ * RECOMMENDED SHARED CLASS:
+ * .surface-panel
+ *
+ * Then apply it to metrics-grid, panel, and cta-panel in JSX.
+ */
+.project-single-page :is(.metrics-grid, .panel, .cta-panel) {
+  border: 1px solid var(--project-border);
+  border-radius: var(--project-radius-lg);
+  background: linear-gradient(
+    145deg,
+    var(--project-panel),
+    var(--project-panel-deep)
+  );
+  box-shadow:
+    0 1rem 3rem rgba(0, 0, 0, 0.16),
+    inset 0 1px rgba(255, 255, 255, 0.02);
+}
+
+/*
+ * MOVE TO: components/stats.css
+ * DUPLICATES: shared stat-grid divider and first/last child spacing.
+ *
+ * RECOMMENDED SHARED CLASS:
+ * .stat-grid
+ *
+ * KEEP metric-specific and result-specific typography in this file.
+ */
+.project-single-page :is(.metrics-grid, .results-grid) > div {
+  padding-inline: 1.5rem;
+  border-right: 1px solid rgba(105, 145, 178, 0.18);
+}
+
+.project-single-page :is(.metrics-grid, .results-grid) > div:first-child {
+  padding-left: 0;
+}
+
+.project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+
+/* =========================================================
+   PORTFOLIO INDEX
+
+   KEEP IN THIS FILE:
+   - page background
+   - hero composition
+   - portfolio-specific grid column counts
+   - portfolio CTA layout
+   - portfolio-only responsive changes
+
+   MOVE OUT:
+   - resets
+   - tokens
+   - generic cards
+   - generic buttons
+   - generic filters
+   - generic section headings
+   ========================================================= */
+
+.portfolio {
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--portfolio-text);
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      rgba(25, 110, 192, 0.12),
+      transparent 35rem
+    ),
+    linear-gradient(
+      180deg,
+      #010710,
+      var(--portfolio-bg) 45%,
+      #04101c
+    );
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/*
+ * KEEP HERE: portfolio index hero layout.
+ * This background decoration and spacing are unique to this page.
+ */
+.portfolio-hero {
+  position: relative;
+  padding: clamp(4rem, 8vw, 7rem) 0 2.25rem;
+  text-align: center;
+}
+
+.portfolio-hero::before,
+.portfolio-hero::after {
+  position: absolute;
+  top: 0;
+  width: 33rem;
+  height: 15rem;
+  content: "";
+  opacity: 0.5;
+  background-image: radial-gradient(
+    circle,
+    rgba(29, 145, 255, 0.65) 1px,
+    transparent 1.2px
+  );
+  background-size: 9px 9px;
+  mask-image: linear-gradient(to bottom, #000, transparent);
+  pointer-events: none;
+}
+
+.portfolio-hero::before {
+  left: -10rem;
+}
+
+.portfolio-hero::after {
+  right: -10rem;
+}
+
+/*
+ * MOVE TO: components/eyebrow.css
+ * DUPLICATES: reusable uppercase kicker/eyebrow treatment.
+ * KEEP only a portfolio color override here if required.
+ */
+.portfolio-kicker {
+  margin: 0 0 0.55rem;
+  color: var(--portfolio-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.portfolio h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 5.35rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+}
+
+.portfolio h1 span {
+  color: var(--portfolio-blue);
+}
+
+.portfolio-intro {
+  max-width: 52rem;
+  margin: 1rem auto 0;
+  color: var(--portfolio-muted);
+  font-size: clamp(1rem, 1.6vw, 1.15rem);
+}
+
+.portfolio-intro strong {
+  color: var(--portfolio-blue);
+}
+
+/*
+ * MOVE TO: components/filter-nav.css
+ * DUPLICATES: reusable filter/navigation shell, controls, active state,
+ * hover state, and mobile horizontal scrolling.
+ *
+ * KEEP HERE only the portfolio-specific column counts.
+ */
+.portfolio-category-filters,
+.portfolio-source-nav {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 69rem;
+  margin-inline: auto;
+  padding: 0.8rem;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 0.75rem;
+  background: rgba(8, 20, 33, 0.86);
+}
+
+.portfolio-category-filters {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 2.2rem;
+}
+
+.portfolio-source-nav {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 0.9rem;
+}
+
+.category-filter,
+.portfolio-source-nav a {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid rgba(111, 154, 190, 0.25);
+  border-radius: 0.4rem;
+  color: var(--portfolio-muted);
+  background: rgba(5, 14, 24, 0.72);
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 200ms ease,
+    border-color 200ms ease,
+    box-shadow 200ms ease,
+    transform 200ms ease;
+}
+
+.category-filter:hover,
+.category-filter.is-active,
+.portfolio-source-nav a:hover {
+  color: #fff;
+  border-color: rgba(77, 175, 255, 0.75);
+  box-shadow: 0 0 1.2rem rgba(21, 143, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.category-filter.is-active {
+  border-color: rgba(201, 86, 255, 0.72);
+  background: linear-gradient(
+    135deg,
+    rgba(41, 38, 91, 0.86),
+    rgba(10, 29, 46, 0.96)
+  );
+}
+
+.portfolio-section {
+  padding: clamp(2.2rem, 5vw, 4rem) 0;
+}
+
+/*
+ * MOVE TO: components/section-heading.css
+ * DUPLICATES: centered heading with decorative side lines and accent variants.
+ *
+ * KEEP HERE only portfolio section spacing if other pages differ.
+ */
+.section-heading {
+  --section-accent: var(--portfolio-blue);
+
+  display: grid;
+  grid-template-columns: minmax(2rem, 1fr) auto minmax(2rem, 1fr);
+  align-items: start;
+  gap: 1.5rem;
+  max-width: 66rem;
+  margin: 0 auto 2rem;
+  text-align: center;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: var(--section-accent);
+  font-size: clamp(1.55rem, 3vw, 2.25rem);
+  text-transform: uppercase;
+}
+
+.section-heading p {
+  max-width: 44rem;
+  margin: 0.55rem auto 0;
+  color: var(--portfolio-muted);
+  font-size: 0.9rem;
+}
+
+.section-line {
+  height: 1px;
+  margin-top: 1.2rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--section-accent)
+  );
+}
+
+.section-line:last-child {
+  background: linear-gradient(
+    90deg,
+    var(--section-accent),
+    transparent
+  );
+}
+
+.section-heading--green {
+  --section-accent: var(--portfolio-green);
+}
+
+.section-heading--purple {
+  --section-accent: var(--portfolio-purple);
+}
+
+.section-heading--gold {
+  --section-accent: var(--portfolio-gold);
+}
+
+.project-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-grid--case-studies {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.project-grid--compact {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.project-card__media {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.project-card__media img,
+.compact-card > img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio .project-badge {
+  position: absolute;
+  z-index: 2;
+  top: 0.65rem;
+  left: 0;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0 999px 999px 0;
+  background: #743493;
+}
+
+.project-card__body {
+  display: flex;
+  min-height: 17.25rem;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.project-card h3,
+.compact-card h3 {
+  margin: 0;
+  color: var(--portfolio-blue);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.project-type {
+  margin: 0.15rem 0 0.65rem;
+  color: #a9bfd1;
+  font-size: 0.75rem;
+}
+
+.project-card p:not(.project-type),
+.compact-card p {
+  margin: 0;
+  color: var(--portfolio-muted);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: auto 0 0.8rem;
+  padding: 1rem 0 0;
+  list-style: none;
+}
+
+.tag-list li,
+.compact-meta span {
+  padding: 0.2rem 0.45rem;
+  color: #84c8ff;
+  font-size: 0.62rem;
+}
+
+/*
+ * MOVE TO: components/cards.css
+ * DUPLICATES: reusable card footer link treatment.
+ * RECOMMENDED CLASS: .card-link
+ */
+.project-link {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(106, 145, 176, 0.16);
+  color: var(--portfolio-blue);
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.compact-card {
+  display: flex;
+  min-height: 20rem;
+  flex-direction: column;
+  padding: 0.85rem;
+}
+
+.compact-card > img {
+  height: 8.8rem;
+  margin-bottom: 0.8rem;
+  border-radius: 0.35rem;
+}
+
+.compact-card h3 {
+  color: #fff;
+}
+
+.compact-card p {
+  margin-top: 0.45rem;
+}
+
+.compact-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.compact-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+
+.compact-actions a {
+  display: flex;
+  min-height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(118, 159, 193, 0.35);
+  border-radius: 0.3rem;
+  font-size: 0.67rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.compact-actions a:only-child {
+  grid-column: 1 / -1;
+}
+
+/*
+ * REVIEW: mixed old and new card class systems.
+ * DUPLICATES: .project-card__media versus .card-media,
+ * .project-link versus .card-link, and page-level .tag-list overrides.
+ *
+ * CHOOSE ONE CARD API and delete the other selectors.
+ * Recommended: .card, .card-media, .card-body, .card-link.
+ */
+.project-card .card-media {
+  aspect-ratio: 16 / 9;
+}
+
+.project-card .tag-list {
+  margin: 0;
+}
+
+.project-card .card-link {
+  margin-top: var(--space-md);
+}
+
+/*
+ * MOVE TO: components/buttons.css
+ * DUPLICATES: reusable centered outlined CTA/button.
+ * Keep only accent custom-property modifiers if this pattern is reused.
+ */
+.section-action {
+  display: flex;
+  width: fit-content;
+  min-width: 15rem;
+  min-height: 2.8rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin: 1rem auto 0;
+  padding: 0.65rem 1rem;
+  border: 1px solid var(--section-action-color, var(--portfolio-blue-strong));
+  border-radius: 0.35rem;
+  background: rgba(6, 18, 30, 0.88);
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.section-action--green {
+  --section-action-color: var(--portfolio-green);
+}
+
+.section-action--purple {
+  --section-action-color: var(--portfolio-purple);
+}
+
+.section-action--gold {
+  --section-action-color: var(--portfolio-gold);
+}
+
+.portfolio-cta {
+  padding: 1rem 0 2rem;
+}
+
+.portfolio-cta__panel {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.3rem 1.5rem;
+  border: 1px solid rgba(198, 92, 255, 0.55);
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(12, 26, 42, 0.96),
+    rgba(7, 15, 27, 0.98)
+  );
+}
+
+.portfolio-cta__icon {
+  display: grid;
+  width: 4rem;
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--portfolio-purple);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.4rem;
+}
+
+.portfolio-cta h2,
+.portfolio-connect h2 {
+  margin: 0;
+  color: var(--portfolio-blue);
+  font-size: 1.45rem;
+}
+
+.portfolio-cta p,
+.portfolio-connect p {
+  margin: 0.3rem 0 0;
+  color: var(--portfolio-muted);
+  font-size: 0.84rem;
+}
+
+.portfolio-cta__panel > a {
+  display: flex;
+  min-width: 14rem;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.7rem 1.2rem;
+  border: 1px solid transparent;
+  border-radius: 0.35rem;
+  background:
+    linear-gradient(#071421, #071421) padding-box,
+    linear-gradient(
+      90deg,
+      var(--portfolio-blue),
+      var(--portfolio-purple)
+    ) border-box;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.portfolio-connect {
+  padding: 2.5rem 0 4rem;
+  border-top: 1px solid rgba(104, 145, 179, 0.16);
+  text-align: center;
+}
+
+.social-links {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.75rem;
+  max-width: 65rem;
+  margin: 1.4rem auto 0;
+}
+
+.social-links a {
+  display: flex;
+  min-height: 3rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--portfolio-border);
+  border-radius: 0.35rem;
+  background: rgba(6, 17, 28, 0.8);
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+/*
+ * SPLIT THIS RULE:
+ *
+ * MOVE TO: base/reset.css
+ *   [hidden] { display: none !important; }
+ *
+ * KEEP HERE:
+ *   .is-filtered-out { display: none !important; }
+ */
+.portfolio [hidden],
+.portfolio .is-filtered-out {
+  display: none !important;
+}
+
+
+/* =========================================================
+   PORTFOLIO INDEX RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 73.75rem) {
+  .project-grid--case-studies {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 56.25rem) {
+  .portfolio-category-filters {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .portfolio-source-nav,
+  .project-grid--compact {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-grid--case-studies {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .social-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 38.75rem) {
+  .portfolio-category-filters,
+  .portfolio-source-nav {
+    display: flex;
+    margin-inline: calc(var(--portfolio-gutter) * -1);
+    padding-inline: var(--portfolio-gutter);
+    overflow-x: auto;
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+  }
+
+  .category-filter,
+  .portfolio-source-nav a {
+    min-width: max-content;
+  }
+
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+
+  .section-line {
+    display: none;
+  }
+
+  .project-grid--case-studies,
+  .project-grid--compact,
+  .social-links {
+    grid-template-columns: 1fr;
+  }
+
+  .portfolio-cta__panel {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .portfolio-cta__icon {
+    margin-inline: auto;
+  }
+
+  .portfolio-cta__panel > a {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+
+/* =========================================================
+   PORTFOLIO SINGLE
+
+   KEEP IN THIS FILE:
+   - case-study hero composition
+   - desktop/mobile preview positioning
+   - challenge and solution layout
+   - project metrics/results composition
+   - highlights/details layout
+   - case-study CTA composition
+
+   MOVE OUT:
+   - generic buttons
+   - generic panels
+   - generic statistic grid foundations
+   - technology icon fallback
+   - resets and accessibility utilities
+   ========================================================= */
+
+.project-single-page {
+  min-height: 100vh;
+  overflow: hidden;
+  color: var(--project-text);
+  background:
+    radial-gradient(
+      circle at 50% 0,
+      rgba(20, 96, 164, 0.1),
+      transparent 38rem
+    ),
+    linear-gradient(
+      180deg,
+      var(--project-bg-deep),
+      var(--project-bg) 45%,
+      #06111c
+    );
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/*
+ * MOVE TO: base/reset.css
+ * DUPLICATES: figure, dl, and dd margin normalization.
+ * REMOVE FROM THIS FILE after the reset is confirmed.
+ */
+.project-single-page :is(figure, dl, dd) {
+  margin: 0;
+}
+
+.project-hero {
+  position: relative;
+  padding:
+    clamp(2.5rem, 5vw, 4rem)
+    0
+    clamp(3rem, 6vw, 5.25rem);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: clamp(2.2rem, 5vw, 4rem);
+  color: var(--project-text-soft);
+  font-size: 0.84rem;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.back-link:hover {
+  color: var(--project-blue-light);
+  transform: translateX(-3px);
+}
+
+.project-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(34rem, 1.15fr);
+  align-items: center;
+  gap: clamp(2.5rem, 6vw, 6rem);
+}
+
+.project-single-page .project-badge {
+  display: inline-flex;
+  margin-bottom: 1rem;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--project-border-strong);
+  border-radius: 0.25rem;
+  color: var(--project-blue-light);
+  background: rgba(6, 31, 52, 0.62);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.project-single-page h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 5.8vw, 5rem);
+  line-height: 1.06;
+}
+
+.project-subtitle {
+  margin: 0.65rem 0 0;
+  color: var(--project-blue);
+  font-size: clamp(1.15rem, 2.2vw, 1.65rem);
+}
+
+.project-summary {
+  max-width: 42rem;
+  margin: 1.5rem 0 0;
+  color: var(--project-text-soft);
+  font-size: 0.98rem;
+  line-height: 1.78;
+}
+
+.technology-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.technology-tags li {
+  min-height: 2rem;
+  padding: 0.35rem 0.72rem;
+  color: var(--project-text-soft);
+  background: rgba(4, 14, 24, 0.64);
+}
+
+/*
+ * REVIEW AND REPLACE:
+ * These nth-child colors are order-dependent and will become incorrect
+ * whenever technologies are reordered.
+ *
+ * MOVE COLOR OWNERSHIP TO:
+ * TechnologyIcon / technology registry using technology.brandColor.
+ *
+ * REMOVE all four nth-child rules after brandColor is applied inline
+ * through a CSS custom property or inside TechnologyIcon.
+ */
+.technology-tags li:nth-child(1) {
+  color: #58a9ff;
+}
+
+.technology-tags li:nth-child(2) {
+  color: #ff704f;
+}
+
+.technology-tags li:nth-child(3) {
+  color: #5fb5ff;
+}
+
+.technology-tags li:nth-child(4) {
+  color: #f5cf44;
+}
+
+.project-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.project-hero-media {
+  position: relative;
+  min-height: clamp(24rem, 42vw, 36rem);
+}
+
+.desktop-preview {
+  position: absolute;
+  inset: 0 8% 8% 0;
+  overflow: hidden;
+  border: 1px solid var(--project-border);
+  border-radius: 1rem;
+  background: #08131f;
+  box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.42);
+}
+
+.desktop-preview img,
+.mobile-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobile-preview {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  width: clamp(8rem, 15vw, 11rem);
+  aspect-ratio: 0.5;
+  overflow: hidden;
+  border: 0.35rem solid #070d14;
+  border-radius: 1.8rem;
+  background: #07111b;
+  box-shadow:
+    0 1.5rem 3rem rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(136, 164, 188, 0.35);
+}
+
+.mobile-preview::before {
+  position: absolute;
+  z-index: 2;
+  top: 0.3rem;
+  left: 50%;
+  width: 34%;
+  height: 0.5rem;
+  content: "";
+  border-radius: 999px;
+  background: #02060b;
+  transform: translateX(-50%);
+}
+
+.project-metrics,
+.project-section,
+.project-cta {
+  padding-bottom: clamp(1rem, 2vw, 1.5rem);
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  padding: clamp(1.25rem, 3vw, 2rem);
+}
+
+.metrics-grid > div {
+  text-align: center;
+}
+
+.metrics-grid dt {
+  color: var(--project-blue-light);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 600;
+}
+
+.metrics-grid dd {
+  margin-top: 0.3rem;
+  color: var(--project-text-soft);
+  font-size: 0.78rem;
+}
+
+.panel {
+  padding: clamp(1.6rem, 4vw, 2.5rem);
+}
+
+/*
+ * MOVE TO: components/eyebrow.css
+ * DUPLICATES: the same uppercase label pattern as .portfolio-kicker.
+ * Recommended shared class: .eyebrow or .section-label.
+ */
+.section-label {
+  margin-bottom: 0.55rem;
+  color: var(--project-blue);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.panel h2,
+.cta-panel h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+}
+
+.section-intro {
+  max-width: 63rem;
+  margin: 0.85rem 0 0;
+  color: var(--project-text-soft);
+  font-size: 0.9rem;
+  line-height: 1.72;
+}
+
+.challenge-solution-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.challenge-solution-grid article {
+  padding-right: 2rem;
+}
+
+.challenge-solution-grid article + article {
+  padding-right: 0;
+  padding-left: 3rem;
+  border-left: 1px solid rgba(108, 148, 181, 0.2);
+}
+
+.challenge-solution-grid h3 {
+  margin: 0;
+  font-size: 0.86rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.challenge-block h3 {
+  color: var(--project-pink);
+}
+
+.solution-block h3 {
+  color: var(--project-green);
+}
+
+.challenge-solution-grid p {
+  margin: 0.8rem 0 0;
+  color: var(--project-text-soft);
+  font-size: 0.86rem;
+  line-height: 1.72;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin-top: 1rem;
+}
+
+.results-grid > div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    "icon value"
+    "icon label";
+  align-items: center;
+  gap: 0 0.8rem;
+}
+
+.result-icon {
+  grid-area: icon;
+  color: var(--project-blue);
+  font-size: 2rem;
+}
+
+.results-grid dt {
+  grid-area: value;
+  color: var(--project-blue-light);
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.results-grid dd {
+  grid-area: label;
+  color: var(--project-text-soft);
+  font-size: 0.72rem;
+}
+
+.highlights-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.42fr);
+  gap: 2rem;
+}
+
+.highlights-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.85rem 2rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlights-list li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--project-text-soft);
+  font-size: 0.82rem;
+}
+
+.highlights-list li::before {
+  position: absolute;
+  top: 0.12rem;
+  left: 0;
+  color: var(--project-blue);
+  content: "◉";
+  font-size: 0.75rem;
+}
+
+.project-details {
+  padding-left: 2rem;
+  border-left: 1px solid rgba(107, 147, 179, 0.2);
+}
+
+.project-details dl {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.project-details dl > div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.5rem;
+}
+
+.project-details dt {
+  color: var(--project-text);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.project-details dd {
+  color: var(--project-text-soft);
+  font-size: 0.8rem;
+}
+
+.project-cta {
+  padding-top: 0.5rem;
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.cta-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 2rem;
+  padding: clamp(1.5rem, 4vw, 2.3rem);
+  border-color: transparent;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 20, 32, 0.96),
+      rgba(4, 13, 22, 0.98)
+    ) padding-box,
+    linear-gradient(
+      90deg,
+      var(--project-blue),
+      var(--project-purple),
+      #d94b77
+    ) border-box;
+}
+
+.cta-copy p {
+  max-width: 38rem;
+  margin: 0.75rem 0 0;
+  color: var(--project-text-soft);
+  font-size: 0.86rem;
+}
+
+.cta-benefits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem 1.5rem;
+  margin: 0;
+  padding: 0 2rem;
+  border-inline: 1px solid rgba(107, 147, 179, 0.2);
+  list-style: none;
+}
+
+.cta-benefits li {
+  position: relative;
+  padding-left: 1.4rem;
+  color: var(--project-text-soft);
+  font-size: 0.8rem;
+}
+
+.cta-benefits li::before {
+  position: absolute;
+  left: 0;
+  color: var(--project-blue);
+  content: "◈";
+}
+
+.cta-button {
+  min-width: 12rem;
+}
+
+
+/* =========================================================
+   PORTFOLIO SINGLE RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 70rem) {
+  .project-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-hero-content {
+    max-width: 48rem;
+  }
+
+  .project-hero-media {
+    min-height: clamp(24rem, 62vw, 36rem);
+  }
+
+  .metrics-grid,
+  .results-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .project-single-page :is(.metrics-grid, .results-grid) > div {
+    padding: 1rem;
+    border-right: 0;
+    border-bottom: 1px solid rgba(105, 145, 178, 0.18);
+  }
+
+  .project-single-page :is(.metrics-grid, .results-grid) > div:nth-child(odd) {
+    border-right: 1px solid rgba(105, 145, 178, 0.18);
+  }
+
+  .project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
+    grid-column: 1 / -1;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .cta-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-benefits {
+    padding: 1.5rem 0;
+    border-inline: 0;
+    border-block: 1px solid rgba(107, 147, 179, 0.2);
+  }
+
+  .cta-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 48rem) {
+  .challenge-solution-grid,
+  .highlights-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .challenge-solution-grid article,
+  .challenge-solution-grid article + article {
+    padding: 0;
+    border-left: 0;
+  }
+
+  .challenge-solution-grid article + article {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(108, 148, 181, 0.2);
+  }
+
+  .highlights-list {
+    grid-template-columns: 1fr;
+  }
+
+  .project-details {
+    padding: 1.5rem 0 0;
+    border-top: 1px solid rgba(107, 147, 179, 0.2);
+    border-left: 0;
+  }
+
+  .project-actions {
+    flex-direction: column;
+  }
+
+  .project-single-page .button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 34rem) {
+  .metrics-grid,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-single-page :is(.metrics-grid, .results-grid) > div,
+  .project-single-page :is(.metrics-grid, .results-grid) > div:nth-child(odd) {
+    grid-column: auto;
+    border-right: 0;
+  }
+
+  .project-single-page :is(.metrics-grid, .results-grid) > div:last-child {
+    grid-column: auto;
+  }
+
+  .cta-benefits {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* =========================================================
+   REVEAL ANIMATION
+   ========================================================= */
+
+/*
+ * MOVE TO: utilities/reveal.css
+ * DUPLICATES: reusable scroll-reveal animation behavior.
+ * Keep JavaScript behavior and CSS class naming consistent site-wide.
+ */
+.reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 500ms ease,
+    transform 500ms ease;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   TEMPORARY / LEGACY OVERRIDES
+   ========================================================= */
+
+/*
+ * REMOVE:
+ * This forces every shared .card to 400px wide and breaks responsive grids.
+ * It appears to be a temporary debugging rule.
+ */
+.card {
+  width: 400px;
+}
+
+/*
+ * MOVE TO: utilities/layout.css
+ * DUPLICATES: generic inline flex alignment utility.
+ * Consider renaming to a reusable utility such as .cluster or .inline-group.
+ */
+.inline-content {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+/*
+ * KEEP HERE ONLY if portfolio card eyebrows are intentionally smaller.
+ *
+ * OTHERWISE MOVE TO:
+ * components/cards.css as the default .card-eyebrow size.
+ *
+ * This replaces the unnecessary deeply nested native CSS selector.
+ */
+.portfolio .project-card .card-eyebrow {
+  font-size: 0.6rem;
+}
+.tag-list li {
+  svg {
+    width: 24px !important;
+    height: 24px !important;
+    transition: transform 200ms ease;
+  }
+
+  &:hover svg {
+    transform: scale(1.15);
+  }
+}
+.portfolio {
+  .project-card {
+    hr {
+      width: 100%;
+      height: 1px;
+      border: solid 1px var(--portfolio-border);
+    }
+  }
+}
+.project-card .card-link {
+   margin-top: 0;
+}
