@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --port 3000",
+    "dev": "next dev --webpack --port 3000",
     "build": "next build",
     "lint": "tsc --noEmit --pretty false",
     "typecheck": "tsc --noEmit --pretty false",
     "test": "node -e \"console.log('No web tests configured yet')\""
   },
   "dependencies": {
+    "@portfolio/technology-registry": "workspace:*",
     "@fortawesome/fontawesome-svg-core": "^7.3.1",
     "@fortawesome/free-brands-svg-icons": "^7.3.1",
     "@fortawesome/free-solid-svg-icons": "^7.3.1",

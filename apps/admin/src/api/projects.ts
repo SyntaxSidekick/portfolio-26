@@ -1,4 +1,4 @@
-import type { CategoryReference, GalleryImage, MediaReference, PortfolioProject, ProjectHighlight, ProjectMetric, ProjectResult, ProjectStatus, ProjectType } from "../types/admin";
+import type { CaseStudySectionKey, CategoryReference, GalleryImage, MediaReference, PortfolioProject, ProjectHighlight, ProjectMetric, ProjectResult, ProjectStatus, ProjectType } from "../types/admin";
 import { apiRequest } from "./client";
 
 export interface ProjectPayload {
@@ -13,9 +13,18 @@ export interface ProjectPayload {
   gallery: GalleryImage[];
   hero: { eyebrow?: string; subtitle: string; summary: string; badgeText?: string };
   media: { featuredImage?: MediaReference; desktopImage?: MediaReference; mobileImage?: MediaReference; cardImage?: MediaReference; gallery: GalleryImage[] };
-  overview: { heading?: string; content: string };
-  challenge: { heading?: string; content: string; iconKey?: string; accentColor?: string };
-  solution: { heading?: string; content: string; iconKey?: string; accentColor?: string };
+  overview: { heading?: string; content: string; iconKey?: string; media?: MediaReference };
+  challenge: { heading?: string; content: string; iconKey?: string; accentColor?: string; media?: MediaReference };
+  solution: { heading?: string; content: string; iconKey?: string; accentColor?: string; media?: MediaReference };
+  caseStudy?: {
+    sectionOrder: CaseStudySectionKey[];
+    sectionMedia?: {
+      overview?: MediaReference;
+      challenge?: MediaReference;
+      solution?: MediaReference;
+      highlights?: MediaReference;
+    };
+  };
   primaryMetrics: ProjectMetric[];
   keyResults: ProjectResult[];
   highlights: ProjectHighlight[];

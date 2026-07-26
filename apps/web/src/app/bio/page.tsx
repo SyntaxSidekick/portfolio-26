@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "@/styles/pages/bio.css";
+import { BioCapabilityGroup } from "@/components/bio/bio-capability-group";
+import { bioCapabilityGroups } from "@/data/bio-capabilities";
+import type { BioCapabilityGroupId } from "@/data/bio-capabilities";
+import type { ReactNode } from "react";
 import {
   Accessibility,
   ArrowRight,
@@ -7,6 +11,7 @@ import {
   Blocks,
   Braces,
   BriefcaseBusiness,
+  ChartNoAxesCombined,
   Circle,
   Code2,
   Gauge,
@@ -31,6 +36,19 @@ import {
 export const metadata: Metadata = {
   title: "About Riad Kilani | UX Engineer & Front-End Architect",
   description: "Learn about Riad Kilani’s experience in front-end architecture, UX engineering, design systems, accessibility, and performance."
+};
+
+const capabilityGroupIcons: Record<BioCapabilityGroupId, ReactNode> = {
+  "core-engineering": <Braces aria-hidden="true" />,
+  "frameworks-platforms": <Blocks aria-hidden="true" />,
+  "front-end-architecture": <Network aria-hidden="true" />,
+  "ux-interactive-design": <MousePointerClick aria-hidden="true" />,
+  "design-systems": <PanelsTopLeft aria-hidden="true" />,
+  "design-prototyping-tools": <Palette aria-hidden="true" />,
+  "quality-performance": <BadgeCheck aria-hidden="true" />,
+  "analytics-insights": <ChartNoAxesCombined aria-hidden="true" />,
+  "delivery-workflow": <GitBranch aria-hidden="true" />,
+  "ai-assisted-development": <Sparkles aria-hidden="true" />,
 };
 
 function BioPageContent() {
@@ -259,366 +277,13 @@ function BioPageContent() {
         </header>
 
         <div className="skills-grid">
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <Braces aria-hidden="true" />
-
-              <div>
-                <h3>Core Engineering</h3>
-                <p>Production front-end development</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot html" aria-hidden="true"></span>
-                Semantic HTML5
-              </li>
-
-              <li>
-                <span className="skill-dot css" aria-hidden="true"></span>
-                Modern CSS Architecture
-              </li>
-
-              <li>
-                <span className="skill-dot js" aria-hidden="true"></span>
-                JavaScript ES6+
-              </li>
-
-              <li>
-                <span className="skill-dot ts" aria-hidden="true"></span>
-                TypeScript
-              </li>
-
-              <li>
-                <span className="skill-dot sql" aria-hidden="true"></span>
-                SQL &amp; Structured Data
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <Blocks aria-hidden="true" />
-
-              <div>
-                <h3>Frameworks &amp; Platforms</h3>
-                <p>Scalable application development</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot react" aria-hidden="true"></span>
-                React &amp; Redux
-              </li>
-
-              <li>
-                <span className="skill-dot next" aria-hidden="true"></span>
-                Next.js
-              </li>
-
-              <li>
-                <span className="skill-dot vue" aria-hidden="true"></span>
-                Vue.js, Vue Router &amp; Vuex
-              </li>
-
-              <li>
-                <span className="skill-dot node" aria-hidden="true"></span>
-                Node.js &amp; Express
-              </li>
-
-              <li>
-                <span className="skill-dot wordpress" aria-hidden="true"></span>
-                Headless &amp; Enterprise CMS
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <Network aria-hidden="true" />
-
-              <div>
-                <h3>Front-End Architecture</h3>
-                <p>Maintainable systems at scale</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot architecture" aria-hidden="true"></span>
-                Enterprise UI Architecture
-              </li>
-
-              <li>
-                <span className="skill-dot micro" aria-hidden="true"></span>
-                Micro-Frontend Strategy
-              </li>
-
-              <li>
-                <span className="skill-dot component" aria-hidden="true"></span>
-                Component-Driven Architecture
-              </li>
-
-              <li>
-                <span className="skill-dot webcomponents" aria-hidden="true"></span>
-                Web Components
-              </li>
-
-              <li>
-                <span className="skill-dot api" aria-hidden="true"></span>
-                REST APIs &amp; Integrations
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <MousePointerClick aria-hidden="true" />
-
-              <div>
-                <h3>UX &amp; Interactive Design</h3>
-                <p>Experience strategy and interface behavior</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot interaction" aria-hidden="true"></span>
-                Interaction Design
-              </li>
-
-              <li>
-                <span className="skill-dot ux" aria-hidden="true"></span>
-                UX Research &amp; Strategy
-              </li>
-
-              <li>
-                <span className="skill-dot journeys" aria-hidden="true"></span>
-                User Journeys &amp; User Flows
-              </li>
-
-              <li>
-                <span className="skill-dot ia" aria-hidden="true"></span>
-                Information Architecture
-              </li>
-
-              <li>
-                <span className="skill-dot responsive" aria-hidden="true"></span>
-                Responsive Product Design
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <PanelsTopLeft aria-hidden="true" />
-
-              <div>
-                <h3>Design Systems</h3>
-                <p>Connecting design and engineering</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot design" aria-hidden="true"></span>
-                Design System Architecture
-              </li>
-
-              <li>
-                <span className="skill-dot tokens" aria-hidden="true"></span>
-                Design Tokens
-              </li>
-
-              <li>
-                <span className="skill-dot library" aria-hidden="true"></span>
-                Component Libraries
-              </li>
-
-              <li>
-                <span className="skill-dot patterns" aria-hidden="true"></span>
-                Reusable UI Patterns
-              </li>
-
-              <li>
-                <span className="skill-dot documentation" aria-hidden="true"></span>
-                System Documentation
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group skill-group--tools">
-            <header className="skill-group__header">
-              <Palette aria-hidden="true" />
-
-              <div>
-                <h3>Design &amp; Prototyping Tools</h3>
-                <p>From early concepts to production-ready interfaces</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot figma" aria-hidden="true"></span>
-                Figma &amp; FigJam
-              </li>
-
-              <li>
-                <span className="skill-dot balsamiq" aria-hidden="true"></span>
-                Balsamiq
-              </li>
-
-              <li>
-                <span className="skill-dot invision" aria-hidden="true"></span>
-                InVision
-              </li>
-
-              <li>
-                <span className="skill-dot photoshop" aria-hidden="true"></span>
-                Adobe Photoshop
-              </li>
-
-              <li>
-                <span className="skill-dot illustrator" aria-hidden="true"></span>
-                Adobe Illustrator
-              </li>
-
-              <li>
-                <span className="skill-dot indesign" aria-hidden="true"></span>
-                Adobe InDesign
-              </li>
-
-              <li>
-                <span className="skill-dot xd" aria-hidden="true"></span>
-                Adobe XD
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <BadgeCheck aria-hidden="true" />
-
-              <div>
-                <h3>Quality &amp; Performance</h3>
-                <p>Reliable, inclusive experiences</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot accessibility" aria-hidden="true"></span>
-                WCAG 2.1 AA Accessibility
-              </li>
-
-              <li>
-                <span className="skill-dot lighthouse" aria-hidden="true"></span>
-                Lighthouse &amp; Core Web Vitals
-              </li>
-
-              <li>
-                <span className="skill-dot playwright" aria-hidden="true"></span>
-                Playwright Testing
-              </li>
-
-              <li>
-                <span className="skill-dot jest" aria-hidden="true"></span>
-                Jest &amp; Front-End Testing
-              </li>
-
-              <li>
-                <span className="skill-dot seo" aria-hidden="true"></span>
-                Technical SEO
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <GitBranch aria-hidden="true" />
-
-              <div>
-                <h3>Delivery &amp; Workflow</h3>
-                <p>Modern engineering productivity</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot git" aria-hidden="true"></span>
-                Git &amp; GitHub
-              </li>
-
-              <li>
-                <span className="skill-dot cicd" aria-hidden="true"></span>
-                CI/CD Pipelines
-              </li>
-
-              <li>
-                <span className="skill-dot vite" aria-hidden="true"></span>
-                Vite, Webpack &amp; Babel
-              </li>
-
-              <li>
-                <span className="skill-dot storybook" aria-hidden="true"></span>
-                Storybook
-              </li>
-
-              <li>
-                <span className="skill-dot agile" aria-hidden="true"></span>
-                Agile, Jira &amp; Confluence
-              </li>
-            </ul>
-          </article>
-
-          
-          <article className="skill-group">
-            <header className="skill-group__header">
-              <Sparkles aria-hidden="true" />
-
-              <div>
-                <h3>AI-Assisted Development</h3>
-                <p>Modern production and automation workflows</p>
-              </div>
-            </header>
-
-            <ul>
-              <li>
-                <span className="skill-dot ai" aria-hidden="true"></span>
-                LLM-Assisted Development
-              </li>
-
-              <li>
-                <span className="skill-dot copilot" aria-hidden="true"></span>
-                GitHub Copilot
-              </li>
-
-              <li>
-                <span className="skill-dot claude" aria-hidden="true"></span>
-                Claude Code
-              </li>
-
-              <li>
-                <span className="skill-dot codex" aria-hidden="true"></span>
-                OpenAI Codex
-              </li>
-
-              <li>
-                <span className="skill-dot automation" aria-hidden="true"></span>
-                AI Workflow Automation
-              </li>
-            </ul>
-          </article>
+          {bioCapabilityGroups.map((group) => (
+            <BioCapabilityGroup
+              group={group}
+              icon={capabilityGroupIcons[group.id]}
+              key={group.id}
+            />
+          ))}
         </div>
 
         <aside className="additional-experience">

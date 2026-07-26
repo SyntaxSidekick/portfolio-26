@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { homeFeaturedProjects } from "@/data/home-featured-projects";
+import { HomeSectionCta } from "@/components/home/home-section-cta";
 
 export function FeaturedWorkSection() {
   return (
@@ -54,13 +55,7 @@ export function FeaturedWorkSection() {
           ))}
         </div>
 
-        <div className="section-action">
-          <Link className="button button-primary" href="#">
-            <span aria-hidden="true">&.9635;</span>
-            <span>View Full Portfolio</span>
-            <span aria-hidden="true">&rarr;</span>
-          </Link>
-        </div>
+        <HomeSectionCta href="#" label="View Full Portfolio" />
       </div>
     </section>
   );

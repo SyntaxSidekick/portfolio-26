@@ -1,6 +1,11 @@
 export type PublicationStatus = "Draft" | "Published";
 export type ProjectStatus = "draft" | "published" | "archived";
 export type ProjectType = "case-study" | "github" | "design" | "codepen";
+export type CaseStudySectionKey = "overview" | "challenge" | "solution" | "key-results" | "lessons-learned";
+export type CaseStudyMediaSectionKey = "overview" | "challenge" | "solution" | "highlights";
+export type CaseStudyIconKey = "file-text" | "target" | "puzzle" | "chart-results" | "graduation-cap";
+export type MetricType = "users" | "downloads" | "uptime" | "performance" | "growth" | "time" | "revenue" | "rating" | "database" | "completion";
+export type MetricIconKey = "users" | "cloud-download" | "shield-check" | "zap" | "trending-up" | "clock" | "award" | "star" | "activity" | "chart" | "check-circle" | "database";
 export type TechnologyCategory = "frontend" | "framework" | "language" | "styling" | "backend" | "database" | "cms" | "design" | "testing" | "build-tool" | "devops" | "cloud" | "accessibility" | "other";
 export type TechnologySource = "system" | "custom";
 
@@ -49,8 +54,15 @@ export interface ProjectMetric {
   displayOrder: number;
 }
 
-export interface ProjectResult extends ProjectMetric {
-  iconKey?: string;
+export interface ProjectResult {
+  id: string;
+  label: string;
+  value: string;
+  type?: MetricType;
+  order?: number;
+  displayOrder?: number;
+  description?: string;
+  iconKey?: MetricIconKey | string;
   accentColor?: string;
 }
 
@@ -63,8 +75,14 @@ export interface ProjectHighlight {
 export interface ProjectContentBlock {
   heading?: string;
   content: string;
-  iconKey?: string;
+  iconKey?: CaseStudyIconKey | string;
   accentColor?: string;
+  media?: MediaReference;
+}
+
+export interface CaseStudyData {
+  sectionOrder?: CaseStudySectionKey[];
+  sectionMedia?: Partial<Record<CaseStudyMediaSectionKey, MediaReference>>;
 }
 
 export interface Gallery {
@@ -88,9 +106,10 @@ export interface PortfolioProject {
   gallery: GalleryImage[];
   hero?: { eyebrow?: string; subtitle: string; summary: string; badgeText?: string };
   media?: { featuredImage?: MediaReference; desktopImage?: MediaReference; mobileImage?: MediaReference; cardImage?: MediaReference; gallery: GalleryImage[] };
-  overview?: { heading?: string; content: string };
+  overview?: { heading?: string; content: string; iconKey?: CaseStudyIconKey | string; media?: MediaReference };
   challenge?: ProjectContentBlock;
   solution?: ProjectContentBlock;
+  caseStudy?: CaseStudyData;
   primaryMetrics?: ProjectMetric[];
   keyResults?: ProjectResult[];
   highlights?: ProjectHighlight[];

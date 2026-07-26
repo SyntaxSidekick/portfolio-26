@@ -8,6 +8,7 @@ const DEFAULT_SYNTAX_SIDEKICK_URL = "https://syntaxsidekick.com";
 export const SYNTAX_SIDEKICK_REVALIDATE_SECONDS = 3600;
 export const HOME_ARTICLE_LIMIT = 3;
 const WORDPRESS_MAX_POSTS_PER_PAGE = 100;
+const SYNTAX_SIDEKICK_TIMEOUT_MS = 3000;
 
 const dateFormatter = new Intl.DateTimeFormat("en-US", {
   month: "short",
@@ -120,7 +121,7 @@ async function fetchSyntaxSidekickPostPageResponse({
 
     endpoint.search = searchParams.toString();
 
-    const response = await fetch(endpoint, {
+    const response = await fetchWithTimeout(endpoint, {
       next: {
         revalidate: SYNTAX_SIDEKICK_REVALIDATE_SECONDS
       }
@@ -142,6 +143,17 @@ async function fetchSyntaxSidekickPostPageResponse({
     };
   } catch {
     return { posts: [], totalPages: 0 };
+  }
+}
+
+async function fetchWithTimeout(input: URL | string, init?: RequestInit) {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), SYNTAX_SIDEKICK_TIMEOUT_MS);
+
+  try {
+    return await fetch(input, { ...init, signal: controller.signal });
+  } finally {
+    clearTimeout(timeout);
   }
 }
 

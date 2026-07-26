@@ -49,10 +49,18 @@ export const technologyIcons: Record<string, IconDefinition> = {
   wordpress: faWordpress,
 };
 
-export function getTechnologyInitials(name: string) {
+export function isTechnologyIconSupported(iconKey?: string) {
+  return Boolean(iconKey && technologyIcons[iconKey]);
+}
+
+export function getTechnologyInitials(name: string, customInitials?: string) {
+  if (customInitials?.trim()) {
+    return customInitials.trim().toUpperCase();
+  }
+
   const words = name
     .trim()
-    .split(/\s+/)
+    .split(/[\s&/+.,()-]+/)
     .map((word) => word.replace(/\+/g, "p").replace(/[^a-z0-9]/gi, ""))
     .filter(Boolean);
 
@@ -78,16 +86,18 @@ export function TechnologyIcon({
   iconKey,
   name,
   brandColor,
+  initials,
   size = 20,
   className,
 }: {
-  iconKey: string;
+  iconKey?: string;
   name: string;
   brandColor?: string;
+  initials?: string;
   size?: number;
   className?: string;
 }) {
-  const icon = technologyIcons[iconKey];
+  const icon = iconKey ? technologyIcons[iconKey] : undefined;
 
   if (!icon) {
     const color = brandColor || "#2563eb";
@@ -97,7 +107,7 @@ export function TechnologyIcon({
         style={{ "--technology-color": color, "--technology-foreground": getReadableTextColor(color) } as CSSProperties}
         aria-hidden="true"
       >
-        {getTechnologyInitials(name)}
+        {getTechnologyInitials(name, initials)}
       </span>
     );
   }

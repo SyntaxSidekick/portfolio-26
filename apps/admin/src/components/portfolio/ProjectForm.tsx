@@ -5,7 +5,7 @@ import { listCategories } from "../../api/categories";
 import { listTechnologies } from "../../api/technologies";
 import { MediaPicker } from "../media/MediaPicker";
 import { TechnologyIcon } from "../../lib/technologyIcons";
-import type { CategoryReference, GalleryImage, PortfolioProject, ProjectHighlight, ProjectMetric, ProjectResult, ProjectStatus, ProjectType, TechnologyReference } from "../../types/admin";
+import type { CaseStudySectionKey, CategoryReference, GalleryImage, MetricType, PortfolioProject, ProjectHighlight, ProjectMetric, ProjectResult, ProjectStatus, ProjectType, TechnologyReference } from "../../types/admin";
 
 type MediaField = "featured" | "desktop" | "mobile" | "card";
 
@@ -45,6 +45,20 @@ export interface ProjectFormValues {
   solutionContent: string;
   solutionIconKey: string;
   solutionAccentColor: string;
+  overviewIconKey: string;
+  caseStudySectionOrder: CaseStudySectionKey[];
+  overviewMediaUrl: string;
+  overviewMediaId: string;
+  overviewMediaAlt: string;
+  challengeMediaUrl: string;
+  challengeMediaId: string;
+  challengeMediaAlt: string;
+  solutionMediaUrl: string;
+  solutionMediaId: string;
+  solutionMediaAlt: string;
+  highlightsMediaUrl: string;
+  highlightsMediaId: string;
+  highlightsMediaAlt: string;
   primaryMetrics: ProjectMetric[];
   keyResults: ProjectResult[];
   highlights: ProjectHighlight[];
@@ -102,6 +116,20 @@ export const emptyProjectFormValues: ProjectFormValues = {
   solutionContent: "",
   solutionIconKey: "",
   solutionAccentColor: "#38df7f",
+  overviewIconKey: "",
+  caseStudySectionOrder: ["overview", "challenge", "solution", "key-results", "lessons-learned"],
+  overviewMediaUrl: "",
+  overviewMediaId: "",
+  overviewMediaAlt: "",
+  challengeMediaUrl: "",
+  challengeMediaId: "",
+  challengeMediaAlt: "",
+  solutionMediaUrl: "",
+  solutionMediaId: "",
+  solutionMediaAlt: "",
+  highlightsMediaUrl: "",
+  highlightsMediaId: "",
+  highlightsMediaAlt: "",
   primaryMetrics: [],
   keyResults: [],
   highlights: [],
@@ -136,6 +164,72 @@ const id = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? cryp
 const ordered = <T extends { displayOrder: number }>(items: T[] = []) => [...items].sort((a, b) => a.displayOrder - b.displayOrder);
 const compact = (value: string) => value.trim() || undefined;
 const media = (url: string, alt: string, idValue?: string) => compact(url) ? { id: compact(idValue ?? ""), url: url.trim(), alt: alt.trim() } : undefined;
+const legacyMetricTypeMap: Record<string, MetricType> = {
+  users: "users",
+  "cloud-download": "downloads",
+  "shield-check": "uptime",
+  zap: "performance",
+  "trending-up": "growth",
+  clock: "time",
+  award: "completion",
+  star: "rating",
+  activity: "performance",
+  chart: "growth",
+  "check-circle": "completion",
+  database: "database",
+};
+
+function metricTypeFromResult(result: ProjectResult): MetricType {
+  if (result.type) {
+    return result.type;
+  }
+  if (result.iconKey && result.iconKey in legacyMetricTypeMap) {
+    return legacyMetricTypeMap[result.iconKey];
+  }
+  return "users";
+}
+
+function metricOrderFromResult(result: ProjectResult, index: number) {
+  if (typeof result.order === "number") {
+    return result.order;
+  }
+  if (typeof result.displayOrder === "number") {
+    return result.displayOrder;
+  }
+  return index;
+}
+
+function normalizeResults(results: ProjectResult[] = []): ProjectResult[] {
+  return [...results]
+    .map((result, index) => ({
+      ...result,
+      type: metricTypeFromResult(result),
+      order: metricOrderFromResult(result, index),
+    }))
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
+function selectGallery(mediaGallery?: GalleryImage[], rootGallery?: GalleryImage[]) {
+  const fromMedia = (mediaGallery ?? []).filter((image) => Boolean(image.url?.trim()));
+  if (fromMedia.length > 0) {
+    return fromMedia;
+  }
+  return (rootGallery ?? []).filter((image) => Boolean(image.url?.trim()));
+}
+
+function deriveSectionOrder(project: PortfolioProject): CaseStudySectionKey[] {
+  const fromProject = project.caseStudy?.sectionOrder;
+  if (fromProject?.length) return fromProject;
+
+  const dynamic: CaseStudySectionKey[] = ["overview", "challenge", "solution"];
+  if ((project.keyResults?.length ?? 0) > 0 || (project.primaryMetrics?.length ?? 0) > 0) {
+    dynamic.push("key-results");
+  }
+  if ((project.highlights?.length ?? 0) > 0) {
+    dynamic.push("lessons-learned");
+  }
+  return dynamic;
+}
 
 export function projectToFormValues(project: PortfolioProject): ProjectFormValues {
   return {
@@ -164,7 +258,7 @@ export function projectToFormValues(project: PortfolioProject): ProjectFormValue
     cardImageUrl: project.media?.cardImage?.url ?? project.featuredImage?.url ?? "",
     cardImageId: project.media?.cardImage?.id ?? "",
     cardImageAlt: project.media?.cardImage?.alt ?? project.featuredImage?.alt ?? "",
-    gallery: project.media?.gallery ?? project.gallery ?? [],
+    gallery: selectGallery(project.media?.gallery, project.gallery),
     overviewHeading: project.overview?.heading ?? "Project Overview",
     overviewContent: project.overview?.content ?? project.description ?? "",
     challengeHeading: project.challenge?.heading ?? "The Challenge",
@@ -175,8 +269,22 @@ export function projectToFormValues(project: PortfolioProject): ProjectFormValue
     solutionContent: project.solution?.content ?? "",
     solutionIconKey: project.solution?.iconKey ?? "",
     solutionAccentColor: project.solution?.accentColor ?? "#38df7f",
+    overviewIconKey: project.overview?.iconKey ?? "",
+    caseStudySectionOrder: deriveSectionOrder(project),
+    overviewMediaUrl: project.caseStudy?.sectionMedia?.overview?.url ?? project.overview?.media?.url ?? "",
+    overviewMediaId: project.caseStudy?.sectionMedia?.overview?.id ?? project.overview?.media?.id ?? "",
+    overviewMediaAlt: project.caseStudy?.sectionMedia?.overview?.alt ?? project.overview?.media?.alt ?? "",
+    challengeMediaUrl: project.caseStudy?.sectionMedia?.challenge?.url ?? project.challenge?.media?.url ?? "",
+    challengeMediaId: project.caseStudy?.sectionMedia?.challenge?.id ?? project.challenge?.media?.id ?? "",
+    challengeMediaAlt: project.caseStudy?.sectionMedia?.challenge?.alt ?? project.challenge?.media?.alt ?? "",
+    solutionMediaUrl: project.caseStudy?.sectionMedia?.solution?.url ?? project.solution?.media?.url ?? "",
+    solutionMediaId: project.caseStudy?.sectionMedia?.solution?.id ?? project.solution?.media?.id ?? "",
+    solutionMediaAlt: project.caseStudy?.sectionMedia?.solution?.alt ?? project.solution?.media?.alt ?? "",
+    highlightsMediaUrl: project.caseStudy?.sectionMedia?.highlights?.url ?? "",
+    highlightsMediaId: project.caseStudy?.sectionMedia?.highlights?.id ?? "",
+    highlightsMediaAlt: project.caseStudy?.sectionMedia?.highlights?.alt ?? "",
     primaryMetrics: ordered(project.primaryMetrics?.length ? project.primaryMetrics : project.metrics ?? []),
-    keyResults: ordered(project.keyResults ?? []),
+    keyResults: normalizeResults(project.keyResults ?? []),
     highlights: ordered(project.highlights ?? []),
     client: project.details?.client ?? project.client ?? "",
     role: project.details?.role ?? project.role ?? "",
@@ -202,23 +310,35 @@ export function formValuesToProjectPayload(values: ProjectFormValues, categories
   const primaryMetrics = cleanMetrics(values.primaryMetrics);
   const keyResults = cleanResults(values.keyResults);
   const highlights = values.highlights.map((item, index) => ({ id: item.id, text: item.text.trim(), displayOrder: index })).filter((item) => item.text);
+  const fallbackSummary = values.heroSummary.trim() || values.title.trim();
+  const fallbackSubtitle = values.heroSubtitle.trim() || values.client.trim() || values.title.trim();
+  const fallbackOverview = values.overviewContent.trim() || fallbackSummary || values.title.trim();
 
   return {
     title: values.title,
     slug: values.slug,
     projectType: values.projectType,
     status: values.status,
-    excerpt: values.heroSummary,
-    description: values.overviewContent,
+    excerpt: fallbackSummary,
+    description: fallbackOverview,
     featured: values.featured,
     displayOrder: Number(values.displayOrder || 0),
     featuredImage: media(values.featuredImageUrl, values.featuredImageAlt, values.featuredImageId),
     gallery: values.gallery,
-    hero: { eyebrow: compact(values.heroEyebrow), subtitle: values.heroSubtitle, summary: values.heroSummary, badgeText: compact(values.heroBadgeText) },
+    hero: { eyebrow: compact(values.heroEyebrow), subtitle: fallbackSubtitle, summary: fallbackSummary, badgeText: compact(values.heroBadgeText) },
     media: { featuredImage: media(values.featuredImageUrl, values.featuredImageAlt, values.featuredImageId), desktopImage: media(values.desktopImageUrl, values.desktopImageAlt, values.desktopImageId), mobileImage: media(values.mobileImageUrl, values.mobileImageAlt, values.mobileImageId), cardImage: media(values.cardImageUrl, values.cardImageAlt, values.cardImageId), gallery: values.gallery },
-    overview: { heading: compact(values.overviewHeading), content: values.overviewContent },
-    challenge: { heading: compact(values.challengeHeading), content: values.challengeContent, iconKey: compact(values.challengeIconKey), accentColor: compact(values.challengeAccentColor) },
-    solution: { heading: compact(values.solutionHeading), content: values.solutionContent, iconKey: compact(values.solutionIconKey), accentColor: compact(values.solutionAccentColor) },
+    overview: { heading: compact(values.overviewHeading), content: fallbackOverview, media: media(values.overviewMediaUrl, values.overviewMediaAlt, values.overviewMediaId) },
+    challenge: { heading: compact(values.challengeHeading), content: values.challengeContent, media: media(values.challengeMediaUrl, values.challengeMediaAlt, values.challengeMediaId) },
+    solution: { heading: compact(values.solutionHeading), content: values.solutionContent, media: media(values.solutionMediaUrl, values.solutionMediaAlt, values.solutionMediaId) },
+    caseStudy: {
+      sectionOrder: values.caseStudySectionOrder,
+      sectionMedia: {
+        overview: media(values.overviewMediaUrl, values.overviewMediaAlt, values.overviewMediaId),
+        challenge: media(values.challengeMediaUrl, values.challengeMediaAlt, values.challengeMediaId),
+        solution: media(values.solutionMediaUrl, values.solutionMediaAlt, values.solutionMediaId),
+        highlights: media(values.highlightsMediaUrl, values.highlightsMediaAlt, values.highlightsMediaId),
+      },
+    },
     primaryMetrics,
     metrics: primaryMetrics,
     keyResults,
@@ -241,7 +361,15 @@ function cleanMetrics(metrics: ProjectMetric[]) {
 }
 
 function cleanResults(results: ProjectResult[]) {
-  return results.map((result, index) => ({ id: result.id, label: result.label.trim(), value: result.value.trim(), description: result.description?.trim() || undefined, iconKey: result.iconKey?.trim() || undefined, accentColor: result.accentColor?.trim() || undefined, displayOrder: index })).filter((result) => result.label || result.value || result.description);
+  return normalizeResults(results)
+    .map((result, index) => ({
+      id: result.id,
+      type: metricTypeFromResult(result),
+      value: result.value.trim(),
+      label: result.label.trim(),
+      order: index,
+    }))
+    .filter((result) => result.label || result.value);
 }
 
 function FormSection({ title, help, children }: { title: string; help?: string; children: ReactNode }) {
@@ -431,7 +559,8 @@ function MetricEditor({ items, onChange, addLabel }: { items: ProjectMetric[]; o
 }
 
 function ResultEditor({ items, onChange }: { items: ProjectResult[]; onChange: (items: ProjectResult[]) => void }) {
-  return <RepeatableShell empty="No key results added." addLabel="Add Result" onAdd={() => onChange([...items, { id: id(), value: "", label: "", description: "", iconKey: "rocket", accentColor: "#1688ff", displayOrder: items.length }])}>{items.map((item, index) => <div className="repeatable-card" key={item.id}><label>Value<input required={Boolean(item.label)} value={item.value} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, value: event.target.value } : entry))} /></label><label>Label<input required={Boolean(item.value)} value={item.label} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, label: event.target.value } : entry))} /></label><label>Icon key<select value={item.iconKey ?? ""} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, iconKey: event.target.value } : entry))}>{resultIcons.map((icon) => <option key={icon} value={icon}>{icon}</option>)}</select></label><label>Accent color<input value={item.accentColor ?? ""} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, accentColor: event.target.value } : entry))} /></label><RowActions index={index} length={items.length} move={(direction) => onChange(move(items, index, direction))} remove={() => onChange(items.filter((_, i) => i !== index))} /></div>)}</RepeatableShell>;
+  const withDisplayOrder: Array<ProjectResult & { displayOrder: number }> = items.map((entry, index) => ({ ...entry, displayOrder: entry.displayOrder ?? index }));
+  return <RepeatableShell empty="No key results added." addLabel="Add Result" onAdd={() => onChange([...items, { id: id(), type: "users", order: items.length, value: "", label: "", description: "", iconKey: "rocket", accentColor: "#1688ff", displayOrder: items.length }])}>{items.map((item, index) => <div className="repeatable-card" key={item.id}><label>Value<input required={Boolean(item.label)} value={item.value} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, value: event.target.value } : entry))} /></label><label>Label<input required={Boolean(item.value)} value={item.label} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, label: event.target.value } : entry))} /></label><label>Icon key<select value={item.iconKey ?? ""} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, iconKey: event.target.value } : entry))}>{resultIcons.map((icon) => <option key={icon} value={icon}>{icon}</option>)}</select></label><label>Accent color<input value={item.accentColor ?? ""} onChange={(event) => onChange(items.map((entry, i) => i === index ? { ...entry, accentColor: event.target.value } : entry))} /></label><RowActions index={index} length={items.length} move={(direction) => onChange(move<ProjectResult & { displayOrder: number }>(withDisplayOrder, index, direction).map((entry, order) => ({ ...entry, order })))} remove={() => onChange(items.filter((_, i) => i !== index))} /></div>)}</RepeatableShell>;
 }
 
 function HighlightEditor({ items, onChange }: { items: ProjectHighlight[]; onChange: (items: ProjectHighlight[]) => void }) {

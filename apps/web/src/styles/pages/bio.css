@@ -740,6 +740,8 @@
 }
 
 .bio .skill-group li {
+  --brand-color: var(--bio-blue-bright);
+
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -754,161 +756,79 @@
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
+    box-shadow 160ms ease,
     transform 160ms ease;
 }
 
-.bio .skill-group li:hover {
-  border-color: var(--bio-blue-bright);
-  background: rgba(18, 48, 69, 0.88);
+.bio .skill-group li:hover,
+.bio .skill-group li:focus-within {
+  border-color: var(--brand-color);
+  background:
+    color-mix(
+      in srgb,
+      var(--brand-color) 10%,
+      rgba(14, 27, 37, 0.9)
+    );
+  box-shadow:
+    0 0 0 1px
+    color-mix(
+      in srgb,
+      var(--brand-color) 26%,
+      transparent
+    ),
+    0 0 0.9rem
+    color-mix(
+      in srgb,
+      var(--brand-color) 13%,
+      transparent
+    );
   transform: translateX(0.15rem);
 }
 
-.bio .skill-dot {
-  flex: 0 0 auto;
-  width: 0.68rem;
-  height: 0.68rem;
-  border-radius: 0.14rem;
-  background: currentColor;
-  box-shadow:
-    0 0 0.5rem currentColor;
-  color: var(--accent);
+.bio .skill-icon {
+  display: grid;
+  flex: 0 0 1.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--brand-color);
+  place-items: center;
 }
 
-/* Core engineering */
-
-.bio .skill-dot.html {
-  color: #f26430;
+.bio .skill-icon svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+  color: inherit;
+  fill: currentColor;
 }
 
-.bio .skill-dot.css {
-  color: #258bd2;
+.bio .skill-icon > span {
+  display: grid;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 1px solid
+    color-mix(
+      in srgb,
+      var(--brand-color) 65%,
+      transparent
+    );
+  border-radius: 0.25rem;
+  background:
+    color-mix(
+      in srgb,
+      var(--brand-color) 14%,
+      transparent
+    );
+  color: var(--brand-color);
+  font-size: 0.52rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1;
+  place-items: center;
 }
 
-.bio .skill-dot.js {
-  color: #f0d43a;
-}
-
-.bio .skill-dot.ts {
-  color: #3178c6;
-}
-
-.bio .skill-dot.sql {
-  color: #4ba2d8;
-}
-
-/* Frameworks */
-
-.bio .skill-dot.react {
-  color: #61dafb;
-}
-
-.bio .skill-dot.next {
-  color: #f5f5f5;
-}
-
-.bio .skill-dot.vue {
-  color: #42b883;
-}
-
-.bio .skill-dot.node {
-  color: #68a063;
-}
-
-.bio .skill-dot.wordpress {
-  color: #21759b;
-}
-
-/* Architecture */
-
-.bio .skill-dot.architecture,
-.bio .skill-dot.micro,
-.bio .skill-dot.component,
-.bio .skill-dot.webcomponents,
-.bio .skill-dot.api {
-  color: var(--bio-blue-bright);
-}
-
-/* UX */
-
-.bio .skill-dot.interaction,
-.bio .skill-dot.ux,
-.bio .skill-dot.journeys,
-.bio .skill-dot.ia,
-.bio .skill-dot.responsive {
-  color: #42a5f5;
-}
-
-/* Design systems */
-
-.bio .skill-dot.design,
-.bio .skill-dot.tokens,
-.bio .skill-dot.library,
-.bio .skill-dot.patterns,
-.bio .skill-dot.documentation {
-  color: #a45ee8;
-}
-
-/* Design tools */
-
-.bio .skill-dot.figma {
-  color: #a259ff;
-}
-
-.bio .skill-dot.balsamiq {
-  color: #f6bd16;
-}
-
-.bio .skill-dot.invision {
-  color: #ff3366;
-}
-
-.bio .skill-dot.photoshop {
-  color: #31a8ff;
-}
-
-.bio .skill-dot.illustrator {
-  color: #ff9a00;
-}
-
-.bio .skill-dot.indesign {
-  color: #ff3366;
-}
-
-.bio .skill-dot.xd {
-  color: #ff61f6;
-}
-
-/* Quality */
-
-.bio .skill-dot.accessibility,
-.bio .skill-dot.lighthouse,
-.bio .skill-dot.playwright,
-.bio .skill-dot.jest,
-.bio .skill-dot.seo {
-  color: #38bdf8;
-}
-
-/* Delivery */
-
-.bio .skill-dot.git {
-  color: #f05032;
-}
-
-.bio .skill-dot.cicd,
-.bio .skill-dot.vite,
-.bio .skill-dot.storybook,
-.bio .skill-dot.agile {
-  color: #4dabf7;
-}
-
-/* AI */
-
-.bio .skill-dot.ai,
-.bio .skill-dot.copilot,
-.bio .skill-dot.claude,
-.bio .skill-dot.codex,
-.bio .skill-dot.automation {
-  color: #b35cf0;
+.bio .skill-name {
+  min-width: 0;
 }
 
 /* ==========================================================
@@ -1365,5 +1285,14 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+.bio .skill-group li {
+    transition: none;
+  }
+
+.bio .skill-group li:hover,
+.bio .skill-group li:focus-within {
+    transform: none;
   }
 }

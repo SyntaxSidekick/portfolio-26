@@ -349,7 +349,23 @@ function normalizeProjectType(projectType: unknown) {
 }
 
 async function mediaUsage(id: string) {
-  const data = await projects().find({ $or: [{ "featuredImage.id": id }, { "media.featuredImage.id": id }, { "media.desktopImage.id": id }, { "media.mobileImage.id": id }, { "media.cardImage.id": id }, { "media.gallery.id": id }] }).project({ title: 1, slug: 1 }).toArray();
+  const data = await projects().find({
+    $or: [
+      { "featuredImage.id": id },
+      { "media.featuredImage.id": id },
+      { "media.desktopImage.id": id },
+      { "media.mobileImage.id": id },
+      { "media.cardImage.id": id },
+      { "media.gallery.id": id },
+      { "overview.media.id": id },
+      { "challenge.media.id": id },
+      { "solution.media.id": id },
+      { "caseStudy.sectionMedia.overview.id": id },
+      { "caseStudy.sectionMedia.challenge.id": id },
+      { "caseStudy.sectionMedia.solution.id": id },
+      { "caseStudy.sectionMedia.highlights.id": id },
+    ],
+  }).project({ title: 1, slug: 1 }).toArray();
   return data.map((project) => ({ type: "project", id: project._id.toString(), title: project.title, slug: project.slug }));
 }
 

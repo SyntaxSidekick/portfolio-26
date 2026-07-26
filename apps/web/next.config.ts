@@ -7,6 +7,10 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "syntaxsidekick.com"
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co"
       }
     ]
   }

@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  Accessibility,
-  Activity,
-  BarChart3,
-  Rocket,
-  Search,
-  Shield,
-  Timer,
-  User,
+  CircleCheck,
+  CloudDownload,
+  Clock,
+  Database,
+  DollarSign,
+  ShieldCheck,
+  Star,
+  TrendingUp,
+  Users,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 import "@/styles/pages/portfolio-single.css";
@@ -19,21 +21,52 @@ type PageProps = Readonly<{
   params: Promise<{ slug: string }>;
 }>;
 
-const resultIcons: Record<string, LucideIcon> = {
-  accessibility: Accessibility,
-  activity: Activity,
-  "bar-chart": BarChart3,
-  rocket: Rocket,
-  search: Search,
-  shield: Shield,
-  timer: Timer,
-  user: User,
+type MetricType = "users" | "downloads" | "uptime" | "performance" | "growth" | "time" | "revenue" | "rating" | "database" | "completion";
+
+const metricPresets: Record<MetricType, { icon: LucideIcon; accent: string }> = {
+  users: { icon: Users, accent: "#a68aff" },
+  downloads: { icon: CloudDownload, accent: "#42cb8a" },
+  uptime: { icon: ShieldCheck, accent: "#4ea2ff" },
+  performance: { icon: Zap, accent: "#f2b545" },
+  growth: { icon: TrendingUp, accent: "#42cb8a" },
+  time: { icon: Clock, accent: "#f2b545" },
+  revenue: { icon: DollarSign, accent: "#42cb8a" },
+  rating: { icon: Star, accent: "#a68aff" },
+  database: { icon: Database, accent: "#4ea2ff" },
+  completion: { icon: CircleCheck, accent: "#f2b545" },
 };
 
-function ResultIcon({ iconKey, accentColor }: { iconKey?: string; accentColor?: string }) {
-  const Icon = resultIcons[iconKey ?? ""] ?? Rocket;
+const legacyMetricTypeByIcon: Record<string, MetricType> = {
+  users: "users",
+  "cloud-download": "downloads",
+  "shield-check": "uptime",
+  zap: "performance",
+  "trending-up": "growth",
+  clock: "time",
+  award: "completion",
+  star: "rating",
+  activity: "performance",
+  chart: "growth",
+  "check-circle": "completion",
+  database: "database",
+  shield: "uptime",
+};
+
+function metricTypeFromResult(type?: string, iconKey?: string): MetricType {
+  if (type && type in metricPresets) {
+    return type as MetricType;
+  }
+  if (iconKey && iconKey in legacyMetricTypeByIcon) {
+    return legacyMetricTypeByIcon[iconKey];
+  }
+  return "users";
+}
+
+function ResultIcon({ type, iconKey }: { type?: string; iconKey?: string }) {
+  const preset = metricPresets[metricTypeFromResult(type, iconKey)];
+  const Icon = preset.icon;
   return (
-    <span className="result-icon" aria-hidden="true" style={{ color: accentColor || undefined }}>
+    <span className="result-icon" aria-hidden="true" style={{ color: preset.accent }}>
       <Icon size={30} strokeWidth={1.8} />
     </span>
   );
@@ -93,9 +126,11 @@ export default async function Page({ params }: PageProps) {
       ? project.primaryMetrics
       : (project.metrics ?? [])),
   ].sort((a, b) => a.displayOrder - b.displayOrder);
-  const keyResults = [...(project.keyResults ?? [])].sort(
-    (a, b) => a.displayOrder - b.displayOrder,
-  );
+  const keyResults = [...(project.keyResults ?? [])].sort((a, b) => {
+    const left = typeof a.order === "number" ? a.order : typeof a.displayOrder === "number" ? a.displayOrder : 0;
+    const right = typeof b.order === "number" ? b.order : typeof b.displayOrder === "number" ? b.displayOrder : 0;
+    return left - right;
+  });
   const highlights = [...(project.highlights ?? [])].sort(
     (a, b) => a.displayOrder - b.displayOrder,
   );
@@ -245,14 +280,11 @@ export default async function Page({ params }: PageProps) {
                   {keyResults.map((result) => (
                     <div key={result.id}>
                       <ResultIcon
+                        type={result.type}
                         iconKey={result.iconKey}
-                        accentColor={result.accentColor}
                       />
                       <dt>{result.value}</dt>
                       <dd>{result.label}</dd>
-                      {result.description ? (
-                        <dd>{result.description}</dd>
-                      ) : null}
                     </div>
                   ))}
                 </dl>

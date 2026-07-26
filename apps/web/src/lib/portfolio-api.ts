@@ -30,12 +30,14 @@ export type PublicProject = {
   primaryMetrics?: PublicProject["metrics"];
   keyResults?: {
     id: string;
+    type?: "users" | "downloads" | "uptime" | "performance" | "growth" | "time" | "revenue" | "rating" | "database" | "completion";
     label: string;
     value: string;
     description?: string;
     iconKey?: string;
     accentColor?: string;
-    displayOrder: number;
+    order?: number;
+    displayOrder?: number;
   }[];
   highlights?: { id: string; text: string; displayOrder: number }[];
   details?: { client?: string; role?: string; platform?: string; subtype?: string; timeline?: string; launchDate?: string; year?: number; teamSize?: string; statusLabel?: string };

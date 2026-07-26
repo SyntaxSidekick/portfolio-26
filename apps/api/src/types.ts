@@ -2,6 +2,9 @@ import { z } from "zod";
 
 export const projectStatuses = ["draft", "published", "archived"] as const;
 export const projectTypes = ["case-study", "github", "design", "codepen"] as const;
+export const caseStudySectionKeys = ["overview", "challenge", "solution", "key-results", "lessons-learned"] as const;
+export const caseStudyMediaSectionKeys = ["overview", "challenge", "solution", "highlights"] as const;
+export const metricTypes = ["users", "downloads", "uptime", "performance", "growth", "time", "revenue", "rating", "database", "completion"] as const;
 export const technologyCategories = [
   "frontend",
   "framework",
@@ -62,10 +65,40 @@ export const projectMetricSchema = z.object({
   displayOrder: z.number().int("Metric display order must be numeric"),
 });
 
-export const projectResultSchema = projectMetricSchema.extend({
-  iconKey: z.string().trim().optional(),
-  accentColor: z.string().trim().optional(),
-});
+const legacyResultTypeMap: Record<string, (typeof metricTypes)[number]> = {
+  users: "users",
+  "cloud-download": "downloads",
+  "shield-check": "uptime",
+  zap: "performance",
+  "trending-up": "growth",
+  clock: "time",
+  award: "completion",
+  star: "rating",
+  activity: "performance",
+  chart: "growth",
+  "check-circle": "completion",
+  database: "database",
+};
+
+export const projectResultSchema = z
+  .object({
+    id: z.string().optional(),
+    type: z.enum(metricTypes).optional(),
+    label: z.string().trim().min(1, "Metric label is required"),
+    value: z.string().trim().min(1, "Metric value is required"),
+    order: z.number().int().optional(),
+    displayOrder: z.number().int().optional(),
+    description: z.string().trim().optional(),
+    iconKey: z.string().trim().optional(),
+    accentColor: z.string().trim().optional(),
+  })
+  .transform((result) => ({
+    id: result.id,
+    type: result.type ?? (result.iconKey ? legacyResultTypeMap[result.iconKey] : undefined) ?? "users",
+    value: result.value,
+    label: result.label,
+    order: result.order ?? result.displayOrder ?? 0,
+  }));
 
 export const projectHighlightSchema = z.object({
   id: z.string().optional(),
@@ -78,6 +111,7 @@ const contentBlockSchema = z.object({
   content: z.string().trim().default(""),
   iconKey: z.string().trim().optional(),
   accentColor: z.string().trim().optional(),
+  media: mediaReferenceSchema.optional(),
 });
 
 export const projectInputSchema = z.object({
@@ -106,9 +140,20 @@ export const projectInputSchema = z.object({
   overview: z.object({
     heading: z.string().trim().optional(),
     content: z.string().trim().min(1, "Overview content is required"),
+    iconKey: z.string().trim().optional(),
+    media: mediaReferenceSchema.optional(),
   }).optional(),
   challenge: contentBlockSchema.optional(),
   solution: contentBlockSchema.optional(),
+  caseStudy: z.object({
+    sectionOrder: z.array(z.enum(caseStudySectionKeys)).default([]),
+    sectionMedia: z.object({
+      overview: mediaReferenceSchema.optional(),
+      challenge: mediaReferenceSchema.optional(),
+      solution: mediaReferenceSchema.optional(),
+      highlights: mediaReferenceSchema.optional(),
+    }).optional(),
+  }).optional(),
   primaryMetrics: z.array(projectMetricSchema).default([]),
   keyResults: z.array(projectResultSchema).default([]),
   highlights: z.array(projectHighlightSchema).default([]),
