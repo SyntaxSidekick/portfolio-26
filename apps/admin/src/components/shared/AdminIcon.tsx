@@ -3,12 +3,16 @@ import {
   BarChart3,
   Bell,
   BriefcaseBusiness,
+  Check,
   ChevronDown,
   CircleHelp,
+  Download,
   Ellipsis,
   ExternalLink,
   Eye,
   File,
+  FileText,
+  FlaskConical,
   Image,
   LayoutDashboard,
   Menu,
@@ -18,6 +22,7 @@ import {
   Search,
   Settings,
   Sun,
+  UploadCloud,
   User,
   Wrench,
   X,
@@ -30,13 +35,17 @@ export type AdminIconName =
   | "bell"
   | "briefcase"
   | "chart"
+  | "check"
   | "chevron"
   | "close"
   | "dashboard"
+  | "download"
   | "edit"
   | "external"
   | "eye"
   | "file"
+  | "file-text"
+  | "flask"
   | "image"
   | "menu"
   | "message"
@@ -45,6 +54,7 @@ export type AdminIconName =
   | "search"
   | "settings"
   | "sun"
+  | "upload"
   | "user"
   | "wrench";
 
@@ -54,13 +64,17 @@ const icons: Record<AdminIconName, LucideIcon> = {
   bell: Bell,
   briefcase: BriefcaseBusiness,
   chart: BarChart3,
+  check: Check,
   chevron: ChevronDown,
   close: X,
   dashboard: LayoutDashboard,
+  download: Download,
   edit: Pencil,
   external: ExternalLink,
   eye: Eye,
   file: File,
+  "file-text": FileText,
+  flask: FlaskConical,
   image: Image,
   menu: Menu,
   message: MessageCircle,
@@ -69,6 +83,7 @@ const icons: Record<AdminIconName, LucideIcon> = {
   search: Search,
   settings: Settings,
   sun: Sun,
+  upload: UploadCloud,
   user: User,
   wrench: Wrench,
 };

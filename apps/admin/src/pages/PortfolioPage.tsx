@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { isAbortError } from "../api/client";
-import { deleteProject, listProjects } from "../api/projects";
+import { deleteProject, listProjects, patchProject } from "../api/projects";
 import { PortfolioFilters } from "../components/portfolio/PortfolioFilters";
 import { ProjectsTable } from "../components/portfolio/ProjectsTable";
 import { PageHeading } from "../components/shared/PageHeading";
@@ -16,6 +16,7 @@ export function PortfolioPage({ query }: { query: string }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+  const [featuredTogglePendingIds, setFeaturedTogglePendingIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     const controller = new AbortController();
@@ -50,16 +51,39 @@ export function PortfolioPage({ query }: { query: string }) {
     setMessage(`${project.title} deleted.`);
   }
 
+  async function handleToggleFeatured(project: PortfolioProject, featured: boolean) {
+    setFeaturedTogglePendingIds((current) => {
+      const next = new Set(current);
+      next.add(project.id);
+      return next;
+    });
+    setError("");
+
+    try {
+      const updated = await patchProject(project.id, { featured });
+      setProjects((current) => current.map((item) => (item.id === updated.id ? updated : item)));
+      setMessage(`${updated.title} ${updated.featured ? "marked as featured" : "removed from featured"}.`);
+    } catch (reason: unknown) {
+      setError(reason instanceof Error ? reason.message : "Featured state could not be updated");
+    } finally {
+      setFeaturedTogglePendingIds((current) => {
+        const next = new Set(current);
+        next.delete(project.id);
+        return next;
+      });
+    }
+  }
+
   return (
     <>
       <PageHeading title="Portfolio" description="Manage projects, statuses, categories, technologies, gallery metadata, and display order." />
-      <div className="heading-actions admin-actions-row"><button className="button button-primary" type="button" onClick={() => navigate("/portfolio/new")}>Create Project</button><Link className="button button-secondary" to="/portfolio/categories">Categories</Link><Link className="button button-secondary" to="/portfolio/technologies">Technologies</Link></div>
+      <div className="heading-actions admin-actions-row"><button className="button button-primary" type="button" onClick={() => navigate("/portfolio/new")}>Create Project</button><Link className="button button-secondary" to="/portfolio/import">Import CSV</Link><Link className="button button-secondary" to="/portfolio/categories">Categories</Link><Link className="button button-secondary" to="/portfolio/technologies">Technologies</Link></div>
       <PortfolioFilters type={type} status={status} onType={setType} onStatus={setStatus} />
       {message ? <p className="notice success">{message}</p> : null}
       {loading ? <article className="panel empty-panel">Loading projects...</article> : null}
       {error ? <article className="panel empty-panel">{error}</article> : null}
       {!loading && !error && filtered.length === 0 ? <article className="panel empty-panel">No projects found.</article> : null}
-      {!loading && !error && filtered.length > 0 ? <ProjectsTable projects={filtered} onDelete={handleDelete} /> : null}
+      {!loading && !error && filtered.length > 0 ? <ProjectsTable projects={filtered} onDelete={handleDelete} onToggleFeatured={handleToggleFeatured} featuredTogglePendingIds={featuredTogglePendingIds} /> : null}
     </>
   );
 }

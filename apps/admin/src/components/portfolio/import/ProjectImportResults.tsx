@@ -1,0 +1,6 @@
+import { Link } from "react-router-dom";
+import type { CommitProjectImportResponse } from "../../../api/project-import";
+
+export function ProjectImportResults({ results, onReset }: { results: CommitProjectImportResponse; onReset: () => void }) {
+  return <article className="panel import-results"><div className="panel-header"><div><h2>Import Results</h2><p>Created {results.summary.created}, updated {results.summary.updated}, skipped {results.summary.skipped}, failed {results.summary.failed}.</p></div><div className="heading-actions"><Link className="button button-secondary" to="/portfolio">Return to Portfolio</Link><button className="button button-primary" type="button" onClick={onReset}>Import Another CSV</button></div></div><div className="table-wrap"><table><caption>Committed import results</caption><thead><tr><th>Row</th><th>Title</th><th>Slug</th><th>Result</th><th>Details</th><th>Admin action</th></tr></thead><tbody>{results.results.map((row) => <tr key={row.rowId}><td>{row.rowNumber}</td><td>{row.title}</td><td>{row.slug}</td><td>{row.status}</td><td>{row.message}</td><td>{row.editUrl ? <Link to={row.editUrl}>Edit project</Link> : "None"}</td></tr>)}</tbody></table></div></article>;
+}

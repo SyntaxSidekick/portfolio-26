@@ -7,6 +7,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { GalleriesPage } from "./pages/GalleriesPage";
 import { MediaPage } from "./pages/MediaPage";
 import { PortfolioEditorPage } from "./pages/PortfolioEditorPage";
+import { PortfolioImportPage } from "./pages/PortfolioImportPage";
 import { PortfolioPage } from "./pages/PortfolioPage";
 import { PortfolioCategoriesPage } from "./pages/PortfolioCategoriesPage";
 import { PortfolioDetailPage } from "./pages/PortfolioDetailPage";
@@ -23,6 +24,7 @@ export function App() {
       <Routes>
         <Route path="/" element={<DashboardPage query={query} theme={theme} />} />
         <Route path="/portfolio" element={<PortfolioPage query={query} />} />
+        <Route path="/portfolio/import" element={<PortfolioImportPage />} />
         <Route path="/portfolio/new" element={<PortfolioEditorPage />} />
         <Route path="/portfolio/categories" element={<PortfolioCategoriesPage />} />
         <Route path="/portfolio/technologies" element={<PortfolioTechnologiesPage />} />

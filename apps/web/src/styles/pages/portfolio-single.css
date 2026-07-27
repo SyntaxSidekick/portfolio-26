@@ -114,7 +114,7 @@
 
 .project-single h1 {
   margin: 0;
-  font-size: clamp(2.6rem, 5.8vw, 5rem);
+  font-size: clamp(2.6rem, 5.8vw, 3rem);
   line-height: 1.06;
 }
 
@@ -244,7 +244,7 @@
   transform: translateY(-2px);
 }
 
-.project-single .button-primary {
+.project-single .card-link {
   border: 1px solid .258ff5;
   color: white;
   background: linear-gradient(135deg, .168fff, .0a5fd0);

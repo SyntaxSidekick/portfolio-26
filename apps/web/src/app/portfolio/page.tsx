@@ -21,7 +21,7 @@ const sections: {
 }[] = [
   {
     id: "case-studies",
-    title: "Featured Case Studies",
+    title: "Case Studies",
     description:
       "In-depth case studies of full-scale products and platforms from concept to launch.",
     type: "case-study",
@@ -123,12 +123,10 @@ function ProjectCard({
         />
       </div>
       <div className="card-body">
-        <span className="inline-content">
           <h3 className="card-title">{project.title}</h3>
           <p className="card-eyebrow">
-            {project.details?.subtype || project.projectType}
+            {project.details?.subtype || project.categories[0]?.name}
           </p>
-        </span>
         <p className="card-description">{project.excerpt}</p>
         <ul className="tag-list">
           {tags.map((technology) => (
@@ -138,7 +136,7 @@ function ProjectCard({
                 name={technology.name}
                 brandColor={technology.brandColor}
                 size={14}
-              />
+              /><span>{technology.name}</span>
             </li>
           ))}
         </ul>

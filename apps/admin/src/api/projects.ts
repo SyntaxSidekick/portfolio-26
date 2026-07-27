@@ -62,6 +62,10 @@ export function updateProject(id: string, payload: ProjectPayload) {
   return apiRequest<PortfolioProject>(`/projects/${id}`, { method: "PUT", body: JSON.stringify(payload) });
 }
 
+export function patchProject(id: string, payload: Partial<ProjectPayload>) {
+  return apiRequest<PortfolioProject>(`/projects/${id}`, { method: "PATCH", body: JSON.stringify(payload) });
+}
+
 export function deleteProject(id: string) {
   return apiRequest<void>(`/projects/${id}`, { method: "DELETE" });
 }

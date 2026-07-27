@@ -1,0 +1,6 @@
+import type { ValidatedProjectImportRow } from "../../../api/project-import";
+import { ProjectImportPreviewRow } from "./ProjectImportPreviewRow";
+
+export function ProjectImportPreview({ rows, selectedRows, busy, onToggle, onCommit }: { rows: ValidatedProjectImportRow[]; selectedRows: Set<string>; busy: boolean; onToggle: (rowId: string, checked: boolean) => void; onCommit: () => void }) {
+  return <article className="panel import-preview"><div className="panel-header"><div><h2>Preview</h2><p>Review validation results and choose the rows to commit.</p></div><button className="button button-primary" type="button" disabled={busy || selectedRows.size === 0} onClick={onCommit}>Commit {selectedRows.size} Row{selectedRows.size === 1 ? "" : "s"}</button></div><div className="table-wrap"><table><caption>Validated project import rows</caption><thead><tr><th>Include</th><th>Row</th><th>Status</th><th>Title</th><th>Slug</th><th>Project Type</th><th>Publishing Status</th><th>Technologies</th><th>Categories</th><th>Images</th><th>Issues</th><th>Actions</th></tr></thead><tbody>{rows.map((row) => <ProjectImportPreviewRow key={row.rowId} row={row} checked={selectedRows.has(row.rowId)} onToggle={(checked) => onToggle(row.rowId, checked)} />)}</tbody></table></div></article>;
+}

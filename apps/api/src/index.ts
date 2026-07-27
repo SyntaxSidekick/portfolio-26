@@ -5,6 +5,8 @@ import { MongoServerError, ObjectId, type Sort } from "mongodb";
 import { z } from "zod";
 import { categories, connectToDatabase, mediaItems, projects, technologies, toObjectId } from "./db";
 import { deleteStoredMedia, mediaStaticRoot, readMultipartFiles, storeOriginal } from "./media-storage";
+import { registerProjectImportRoutes } from "./project-import";
+import { cleanProjectInput, getStoredTechnologyIds, resolveSubmittedTechnologyIds } from "./project-utils";
 import { errorResponse, serializeDocument, slugify } from "./serialize";
 import { projectInputSchema, taxonomyInputSchema, technologyInputSchema } from "./types";
 
@@ -54,6 +56,8 @@ app.get("/api/projects/slug/:slug", async (request, response, next) => {
     next(error);
   }
 });
+
+registerProjectImportRoutes(app);
 
 app.get("/api/projects/:id", async (request, response, next) => {
   try {
@@ -129,15 +133,29 @@ app.patch("/api/projects/:id", async (request, response, next) => {
       response.status(400).json(errorResponse("Invalid project id"));
       return;
     }
-    const input = projectInputSchema.partial().parse(request.body);
+    const requestBody = (request.body ?? {}) as Record<string, unknown>;
+    const input = projectInputSchema.partial().parse(requestBody);
     const current = await projects().findOne({ _id });
     if (!current) {
       response.status(404).json(errorResponse("Project not found"));
       return;
     }
-    const patch = { ...input } as Record<string, unknown>;
-    if (input.technologyIds || input.technologies) {
-      patch.technologyIds = await resolveSubmittedTechnologyIds(input.technologyIds ?? [], input.technologies ?? [], new Set(getStoredTechnologyIds(current)));
+    const patch: Record<string, unknown> = {};
+    for (const key of Object.keys(requestBody)) {
+      const value = (input as Record<string, unknown>)[key];
+      if (value !== undefined) {
+        patch[key] = value;
+      }
+    }
+
+    const hasTechnologyIds = Object.prototype.hasOwnProperty.call(requestBody, "technologyIds");
+    const hasTechnologies = Object.prototype.hasOwnProperty.call(requestBody, "technologies");
+    if (hasTechnologyIds || hasTechnologies) {
+      patch.technologyIds = await resolveSubmittedTechnologyIds(
+        hasTechnologyIds ? (input.technologyIds ?? []) : [],
+        hasTechnologies ? (input.technologies ?? []) : [],
+        new Set(getStoredTechnologyIds(current)),
+      );
       delete patch.technologies;
     }
     const result = await projects().findOneAndUpdate({ _id }, { $set: { ...patch, updatedAt: new Date().toISOString() } }, { returnDocument: "after" });
@@ -283,41 +301,6 @@ app.delete("/api/media/:id", async (request, response, next) => {
     next(error);
   }
 });
-
-function getStoredTechnologyIds(project: Record<string, unknown>) {
-  const ids = Array.isArray(project.technologyIds) ? project.technologyIds.filter((id): id is string => typeof id === "string") : [];
-  if (ids.length > 0) return ids;
-  const legacy = Array.isArray(project.technologies) ? project.technologies : [];
-  return legacy.map((technology) => typeof technology === "object" && technology && "id" in technology ? String(technology.id) : "").filter(Boolean);
-}
-
-function cleanProjectInput<T extends { technologies?: unknown; technologyIds?: unknown }>(input: T) {
-  const { technologies: _technologies, technologyIds: _technologyIds, ...project } = input;
-  return project;
-}
-
-async function resolveSubmittedTechnologyIds(technologyIds: string[] = [], technologyReferences: { id: string }[] = [], existingIds: Set<string>) {
-  const submitted = technologyIds.length > 0 ? technologyIds : technologyReferences.map((technology) => technology.id);
-  const ids = [...new Set(submitted.filter(Boolean))];
-  if (ids.length === 0) return [];
-
-  const objectIds = ids.map((id) => toObjectId(id));
-  if (objectIds.some((id) => !id)) {
-    throw new z.ZodError([{ code: "custom", message: "Invalid technology id", path: ["technologyIds"] }]);
-  }
-
-  const found = await technologies().find({ _id: { $in: objectIds as ObjectId[] } }).toArray();
-  if (found.length !== ids.length) {
-    throw new z.ZodError([{ code: "custom", message: "One or more technologies do not exist", path: ["technologyIds"] }]);
-  }
-
-  const inactiveNew = found.find((technology) => technology.active === false && !existingIds.has(technology._id.toString()));
-  if (inactiveNew) {
-    throw new z.ZodError([{ code: "custom", message: `${inactiveNew.name} is inactive and cannot be assigned`, path: ["technologyIds"] }]);
-  }
-
-  return ids;
-}
 
 async function technologyUsageCounts() {
   const usage = await projects()

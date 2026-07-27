@@ -35,11 +35,13 @@ export function RequiredImagesSection({
   errors,
   updateField,
   updateMedia,
+  updateCardThumbnail,
 }: {
   values: ProjectFormValues;
   errors: ImagesStepErrors;
   updateField: <K extends keyof ProjectFormValues>(key: K, value: ProjectFormValues[K]) => void;
   updateMedia: (field: ImageField, media: MediaReference | null) => void;
+  updateCardThumbnail: (media: MediaReference | null) => void;
 }) {
   return (
     <article className="image-section-card" aria-labelledby="required-images-heading">
@@ -67,6 +69,16 @@ export function RequiredImagesSection({
               </header>
 
               <MediaPicker label={item.title} value={value} requiredAlt onChange={(media) => updateMedia(item.field, media)} />
+              {item.field === "card" ? (
+                <div className="optional-thumbnail-picker">
+                  <MediaPicker
+                    label="Card Thumbnail (Optional Override)"
+                    value={values.cardThumbnailUrl ? { id: values.cardThumbnailId, url: values.cardThumbnailUrl, alt: values.cardImageAlt } : null}
+                    onChange={updateCardThumbnail}
+                  />
+                  <p className="image-recommendation">Use this only if you want a custom lightweight thumbnail separate from the main card image.</p>
+                </div>
+              ) : null}
               <p className="image-recommendation">{item.recommendation}</p>
               <label className="image-alt-field">
                 Alt text

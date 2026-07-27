@@ -84,6 +84,7 @@
     font-weight: 600;
     text-decoration: none;
     transition: color .2s ease;
+    width: 100%;
 }
 
 .card-link span {

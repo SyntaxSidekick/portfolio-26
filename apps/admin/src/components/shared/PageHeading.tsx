@@ -1,6 +1,7 @@
 import { AdminIcon } from "./AdminIcon";
+import type { ReactNode } from "react";
 
-export function PageHeading({ title, description, action }: { title: string; description: string; action?: string }) {
+export function PageHeading({ title, description, action, children }: { title: string; description: string; action?: string; children?: ReactNode }) {
   return (
     <section className="page-heading">
       <div>
@@ -8,9 +9,7 @@ export function PageHeading({ title, description, action }: { title: string; des
         <p>{description}</p>
       </div>
       <div className="heading-actions">
-        <a className="button button-secondary" href="#view-site">
-          View Site <AdminIcon name="external" />
-        </a>
+        {children ?? <a className="button button-secondary" href="#view-site">View Site <AdminIcon name="external" /></a>}
         {action ? (
           <button className="button button-primary" type="button">
             <AdminIcon name="plus" />

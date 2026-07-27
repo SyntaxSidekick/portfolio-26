@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "seed:technologies": "tsx src/seed-technologies.ts",
+    "migrate:card-thumbnails": "tsx src/generate-card-thumbnails.ts",
     "build": "tsc --noEmit --pretty false",
     "lint": "tsc --noEmit --pretty false",
     "typecheck": "tsc --noEmit --pretty false",
-    "test": "node -e \"console.log('No API tests configured yet')\""
+    "test": "tsx --test src/project-import.test.ts"
   },
   "dependencies": {
     "@portfolio/technology-registry": "workspace:*",
@@ -17,6 +18,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "mongodb": "^7.0.0",
+    "sharp": "^0.35.3",
     "zod": "^4.2.1"
   },
   "devDependencies": {

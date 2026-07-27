@@ -4,7 +4,17 @@ import { AdminIcon } from "../shared/AdminIcon";
 
 const thumbClasses = ["project-one", "project-two", "project-three", "project-four", "project-five"];
 
-export function ProjectsTable({ projects, onDelete }: { projects: PortfolioProject[]; onDelete?: (project: PortfolioProject) => void }) {
+export function ProjectsTable({
+  projects,
+  onDelete,
+  onToggleFeatured,
+  featuredTogglePendingIds,
+}: {
+  projects: PortfolioProject[];
+  onDelete?: (project: PortfolioProject) => void;
+  onToggleFeatured?: (project: PortfolioProject, featured: boolean) => void | Promise<void>;
+  featuredTogglePendingIds?: Set<string>;
+}) {
   const navigate = useNavigate();
 
   return (
@@ -24,6 +34,7 @@ export function ProjectsTable({ projects, onDelete }: { projects: PortfolioProje
               <th>Status</th>
               <th>Date</th>
               <th>Actions</th>
+              <th>Featured</th>
             </tr>
           </thead>
           <tbody>
@@ -31,7 +42,17 @@ export function ProjectsTable({ projects, onDelete }: { projects: PortfolioProje
               <tr key={project.id}>
                 <td>
                   <div className="project-cell">
-                    <span className={`project-thumb ${thumbClasses[index % thumbClasses.length]}`} />
+                    {project.media?.cardImage?.thumbnailUrl || project.media?.cardImage?.url || project.media?.featuredImage?.thumbnailUrl || project.media?.featuredImage?.url || project.featuredImage?.thumbnailUrl || project.featuredImage?.url ? (
+                      <img
+                        className="project-thumb-image"
+                        src={project.media?.cardImage?.thumbnailUrl || project.media?.cardImage?.url || project.media?.featuredImage?.thumbnailUrl || project.media?.featuredImage?.url || project.featuredImage?.thumbnailUrl || project.featuredImage?.url}
+                        alt={project.media?.cardImage?.alt || project.media?.featuredImage?.alt || project.featuredImage?.alt || `${project.title} thumbnail`}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : (
+                      <span className={`project-thumb ${thumbClasses[index % thumbClasses.length]}`} />
+                    )}
                     <div>
                       <strong>{project.title}</strong>
                       <small>{project.excerpt}</small>
@@ -60,6 +81,21 @@ export function ProjectsTable({ projects, onDelete }: { projects: PortfolioProje
                       <AdminIcon name="close" />
                     </button>
                   ) : null}
+                </td>
+                <td className="featured-cell">
+                  {onToggleFeatured ? (
+                    <label className="quick-featured-toggle">
+                      <input
+                        type="checkbox"
+                        aria-label={`Toggle featured for ${project.title}`}
+                        checked={project.featured}
+                        disabled={featuredTogglePendingIds?.has(project.id)}
+                        onChange={(event) => void onToggleFeatured(project, event.target.checked)}
+                      />
+                    </label>
+                  ) : (
+                    <span className="tag neutral-tag">{project.featured ? "Featured" : "No"}</span>
+                  )}
                 </td>
               </tr>
             ))}

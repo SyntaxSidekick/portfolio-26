@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PostsPanel } from "../components/blog/PostsPanel";
 import { AnalyticsPanel } from "../components/dashboard/AnalyticsPanel";
 import { CommentsPanel } from "../components/dashboard/CommentsPanel";
@@ -9,11 +10,17 @@ import { blogPosts, portfolioProjects, recentComments, siteStats, trafficSources
 import { useAdminCharts } from "../hooks/useAdminCharts";
 import type { Theme } from "../hooks/useTheme";
 import { filterRows } from "../shared/filterRows";
+import type { PortfolioProject } from "../types/admin";
 
 export function DashboardPage({ query, theme }: { query: string; theme: Theme }) {
   const { trafficRef, sourceRef } = useAdminCharts(theme);
+  const [projects, setProjects] = useState(() => [...portfolioProjects]);
   const filteredPosts = filterRows(blogPosts, query, ["title", "category", "status"]);
-  const filteredProjects = filterRows(portfolioProjects, query, ["title", "excerpt", "status"]);
+  const filteredProjects = filterRows(projects, query, ["title", "excerpt", "status"]);
+
+  function handleToggleFeatured(project: PortfolioProject, featured: boolean) {
+    setProjects((current) => current.map((item) => (item.id === project.id ? { ...item, featured } : item)));
+  }
 
   return (
     <>
@@ -26,7 +33,7 @@ export function DashboardPage({ query, theme }: { query: string; theme: Theme })
       </section>
       <section className="dashboard-grid secondary-grid">
         <PostsPanel posts={filteredPosts} />
-        <ProjectsTable projects={filteredProjects} />
+        <ProjectsTable projects={filteredProjects} onToggleFeatured={handleToggleFeatured} />
       </section>
     </>
   );

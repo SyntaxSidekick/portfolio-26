@@ -994,8 +994,13 @@ portfolio-rewritten-commented.css */
   gap: 1rem;
 }
 
+.portfolio .project-grid > .card {
+  width: 100%;
+  min-width: 0;
+}
+
 .project-grid--case-studies {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .project-grid--compact {
@@ -1987,10 +1992,6 @@ portfolio-rewritten-commented.css */
  * This forces every shared .card to 400px wide and breaks responsive grids.
  * It appears to be a temporary debugging rule.
  */
-.card {
-  width: 400px;
-}
-
 /*
  * MOVE TO: utilities/layout.css
  * DUPLICATES: generic inline flex alignment utility.
@@ -2259,8 +2260,8 @@ portfolio-rewritten-commented.css */
  */
 .technology-icon-fallback {
   display: inline-grid;
-  width: 1.5rem;
-  height: 1.5rem;
+  //width: 1.5rem;
+  //height: 1.5rem;
   flex: 0 0 1.5rem;
   place-items: center;
   border: 1px solid color-mix(
@@ -2619,7 +2620,7 @@ portfolio-rewritten-commented.css */
 }
 
 .project-grid--case-studies {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .project-grid--compact {
@@ -3611,10 +3612,6 @@ portfolio-rewritten-commented.css */
  * This forces every shared .card to 400px wide and breaks responsive grids.
  * It appears to be a temporary debugging rule.
  */
-.card {
-  width: 400px;
-}
-
 /*
  * MOVE TO: utilities/layout.css
  * DUPLICATES: generic inline flex alignment utility.
@@ -3639,9 +3636,9 @@ portfolio-rewritten-commented.css */
 }
 .tag-list li {
   svg {
-    width: 24px !important;
-    height: 24px !important;
-    transition: transform 200ms ease;
+    //width: 24px !important;
+    //height: 24px !important;
+    //transition: transform 200ms ease;
   }
 
   &:hover svg {

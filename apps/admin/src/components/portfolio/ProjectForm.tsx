@@ -34,6 +34,8 @@ export interface ProjectFormValues {
   cardImageUrl: string;
   cardImageId: string;
   cardImageAlt: string;
+  cardThumbnailUrl: string;
+  cardThumbnailId: string;
   gallery: GalleryImage[];
   overviewHeading: string;
   overviewContent: string;
@@ -105,6 +107,8 @@ export const emptyProjectFormValues: ProjectFormValues = {
   cardImageUrl: "",
   cardImageId: "",
   cardImageAlt: "",
+  cardThumbnailUrl: "",
+  cardThumbnailId: "",
   gallery: [],
   overviewHeading: "Project Overview",
   overviewContent: "",
@@ -163,7 +167,7 @@ const projectCategoryOptions: { value: ProjectType; label: string }[] = [
 const id = () => (typeof crypto !== "undefined" && "randomUUID" in crypto ? crypto.randomUUID() : String(Date.now()));
 const ordered = <T extends { displayOrder: number }>(items: T[] = []) => [...items].sort((a, b) => a.displayOrder - b.displayOrder);
 const compact = (value: string) => value.trim() || undefined;
-const media = (url: string, alt: string, idValue?: string) => compact(url) ? { id: compact(idValue ?? ""), url: url.trim(), alt: alt.trim() } : undefined;
+const media = (url: string, alt: string, idValue?: string, thumbnailUrl?: string) => compact(url) ? { id: compact(idValue ?? ""), url: url.trim(), alt: alt.trim(), thumbnailUrl: compact(thumbnailUrl ?? "") } : undefined;
 const legacyMetricTypeMap: Record<string, MetricType> = {
   users: "users",
   "cloud-download": "downloads",
@@ -258,6 +262,8 @@ export function projectToFormValues(project: PortfolioProject): ProjectFormValue
     cardImageUrl: project.media?.cardImage?.url ?? project.featuredImage?.url ?? "",
     cardImageId: project.media?.cardImage?.id ?? "",
     cardImageAlt: project.media?.cardImage?.alt ?? project.featuredImage?.alt ?? "",
+    cardThumbnailUrl: project.media?.cardImage?.thumbnailUrl ?? "",
+    cardThumbnailId: "",
     gallery: selectGallery(project.media?.gallery, project.gallery),
     overviewHeading: project.overview?.heading ?? "Project Overview",
     overviewContent: project.overview?.content ?? project.description ?? "",
@@ -326,7 +332,7 @@ export function formValuesToProjectPayload(values: ProjectFormValues, categories
     featuredImage: media(values.featuredImageUrl, values.featuredImageAlt, values.featuredImageId),
     gallery: values.gallery,
     hero: { eyebrow: compact(values.heroEyebrow), subtitle: fallbackSubtitle, summary: fallbackSummary, badgeText: compact(values.heroBadgeText) },
-    media: { featuredImage: media(values.featuredImageUrl, values.featuredImageAlt, values.featuredImageId), desktopImage: media(values.desktopImageUrl, values.desktopImageAlt, values.desktopImageId), mobileImage: media(values.mobileImageUrl, values.mobileImageAlt, values.mobileImageId), cardImage: media(values.cardImageUrl, values.cardImageAlt, values.cardImageId), gallery: values.gallery },
+    media: { featuredImage: media(values.featuredImageUrl, values.featuredImageAlt, values.featuredImageId), desktopImage: media(values.desktopImageUrl, values.desktopImageAlt, values.desktopImageId), mobileImage: media(values.mobileImageUrl, values.mobileImageAlt, values.mobileImageId), cardImage: media(values.cardImageUrl, values.cardImageAlt, values.cardImageId, values.cardThumbnailUrl), gallery: values.gallery },
     overview: { heading: compact(values.overviewHeading), content: fallbackOverview, media: media(values.overviewMediaUrl, values.overviewMediaAlt, values.overviewMediaId) },
     challenge: { heading: compact(values.challengeHeading), content: values.challengeContent, media: media(values.challengeMediaUrl, values.challengeMediaAlt, values.challengeMediaId) },
     solution: { heading: compact(values.solutionHeading), content: values.solutionContent, media: media(values.solutionMediaUrl, values.solutionMediaAlt, values.solutionMediaId) },

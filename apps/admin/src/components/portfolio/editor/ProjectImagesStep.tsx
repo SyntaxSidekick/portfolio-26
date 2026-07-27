@@ -55,6 +55,14 @@ export function ProjectImagesStep({
     });
   }
 
+  function updateCardThumbnail(media: MediaReference | null) {
+    onChange({
+      ...values,
+      cardThumbnailUrl: media?.url ?? "",
+      cardThumbnailId: media?.id ?? "",
+    });
+  }
+
   return (
     <section className="step-panel images-step-panel" aria-labelledby="project-images-heading">
       <header className="step-panel-header">
@@ -62,7 +70,7 @@ export function ProjectImagesStep({
         <p>Upload and manage required core project images used across cards, hero, and device views.</p>
       </header>
 
-      <RequiredImagesSection values={values} errors={errors} updateField={updateField} updateMedia={updateMedia} />
+      <RequiredImagesSection values={values} errors={errors} updateField={updateField} updateMedia={updateMedia} updateCardThumbnail={updateCardThumbnail} />
     </section>
   );
 }

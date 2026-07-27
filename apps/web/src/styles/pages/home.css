@@ -925,8 +925,8 @@ html[data-theme="light"] .home .trusted-logo img {
 
 .home .social-links a {
   display: grid;
-  width: 55px;
-  height: 55px;
+  width: 35px;
+  height: 35px;
   place-items: center;
   border: 1px solid var(--border);
   border-radius: 5px;
