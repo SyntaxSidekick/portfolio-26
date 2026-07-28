@@ -18,7 +18,6 @@ import {
   GitBranch,
   Globe2,
   Layers3,
-  Mail,
   MousePointerClick,
   Network,
   Palette,
@@ -32,6 +31,7 @@ import {
   TrendingUp,
   Workflow,
 } from "lucide-react";
+import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";
 
 export const metadata: Metadata = {
   title: "About Riad Kilani | UX Engineer & Front-End Architect",
@@ -425,76 +425,7 @@ function BioPageContent() {
       </header>
 
       <nav aria-label="Professional profiles">
-        <ul className="social-links">
-          <li>
-            <a
-              href="https://www.linkedin.com/in/riad-kilani"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <path d="M8 10v7" />
-                <path d="M8 7v.01" />
-                <path d="M12 17v-4a3 3 0 0 1 6 0v4" />
-                <path d="M12 10v7" />
-              </svg>
-              <span>LinkedIn</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="https://github.com/riadkilani"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3.3-.4 6.8-1.6 6.8-7A5.5 5.5 0 0 0 19.3 3.7 5.1 5.1 0 0 0 19.2 0S18 0 15 1.5a13.4 13.4 0 0 0-7 0C5 0 3.8 0 3.8 0a5.1 5.1 0 0 0-.1 3.7A5.5 5.5 0 0 0 2.2 7.5c0 5.4 3.5 6.6 6.8 7A4.8 4.8 0 0 0 8 18v4" />
-                <path d="M8 19c-3 .9-3-1.5-4.2-2" />
-              </svg>
-              <span>GitHub</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="https://codepen.io/riadkilani"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m12 2 9 6v8l-9 6-9-6V8l9-6Z" />
-                <path d="m3 8 9 6 9-6" />
-                <path d="m3 16 9-6 9 6" />
-                <path d="M12 2v8" />
-                <path d="M12 14v8" />
-              </svg>
-              <span>CodePen</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="https://x.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 4l16 16" />
-                <path d="M20 4 4 20" />
-              </svg>
-              <span>X</span>
-            </a>
-          </li>
-
-          <li>
-            <a href="mailto:career@riadkilani.com">
-              <Mail aria-hidden="true" />
-              <span>Email</span>
-            </a>
-          </li>
-        </ul>
+        <SocialMediaLinks showLabels variant="bio" />
       </nav>
     </section>
   </div>

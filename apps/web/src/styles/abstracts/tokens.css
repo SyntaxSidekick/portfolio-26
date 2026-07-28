@@ -161,6 +161,9 @@
   --footer-blue-light: #58b8ff;
 
   --footer-border: rgba(66, 147, 208, 0.3);
+  --footer-social-border: rgba(77, 150, 204, 0.48);
+  --footer-social-background: rgba(5, 23, 39, 0.84);
+  --footer-social-hover-background: rgba(8, 44, 74, 0.9);
   --footer-radius: 0.5625rem;
   --footer-transition: var(--transition-fast);
 
@@ -213,5 +216,4 @@ html[data-theme="light"] {
     --header-height: 5.125rem;
   }
 }
-
 

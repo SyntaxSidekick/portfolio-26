@@ -6,5 +6,6 @@
 @import "./utilities/utilities.css";
 @import "./components/components.css";
 @import "./components/cards.css";
+@import "./components/icons.css";
 @import "./layout/header.css";
 @import "./layout/footer.css";

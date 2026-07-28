@@ -2,15 +2,8 @@
 
 import Link from "next/link";
 import { navigationItems } from "./site-navigation";
-import {
-  faCodepen,
-  faGithub,
-  faLinkedin,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-
-import { FontAwesomeSvg } from "@/lib/fontAwesomeIcon";
-import { Mail } from "lucide-react";
+import { ArrowRight, ArrowUp, ChevronRight, ShieldCheck } from "lucide-react";
+import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";
 
 export function SiteFooter() {
   const scrollToTop = () => {
@@ -41,25 +34,7 @@ export function SiteFooter() {
             </p>
 
             <nav className="footer-socials" aria-label="Social links">
-              <a href="https://www.linkedin.com/in/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <FontAwesomeSvg icon={faLinkedin} />
-              </a>
-
-              <a href="https://github.com/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                <FontAwesomeSvg icon={faGithub} />
-              </a>
-
-              <a href="https://codepen.io/riadkilani" target="_blank" rel="noopener noreferrer" aria-label="CodePen">
-                <FontAwesomeSvg icon={faCodepen} />
-              </a>
-
-              <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X">
-                 <FontAwesomeSvg icon={faXTwitter} />
-              </a>
-
-              <a href="mailto:hello@riadkilani.com" aria-label="Email Riad Kilani">
-                <Mail size={18} strokeWidth={1.75} />
-              </a>
+              <SocialMediaLinks size="lg" variant="footer" />
             </nav>
           </section>
 
@@ -71,9 +46,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link href={item.href}>
                     <span>{item.label}</span>
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="m9 18 6-6-6-6" />
-                    </svg>
+                    <ChevronRight aria-hidden="true" />
                   </Link>
                 </li>
               ))}
@@ -111,10 +84,7 @@ export function SiteFooter() {
             <Link className="footer-cta" href="/contact">
               <span>Start a Conversation</span>
 
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M5 12h14" />
-                <path d="m14 7 5 5-5 5" />
-              </svg>
+              <ArrowRight aria-hidden="true" />
             </Link>
           </section>
         </div>
@@ -122,10 +92,7 @@ export function SiteFooter() {
         <div className="footer-bottom">
           <nav className="footer-legal" aria-label="Legal links">
             <Link href="/privacy">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" />
-                <path d="m9 12 2 2 4-4" />
-              </svg>
+              <ShieldCheck aria-hidden="true" />
 
               <span>Privacy Policy</span>
             </Link>
@@ -142,10 +109,7 @@ export function SiteFooter() {
           <button className="back-to-top" id="back-to-top" type="button" onClick={scrollToTop}>
             <span>Back to Top</span>
 
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 19V5" />
-              <path d="m6 11 6-6 6 6" />
-            </svg>
+            <ArrowUp aria-hidden="true" />
           </button>
         </div>
       </div>

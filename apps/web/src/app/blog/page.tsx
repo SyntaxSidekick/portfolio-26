@@ -5,6 +5,7 @@ import { ArticleGrid } from "@/components/blog/ArticleGrid";
 import { getAllSyntaxSidekickArticles } from "@/lib/syntax-sidekick";
 import type { SyntaxSidekickArticle } from "@/types/syntax-sidekick";
 import "@/styles/pages/blog.css";
+import { Mail } from "lucide-react";
 
 const ARTICLES_PER_PAGE = 9;
 
@@ -107,21 +108,7 @@ export default async function Page({ searchParams }: PageProps) {
 
           <aside className="newsletter" aria-labelledby="newsletter-title">
             <div className="newsletter-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="34" height="34">
-                <path
-                  d="M3.5 5.5h17v13h-17z"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                />
-                <path
-                  d="m4 6 8 7 8-7"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <Mail aria-hidden="true" width={34} height={34} />
             </div>
 
             <div className="newsletter-content">

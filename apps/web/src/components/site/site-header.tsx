@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ArrowRight, Moon, Sun } from "lucide-react";
 import { navigationItems } from "./site-navigation";
 
 export function SiteHeader() {
@@ -96,23 +97,11 @@ export function SiteHeader() {
           >
             <span className="theme-toggle-track" aria-hidden="true">
               <span className="theme-toggle-icon theme-toggle-icon-sun">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="3.5" />
-                  <path d="M12 2v2" />
-                  <path d="M12 20v2" />
-                  <path d="m4.93 4.93 1.42 1.42" />
-                  <path d="m17.66 17.66 1.41 1.41" />
-                  <path d="M2 12h2" />
-                  <path d="M20 12h2" />
-                  <path d="m6.34 17.66-1.41 1.41" />
-                  <path d="m19.07 4.93-1.41 1.42" />
-                </svg>
+                <Sun aria-hidden="true" />
               </span>
 
               <span className="theme-toggle-icon theme-toggle-icon-moon">
-                <svg viewBox="0 0 24 24">
-                  <path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z" />
-                </svg>
+                <Moon aria-hidden="true" />
               </span>
 
               <span className="theme-toggle-thumb" />
@@ -122,10 +111,7 @@ export function SiteHeader() {
           <Link className="site-header-cta" href="/contact">
             <span>Let&rsquo;s Connect</span>
 
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M5 12h14" />
-              <path d="m14 7 5 5-5 5" />
-            </svg>
+            <ArrowRight aria-hidden="true" />
           </Link>
 
           <button

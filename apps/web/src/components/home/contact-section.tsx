@@ -1,12 +1,5 @@
-import {
-  faCodepen,
-  faGithub,
-  faLinkedin,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-
-import { FontAwesomeSvg } from "@/lib/fontAwesomeIcon";
 import { Mail, MapPin } from "lucide-react";
+import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";
 
 export function ContactSection() {
   return (
@@ -61,38 +54,7 @@ export function ContactSection() {
             </address>
 
             <div className="social-links" aria-label="Social links">
-              <a
-                href="https://www.linkedin.com/in/riadkilani"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <FontAwesomeSvg icon={faLinkedin} />
-              </a>
-              <a
-                href="https://github.com/riadkilani"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="GitHub"
-              >
-                <FontAwesomeSvg icon={faGithub} />
-              </a>
-              <a
-                href="https://codepen.io/riadkilani"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="CodePen"
-              >
-                <FontAwesomeSvg icon={faCodepen} />
-              </a>
-              <a
-                href="https://x.com/riadkilani"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="X"
-              >
-                <FontAwesomeSvg icon={faXTwitter} />
-              </a>
+              <SocialMediaLinks variant="contact" />
             </div>
           </div>
         </div>

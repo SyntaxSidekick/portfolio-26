@@ -2260,8 +2260,8 @@ portfolio-rewritten-commented.css */
  */
 .technology-icon-fallback {
   display: inline-grid;
-  //width: 1.5rem;
-  //height: 1.5rem;
+  /* width: 1.5rem; */
+  /* height: 1.5rem; */
   flex: 0 0 1.5rem;
   place-items: center;
   border: 1px solid color-mix(
@@ -3636,9 +3636,9 @@ portfolio-rewritten-commented.css */
 }
 .tag-list li {
   svg {
-    //width: 24px !important;
-    //height: 24px !important;
-    //transition: transform 200ms ease;
+    /* width: 24px !important; */
+    /* height: 24px !important; */
+    /* transition: transform 200ms ease; */
   }
 
   &:hover svg {

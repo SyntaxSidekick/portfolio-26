@@ -343,42 +343,7 @@ html {
 }
 
 .contact .contact-socials__list {
-  display: flex;
-  flex-wrap: wrap;
   gap: 12px;
-}
-
-.contact .contact-social-link {
-  display: grid;
-  width: 46px;
-  height: 46px;
-  color: #e8edf4;
-  text-decoration: none;
-  border: 1px solid rgba(114, 149, 183, 0.25);
-  border-radius: 7px;
-  background: rgba(4, 14, 26, 0.82);
-  place-items: center;
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
-}
-
-.contact .contact-social-link:hover {
-  color: #79bdff;
-  border-color: rgba(35, 151, 255, 0.7);
-  box-shadow: 0 0 18px rgba(18, 139, 255, 0.16);
-  transform: translateY(-3px);
-}
-
-.contact .contact-social-link svg {
-  width: 23px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.8;
 }
 
 .contact .contact-form-panel {
@@ -690,7 +655,6 @@ html {
 
 .contact .contact-submit:focus-visible,
 .contact .contact-info-card:focus-visible,
-.contact .contact-social-link:focus-visible,
 .contact .contact-cta__link:focus-visible {
   outline: 2px solid var(--contact-blue-light);
   outline-offset: 4px;
@@ -785,4 +749,3 @@ html {
     animation-iteration-count: 1 !important;
   }
 }
-

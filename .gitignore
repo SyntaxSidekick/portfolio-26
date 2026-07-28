@@ -16,3 +16,6 @@ storage/media/originals/*
 storage/media/generated/*
 !storage/media/originals/.gitkeep
 !storage/media/generated/.gitkeep
+AGENTS.md
+combined.css
+handoff.md

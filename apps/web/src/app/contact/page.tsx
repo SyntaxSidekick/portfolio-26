@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "@/styles/pages/contact.css";
 import { ContactFormBehavior } from "@/components/contact/contact-form-behavior";
+import { Clock3, LockKeyhole, Mail, MapPin, Rocket, Send } from "lucide-react";
+import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";
 
 export const metadata: Metadata = {
   title: "Contact Riad Kilani",
@@ -53,10 +55,7 @@ function ContactPageContent() {
               aria-label="Email Riad Kilani"
             >
               <span className="contact-info-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M4 6h16v12H4z"></path>
-                  <path d="m4 7 8 6 8-6"></path>
-                </svg>
+                <Mail />
               </span>
 
               <span className="contact-info-card__content">
@@ -69,10 +68,7 @@ function ContactPageContent() {
 
             <div className="contact-info-card">
               <span className="contact-info-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11Z"></path>
-                  <circle cx="12" cy="10" r="2.2"></circle>
-                </svg>
+                <MapPin />
               </span>
 
               <span className="contact-info-card__content">
@@ -84,10 +80,7 @@ function ContactPageContent() {
 
             <div className="contact-info-card">
               <span className="contact-info-card__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="8"></circle>
-                  <path d="M12 8v4l3 2"></path>
-                </svg>
+                <Clock3 />
               </span>
 
               <span className="contact-info-card__content">
@@ -103,59 +96,7 @@ function ContactPageContent() {
             <p className="contact-socials__label">Connect With Me</p>
 
             <div className="contact-socials__list">
-              <a
-                href="#"
-                className="contact-social-link"
-                aria-label="Visit LinkedIn"
-                title="LinkedIn"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M6.5 8.5V18"></path>
-                  <path d="M6.5 5.5v.1"></path>
-                  <path d="M10.5 18v-5.4c0-2.3 3-2.5 3 0V18"></path>
-                  <path d="M13.5 12.6c.2-2.1 4-2.6 4 1V18"></path>
-                </svg>
-              </a>
-
-              <a
-                href="#"
-                className="contact-social-link"
-                aria-label="Visit GitHub"
-                title="GitHub"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M9 19c-4 .8-4-2-5-2.5"></path>
-                  <path d="M14 22v-3.1a2.7 2.7 0 0 0-.7-2.1c2.4-.3 4.9-1.2 4.9-5.3A4.1 4.1 0 0 0 17.1 8a3.8 3.8 0 0 0-.1-3.5S16 4.2 13.5 5.8a12 12 0 0 0-7 0C4 4.2 3 4.5 3 4.5A3.8 3.8 0 0 0 2.9 8a4.1 4.1 0 0 0-1.1 3.5c0 4.1 2.5 5 4.9 5.3A2.7 2.7 0 0 0 6 18.9V22"></path>
-                </svg>
-              </a>
-
-              <a
-                href="#"
-                className="contact-social-link"
-                aria-label="Visit CodePen"
-                title="CodePen"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="m12 3 9 6-9 6-9-6 9-6Z"></path>
-                  <path d="m3 15 9 6 9-6"></path>
-                  <path d="M3 9v6"></path>
-                  <path d="M21 9v6"></path>
-                  <path d="M12 15v6"></path>
-                  <path d="M12 3v6"></path>
-                </svg>
-              </a>
-
-              <a
-                href="#"
-                className="contact-social-link"
-                aria-label="Visit X"
-                title="X"
-              >
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="m5 4 14 16"></path>
-                  <path d="M19 4 5 20"></path>
-                </svg>
-              </a>
+              <SocialMediaLinks variant="contact" />
             </div>
           </div>
         </aside>
@@ -228,17 +169,11 @@ function ContactPageContent() {
             <button className="contact-submit" type="submit">
               <span>Send Message</span>
 
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m3 11 18-8-8 18-2-7-8-3Z"></path>
-                <path d="m11 14 4-4"></path>
-              </svg>
+              <Send aria-hidden="true" />
             </button>
 
             <p className="contact-form__privacy">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="6" y="10" width="12" height="10" rx="1.5"></rect>
-                <path d="M9 10V7a3 3 0 0 1 6 0v3"></path>
-              </svg>
+              <LockKeyhole aria-hidden="true" />
 
               <span>Your information is safe. I’ll never share your details.</span>
             </p>
@@ -256,13 +191,7 @@ function ContactPageContent() {
       <aside className="contact-cta" aria-label="Portfolio call to action">
         <div className="contact-cta__icon" aria-hidden="true">
           <span className="contact-cta__icon-ring">
-            <svg viewBox="0 0 24 24">
-              <path d="M14.5 5.5c1.6-1.6 4.1-2.3 5.5-2.5-.2 1.4-.9 3.9-2.5 5.5l-5 5-4-4 6-4Z"></path>
-              <path d="m8.5 9.5-3 .5-2 2 4 1"></path>
-              <path d="m12.5 13.5-.5 3-2 2-1-4"></path>
-              <circle cx="15.5" cy="7.5" r="1"></circle>
-              <path d="M6.5 16.5 3 21l4.5-3.5"></path>
-            </svg>
+            <Rocket />
           </span>
         </div>
 
