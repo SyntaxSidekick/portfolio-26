@@ -285,60 +285,6 @@ html[data-theme="light"] {
   .capabilities {
     padding-top: 58px;
   }
-
-  .capability-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 14px;
-  }
-
-  .capability-card {
-    min-height: 240px;
-    padding: 26px 18px;
-    border: 1px solid var(--border);
-    border-radius: var(--radius-medium);
-    background:
-      linear-gradient(150deg, rgba(16, 28, 39, 0.94), rgba(8, 15, 22, 0.88));
-    text-align: center;
-    box-shadow: var(--shadow-sm);
-    transition:
-      transform var(--transition-fast),
-      border-color var(--transition-fast),
-      background-color var(--transition-fast);
-
-    &:hover {
-      transform: translateY(-5px);
-      border-color: rgba(39, 157, 244, 0.35);
-      background: var(--surface-hover);
-    }
-
-    h3 {
-      margin: 0;
-      font-size: 0.83rem;
-      line-height: 1.35;
-    }
-
-    p {
-      margin: 14px 0 0;
-      color: var(--text-soft);
-      font-size: 0.7rem;
-      line-height: 1.7;
-    }
-  }
-
-  .capability-icon {
-    display: grid;
-    width: 54px;
-    height: 54px;
-    margin: 0 auto 20px;
-    place-items: center;
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    color: var(--accent-bright);
-    font-size: 1.35rem;
-    line-height: 1;
-    box-shadow: 0 0 20px rgba(0, 135, 255, 0.12);
-  }
 }
 
 /* Projects */
@@ -779,14 +725,6 @@ html[data-theme="light"] {
       gap: 24px;
     }
 
-    .capability-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .capability-card {
-      min-height: 210px;
-    }
-
     .trusted-logos {
       grid-template-columns: repeat(3, minmax(130px, 1fr));
       row-gap: 28px;
@@ -896,7 +834,6 @@ html[data-theme="light"] {
       gap: 25px 16px;
     }
 
-    .capability-grid,
     .project-grid,
     .article-grid {
       grid-template-columns: 1fr;
@@ -906,10 +843,6 @@ html[data-theme="light"] {
     .article-card:last-child {
       grid-column: auto;
       width: 100%;
-    }
-
-    .capability-card {
-      min-height: auto;
     }
 
     .section-header-row {

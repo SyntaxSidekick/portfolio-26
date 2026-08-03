@@ -1,0 +1,79 @@
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.capability-card {
+  min-height: 240px;
+  padding: 26px 18px;
+  border-radius: var(--radius-medium);
+  background:
+    linear-gradient(150deg, rgba(16, 28, 39, 0.94), rgba(8, 15, 22, 0.88));
+  text-align: center;
+  transition:
+    transform var(--transition-fast),
+    border-color var(--transition-fast),
+    background-color var(--transition-fast);
+
+  &:hover {
+    border-color: rgba(39, 157, 244, 0.35);
+    background: var(--surface-hover);
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 0.83rem;
+    line-height: 1.35;
+  }
+
+  p {
+    margin: 14px 0 0;
+    color: var(--text-soft);
+    font-size: 0.7rem;
+    line-height: 1.7;
+  }
+}
+
+.capability-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  margin: 0 auto 20px;
+  place-items: center;
+  border: 2px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent-bright);
+  font-size: 1.35rem;
+  line-height: 1;
+  box-shadow: 0 0 20px rgba(0, 135, 255, 0.12);
+
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.6;
+  }
+}
+
+@media (max-width: 1180px) {
+  .capability-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .capability-card {
+    min-height: 210px;
+  }
+}
+
+@media (max-width: 650px) {
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-card {
+    min-height: auto;
+  }
+}

@@ -70,22 +70,22 @@ export function CapabilitiesSection() {
           </h2>
         </header>
 
-        <div className="capability-grid">
+        <ul className="capability-grid">
           {capabilities.map((capability) => {
             const Icon = capability.icon;
 
             return (
-              <article className="capability-card" key={capability.title}>
+              <li className="card capability-card" key={capability.title}>
                 <div className="capability-icon" aria-hidden="true">
                   <Icon />
                 </div>
 
                 <h3>{capability.title}</h3>
                 <p>{capability.description}</p>
-              </article>
+              </li>
             );
           })}
-        </div>
+        </ul>
       </div>
     </section>
   );
