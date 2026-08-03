@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
 import "@/styles/pages/portfolio.css";
+import "@/styles/pages/portfolio-case-studies.css";
+import "@/styles/pages/portfolio-gh.css";
+import "@/styles/pages/portfolio-dj.css";
+import "@/styles/pages/portfolio-cp.css";
 import "@/styles/components/cards.css";
 import {
   tryGetPublishedProjects,
@@ -51,6 +55,17 @@ const sections: {
   },
 ];
 
+function getCompactCardClass(projectType: PublicProject["projectType"]) {
+  const suffix =
+    projectType === "github"
+      ? "gh"
+      : projectType === "design"
+        ? "dj"
+        : "cp";
+
+  return `card compact-card portfolio-card portfolio-compact-card portfolio-${suffix}-card`;
+}
+
 function ProjectCard({
   project,
   compact,
@@ -70,7 +85,7 @@ function ProjectCard({
   if (compact) {
     return (
       <article
-        className="card compact-card"
+        className={getCompactCardClass(project.projectType)}
         data-category={project.categories
           .map((category) => category.slug)
           .join(" ")}
@@ -107,7 +122,7 @@ function ProjectCard({
 
   return (
     <article
-      className="card project-card"
+      className="card project-card portfolio-card portfolio-case-study-card"
       data-category={project.categories
         .map((category) => category.slug)
         .join(" ")}

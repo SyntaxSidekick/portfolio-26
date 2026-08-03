@@ -47,6 +47,7 @@ handoff.md
 apps/web/css-cleanup-phase-1/
 
 # Local storage
+apps/admin/storage/
 storage/logs/
 storage/mongodb-export-*/
 storage/media/originals/*

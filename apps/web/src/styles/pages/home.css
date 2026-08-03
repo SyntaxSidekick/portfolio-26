@@ -89,12 +89,6 @@
   padding-block: clamp(48px, 6vw, 88px);
 }
 
-.home 
-
-.home .section-header {
-  margin-bottom: 30px;
-}
-
 .home .section-header h2 {
   max-width: 1000px;
   margin: 0;

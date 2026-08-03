@@ -1,6 +1,1 @@
-/* Shared component rules are imported here as components graduate out of route files. */
-.home {
-  .section-header {
-    margin-bottom: 2.5rem;
-  }
-}
+/* Shared component rules can be imported here as components graduate out of route files. */

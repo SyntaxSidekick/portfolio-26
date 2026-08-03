@@ -1,0 +1,7 @@
+:root {
+  --transition-fast: 180ms ease;
+  --transition-normal: 200ms ease;
+
+  --header-transition: var(--transition-normal);
+  --footer-transition: var(--transition-fast);
+}

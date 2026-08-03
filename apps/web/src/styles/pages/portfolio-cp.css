@@ -1,0 +1,14 @@
+/* CodePen/code-experiment cards only. */
+
+.portfolio-cp-card {
+  --portfolio-card-accent: var(--portfolio-gold);
+}
+
+.portfolio-cp-card h3,
+.portfolio-cp-card .compact-actions a {
+  color: var(--portfolio-card-accent);
+}
+
+.portfolio-section--codepen .portfolio-cp-card:hover {
+  border-color: color-mix(in srgb, var(--portfolio-card-accent) 65%, transparent);
+}

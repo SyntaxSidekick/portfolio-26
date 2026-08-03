@@ -35,6 +35,7 @@ test-results
 backups
 archive
 apps/web/css-cleanup-phase-1
+apps/admin/storage
 storage/logs
 storage/mongodb-export-*
 storage/media/originals/*
