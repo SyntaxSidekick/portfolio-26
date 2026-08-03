@@ -1,5 +1,6 @@
 import type { MediaReference } from "../../../types/admin";
 import type { ProjectFormValues } from "../ProjectForm";
+import { isGitHubProject } from "./projectValidationRules";
 import {
   keyFor,
   requiredImages,
@@ -20,6 +21,20 @@ export interface ImagesStepErrors {
 
 export function validateImagesStep(values: ProjectFormValues): ImagesStepErrors {
   const errors: ImagesStepErrors = {};
+  const githubProject = isGitHubProject(values);
+
+  if (githubProject) {
+    requiredImages.forEach(({ field }) => {
+      const urlValue = (values[keyFor(field, "Url")] as string).trim();
+      const altValue = (values[keyFor(field, "Alt")] as string).trim();
+      if (urlValue && !altValue) {
+        const altKey = keyFor(field, "Alt") as keyof ImagesStepErrors;
+        errors[altKey] = "Alt text is required.";
+      }
+    });
+    return errors;
+  }
+
   requiredImages.forEach(({ field }) => {
     const urlKey = keyFor(field, "Url") as keyof ImagesStepErrors;
     const altKey = keyFor(field, "Alt") as keyof ImagesStepErrors;
@@ -65,11 +80,6 @@ export function ProjectImagesStep({
 
   return (
     <section className="step-panel images-step-panel" aria-labelledby="project-images-heading">
-      <header className="step-panel-header">
-        <h2 id="project-images-heading">Project Images</h2>
-        <p>Upload and manage required core project images used across cards, hero, and device views.</p>
-      </header>
-
       <RequiredImagesSection values={values} errors={errors} updateField={updateField} updateMedia={updateMedia} updateCardThumbnail={updateCardThumbnail} />
     </section>
   );

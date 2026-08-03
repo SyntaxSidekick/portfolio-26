@@ -72,6 +72,15 @@ function ResultIcon({ type, iconKey }: { type?: string; iconKey?: string }) {
   );
 }
 
+const caseStudyCtaBenefits = [
+  "Full-time roles",
+  "Remote / Hybrid",
+  "Contract work",
+  "Orlando, FL",
+  "Consulting",
+  "Open to relocation",
+];
+
 export async function generateStaticParams() {
   const { projects } = await tryGetPublishedProjects();
   return projects.map((project) => ({ slug: project.slug }));
@@ -134,6 +143,9 @@ export default async function Page({ params }: PageProps) {
   const highlights = [...(project.highlights ?? [])].sort(
     (a, b) => a.displayOrder - b.displayOrder,
   );
+  const gallery = [
+    ...(project.media?.gallery?.length ? project.media.gallery : (project.gallery ?? [])),
+  ].sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
   const technologies = [...project.technologies].sort(
     (a, b) => (a.displayOrder ?? 0) - (b.displayOrder ?? 0),
   );
@@ -151,9 +163,14 @@ export default async function Page({ params }: PageProps) {
     ["Team:", details.teamSize],
     ["Year:", details.year ? String(details.year) : ""],
   ].filter(([, value]) => value);
+  const isEngineeringLab = project.projectType === "github";
 
   return (
-    <main id="project-single-page" className="page project-single">
+    <main
+      id="project-single-page"
+      className="page project-single"
+      data-project-type={isEngineeringLab ? "engineering-lab" : "case-study"}
+    >
       <section className="project-hero" aria-labelledby="project-title">
         <div className="project-container">
           <a className="back-link" href="/portfolio">
@@ -270,7 +287,7 @@ export default async function Page({ params }: PageProps) {
           </div>
         </div>
       </section>
-      {keyResults.length || highlights.length ? (
+      {keyResults.length || highlights.length || (!isEngineeringLab && detailRows.length) ? (
         <section className="project-section" aria-label="Project outcomes">
           <div className="project-container">
             {keyResults.length ? (
@@ -290,17 +307,19 @@ export default async function Page({ params }: PageProps) {
                 </dl>
               </div>
             ) : null}
-            {highlights.length ? (
-              <div className="panel highlights-panel">
-                <div className="highlights-content">
-                  <div className="section-label">Project Highlights</div>
-                  <ul className="highlights-list">
-                    {highlights.map((highlight) => (
-                      <li key={highlight.id}>{highlight.text}</li>
-                    ))}
-                  </ul>
-                </div>
-                {detailRows.length ? (
+            {highlights.length || (!isEngineeringLab && detailRows.length) ? (
+              <div className={highlights.length ? "panel highlights-panel" : "panel highlights-panel details-panel"}>
+                {highlights.length ? (
+                  <div className="highlights-content">
+                    <div className="section-label">Project Highlights</div>
+                    <ul className="highlights-list">
+                      {highlights.map((highlight) => (
+                        <li key={highlight.id}>{highlight.text}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+                {!isEngineeringLab && detailRows.length ? (
                   <aside
                     className="project-details"
                     aria-labelledby="details-title"
@@ -320,6 +339,50 @@ export default async function Page({ params }: PageProps) {
                 ) : null}
               </div>
             ) : null}
+          </div>
+        </section>
+      ) : null}
+      {!isEngineeringLab && gallery.length ? (
+        <section className="project-section" aria-labelledby="gallery-title">
+          <div className="project-container">
+            <div className="panel gallery-panel">
+              <div className="section-label">Gallery</div>
+              <h2 id="gallery-title">Project Gallery</h2>
+              <ul className="project-gallery">
+                {gallery.map((image) => (
+                  <li key={image.id || image.url}>
+                    <figure>
+                      <img src={image.url} alt={image.alt || project.title} />
+                      {image.caption ? <figcaption>{image.caption}</figcaption> : null}
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
+      ) : null}
+      {!isEngineeringLab ? (
+        <section className="project-cta" aria-labelledby="project-cta-title">
+          <div className="project-container">
+            <div className="cta-panel">
+              <div className="cta-copy">
+                <div className="section-label">Let's Build Something Great</div>
+                <h2 id="project-cta-title">Have a similar project in mind?</h2>
+                <p>
+                  I help businesses and teams build fast, accessible, and high-performing web experiences
+                  that deliver results.
+                </p>
+              </div>
+              <ul className="cta-benefits">
+                {caseStudyCtaBenefits.map((benefit) => (
+                  <li key={benefit}>{benefit}</li>
+                ))}
+              </ul>
+              <a className="button button-primary cta-button" href="/contact">
+                Let's Connect <span aria-hidden="true">{"\u2192"}</span>
+              </a>
+            </div>
           </div>
         </section>
       ) : null}

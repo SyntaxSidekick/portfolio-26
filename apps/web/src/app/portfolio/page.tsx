@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/pages/portfolio.css";
+import "@/styles/components/cards.css";
 import {
   tryGetPublishedProjects,
   type PublicProject,

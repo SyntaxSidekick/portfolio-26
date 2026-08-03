@@ -60,7 +60,7 @@ html {
     linear-gradient(
       180deg,
       var(--blog-bg) 0%,
-      .020711 50%,
+      #020711 50%,
       var(--blog-bg-deep) 100%
     );
 }
@@ -1233,9 +1233,9 @@ html {
 
 .blog-single .newsletter-form button {
   padding: 10px 14px;
-  border: 1px solid .367fe8;
+  border: 1px solid #367fe8;
   border-radius: 5px;
-  background: linear-gradient(135deg, .126ad1, .315ed7);
+  background: linear-gradient(135deg, #126ad1, #315ed7);
   color: #ffffff;
   font-size: 11px;
   cursor: pointer;

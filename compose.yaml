@@ -1,0 +1,93 @@
+services:
+  mongodb:
+    image: mongo:8.0
+    container_name: portfolio-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - portfolio-mongodb-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: portfolio-api
+    command: pnpm dev:api
+    ports:
+      - "4000:4000"
+    environment:
+      PORT: "4000"
+      MONGODB_URI: mongodb://mongodb:27017/portfolio
+      ADMIN_ORIGIN: http://localhost:5173
+      WEB_ORIGIN: http://localhost:3000
+      MEDIA_STORAGE_PATH: /app/apps/api/storage/media
+      MEDIA_PUBLIC_BASE_URL: http://localhost:4000/media
+      MEDIA_MAX_FILE_SIZE_MB: "20"
+      MEDIA_MAX_FILES_PER_UPLOAD: "20"
+    volumes:
+      - .:/app
+      - portfolio-root-node-modules:/app/node_modules
+      - portfolio-api-node-modules:/app/apps/api/node_modules
+      - portfolio-web-node-modules:/app/apps/web/node_modules
+      - portfolio-admin-node-modules:/app/apps/admin/node_modules
+      - ./storage/media:/app/apps/api/storage/media
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    restart: unless-stopped
+
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: portfolio-admin
+    command: pnpm dev:admin
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:4000
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - .:/app
+      - portfolio-root-node-modules:/app/node_modules
+      - portfolio-api-node-modules:/app/apps/api/node_modules
+      - portfolio-web-node-modules:/app/apps/web/node_modules
+      - portfolio-admin-node-modules:/app/apps/admin/node_modules
+    depends_on:
+      - api
+    restart: unless-stopped
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: portfolio-web
+    command: pnpm dev:web
+    ports:
+      - "3000:3000"
+    environment:
+      PORTFOLIO_API_BASE_URL: http://api:4000/api
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - .:/app
+      - portfolio-root-node-modules:/app/node_modules
+      - portfolio-api-node-modules:/app/apps/api/node_modules
+      - portfolio-web-node-modules:/app/apps/web/node_modules
+      - portfolio-admin-node-modules:/app/apps/admin/node_modules
+    depends_on:
+      - api
+    restart: unless-stopped
+
+volumes:
+  portfolio-mongodb-data:
+  portfolio-root-node-modules:
+  portfolio-api-node-modules:
+  portfolio-web-node-modules:
+  portfolio-admin-node-modules:

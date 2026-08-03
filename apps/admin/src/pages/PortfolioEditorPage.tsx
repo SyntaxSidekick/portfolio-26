@@ -11,6 +11,8 @@ export function PortfolioEditorPage() {
     setDraft,
     categories,
     technologies,
+    existingSlugEntries,
+    currentProjectId,
     loading,
     saving,
     error,
@@ -31,6 +33,8 @@ export function PortfolioEditorPage() {
       values={draft}
       categories={categories}
       technologies={technologies}
+      existingSlugEntries={existingSlugEntries}
+      currentProjectId={currentProjectId}
       saving={saving}
       error={error}
       message={message}

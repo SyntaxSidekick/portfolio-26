@@ -10,7 +10,7 @@ import { ProjectEditorStepContent } from "./ProjectEditorStepContent";
 import { useProjectEditorNavigation } from "./hooks/useProjectEditorNavigation";
 import { useUnsavedChanges } from "./hooks/useUnsavedChanges";
 import { projectEditorSteps } from "./projectEditorConfig";
-import { getProjectCompletion, getPublishingValidation, validateBasicsStep } from "./projectEditorCompletion";
+import { getProjectCompletionWithContext, getPublishingValidationWithContext, validateBasicsStepWithContext } from "./projectEditorCompletion";
 import type { StepVisualState } from "./ProjectStepNavigation";
 import { ProjectStepNavigation } from "./ProjectStepNavigation";
 
@@ -36,6 +36,8 @@ export function ProjectEditor({
   values,
   categories,
   technologies,
+  existingSlugEntries,
+  currentProjectId,
   saving,
   error,
   message,
@@ -51,6 +53,8 @@ export function ProjectEditor({
   values: ProjectFormValues;
   categories: CategoryReference[];
   technologies: TechnologyReference[];
+  existingSlugEntries: Array<{ id: string; slug: string }>;
+  currentProjectId?: string;
   saving: boolean;
   error: string;
   message: string;
@@ -62,6 +66,14 @@ export function ProjectEditor({
   onCancel: () => void;
   onPreview: () => void;
 }) {
+  const validationContext = useMemo(
+    () => ({
+      slugOwnersBySlug: new Map(existingSlugEntries.map((entry) => [entry.slug, entry.id])),
+      currentProjectId,
+    }),
+    [currentProjectId, existingSlugEntries],
+  );
+
   const {
     currentStepIndex,
     stepErrors,
@@ -72,18 +84,18 @@ export function ProjectEditor({
     runImagesValidation,
     runCaseStudyValidation,
   } = useProjectEditorNavigation(values, {
-    validateBasics: validateBasicsStep,
+    validateBasics: (nextValues) => validateBasicsStepWithContext(nextValues, validationContext),
     validateImages: validateImagesStep,
     validateCaseStudy: validateCaseStudyStep,
   });
 
   const { confirmDiscardChanges } = useUnsavedChanges(isDirty);
 
-  const completion = useMemo(() => getProjectCompletion(values), [values]);
-  const publishingValidation = useMemo(() => getPublishingValidation(values), [values]);
+  const completion = useMemo(() => getProjectCompletionWithContext(values, validationContext), [validationContext, values]);
+  const publishingValidation = useMemo(() => getPublishingValidationWithContext(values, validationContext), [validationContext, values]);
   const stepValidationMap = useMemo(() => new Map(publishingValidation.items.map((item) => [item.id, item])), [publishingValidation.items]);
 
-  const basicsValid = Object.keys(validateBasicsStep(values)).length === 0;
+  const basicsValid = Object.keys(validateBasicsStepWithContext(values, validationContext)).length === 0;
   const imagesValid = Object.keys(validateImagesStep(values)).length === 0;
   const caseStudyValid = Object.keys(validateCaseStudyStep(values)).length === 0;
 
@@ -139,6 +151,7 @@ export function ProjectEditor({
     if (currentStepIndex === 2 && !runCaseStudyValidation()) {
       return;
     }
+
     await onSave(ensureSaveSafeValues(values));
   }
 

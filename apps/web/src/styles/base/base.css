@@ -31,23 +31,6 @@ button {
   font: inherit;
 }
 
-.skip-link {
-  position: fixed;
-  top: 16px;
-  left: 16px;
-  z-index: 2000;
-  padding: 12px 16px;
-  color: .00111f;
-  background: var(--header-blue-light);
-  border-radius: 5px;
-  transform: translateY(-140%);
-  transition: transform 160ms ease;
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
 .container {
   width: min(100% - 2rem, 87.5rem);
   margin-inline: auto;

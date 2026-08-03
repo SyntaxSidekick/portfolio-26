@@ -3,9 +3,5 @@
 @import "./base/base.css";
 @import "./base/typography.css";
 @import "./base/accessibility.css";
+@import "./layout/container.css";
 @import "./utilities/utilities.css";
-@import "./components/components.css";
-@import "./components/cards.css";
-@import "./components/icons.css";
-@import "./layout/header.css";
-@import "./layout/footer.css";

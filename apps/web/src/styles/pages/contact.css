@@ -10,9 +10,9 @@
   --contact-blue-light: #4ea9ff;
   --contact-gradient: linear-gradient(
     90deg,
-    .197dff 0%,
-    .4256df 48%,
-    .7f1bbb 100%
+    #197dff 0%,
+    #4256df 48%,
+    #7f1bbb 100%
   );
   --contact-shadow:
     0 20px 60px rgba(0, 0, 0, 0.28),
@@ -82,7 +82,7 @@ html {
       rgba(91, 31, 212, 0.08),
       transparent 28rem
     ),
-    linear-gradient(180deg, .020b15 0%, .020811 100%);
+    linear-gradient(180deg, #020b15 0%, #020811 100%);
   font-family: var(--font-body);
 }
 

@@ -17,7 +17,7 @@
   left: 16px;
   z-index: 2000;
   padding: 12px 16px;
-  color: .00111f;
+  color: #00111f;
   background: var(--header-blue-light);
   border-radius: 5px;
   transform: translateY(-140%);
@@ -47,19 +47,4 @@
 .site-footer button:focus-visible {
   outline: 2px solid var(--header-blue-light);
   outline-offset: 4px;
-}
-
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-  }
 }

@@ -6,11 +6,13 @@ export function MediaPicker({
   value,
   onChange,
   label,
+  emptyPrimaryActionLabel,
   requiredAlt,
 }: {
   value?: MediaReference | null;
   onChange: (media: MediaReference | null) => void;
   label: string;
+  emptyPrimaryActionLabel?: string;
   requiredAlt?: boolean;
 }) {
   const [open, setOpen] = useState(false);
@@ -41,7 +43,7 @@ export function MediaPicker({
       <div className="media-picker-header">
         <span>{label}</span>
         <div className="heading-actions">
-          <button className="button button-secondary" type="button" onClick={() => setOpen(true)}>{value ? "Replace" : "Select Image"}</button>
+          <button className="button button-secondary" type="button" onClick={() => setOpen(true)}>{value ? "Replace" : emptyPrimaryActionLabel ?? "Select Image"}</button>
           <label className="button button-secondary">Upload<input className="sr-only" type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/gif" onChange={(event) => handleUpload(event.target.files)} /></label>
           {value ? <button className="button button-secondary" type="button" onClick={() => onChange(null)}>Remove</button> : null}
         </div>

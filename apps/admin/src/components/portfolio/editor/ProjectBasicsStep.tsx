@@ -83,7 +83,7 @@ export function ProjectBasicsStep({
 
       <BasicsIdentityFields values={values} errors={errors} updateTitle={updateTitle} updateField={updateField} />
 
-      <BasicsSummaryField values={values} errors={errors} updateField={updateField} />
+      <BasicsSummaryField values={values} errors={errors} isRequired={values.projectType !== "github"} updateField={updateField} />
 
       <BasicsCategoryStatusFields values={values} categories={availableCategories} errors={errors} updateField={updateField} onCreateCategory={handleCreateCategory} />
 

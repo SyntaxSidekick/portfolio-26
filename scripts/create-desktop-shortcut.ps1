@@ -14,7 +14,7 @@ $shortcut = $shell.CreateShortcut($shortcutPath)
 $shortcut.TargetPath = $target
 $shortcut.WorkingDirectory = $root
 $shortcut.IconLocation = "$env:SystemRoot\System32\WindowsPowerShell\v1.0\powershell.exe,0"
-$shortcut.Description = "Start MongoDB, Portfolio API, admin, and frontend dev servers."
+$shortcut.Description = "Start the Portfolio dev stack tray app."
 $shortcut.Save()
 
 Write-Host "Created desktop shortcut: $shortcutPath" -ForegroundColor Green

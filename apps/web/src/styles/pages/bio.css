@@ -48,9 +48,9 @@
     ),
     linear-gradient(
       180deg,
-      .02080e,
-      .030a11 42%,
-      .02070c
+      #02080e,
+      #030a11 42%,
+      #02070c
     );
   color: var(--text-bright);
   font-family: var(--font-body);
@@ -382,7 +382,7 @@
       from 20deg,
       var(--accent),
       var(--bio-purple),
-      .58df5c,
+      #58df5c,
       var(--accent),
       var(--bio-purple)
     );
@@ -541,8 +541,8 @@
   background:
     linear-gradient(
       135deg,
-      .158ff1,
-      .075db3
+      #158ff1,
+      #075db3
     );
   box-shadow:
     0 0 1rem rgba(21, 145, 255, 0.25);
@@ -965,7 +965,7 @@
   display: grid;
   width: 4.2rem;
   height: 4.2rem;
-  border: 1px solid .a650ef;
+  border: 1px solid #a650ef;
   border-radius: 50%;
   background:
     rgba(23, 20, 48, 0.52);

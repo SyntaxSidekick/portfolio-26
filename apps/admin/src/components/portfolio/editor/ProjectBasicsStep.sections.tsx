@@ -84,22 +84,26 @@ export function BasicsIdentityFields({
 export function BasicsSummaryField({
   values,
   errors,
+  isRequired,
   updateField,
 }: {
   values: ProjectFormValues;
   errors: BasicsStepErrors;
+  isRequired: boolean;
   updateField: UpdateField;
 }) {
   return (
     <label className="field-block" htmlFor={basicsFieldIds.heroSummary}>
       <span className="field-label-row">
-        <span>Short Description <span aria-hidden="true">*</span></span>
+        <span>
+          Short Description {isRequired ? <span aria-hidden="true">*</span> : null}
+        </span>
         <span>{values.heroSummary.length}/160</span>
       </span>
       <input
         id={basicsFieldIds.heroSummary}
         name="heroSummary"
-        required
+        required={isRequired}
         maxLength={160}
         value={values.heroSummary}
         onChange={(event) => updateField("heroSummary", event.target.value)}

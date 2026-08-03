@@ -1,4 +1,14 @@
 import type { ProjectFormValues } from "../ProjectForm";
+import {
+  findFirstInvalidProjectUrl,
+  hasSlugConflict,
+  isAbsoluteHttpUrl,
+  isGitHubProject,
+  isValidGitHubRepositoryUrl,
+  isValidOptionalDisplayOrder,
+  slugPattern,
+  type ProjectValidationContext,
+} from "./projectValidationRules";
 
 export interface BasicsStepErrors {
   title?: string;
@@ -28,29 +38,7 @@ export interface PublishingValidationSummary extends CompletionSummary {
   firstInvalidStepId?: CompletionItem["id"];
 }
 
-const slugPattern = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-
 const stepOrder = ["basics", "images", "case-study", "technologies", "gallery", "links", "publishing"] as const;
-
-function isAbsoluteHttpUrl(value: string) {
-  const trimmed = value.trim();
-  if (!trimmed) {
-    return false;
-  }
-  try {
-    const parsed = new URL(trimmed);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
-function firstPopulatedInvalidUrl(values: ProjectFormValues) {
-  const candidates = [values.projectUrl, values.repositoryUrl, values.codepenUrl, values.caseStudyUrl]
-    .map((value) => value.trim())
-    .filter(Boolean);
-  return candidates.find((url) => !isAbsoluteHttpUrl(url));
-}
 
 function hasCaseStudyContent(values: ProjectFormValues) {
   return Boolean(values.overviewContent.trim() && values.challengeContent.trim() && values.solutionContent.trim());
@@ -81,9 +69,22 @@ function normalizeCompletion(items: CompletionItem[]): PublishingValidationSumma
 }
 
 export function getPublishingValidation(values: ProjectFormValues): PublishingValidationSummary {
-  const basicsErrors = validateBasicsStep(values);
-  const badLink = firstPopulatedInvalidUrl(values);
+  return getPublishingValidationWithContext(values);
+}
+
+export function getPublishingValidationWithContext(values: ProjectFormValues, context?: ProjectValidationContext): PublishingValidationSummary {
+  const basicsErrors = validateBasicsStepWithContext(values, context);
+  const badLink = findFirstInvalidProjectUrl(values);
   const hasAnyLink = [values.projectUrl, values.repositoryUrl, values.codepenUrl, values.caseStudyUrl].some((url) => Boolean(url.trim()));
+  const githubProject = isGitHubProject(values);
+
+  const repositoryUrl = values.repositoryUrl.trim();
+  const hasRepositoryUrl = Boolean(repositoryUrl);
+  const hasValidRepositoryUrl = hasRepositoryUrl && isAbsoluteHttpUrl(repositoryUrl) && isValidGitHubRepositoryUrl(repositoryUrl);
+
+  const publishingDisplayOrderValid = githubProject
+    ? isValidOptionalDisplayOrder(values.displayOrder)
+    : Number.isInteger(Number(values.displayOrder)) && Number(values.displayOrder) >= 0;
 
   const items: CompletionItem[] = [
     {
@@ -95,22 +96,24 @@ export function getPublishingValidation(values: ProjectFormValues): PublishingVa
     {
       id: "images",
       label: "Images",
-      complete: Boolean(
-        values.featuredImageUrl.trim()
-        && values.desktopImageUrl.trim()
-        && values.mobileImageUrl.trim()
-        && values.cardImageUrl.trim()
-        && values.featuredImageAlt.trim()
-        && values.desktopImageAlt.trim()
-        && values.mobileImageAlt.trim()
-        && values.cardImageAlt.trim(),
-      ),
+      complete: githubProject
+        ? true
+        : Boolean(
+          values.featuredImageUrl.trim()
+          && values.desktopImageUrl.trim()
+          && values.mobileImageUrl.trim()
+          && values.cardImageUrl.trim()
+          && values.featuredImageAlt.trim()
+          && values.desktopImageAlt.trim()
+          && values.mobileImageAlt.trim()
+          && values.cardImageAlt.trim(),
+        ),
       issue: "Featured, desktop, mobile, and card images with alt text are required.",
     },
     {
       id: "case-study",
       label: "Case Study",
-      complete: hasCaseStudyContent(values) && !hasCaseStudyResultMismatch(values),
+      complete: githubProject ? true : hasCaseStudyContent(values) && !hasCaseStudyResultMismatch(values),
       issue: hasCaseStudyResultMismatch(values)
         ? "Each key result needs both a label and a value."
         : "Overview, challenge, and solution content are required.",
@@ -118,7 +121,7 @@ export function getPublishingValidation(values: ProjectFormValues): PublishingVa
     {
       id: "technologies",
       label: "Technologies",
-      complete: values.technologies.length > 0,
+      complete: githubProject ? true : values.technologies.length > 0,
       issue: "Select at least one technology.",
     },
     {
@@ -130,16 +133,30 @@ export function getPublishingValidation(values: ProjectFormValues): PublishingVa
     {
       id: "links",
       label: "Links",
-      complete: hasAnyLink && !badLink,
-      issue: badLink
-        ? "Use valid absolute URLs starting with http:// or https://."
-        : "Add at least one project link.",
+      complete: githubProject
+        ? hasValidRepositoryUrl && !badLink
+        : hasAnyLink && !badLink,
+      issue: githubProject
+        ? !hasRepositoryUrl
+          ? "Repository URL is required for GitHub projects."
+          : !isAbsoluteHttpUrl(repositoryUrl)
+            ? "Use a valid absolute URL starting with http:// or https://."
+            : !isValidGitHubRepositoryUrl(repositoryUrl)
+              ? "Use a GitHub repository URL in the format https://github.com/owner/repo."
+              : badLink
+                ? "Use valid absolute URLs starting with http:// or https://."
+                : undefined
+        : badLink
+          ? "Use valid absolute URLs starting with http:// or https://."
+          : "Add at least one project link.",
     },
     {
       id: "publishing",
       label: "Publishing",
-      complete: Boolean(values.status && slugPattern.test(values.slug.trim()) && Number.isInteger(Number(values.displayOrder)) && Number(values.displayOrder) >= 0),
-      issue: "Set a valid slug, publication status, and a display order of 0 or greater.",
+      complete: Boolean(values.status && slugPattern.test(values.slug.trim()) && publishingDisplayOrderValid),
+      issue: githubProject
+        ? "Set a valid slug and publication status. If display order is set, it must be 0 or greater."
+        : "Set a valid slug, publication status, and a display order of 0 or greater.",
     },
   ].map((item) => (item.complete ? { ...item, issue: undefined } : item));
 
@@ -151,7 +168,12 @@ export function getPublishingValidation(values: ProjectFormValues): PublishingVa
 }
 
 export function validateBasicsStep(values: ProjectFormValues): BasicsStepErrors {
+  return validateBasicsStepWithContext(values);
+}
+
+export function validateBasicsStepWithContext(values: ProjectFormValues, context?: ProjectValidationContext): BasicsStepErrors {
   const errors: BasicsStepErrors = {};
+  const githubProject = isGitHubProject(values);
 
   if (!values.title.trim()) {
     errors.title = "Project title is required.";
@@ -161,18 +183,27 @@ export function validateBasicsStep(values: ProjectFormValues): BasicsStepErrors 
     errors.slug = "Slug is required.";
   } else if (!slugPattern.test(values.slug.trim())) {
     errors.slug = "Use lowercase letters, numbers, and hyphens only.";
+  } else if (hasSlugConflict(values.slug, context)) {
+    errors.slug = "Slug is already in use.";
   }
 
   if (!values.projectType) {
     errors.projectType = "Project type is required.";
   }
 
-  if (values.categories.length === 0) {
+  if (!githubProject && values.categories.length === 0) {
     errors.categories = "Select at least one project category.";
   }
 
-  if (!values.heroSummary.trim()) {
+  if (!githubProject && !values.heroSummary.trim()) {
     errors.heroSummary = "Short description is required.";
+  }
+
+  if (githubProject) {
+    if (!isValidOptionalDisplayOrder(values.displayOrder)) {
+      errors.displayOrder = "Display order must be a whole number greater than or equal to 0.";
+    }
+    return errors;
   }
 
   const parsedDisplayOrder = Number(values.displayOrder);
@@ -184,7 +215,11 @@ export function validateBasicsStep(values: ProjectFormValues): BasicsStepErrors 
 }
 
 export function getProjectCompletion(values: ProjectFormValues): CompletionSummary {
-  const summary = getPublishingValidation(values);
+  return getProjectCompletionWithContext(values);
+}
+
+export function getProjectCompletionWithContext(values: ProjectFormValues, context?: ProjectValidationContext): CompletionSummary {
+  const summary = getPublishingValidationWithContext(values, context);
   return {
     items: summary.items,
     completeCount: summary.completeCount,

@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Plus } from "lucide-react";
 import type { CaseStudySectionKey, MetricType, ProjectResult } from "../../../types/admin";
 import type { ProjectFormValues } from "../ProjectForm";
+import { isGitHubProject } from "./projectValidationRules";
 import { getCaseStudyIcon } from "./caseStudyIconRegistry";
 import { coerceMetricType } from "./metricIconRegistry";
 import { CaseStudyCoreSectionEditor, CaseStudySectionSummary, LessonsLearnedEditor, MetricEditableGrid, MetricInlineEditor } from "./ProjectCaseStudyStep.sections";
@@ -50,6 +51,13 @@ type MetricDraft = {
 
 export function validateCaseStudyStep(values: ProjectFormValues): CaseStudyStepErrors {
   const errors: CaseStudyStepErrors = {};
+
+  if (isGitHubProject(values)) {
+    if (hasResultMismatch(values)) {
+      errors.keyResults = "Each key result needs both a label and a value.";
+    }
+    return errors;
+  }
 
   if (!values.overviewContent.trim()) {
     errors.overviewContent = "Overview content is required.";

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import "@/styles/globals.css";
+import "@/styles/layout/header.css";
+import "@/styles/layout/footer.css";
+import "@/styles/components/icons.css";
 import { SiteShell } from "@/components/site/site-shell";
 import { StaleServiceWorkerCleanup } from "@/components/site/stale-service-worker-cleanup";
 

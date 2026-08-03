@@ -14,7 +14,9 @@ export type PublicProject = {
     desktopImage?: { url: string; alt: string };
     mobileImage?: { url: string; alt: string };
     cardImage?: { url: string; alt: string };
+    gallery?: { id?: string; url: string; alt: string; caption?: string; order?: number; isFeatured?: boolean }[];
   };
+  gallery?: { id?: string; url: string; alt: string; caption?: string; order?: number; isFeatured?: boolean }[];
   overview?: { heading?: string; content: string };
   challenge?: { heading?: string; content: string; iconKey?: string; accentColor?: string };
   solution?: { heading?: string; content: string; iconKey?: string; accentColor?: string };

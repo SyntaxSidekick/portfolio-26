@@ -145,12 +145,12 @@
 
 .home .button-primary {
   border-color: #168ce1;
-  background: linear-gradient(135deg, .168be4, .096dc2);
+  background: linear-gradient(135deg, #168be4, #096dc2);
   box-shadow: var(--shadow-button);
 }
 
 .home .button-primary:hover {
-  background: linear-gradient(135deg, .21a3ff, .087bd7);
+  background: linear-gradient(135deg, #21a3ff, #087bd7);
   box-shadow:
     0 14px 34px rgba(0, 129, 255, 0.32),
     0 0 26px rgba(0, 129, 255, 0.18);
@@ -255,7 +255,7 @@
   width: min(100%, 330px);
   aspect-ratio: 1;
   overflow: hidden;
-  border: 4px solid .0b1822;
+  border: 4px solid #0b1822;
   border-radius: 50%;
   box-shadow:
     0 0 0 2px rgba(21, 151, 255, 0.45),

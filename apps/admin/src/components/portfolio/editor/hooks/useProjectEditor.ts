@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { listCategories } from "../../../../api/categories";
 import { isAbortError } from "../../../../api/client";
-import { createProject, getProject, updateProject } from "../../../../api/projects";
+import { createProject, getProject, listProjects, updateProject } from "../../../../api/projects";
 import { listTechnologies } from "../../../../api/technologies";
 import type { ProjectStatus } from "../../../../types/admin";
 import type { CategoryReference, TechnologyReference } from "../../../../types/admin";
@@ -35,6 +35,7 @@ export function useProjectEditor(projectId: string | undefined) {
   const [draft, setDraft] = useState<ProjectFormValues>(emptyProjectFormValues);
   const [categories, setCategories] = useState<CategoryReference[]>([]);
   const [technologies, setTechnologies] = useState<TechnologyReference[]>([]);
+  const [existingSlugEntries, setExistingSlugEntries] = useState<Array<{ id: string; slug: string }>>([]);
   const [loading, setLoading] = useState(mode === "edit");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -46,13 +47,22 @@ export function useProjectEditor(projectId: string | undefined) {
     const controller = new AbortController();
     let active = true;
 
-    Promise.all([listCategories(controller.signal), listTechnologies(controller.signal)])
-      .then(([nextCategories, nextTechnologies]) => {
+    Promise.all([
+      listCategories(controller.signal),
+      listTechnologies(controller.signal),
+      listProjects(controller.signal).catch(() => []),
+    ])
+      .then(([nextCategories, nextTechnologies, nextProjects]) => {
         if (!active) {
           return;
         }
         setCategories(nextCategories);
         setTechnologies(nextTechnologies);
+        setExistingSlugEntries(
+          nextProjects
+            .map((project) => ({ id: project.id, slug: project.slug.trim().toLowerCase() }))
+            .filter((entry) => Boolean(entry.id) && Boolean(entry.slug)),
+        );
       })
       .catch((reason: unknown) => {
         if (!active || isAbortError(reason)) {
@@ -145,6 +155,8 @@ export function useProjectEditor(projectId: string | undefined) {
     setDraft,
     categories,
     technologies,
+    existingSlugEntries,
+    currentProjectId: projectId,
     loading,
     saving,
     error,
