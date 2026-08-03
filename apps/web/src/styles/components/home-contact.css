@@ -1,5 +1,5 @@
 .contact-section {
-  .contact-panel {
+  .home-contact-panel {
     position: relative;
     display: grid;
     grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
@@ -29,12 +29,12 @@
     }
   }
 
-  .contact-intro,
-  .contact-details {
+  .home-contact-intro,
+  .home-contact-details {
     padding: clamp(32px, 5vw, 58px);
   }
 
-  .contact-intro {
+  .home-contact-intro {
     h2 {
       margin: 0;
       font-family: var(--font-heading);
@@ -45,7 +45,7 @@
     }
   }
 
-  .availability-grid {
+  .home-availability-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 190px));
     gap: 22px 48px;
@@ -82,7 +82,7 @@
     }
   }
 
-  .contact-details {
+  .home-contact-details {
     position: relative;
     z-index: 1;
     align-self: center;
@@ -115,18 +115,18 @@
     }
   }
 
-  .contact-button {
+  .home-contact-button {
     min-width: 210px;
   }
 
-  .social-links {
+  .home-contact-socials {
     margin-top: 22px;
   }
 }
 
 @media (max-width: 900px) {
   .contact-section {
-    .contact-panel {
+    .home-contact-panel {
       grid-template-columns: 1fr;
 
       &::before {
@@ -149,17 +149,17 @@
 
 @media (max-width: 650px) {
   .contact-section {
-    .availability-grid {
+    .home-availability-grid {
       grid-template-columns: 1fr;
       gap: 10px;
     }
 
-    .contact-intro,
-    .contact-details {
+    .home-contact-intro,
+    .home-contact-details {
       padding: 30px 24px;
     }
 
-    .contact-button {
+    .home-contact-button {
       width: 100%;
     }
   }

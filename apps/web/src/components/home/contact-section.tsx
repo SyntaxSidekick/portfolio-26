@@ -5,8 +5,8 @@ export function ContactSection() {
   return (
     <section className="section contact-section" id="contact">
       <div className="container">
-        <div className="contact-panel">
-          <div className="contact-intro">
+        <div className="home-contact-panel">
+          <div className="home-contact-intro">
             <p className="eyebrow">Let's Build Something Great</p>
 
             <h2>
@@ -15,7 +15,7 @@ export function ContactSection() {
               to new opportunities.
             </h2>
 
-            <div className="availability-grid">
+            <div className="home-availability-grid">
               <ul>
                 <li>Full-time roles</li>
                 <li>Contract work</li>
@@ -30,9 +30,9 @@ export function ContactSection() {
             </div>
           </div>
 
-          <div className="contact-details">
+          <div className="home-contact-details">
             <a
-              className="button button-primary contact-button"
+              className="button button-primary home-contact-button"
               href="mailto:hello@riadkilani.com"
             >
               <span>Let's Connect</span>
@@ -53,7 +53,7 @@ export function ContactSection() {
               </span>
             </address>
 
-            <div className="social-links" aria-label="Social links">
+            <div className="home-contact-socials" aria-label="Social links">
               <SocialMediaLinks variant="contact" />
             </div>
           </div>
