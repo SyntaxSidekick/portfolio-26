@@ -12,6 +12,7 @@ body {
     radial-gradient(circle at 20% 0%, rgba(35, 158, 255, 0.12), transparent 32rem),
     linear-gradient(180deg, var(--page-background) 0%, var(--page-background-soft) 100%);
   font-family: var(--font-body);
+  line-height: var(--line-height-body);
 }
 
 img,
@@ -19,10 +20,16 @@ svg {
   display: block;
 }
 
+img {
+  max-width: 100%;
+}
+
 a {
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
   font: inherit;
+  -webkit-tap-highlight-color: transparent;
 }

@@ -5,6 +5,22 @@
   background:
     radial-gradient(circle at 82% 8%, rgba(22, 141, 255, 0.11), transparent 24rem),
     radial-gradient(circle at 10% 48%, rgba(22, 141, 255, 0.08), transparent 28rem);
+  --button-min-height: 2.75rem;
+  --button-padding: 0.75rem 1.1rem;
+  --button-primary-border-color: var(--accent);
+  --button-primary-background: var(--accent);
+  --button-primary-shadow: none;
+  --button-primary-hover-border-color: var(--accent-bright);
+  --button-primary-hover-background: var(--accent-bright);
+  --button-primary-hover-shadow: none;
+  --button-secondary-color: var(--accent-light);
+  --button-secondary-border-color: var(--accent);
+  --button-secondary-background: transparent;
+  --button-secondary-hover-color: var(--accent-light);
+  --button-secondary-hover-border-color: var(--accent-bright);
+  --button-secondary-hover-background: transparent;
+  --button-focus-outline: 2px solid var(--accent-light);
+  --button-focus-offset: 3px;
 }
 
 .blog-single::before {
@@ -462,36 +478,6 @@
   border-top: 1px solid var(--border);
 }
 
-.blog-single .button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 2.75rem;
-  padding: 0.75rem 1.1rem;
-  border: 1px solid var(--accent);
-  border-radius: var(--radius-small);
-  background: var(--accent);
-  color: #ffffff;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast),
-    color var(--transition-fast),
-    transform var(--transition-fast);
-}
-
-.blog-single .button:hover {
-  background: var(--accent-bright);
-  border-color: var(--accent-bright);
-  transform: translateY(-2px);
-}
-
-.blog-single .button-outline {
-  background: transparent;
-  color: var(--accent-light);
-}
-
 .blog-single .article-sidebar {
   display: block;
   min-width: 0;
@@ -565,8 +551,7 @@
 
 .blog-single .sidebar-toc a:focus-visible,
 .blog-single .article-toc a:focus-visible,
-.blog-single .article-share a:focus-visible,
-.blog-single .button:focus-visible {
+.blog-single .article-share a:focus-visible {
   outline: 2px solid var(--accent-light);
   outline-offset: 3px;
 }

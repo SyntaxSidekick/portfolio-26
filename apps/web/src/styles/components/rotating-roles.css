@@ -1,0 +1,72 @@
+.role-list {
+  display: grid;
+  gap: 8px;
+}
+
+.role-item {
+  position: relative;
+  width: 100%;
+  min-height: 42px;
+  padding: 8px 6px 8px 26px;
+  border: 0;
+  color: var(--text-muted);
+  background: transparent;
+  font-size: 0.77rem;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    color var(--transition-fast),
+    transform var(--transition-fast);
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 4px;
+    width: 5px;
+    height: 5px;
+    content: "";
+    border-radius: 50%;
+    background: rgba(115, 139, 156, 0.45);
+    transform: translateY(-50%);
+    transition:
+      background-color var(--transition-fast),
+      box-shadow var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  &:hover {
+    color: #ced8df;
+    transform: translateX(3px);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(57, 176, 255, 0.65);
+    outline-offset: 4px;
+  }
+
+  &.is-active {
+    color: var(--accent-bright);
+    font-weight: 600;
+
+    &::before {
+      background: var(--accent);
+      box-shadow: 0 0 11px var(--accent);
+      transform: translateY(-50%) scale(1.35);
+    }
+  }
+}
+
+@media (max-width: 650px) {
+  .role-list {
+    margin-top: 48px;
+  }
+
+  .role-item {
+    min-height: 36px;
+    text-align: center;
+
+    &::before {
+      left: calc(50% - 105px);
+    }
+  }
+}

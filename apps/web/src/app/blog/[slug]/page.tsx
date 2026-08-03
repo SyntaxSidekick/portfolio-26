@@ -198,7 +198,7 @@ function BlogSingle({
             />
 
             <footer className="article-footer">
-              <Link className="button button-outline" href="/blog">
+              <Link className="button button-secondary" href="/blog">
                 View more articles
               </Link>
             </footer>
@@ -266,7 +266,7 @@ function BlogSingle({
                     required
                   />
 
-                  <button className="button" type="submit">
+                  <button className="button button-primary" type="submit">
                     Subscribe
                   </button>
                 </form>

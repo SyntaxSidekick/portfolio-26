@@ -204,7 +204,7 @@ export default async function Page({ params }: PageProps) {
                   ))}
                 </ul>
               ) : null}
-              <div className="project-actions">
+              <div className="button-group project-actions">
                 {links.projectUrl ? (
                   <a className="button button-primary" href={links.projectUrl}>
                     {links.primaryLabel || "Visit Live Site"}{" "}
@@ -244,9 +244,9 @@ export default async function Page({ params }: PageProps) {
           aria-label="Project performance metrics"
         >
           <div className="project-container">
-            <dl className="metrics-grid">
+            <dl className="metric-list" data-variant="project">
               {metrics.map((metric) => (
-                <div key={metric.id}>
+                <div className="metric-card" key={metric.id}>
                   <dt>{metric.value}</dt>
                   <dd>{metric.label}</dd>
                   {metric.description ? <dd>{metric.description}</dd> : null}

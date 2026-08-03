@@ -81,23 +81,23 @@ function BioPageContent() {
           business objectives, visual design, and production-ready engineering.
         </p>
 
-        <dl className="bio-metrics" aria-label="Professional impact">
-          <div className="bio-metric">
+        <dl className="metric-list" data-variant="bio" aria-label="Professional impact">
+          <div className="metric-card">
             <dt>17+</dt>
             <dd>Years of Experience</dd>
           </div>
 
-          <div className="bio-metric">
+          <div className="metric-card">
             <dt>100+</dt>
             <dd>Products &amp; Projects</dd>
           </div>
 
-          <div className="bio-metric">
+          <div className="metric-card">
             <dt>40–60%</dt>
             <dd>Faster Delivery</dd>
           </div>
 
-          <div className="bio-metric">
+          <div className="metric-card">
             <dt>90+</dt>
             <dd>Lighthouse Scores</dd>
           </div>

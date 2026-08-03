@@ -20,6 +20,23 @@
   --project-radius-sm: 0.4rem;
   --project-radius-md: 0.7rem;
   --project-radius-lg: 0.9rem;
+  --button-gap: 0.75rem;
+  --button-min-height: 3.25rem;
+  --button-padding: 0.75rem 1.35rem;
+  --button-radius: var(--project-radius-sm);
+  --button-font-size: 0.88rem;
+  --button-primary-border-color: #258ff5;
+  --button-primary-background: linear-gradient(135deg, #168fff, #0a5fd0);
+  --button-primary-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
+  --button-primary-hover-border-color: #258ff5;
+  --button-primary-hover-background: linear-gradient(135deg, #168fff, #0a5fd0);
+  --button-primary-hover-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
+  --button-secondary-color: var(--project-text);
+  --button-secondary-border-color: rgba(125, 159, 188, 0.34);
+  --button-secondary-background: rgba(7, 17, 28, 0.72);
+  --button-secondary-hover-color: var(--project-text);
+  --button-secondary-hover-border-color: rgba(125, 159, 188, 0.34);
+  --button-secondary-hover-background: rgba(7, 17, 28, 0.72);
 
   min-height: 100vh;
   overflow: hidden;
@@ -184,9 +201,8 @@
 .project-single .technology-tags li:nth-child(4) { color: #f5cf44; }
 
 .project-single .project-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  --button-group-gap: 1rem;
+
   margin-top: 2rem;
 }
 
@@ -223,38 +239,11 @@
   border-radius: 50%;
 }
 
-.project-single .button {
-  display: inline-flex;
-  min-height: 3.25rem;
-  align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.75rem 1.35rem;
-  border-radius: var(--project-radius-sm);
-  font-size: 0.88rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease;
-}
-
-.project-single .button:hover {
-  transform: translateY(-2px);
-}
-
 .project-single .card-link {
   border: 1px solid #258ff5;
   color: white;
   background: linear-gradient(135deg, #168fff, #0a5fd0);
   box-shadow: 0 0 1.5rem rgba(22, 143, 255, 0.16);
-}
-
-.project-single .button-secondary {
-  border: 1px solid rgba(125, 159, 188, 0.34);
-  color: var(--project-text);
-  background: rgba(7, 17, 28, 0.72);
 }
 
 .project-single .project-hero-media {
@@ -319,7 +308,6 @@
   padding: 0 0 clamp(1rem, 2vw, 1.5rem);
 }
 
-.project-single .metrics-grid,
 .project-single .panel,
 .project-single .cta-panel {
   border: 1px solid var(--project-border);
@@ -328,39 +316,6 @@
   box-shadow:
     0 1rem 3rem rgba(0, 0, 0, 0.16),
     inset 0 1px rgba(255, 255, 255, 0.02);
-}
-
-.project-single .metrics-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  padding: clamp(1.25rem, 3vw, 2rem);
-}
-
-.project-single .metrics-grid > div {
-  padding: 0 1.5rem;
-  border-right: 1px solid rgba(105, 145, 178, 0.18);
-  text-align: center;
-}
-
-.project-single .metrics-grid > div:first-child {
-  padding-left: 0;
-}
-
-.project-single .metrics-grid > div:last-child {
-  padding-right: 0;
-  border-right: 0;
-}
-
-.project-single .metrics-grid dt {
-  color: var(--project-blue-light);
-  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
-  font-weight: 600;
-}
-
-.project-single .metrics-grid dd {
-  margin-top: 0.3rem;
-  color: var(--project-text-soft);
-  font-size: 0.78rem;
 }
 
 .project-single .panel {
@@ -643,24 +598,20 @@
     min-height: clamp(24rem, 62vw, 36rem);
   }
 
-.project-single .metrics-grid,
 .project-single .results-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-.project-single .metrics-grid > div,
 .project-single .results-grid > div {
     padding: 1rem;
     border-right: 0;
     border-bottom: 1px solid rgba(105, 145, 178, 0.18);
   }
 
-.project-single .metrics-grid > div:nth-child(odd),
 .project-single .results-grid > div:nth-child(odd) {
     border-right: 1px solid rgba(105, 145, 178, 0.18);
   }
 
-.project-single .metrics-grid > div:last-child,
 .project-single .results-grid > div:last-child {
     grid-column: 1 / -1;
     border-right: 0;
@@ -719,20 +670,16 @@
 }
 
 @media (max-width: 34rem) {
-.project-single .metrics-grid,
 .project-single .results-grid {
     grid-template-columns: 1fr;
   }
 
-.project-single .metrics-grid > div,
-.project-single .metrics-grid > div:nth-child(odd),
 .project-single .results-grid > div,
 .project-single .results-grid > div:nth-child(odd) {
     grid-column: auto;
     border-right: 0;
   }
 
-.project-single .metrics-grid > div:last-child,
 .project-single .results-grid > div:last-child {
     grid-column: auto;
   }

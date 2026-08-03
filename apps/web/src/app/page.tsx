@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@/styles/pages/home.css";
+import "@/styles/components/rotating-roles.css";
 import { CapabilitiesSection } from "@/components/home/capabilities-section";
 import { ContactSection } from "@/components/home/contact-section";
 import { FeaturedWorkSection } from "@/components/home/featured-work-section";

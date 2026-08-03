@@ -21,17 +21,17 @@ export function HeroSection() {
               user-centric digital experiences.
             </p>
 
-            <div className="hero-actions">
-  <Link className="button button-primary" href="#featured-work">
-    <span>View My Work</span>
-    <ArrowRight aria-hidden="true" />
-  </Link>
+            <div className="button-group hero-actions" data-stack="mobile">
+              <Link className="button button-primary" href="#featured-work">
+                <span>View My Work</span>
+                <ArrowRight aria-hidden="true" />
+              </Link>
 
-  <Link className="button button-secondary" href="/contact">
-    <span>Let's Talk</span>
-    <MessageCircle aria-hidden="true" />
-  </Link>
-</div>
+              <Link className="button button-secondary" href="/contact">
+                <span>Let's Talk</span>
+                <MessageCircle aria-hidden="true" />
+              </Link>
+            </div>
           </div>
 
           <div className="hero-profile">
@@ -54,23 +54,23 @@ export function HeroSection() {
           </div>
         </div>
 
-        <dl className="metrics" aria-label="Professional metrics">
-          <div className="metric">
+        <dl className="metric-list" data-variant="home" aria-label="Professional metrics">
+          <div className="metric-card">
             <dt>17+</dt>
             <dd>Years Experience</dd>
           </div>
 
-          <div className="metric">
+          <div className="metric-card">
             <dt>100+</dt>
             <dd>Projects Delivered</dd>
           </div>
 
-          <div className="metric">
+          <div className="metric-card">
             <dt>1M+</dt>
             <dd>Users Served</dd>
           </div>
 
-          <div className="metric">
+          <div className="metric-card">
             <dt>99.4%</dt>
             <dd>Client Satisfaction</dd>
           </div>
