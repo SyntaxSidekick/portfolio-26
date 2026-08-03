@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { HomeSectionCta } from "@/components/home/home-section-cta";
 import { tryGetPublishedProjects, type PublicProject } from "@/lib/portfolio-api";
+import { TechnologyIcon } from "@/lib/technologyIcons";
 
 function getProjectImage(project: PublicProject) {
   return (
@@ -37,53 +38,74 @@ export async function FeaturedWorkSection() {
           </h2>
         </header>
 
-        <div className="project-grid">
+        <ul className="project-grid">
           {featuredCaseStudies.map((project) => {
             const image = getProjectImage(project);
             const metrics = getProjectMetrics(project);
             const category = project.categories[0]?.name ?? project.details?.subtype ?? "Case Study";
-            const technologies = project.technologies.slice(0, 5);
+            const visibleTechnologies = project.technologies.slice(0, 3);
+            const hiddenTechnologyCount = Math.max(project.technologies.length - visibleTechnologies.length, 0);
 
             return (
-              <article className="project-card" key={project.id}>
-                <div className="project-image">
-                  <span className="image-label">Featured</span>
+              <li className="project-item" key={project.id}>
+                <article className="card project-card">
+                  <div className="project-image">
+                    <span className="image-label">Featured</span>
 
-                  <img src={image.url} alt={image.alt} />
-                </div>
-
-                <div className="project-body">
-                  <div className="project-title-row">
-                    <h3>{project.title}</h3>
-                    <p>{category}</p>
+                    <img src={image.url} alt={image.alt} />
                   </div>
 
-                  <p className="project-description">{project.excerpt}</p>
+                  <div className="project-body">
+                    <div className="project-title-row">
+                      <h3>{project.title}</h3>
+                      <p>{category}</p>
+                    </div>
 
-                  <dl className="project-results">
-                    {metrics.map((result) => (
-                      <div key={`${project.title}-${result.label}`}>
-                        <dt>{result.value}</dt>
-                        <dd>{result.label}</dd>
-                      </div>
-                    ))}
-                  </dl>
+                    <p className="project-description">{project.excerpt}</p>
 
-                  <ul className="project-tags" aria-label="Technologies used">
-                    {technologies.map((technology) => (
-                      <li key={technology.id}>{technology.name}</li>
-                    ))}
-                  </ul>
+                    <dl className="project-results">
+                      {metrics.map((result) => (
+                        <div key={`${project.title}-${result.label}`}>
+                          <dt>{result.value}</dt>
+                          <dd>{result.label}</dd>
+                        </div>
+                      ))}
+                    </dl>
 
-                  <Link className="text-link" href={`/portfolio/${project.slug}`}>
-                    View Case Study
-                    <span aria-hidden="true">&rarr;</span>
-                  </Link>
-                </div>
-              </article>
+                    <ul
+                      className="tag-list project-tags"
+                      data-size="compact"
+                      data-tone="blue"
+                      aria-label="Technologies used"
+                    >
+                      {visibleTechnologies.map((technology) => (
+                        <li key={technology.id}>
+                          <TechnologyIcon
+                            iconKey={technology.iconKey ?? technology.slug}
+                            name={technology.name}
+                            brandColor={technology.brandColor}
+                            size={14}
+                          />
+                          <span>{technology.name}</span>
+                        </li>
+                      ))}
+                      {hiddenTechnologyCount > 0 ? (
+                        <li aria-label={`${hiddenTechnologyCount} more technologies`}>
+                          <span aria-hidden="true">+{hiddenTechnologyCount}</span>
+                        </li>
+                      ) : null}
+                    </ul>
+
+                    <Link className="text-link" href={`/portfolio/${project.slug}`}>
+                      View Case Study
+                      <span aria-hidden="true">&rarr;</span>
+                    </Link>
+                  </div>
+                </article>
+              </li>
             );
           })}
-        </div>
+        </ul>
 
         <HomeSectionCta href="/portfolio" label="View Full Portfolio" />
       </div>
