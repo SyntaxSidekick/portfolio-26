@@ -1,5 +1,8 @@
+# Dependencies
 node_modules/
 .pnpm-store/
+
+# Build outputs and caches
 .next/
 out/
 dist/
@@ -8,32 +11,45 @@ coverage/
 playwright-report/
 test-results/
 *.tsbuildinfo
+
+# Environment files
 .env
 .env.*
 !.env.example
+
+# Logs
 *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Archives and backups
 *.zip
 *.tar
 *.tar.gz
 *.tgz
 *.7z
 *.rar
+backups/
+archive/
+
+# Local editor and OS files
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
-backups/
-archive/
+
+# Local generated workspace artifacts
+AGENTS.md
+combined.css
+handoff.md
+apps/web/css-cleanup-phase-1/
+
+# Local storage
 storage/logs/
 storage/mongodb-export-*/
 storage/media/originals/*
 storage/media/generated/*
 !storage/media/originals/.gitkeep
 !storage/media/generated/.gitkeep
-AGENTS.md
-combined.css
-handoff.md

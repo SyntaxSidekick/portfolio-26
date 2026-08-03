@@ -34,14 +34,31 @@ test-results
 
 backups
 archive
+apps/web/css-cleanup-phase-1
+storage/logs
+storage/mongodb-export-*
+storage/media/originals/*
+storage/media/generated/*
+!storage/media/originals/.gitkeep
+!storage/media/generated/.gitkeep
 
 *.log
 npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
 
 .DS_Store
 Thumbs.db
 .vscode
 .idea
+
+AGENTS.md
+combined.css
+handoff.md
