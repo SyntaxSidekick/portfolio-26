@@ -10,7 +10,7 @@ export default function Loading() {
             <h1 id="blog-loading-title">Insights &amp; Articles</h1>
           </header>
 
-          <div className="blog-empty-state" role="status">
+          <div className="article-empty-state blog-empty-state" role="status">
             <h2>Loading articles...</h2>
           </div>
         </div>

@@ -6,10 +6,10 @@ import { formatArticleDate } from "@/lib/syntax-sidekick";
 
 type ArticleCardProps = {
   article: SyntaxSidekickArticle;
-  variant?: "featured" | "listing" | "home";
+  variant?: "featured" | "blog-index" | "home";
 };
 
-export function ArticleCard({ article, variant = "listing" }: ArticleCardProps) {
+export function ArticleCard({ article, variant = "blog-index" }: ArticleCardProps) {
   if (variant === "featured") {
     return <FeaturedArticleCard article={article} />;
   }
@@ -18,12 +18,12 @@ export function ArticleCard({ article, variant = "listing" }: ArticleCardProps) 
     return <HomeArticleCard article={article} />;
   }
 
-  return <ListingArticleCard article={article} />;
+  return <BlogIndexArticleCard article={article} />;
 }
 
 function HomeArticleCard({ article }: Pick<ArticleCardProps, "article">) {
   return (
-    <article className="article-card">
+    <article className="card article-card" data-variant="home">
       <ArticleImage article={article} className="article-image" width={900} height={480} />
 
       <div className="article-body">
@@ -44,9 +44,9 @@ function HomeArticleCard({ article }: Pick<ArticleCardProps, "article">) {
   );
 }
 
-function ListingArticleCard({ article }: Pick<ArticleCardProps, "article">) {
+function BlogIndexArticleCard({ article }: Pick<ArticleCardProps, "article">) {
   return (
-    <article className="article-card">
+    <article className="article-card" data-variant="blog-index">
       <ArticleImage
         article={article}
         className="article-card-media"

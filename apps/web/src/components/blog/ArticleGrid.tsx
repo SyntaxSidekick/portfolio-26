@@ -3,23 +3,25 @@ import { ArticleCard } from "@/components/blog/ArticleCard";
 
 type ArticleGridProps = {
   articles: SyntaxSidekickArticle[];
-  variant?: "listing" | "home";
+  variant?: "blog-index" | "home";
 };
 
-export function ArticleGrid({ articles, variant = "listing" }: ArticleGridProps) {
+export function ArticleGrid({ articles, variant = "blog-index" }: ArticleGridProps) {
   if (articles.length === 0) {
     return (
-      <div className="blog-empty-state">
+      <div className="article-empty-state">
         <h2>Articles are temporarily unavailable.</h2>
       </div>
     );
   }
 
   return (
-    <div className="article-grid">
+    <ul className="article-grid" data-variant={variant}>
       {articles.map((article) => (
-        <ArticleCard article={article} key={article.id} variant={variant} />
+        <li className="article-item" key={article.id}>
+          <ArticleCard article={article} variant={variant} />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

@@ -3,6 +3,7 @@ import "@/styles/pages/home.css";
 import "@/styles/components/rotating-roles.css";
 import "@/styles/components/capabilities.css";
 import "@/styles/components/featured-work.css";
+import "@/styles/components/home-contact.css";
 import "@/styles/components/home-section-cta.css";
 import { CapabilitiesSection } from "@/components/home/capabilities-section";
 import { ContactSection } from "@/components/home/contact-section";

@@ -44,3 +44,25 @@
     }
   }
 }
+
+.article-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.article-tag {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.7rem;
+  padding: 0.28rem 0.58rem;
+  border: 1px solid rgba(46, 138, 224, 0.13);
+  border-radius: 0.3rem;
+  color: #8fcaff;
+  background: rgba(20, 67, 112, 0.27);
+  font-size: 0.67rem;
+  font-weight: 600;
+}
