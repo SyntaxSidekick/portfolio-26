@@ -10,7 +10,7 @@ Portfolio 2026 is a TypeScript monorepo for Riad Kilani's public portfolio, port
 - **Admin app:** Vite, React, React Router
 - **API:** Node.js, Express
 - **Database:** MongoDB
-- **Validation:** Zod
+- **Validation:** Zod, Playwright 
 - **Media processing:** Sharp
 - **Icons:** Font Awesome brand icons, Lucide interface icons
 - **Testing:** Vitest, Node test runner, TypeScript checks
