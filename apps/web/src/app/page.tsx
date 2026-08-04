@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import "@/styles/pages/home.css";
-import "@/styles/components/rotating-roles.css";
-import "@/styles/components/capabilities.css";
-import "@/styles/components/featured-work.css";
-import "@/styles/components/recommendations.css";
-import "@/styles/components/home-contact.css";
-import "@/styles/components/home-section-cta.css";
+import "@/styles/pages/home/index.css";
+import "@/styles/pages/home/rotating-roles.css";
+import "@/styles/pages/home/capabilities.css";
+import "@/styles/pages/home/featured-work.css";
+import "@/styles/pages/home/recommendations.css";
+import "@/styles/pages/home/contact.css";
+import "@/styles/pages/home/section-cta.css";
 import { CapabilitiesSection } from "@/components/home/capabilities-section";
 import { ContactSection } from "@/components/home/contact-section";
 import { FeaturedWorkSection } from "@/components/home/featured-work-section";

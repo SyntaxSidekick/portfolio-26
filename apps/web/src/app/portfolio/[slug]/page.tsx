@@ -13,7 +13,7 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
-import "@/styles/pages/portfolio-single.css";
+import "@/styles/pages/portfolio/single.css";
 import { getProjectBySlug, tryGetPublishedProjects } from "@/lib/portfolio-api";
 import { TechnologyIcon } from "@/lib/technologyIcons";
 

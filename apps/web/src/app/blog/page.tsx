@@ -4,7 +4,7 @@ import { ArticleCard } from "@/components/blog/ArticleCard";
 import { ArticleGrid } from "@/components/blog/ArticleGrid";
 import { getAllSyntaxSidekickArticles } from "@/lib/syntax-sidekick";
 import type { SyntaxSidekickArticle } from "@/types/syntax-sidekick";
-import "@/styles/pages/blog.css";
+import "@/styles/pages/blog/index.css";
 import { Mail } from "lucide-react";
 
 const ARTICLES_PER_PAGE = 9;

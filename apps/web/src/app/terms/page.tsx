@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/pages/legal.css";
+import "@/styles/pages/legal/index.css";
 
 export const metadata: Metadata = {
   title: "Terms of Use | Riad Kilani",

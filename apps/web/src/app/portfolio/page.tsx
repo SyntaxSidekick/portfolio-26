@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import "@/styles/pages/portfolio.css";
-import "@/styles/pages/portfolio-case-studies.css";
-import "@/styles/pages/portfolio-gh.css";
-import "@/styles/pages/portfolio-dj.css";
-import "@/styles/pages/portfolio-cp.css";
+import "@/styles/pages/portfolio/index.css";
+import "@/styles/pages/portfolio/case-studies.css";
+import "@/styles/pages/portfolio/github.css";
+import "@/styles/pages/portfolio/dev-jobs.css";
+import "@/styles/pages/portfolio/codepen.css";
 import {
   tryGetPublishedProjects,
   type PublicProject,

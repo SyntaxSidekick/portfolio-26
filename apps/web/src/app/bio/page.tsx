@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/pages/bio.css";
+import "@/styles/pages/bio/index.css";
 import { CareerJourneySection } from "@/components/bio/career-journey-section";
 import { CoreCapabilitiesSection } from "@/components/bio/core-capabilities-section";
 import {

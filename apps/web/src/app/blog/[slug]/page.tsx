@@ -25,7 +25,7 @@ import {
 } from "@/lib/syntax-sidekick";
 import { WordPressTocController } from "@/components/blog/wordpress-toc-controller";
 import type { SyntaxSidekickArticle } from "@/types/syntax-sidekick";
-import "@/styles/pages/blog-single.css";
+import "@/styles/pages/blog/single.css";
 
 type PageProps = Readonly<{
   params: Promise<{ slug: string }>;

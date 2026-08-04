@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import "@/styles/pages/contact.css";
+import "@/styles/pages/contact/index.css";
 import { ContactFormBehavior } from "@/components/contact/contact-form-behavior";
 import { Clock3, LockKeyhole, Mail, MapPin, Rocket, Send } from "lucide-react";
 import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";

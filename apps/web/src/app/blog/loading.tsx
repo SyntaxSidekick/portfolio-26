@@ -1,4 +1,4 @@
-import "@/styles/pages/blog.css";
+import "@/styles/pages/blog/index.css";
 
 export default function Loading() {
   return (
