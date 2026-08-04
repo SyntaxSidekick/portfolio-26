@@ -44,17 +44,52 @@
   height: 54px;
   margin: 0 auto 20px;
   place-items: center;
-  border: 2px solid var(--accent);
+  border: 2px solid currentColor;
   border-radius: 50%;
-  color: var(--accent-bright);
+  color: var(--capability-icon-color, var(--icon-architecture));
   font-size: 1.35rem;
   line-height: 1;
-  box-shadow: 0 0 20px rgba(0, 135, 255, 0.12);
+  box-shadow: 0 0 20px color-mix(in srgb, currentColor 12%, transparent);
 
   svg {
     width: 24px;
     height: 24px;
     stroke-width: 1.6;
+    transition: filter var(--transition-fast);
+  }
+
+  &[data-icon="discovery"] {
+    --capability-icon-color: var(--icon-discovery);
+  }
+
+  &[data-icon="architecture"] {
+    --capability-icon-color: var(--icon-architecture);
+  }
+
+  &[data-icon="design"] {
+    --capability-icon-color: var(--icon-design);
+  }
+
+  &[data-icon="engineering"] {
+    --capability-icon-color: var(--icon-engineering);
+  }
+
+  &[data-icon="quality"] {
+    --capability-icon-color: var(--icon-quality);
+  }
+
+  &[data-icon="performance"] {
+    --capability-icon-color: var(--icon-performance);
+  }
+}
+
+.capability-card:hover {
+  .capability-icon {
+    box-shadow: 0 0 22px color-mix(in srgb, currentColor 18%, transparent);
+
+    svg {
+      filter: brightness(1.14);
+    }
   }
 }
 

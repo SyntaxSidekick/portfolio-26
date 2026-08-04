@@ -21,7 +21,7 @@ export const requiredImages: Array<{
   recommendation: string;
 }> = [
   { field: "featured", title: "Featured Image", description: "Used on the project page hero.", recommendation: "1920 x 1080 recommended" },
-  { field: "desktop", title: "Desktop Image", description: "Used in the case study hero.", recommendation: "1920 x 1080 recommended" },
+  { field: "desktop", title: "Desktop Image", description: "Used in the case study hero.", recommendation: "1035 x 795 recommended" },
   { field: "mobile", title: "Mobile Image", description: "Used in mobile view / social share.", recommendation: "1080 x 1350 recommended" },
   { field: "card", title: "Card Image", description: "Used in project cards & lists.", recommendation: "1200 x 800 recommended" },
 ];

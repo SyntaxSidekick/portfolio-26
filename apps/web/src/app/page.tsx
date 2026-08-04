@@ -3,6 +3,7 @@ import "@/styles/pages/home.css";
 import "@/styles/components/rotating-roles.css";
 import "@/styles/components/capabilities.css";
 import "@/styles/components/featured-work.css";
+import "@/styles/components/recommendations.css";
 import "@/styles/components/home-contact.css";
 import "@/styles/components/home-section-cta.css";
 import { CapabilitiesSection } from "@/components/home/capabilities-section";
@@ -10,6 +11,7 @@ import { ContactSection } from "@/components/home/contact-section";
 import { FeaturedWorkSection } from "@/components/home/featured-work-section";
 import { HeroSection } from "@/components/home/hero-section";
 import { LatestPostsSection } from "@/components/home/latest-posts-section";
+import { RecommendationsSection } from "@/components/home/recommendations-section";
 
 export const metadata: Metadata = {
   title: "Riad Kilani | Senior Front-End Engineer & UX Engineer",
@@ -45,6 +47,7 @@ export default function HomePage() {
       <HeroSection />
       <CapabilitiesSection />
       <FeaturedWorkSection />
+      <RecommendationsSection />
       <LatestPostsSection />
       <ContactSection />
     </main>

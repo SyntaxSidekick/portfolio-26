@@ -10,43 +10,58 @@ import {
 
 type Capability = {
   icon: LucideIcon;
+  iconTone: IconTone;
   title: string;
   description: string;
 };
 
+type IconTone =
+  | "discovery"
+  | "architecture"
+  | "design"
+  | "engineering"
+  | "quality"
+  | "performance";
+
 const capabilities: Capability[] = [
   {
     icon: CodeXml,
+    iconTone: "architecture",
     title: "Front-End Architecture",
     description:
       "Scalable, maintainable front-end systems with modern best practices.",
   },
   {
     icon: Blocks,
+    iconTone: "engineering",
     title: "Design Systems",
     description:
       "Building reusable component libraries that ensure consistency and speed.",
   },
   {
     icon: PersonStanding,
+    iconTone: "quality",
     title: "Accessibility",
     description:
       "WCAG-compliant experiences that are inclusive and usable for everyone.",
   },
   {
     icon: CircleGauge,
+    iconTone: "performance",
     title: "Performance",
     description:
       "Optimized for speed, Core Web Vitals, and exceptional user experiences.",
   },
   {
     icon: LayoutPanelLeft,
+    iconTone: "design",
     title: "UX Engineering",
     description:
       "Bridging the gap between design and development seamlessly.",
   },
   {
     icon: Sparkles,
+    iconTone: "discovery",
     title: "AI Development",
     description:
       "Leveraging AI tools to build smarter, faster, and more efficient solutions.",
@@ -76,7 +91,7 @@ export function CapabilitiesSection() {
 
             return (
               <li className="card capability-card" key={capability.title}>
-                <div className="capability-icon" aria-hidden="true">
+                <div className="capability-icon" data-icon={capability.iconTone} aria-hidden="true">
                   <Icon />
                 </div>
 

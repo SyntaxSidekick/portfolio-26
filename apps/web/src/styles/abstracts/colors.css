@@ -20,6 +20,13 @@
   --accent-light: #58b8ff;
   --accent-dark: #0873c8;
 
+  --icon-discovery: #22d3ee;
+  --icon-architecture: var(--accent-bright);
+  --icon-design: #8b5cf6;
+  --icon-engineering: #6366f1;
+  --icon-quality: #10b981;
+  --icon-performance: #f59e0b;
+
   --purple: #8728d8;
   --purple-light: #a04dff;
 

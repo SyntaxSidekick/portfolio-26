@@ -1,33 +1,21 @@
 import type { Metadata } from "next";
 import "@/styles/pages/bio.css";
-import { BioCapabilityGroup } from "@/components/bio/bio-capability-group";
-import { bioCapabilityGroups } from "@/data/bio-capabilities";
-import type { BioCapabilityGroupId } from "@/data/bio-capabilities";
-import type { ReactNode } from "react";
+import { CareerJourneySection } from "@/components/bio/career-journey-section";
+import { CoreCapabilitiesSection } from "@/components/bio/core-capabilities-section";
 import {
   Accessibility,
   ArrowRight,
-  BadgeCheck,
-  Blocks,
-  Braces,
   BriefcaseBusiness,
-  ChartNoAxesCombined,
   Circle,
   Code2,
   Gauge,
-  GitBranch,
   Globe2,
   Layers3,
-  MousePointerClick,
-  Network,
-  Palette,
-  PanelsTopLeft,
   PenTool,
   Rocket,
   Search,
   Send,
   ShieldCheck,
-  Sparkles,
   TrendingUp,
   Workflow,
 } from "lucide-react";
@@ -38,19 +26,6 @@ export const metadata: Metadata = {
   description: "Learn about Riad Kilani’s experience in front-end architecture, UX engineering, design systems, accessibility, and performance."
 };
 
-const capabilityGroupIcons: Record<BioCapabilityGroupId, ReactNode> = {
-  "core-engineering": <Braces aria-hidden="true" />,
-  "frameworks-platforms": <Blocks aria-hidden="true" />,
-  "front-end-architecture": <Network aria-hidden="true" />,
-  "ux-interactive-design": <MousePointerClick aria-hidden="true" />,
-  "design-systems": <PanelsTopLeft aria-hidden="true" />,
-  "design-prototyping-tools": <Palette aria-hidden="true" />,
-  "quality-performance": <BadgeCheck aria-hidden="true" />,
-  "analytics-insights": <ChartNoAxesCombined aria-hidden="true" />,
-  "delivery-workflow": <GitBranch aria-hidden="true" />,
-  "ai-assisted-development": <Sparkles aria-hidden="true" />,
-};
-
 function BioPageContent() {
   return (
 <main id="bio-page" className="page bio">
@@ -58,7 +33,7 @@ function BioPageContent() {
     <section className="bio-intro" aria-labelledby="bio-heading">
       <div className="bio-intro__content">
         <header className="bio-heading-group">
-          <p className="bio-eyebrow">
+          <p className="eyebrow">
             Senior UX Engineer &amp; Front-End Architect
           </p>
 
@@ -150,13 +125,14 @@ function BioPageContent() {
       </aside>
     </section>
 
+    <CareerJourneySection />
     
     <section
       className="bio-section process-section"
       aria-labelledby="process-heading"
     >
       <header className="section-heading">
-        <p className="section-eyebrow">From strategy to production</p>
+        <p className="eyebrow">From strategy to production</p>
 
         <h2 id="process-heading">My Front-End Process</h2>
 
@@ -261,42 +237,7 @@ function BioPageContent() {
 
     
     <div className="skills-achievements-layout">
-      <section className="skills-section" aria-labelledby="skills-heading">
-        <header className="section-heading">
-          <p className="section-eyebrow">
-            Technical leadership and creative execution
-          </p>
-
-          <h2 id="skills-heading">Core Capabilities</h2>
-
-          <p>
-            A senior-level combination of front-end engineering, experience
-            architecture, interactive design, visual design, accessibility,
-            performance, and modern delivery workflows.
-          </p>
-        </header>
-
-        <div className="skills-grid">
-          {bioCapabilityGroups.map((group) => (
-            <BioCapabilityGroup
-              group={group}
-              icon={capabilityGroupIcons[group.id]}
-              key={group.id}
-            />
-          ))}
-        </div>
-
-        <aside className="additional-experience">
-          <h3>Additional Platform Experience</h3>
-
-          <p>
-            AWS, Azure, Salesforce Experience Cloud, Epic EMR integrations,
-            WebRTC, Google Analytics, Google Tag Manager, Adobe SiteCatalyst,
-            Tailwind CSS, Sass, Drupal, Magento, AngularJS, jQuery, Hotjar,
-            Chart.js, Mailchimp, A/B testing, and heat mapping.
-          </p>
-        </aside>
-      </section>
+      <CoreCapabilitiesSection />
 
       
       <aside
@@ -304,7 +245,7 @@ function BioPageContent() {
         aria-labelledby="achievements-heading"
       >
         <header className="section-heading">
-          <p className="section-eyebrow">Measured impact</p>
+          <p className="eyebrow">Measured impact</p>
           <h2 id="achievements-heading">Career Highlights</h2>
         </header>
 
@@ -396,7 +337,7 @@ function BioPageContent() {
       </div>
 
       <div className="bio-cta__content">
-        <p className="section-eyebrow">Have a complex product challenge?</p>
+        <p className="eyebrow">Have a complex product challenge?</p>
 
         <h2 id="cta-heading">Let’s Build Something Impactful</h2>
 
