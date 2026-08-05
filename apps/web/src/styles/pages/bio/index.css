@@ -174,19 +174,6 @@
   line-height: 1.65;
 }
 
-/* ==========================================================
-   SKILLS AND ACHIEVEMENTS LAYOUT
-========================================================== */
-
-.bio .skills-achievements-layout {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 2.55fr)
-    minmax(18rem, 0.8fr);
-  gap: clamp(2rem, 4vw, 3.25rem);
-  margin-bottom: clamp(3rem, 5vw, 4rem);
-}
-
 .bio .skills-section {
   min-width: 0;
   padding: clamp(1.35rem, 2.5vw, 2rem);
@@ -450,185 +437,146 @@
 }
 
 /* ==========================================================
-   ACHIEVEMENTS
+   RECOMMENDATIONS
 ========================================================== */
 
-.bio .achievements-section {
-  padding-left: clamp(0rem, 2vw, 1rem);
-  border-left: 1px solid rgba(95, 133, 164, 0.14);
-}
-
-.bio .achievements-list {
-  display: grid;
-  gap: 1rem;
-}
-
-.bio .achievement-card {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 0.9rem;
-  align-items: center;
-  min-height: 8.6rem;
-  padding: 1rem;
-  border: 1px solid var(--bio-border);
-  border-radius: var(--bio-radius-md);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(9, 20, 29, 0.9),
-      rgba(4, 11, 17, 0.86)
-    );
-  transition:
-    border-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
-}
-
-.bio .achievement-card:hover {
-  border-color: var(--bio-border-strong);
-  box-shadow:
-    0 0.8rem 2rem rgba(0, 0, 0, 0.2);
-  transform: translateY(-0.18rem);
-}
-
-.bio .achievement-icon {
-  display: grid;
-  width: 3.5rem;
-  height: 3.5rem;
-  border: 1px solid var(--accent);
-  border-radius: 50%;
-  box-shadow:
-    inset 0 0 1.1rem rgba(21, 145, 255, 0.08),
-    0 0 1rem rgba(21, 145, 255, 0.05);
-  place-items: center;
-}
-
-.bio .achievement-icon svg {
-  width: 1.55rem;
-  height: 1.55rem;
-  color: var(--bio-blue-bright);
-  stroke-width: 1.4;
-}
-
-.bio .achievement-card h3 {
-  margin-bottom: 0.3rem;
-  color: var(--bio-blue-bright);
-  font-size: 0.79rem;
-}
-
-.bio .achievement-card p {
-  margin-bottom: 0;
-  color: var(--bio-muted);
-  font-size: 0.73rem;
-  line-height: 1.6;
-}
-
-/* ==========================================================
-   CTA
-========================================================== */
-
-.bio .bio-cta {
-  display: grid;
-  grid-template-columns:
-    auto
-    minmax(0, 1fr)
-    auto;
-  gap: 1.35rem;
-  align-items: center;
+.bio .bio-recommendations {
   margin-bottom: clamp(3rem, 5vw, 4.5rem);
-  padding: clamp(1.3rem, 2.5vw, 1.85rem);
+  padding: clamp(1.35rem, 2.5vw, 2rem);
   border: 1px solid var(--bio-border-purple);
-  border-radius: var(--bio-radius-md);
+  border-radius: var(--bio-radius-lg);
   background:
+    radial-gradient(circle at 10% 14%, rgba(167, 68, 239, 0.16), transparent 17rem),
     linear-gradient(
-      100deg,
-      rgba(35, 17, 55, 0.42),
-      rgba(8, 18, 27, 0.84) 30%,
-      rgba(7, 16, 23, 0.9)
+      135deg,
+      rgba(31, 18, 54, 0.46),
+      rgba(6, 16, 24, 0.92) 40%,
+      rgba(5, 12, 19, 0.96)
     );
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 2rem rgba(145, 56, 217, 0.05);
+    0 0 2rem rgba(145, 56, 217, 0.07);
 }
 
-.bio .bio-cta__icon {
+.bio .bio-recommendations-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: start;
+  margin-bottom: clamp(1.5rem, 3vw, 2rem);
+}
+
+.bio .bio-recommendations-title {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.bio .bio-recommendations-mark {
   display: grid;
   width: 4.2rem;
   height: 4.2rem;
   border: 1px solid #a650ef;
   border-radius: 50%;
-  background:
-    rgba(23, 20, 48, 0.52);
+  background: rgba(23, 20, 48, 0.52);
   box-shadow:
     inset 0 0 1.4rem rgba(151, 63, 227, 0.15),
     0 0 1.5rem rgba(151, 63, 227, 0.1);
   place-items: center;
+
+  svg {
+    width: 1.85rem;
+    height: 1.85rem;
+    color: #f5e9ff;
+  }
 }
 
-.bio .bio-cta__icon svg {
-  width: 1.85rem;
-  height: 1.85rem;
-  color: #f5e9ff;
+.bio .bio-recommendations-title h2 {
+  margin-bottom: 0.55rem;
+  font-size: clamp(1.15rem, 2vw, 1.65rem);
 }
 
-.bio .bio-cta__content h2 {
-  margin-bottom: 0.3rem;
-  font-size: clamp(1.1rem, 2vw, 1.55rem);
-}
-
-.bio .bio-cta__content p:last-child {
-  max-width: 48rem;
+.bio .bio-recommendations-title p:last-child {
+  max-width: 55rem;
   margin-bottom: 0;
   color: var(--bio-muted);
   font-size: 0.82rem;
 }
 
-.bio .bio-button {
-  display: inline-flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 11.5rem;
-  padding: 0.85rem 1rem;
-  border: 1px solid var(--bio-border-strong);
-  border-radius: 0.25rem;
-  background:
-    rgba(5, 18, 29, 0.84);
-  color: var(--text-bright);
-  font-size: 0.76rem;
-  font-weight: 700;
-  text-decoration: none;
-  transition:
-    border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease,
-    transform 180ms ease;
+.bio .bio-recommendations-proof {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: end;
+  min-width: 15rem;
+
+  p {
+    margin-bottom: 0;
+    color: var(--bio-blue-bright);
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.4;
+  }
+
+  .button {
+    --button-min-height: 2.6rem;
+    --button-padding: 0;
+    --button-font-size: 0.74rem;
+    --button-gap: 0;
+    width: 2.6rem;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+  }
 }
 
-.bio .bio-button:hover {
-  border-color: var(--bio-blue-bright);
-  background:
-    rgba(11, 47, 74, 0.8);
-  box-shadow:
-    0 0 1.4rem rgba(21, 145, 255, 0.12);
-  transform: translateY(-0.15rem);
+.bio .bio-recommendations-controls {
+  display: flex;
+  gap: 0.65rem;
 }
 
-.bio .bio-button svg {
-  width: 1rem;
-  height: 1rem;
+.bio .bio-recommendations-rail {
+  overflow-anchor: none;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-padding-inline: 0;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
-/* ==========================================================
-   CONNECT
-========================================================== */
+.bio .bio-recommendations-track {
+  --visible-recommendation-cards: 3.5;
+  --recommendation-step: 3;
 
-.bio .connect-section {
-  text-align: center;
-}
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.35rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  scroll-snap-type: x mandatory;
 
-.bio .connect-section .section-heading {
-  margin-bottom: 1.4rem;
+  li {
+    flex:
+      0 0
+      calc(
+        (
+          100% - (
+            (var(--visible-recommendation-cards) - 1)
+            * clamp(1rem, 2vw, 1.35rem)
+          )
+        ) / var(--visible-recommendation-cards)
+      );
+    display: flex;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
 }
 
 .bio a:focus-visible {
@@ -640,22 +588,6 @@
    RESPONSIVE
 ========================================================== */
 
-@media (max-width: 75rem) {
-  .bio .skills-achievements-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .bio .achievements-section {
-    padding-left: 0;
-    border-left: 0;
-  }
-
-  .bio .achievements-list {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 60rem) {
 .bio {
     padding-inline: 1.1rem;
@@ -665,6 +597,19 @@
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
+
+.bio .bio-recommendations-header {
+    grid-template-columns: 1fr;
+  }
+
+.bio .bio-recommendations-proof {
+    justify-items: start;
+  }
+
+.bio .bio-recommendations-track {
+    --visible-recommendation-cards: 2.5;
+    --recommendation-step: 2;
+  }
 }
 
 @media (max-width: 42rem) {
@@ -672,26 +617,35 @@
     padding-top: 2.5rem;
   }
 
-.bio .core-capability-grid,
-.bio .achievements-list {
+.bio .core-capability-grid {
     grid-template-columns: 1fr;
   }
 
-.bio .core-capability-card {
-    min-height: auto;
-  }
-
-.bio .bio-cta {
+.bio .bio-recommendations-title {
     grid-template-columns: 1fr;
     text-align: center;
   }
 
-.bio .bio-cta__icon {
+.bio .bio-recommendations-mark {
     margin-inline: auto;
   }
 
-.bio .bio-button {
-    width: 100%;
+.bio .bio-recommendations-proof {
+    justify-items: stretch;
+    text-align: center;
+  }
+
+.bio .bio-recommendations-controls {
+    justify-content: center;
+  }
+
+.bio .bio-recommendations-track {
+    --visible-recommendation-cards: 1.2;
+    --recommendation-step: 1;
+  }
+
+.bio .core-capability-card {
+    min-height: auto;
   }
 
 }
@@ -713,5 +667,9 @@
 .bio .core-technology-list li:hover,
 .bio .core-technology-list li:focus-within {
     transform: none;
+  }
+
+.bio .bio-recommendations-rail {
+    scroll-behavior: auto;
   }
 }

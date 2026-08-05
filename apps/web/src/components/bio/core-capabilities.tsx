@@ -134,9 +134,9 @@ function getTechnologyIconProps(technology: CapabilityTechnology) {
   };
 }
 
-export function CoreCapabilitiesSection() {
+export function CoreCapabilities() {
   return (
-    <section className="skills-section core-capabilities" aria-labelledby="skills-heading">
+    <div className="skills-section core-capabilities">
       <header className="section-heading">
         <p className="eyebrow">TECHNICAL LEADERSHIP AND CREATIVE EXECUTION</p>
 
@@ -202,6 +202,6 @@ export function CoreCapabilitiesSection() {
           Cloud, WordPress, and Figma Dev Mode.
         </p>
       </aside>
-    </section>
+    </div>
   );
 }
