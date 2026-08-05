@@ -29,7 +29,7 @@
   }
 
   .section {
-    padding-block: 50px;
+    padding-block: var(--section-padding-block);
   }
 
   .section-header {

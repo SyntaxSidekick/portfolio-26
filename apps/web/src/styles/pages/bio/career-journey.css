@@ -1,0 +1,198 @@
+/* ==========================================================
+   CAREER JOURNEY
+========================================================== */
+
+.career-journey {
+  position: relative;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  overflow: hidden;
+  padding-block: var(--section-padding-block);
+
+  .section-heading {
+    text-align: center;
+  }
+
+  .journey-timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-bottom: 0;
+    padding: 2rem 0 0;
+    list-style: none;
+
+    &::before {
+      position: absolute;
+      top: 3.75rem;
+      right: 7%;
+      left: 7%;
+      height: 1px;
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          var(--bio-border) 12%,
+          var(--bio-border) 88%,
+          transparent
+        );
+      content: "";
+      pointer-events: none;
+    }
+  }
+
+  .journey-milestone {
+    position: relative;
+    min-width: 0;
+    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+    text-align: center;
+
+    + .journey-milestone::before {
+      position: absolute;
+      top: 5.9rem;
+      bottom: 0;
+      left: 0;
+      width: 1px;
+      background: var(--bio-border);
+      content: "";
+      pointer-events: none;
+    }
+  }
+
+  .journey-content {
+    display: grid;
+    justify-items: center;
+
+    h3 {
+      margin-bottom: 0.7rem;
+      color: var(--text-bright);
+      font-family: var(--bio-heading-font);
+      font-size: 0.92rem;
+      font-weight: 500;
+      line-height: 1.35;
+    }
+  }
+
+  .journey-icon {
+    display: grid;
+    position: relative;
+    z-index: 1;
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    background: var(--page-background);
+    color: var(--journey-icon-color, var(--icon-architecture));
+    box-shadow:
+      inset 0 0 1rem color-mix(in srgb, currentColor 9%, transparent),
+      0 0 1.25rem color-mix(in srgb, currentColor 8%, transparent);
+    place-items: center;
+
+    &[data-icon="architecture"] {
+      --journey-icon-color: var(--icon-architecture);
+    }
+
+    &[data-icon="engineering"] {
+      --journey-icon-color: var(--icon-engineering);
+    }
+
+    &[data-icon="performance"] {
+      --journey-icon-color: var(--icon-performance);
+    }
+
+    &[data-icon="discovery"] {
+      --journey-icon-color: var(--icon-discovery);
+    }
+
+    svg {
+      width: 1.35rem;
+      height: 1.35rem;
+      stroke-width: 1.5;
+    }
+  }
+
+  .journey-years {
+    margin-bottom: 0.65rem;
+    color: var(--bio-blue-bright);
+    font-size: 0.72rem;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  .journey-description {
+    max-width: 14.75rem;
+    margin-bottom: 0;
+    color: var(--bio-muted);
+    font-size: 0.73rem;
+    line-height: 1.65;
+  }
+}
+
+@media (max-width: 75rem) {
+  .career-journey {
+    .journey-timeline {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+      gap: 2.4rem 0;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .journey-milestone:nth-child(odd)::before {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 42rem) {
+  .career-journey {
+    .journey-timeline {
+      grid-template-columns: 1fr;
+      gap: 0;
+      padding-top: 0;
+
+      &::before {
+        display: block;
+        top: 1.6rem;
+        right: auto;
+        bottom: 1.6rem;
+        left: 1.6rem;
+        width: 1px;
+        height: auto;
+        background: var(--bio-border);
+      }
+    }
+
+    .journey-milestone {
+      padding-inline: 4rem 0;
+      padding-bottom: 2.2rem;
+      text-align: left;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+
+      + .journey-milestone::before {
+        display: none;
+      }
+    }
+
+    .journey-content {
+      justify-items: start;
+    }
+
+    .journey-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3.2rem;
+      height: 3.2rem;
+      margin-bottom: 0;
+    }
+
+    .journey-description {
+      max-width: none;
+    }
+  }
+}
