@@ -17,37 +17,37 @@ type CareerHighlight = {
 const careerHighlights = [
   {
     id: "design-system-leadership",
-    title: "Design System Leadership",
+    title: "40-60% Faster Delivery",
     description:
-      "Built reusable design systems and component libraries that reduced development cycles by 40-60% across multi-team environments.",
+      "Reusable design systems and component architecture reduced engineering effort and accelerated feature delivery across multi-team environments.",
     icon: Layers3,
   },
   {
     id: "accelerated-delivery",
-    title: "Accelerated Delivery",
+    title: "Six-Month Early Beta Delivery",
     description:
       "Re-architected a struggling React platform and delivered its beta six months ahead of schedule.",
     icon: Rocket,
   },
   {
     id: "performance-engineering",
-    title: "Performance Engineering",
+    title: "90+ Lighthouse Scores",
     description:
-      "Consistently delivered Lighthouse scores above 90 with sub-two-second production load times.",
+      "Consistently delivered production applications with Lighthouse scores above 90 and sub-two-second load times.",
     icon: Gauge,
   },
   {
     id: "conversion-optimization",
-    title: "Conversion Optimization",
+    title: "Conversion Gains up to 60%",
     description:
       "Improved conversions by as much as 60% through analytics, interaction design, usability improvements, and experience redesign.",
     icon: TrendingUp,
   },
   {
     id: "accessibility-by-design",
-    title: "Accessibility by Design",
+    title: "Enterprise Product Leadership",
     description:
-      "Integrate semantic structure, keyboard support, responsive behavior, and WCAG practices throughout delivery.",
+      "Led front-end architecture, UX engineering, and design systems across healthcare, travel, ecommerce, media, and education platforms.",
     icon: Accessibility,
   },
 ] satisfies CareerHighlight[];
@@ -60,7 +60,7 @@ export function CareerHighlights() {
     >
       <header className="section-heading career-highlights-header">
         <p className="eyebrow">Measured impact</p>
-        <h2 id="career-highlights-title">Career Highlights</h2>
+        <h2 id="career-highlights-title">Measurable Impact</h2>
       </header>
 
       <ul className="career-highlights-list">

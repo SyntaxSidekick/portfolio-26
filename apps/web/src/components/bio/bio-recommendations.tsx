@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight, Send } from "lucide-react";
+import { ChevronLeft, ChevronRight, ExternalLink, Send } from "lucide-react";
 import { RecommendationCard } from "@/components/recommendations/recommendation-card";
+import { socialLinks } from "@/config/social-links";
 import { recommendations } from "@/data/recommendations";
 
 const SCROLL_TOLERANCE = 2;
@@ -92,6 +93,7 @@ function prefersReducedMotion(): boolean {
 }
 
 export function BioRecommendations() {
+  const linkedInUrl = socialLinks.find((link) => link.platform === "linkedin")?.href;
   const railRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLUListElement>(null);
   const scrollEndTimerRef = useRef<number | null>(null);
@@ -312,38 +314,51 @@ export function BioRecommendations() {
         <aside className="bio-recommendations-proof" aria-label="LinkedIn recommendation count">
           <p>{recommendations.length} LinkedIn Recommendations</p>
 
-          <div className="bio-recommendations-controls">
-            <button
+          {linkedInUrl ? (
+            <a
               className="button button-secondary"
-              type="button"
-              aria-label="Previous recommendations"
-              disabled={buttonState.isAtStart}
-              onClick={() => handleButtonClick("previous")}
+              href={linkedInUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+              aria-label="View all recommendations on LinkedIn"
             >
-              <ChevronLeft aria-hidden="true" />
-            </button>
-
-            <button
-              className="button button-secondary"
-              type="button"
-              aria-label="Next recommendations"
-              disabled={buttonState.isAtEnd}
-              onClick={() => handleButtonClick("next")}
-            >
-              <ChevronRight aria-hidden="true" />
-            </button>
-          </div>
+              <span>View all on LinkedIn</span>
+              <ExternalLink aria-hidden="true" />
+            </a>
+          ) : null}
         </aside>
       </header>
 
-      <div className="bio-recommendations-rail" ref={railRef}>
-        <ul className="bio-recommendations-track" ref={trackRef}>
-          {recommendations.map((recommendation) => (
-            <li key={recommendation.name}>
-              <RecommendationCard recommendation={recommendation} />
-            </li>
-          ))}
-        </ul>
+      <div className="bio-recommendations-carousel">
+        <button
+          className="button button-secondary bio-recommendations-control bio-recommendations-control-previous"
+          type="button"
+          aria-label="View previous recommendations"
+          disabled={buttonState.isAtStart}
+          onClick={() => handleButtonClick("previous")}
+        >
+          <ChevronLeft aria-hidden="true" />
+        </button>
+
+        <div className="bio-recommendations-rail" ref={railRef}>
+          <ul className="bio-recommendations-track" ref={trackRef}>
+            {recommendations.map((recommendation) => (
+              <li key={recommendation.name}>
+                <RecommendationCard recommendation={recommendation} />
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <button
+          className="button button-secondary bio-recommendations-control bio-recommendations-control-next"
+          type="button"
+          aria-label="View next recommendations"
+          disabled={buttonState.isAtEnd}
+          onClick={() => handleButtonClick("next")}
+        >
+          <ChevronRight aria-hidden="true" />
+        </button>
       </div>
     </section>
   );

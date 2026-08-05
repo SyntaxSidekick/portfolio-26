@@ -4,18 +4,15 @@
 
 .bio .bio-cta-panel {
   padding: clamp(1.3rem, 2.5vw, 1.85rem);
-  border: 1px solid var(--bio-border-purple);
+  border: 1px solid var(--bio-border);
   border-radius: var(--bio-radius-md);
   background:
     linear-gradient(
-      100deg,
-      rgba(35, 17, 55, 0.42),
-      rgba(8, 18, 27, 0.84) 30%,
-      rgba(7, 16, 23, 0.9)
+      135deg,
+      rgba(9, 20, 29, 0.9),
+      rgba(4, 11, 17, 0.88)
     );
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.04),
-    0 0 2rem rgba(145, 56, 217, 0.05);
+  box-shadow: var(--shadow-sm);
 }
 
 .bio .bio-cta-main {
@@ -32,7 +29,7 @@
   display: grid;
   width: 4.2rem;
   height: 4.2rem;
-  border: 1px solid var(--purple-light);
+  border: 1px solid var(--bio-border-strong);
   border-radius: 50%;
   background: rgba(23, 20, 48, 0.52);
   box-shadow:
@@ -102,7 +99,7 @@
 .bio .bio-cta-connect {
   margin-top: clamp(1.35rem, 3vw, 2rem);
   padding-top: clamp(1.2rem, 2.5vw, 1.6rem);
-  border-top: 1px solid var(--bio-border-purple);
+  border-top: 1px solid var(--bio-border);
   text-align: center;
 
   > p {

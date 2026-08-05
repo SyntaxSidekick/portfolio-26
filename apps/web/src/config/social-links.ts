@@ -4,17 +4,17 @@ export const socialLinks = [
   {
     platform: "linkedin",
     label: "LinkedIn",
-    href: "https://www.linkedin.com/in/riadkilani",
+    href: "https://www.linkedin.com/in/riad-kilani",
   },
   {
     platform: "github",
     label: "GitHub",
-    href: "https://github.com/riadkilani",
+    href: "https://github.com/SyntaxSidekick",
   },
   {
     platform: "codepen",
     label: "CodePen",
-    href: "https://codepen.io/riadkilani",
+    href: "https://codepen.io/SyntaxSidekick",
   },
   {
     platform: "x",

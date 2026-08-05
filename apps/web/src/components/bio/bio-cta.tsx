@@ -23,7 +23,7 @@ export function BioCTA() {
           </div>
 
           <div className="bio-cta-action">
-            <a className="bio-button" href=".contact">
+            <a className="button button-secondary" href=".contact">
               <span>Get In Touch</span>
               <ArrowRight aria-hidden="true" />
             </a>

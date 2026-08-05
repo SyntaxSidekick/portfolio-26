@@ -6,3 +6,31 @@
 @import "./motion.css";
 @import "./shadows.css";
 @import "./breakpoints.css";
+
+:root {
+  /* Bio page tokens */
+  --bio-muted: #a8b6c4;
+  --bio-subtle: #748595;
+
+  --bio-blue-bright: #4aaaff;
+  --bio-purple: #a744ef;
+
+  --bio-border: rgba(92, 143, 184, 0.24);
+  --bio-border-strong: rgba(58, 158, 242, 0.52);
+  --bio-border-purple: rgba(167, 68, 239, 0.48);
+
+  --bio-radius-sm: 0.35rem;
+  --bio-radius-md: 0.6rem;
+  --bio-radius-lg: 0.9rem;
+
+  --bio-heading-font:
+    "Trajan Pro 3",
+    "Trajan Pro",
+    Cinzel,
+    Georgia,
+    serif;
+
+  --bio-shadow:
+    0 1.5rem 4rem rgba(0, 0, 0, 0.3),
+    0 0 2rem rgba(0, 119, 255, 0.05);
+}

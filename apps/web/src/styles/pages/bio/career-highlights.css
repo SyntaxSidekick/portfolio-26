@@ -2,6 +2,11 @@
   padding-left: clamp(0rem, 2vw, 1rem);
   border-left: 1px solid rgba(95, 133, 164, 0.14);
 
+  .career-highlights-header {
+    margin-bottom: clamp(1.5rem, 3vw, 2.3rem);
+    text-align: center;
+  }
+
   .career-highlights-list {
     display: grid;
     gap: var(--space-md);
