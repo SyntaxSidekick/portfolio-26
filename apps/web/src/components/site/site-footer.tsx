@@ -1,28 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  ArrowUp,
-  BriefcaseBusiness,
-  FileText,
-  Mail,
-  MessageCircle,
-  Send,
-  UserRound,
-} from "lucide-react";
+import { usePathname } from "next/navigation";
+import { ArrowUp } from "lucide-react";
 import { SocialMediaLinks } from "@/components/icons/SocialMediaLinks";
+import { navigationItems } from "./site-navigation";
 
-const contactEmail = "hello@riadkilani.com";
+const footerNavigationItems = navigationItems.map((item) => ({
+  ...item,
+  label: item.href === "/blog" ? "Articles" : item.label,
+}));
 
-const footerNavigationItems = [
-  { href: "/bio", label: "Bio", icon: UserRound },
-  { href: "/portfolio", label: "Portfolio", icon: BriefcaseBusiness },
-  { href: "/blog", label: "Articles", icon: FileText },
-  { href: "/contact", label: "Contact", icon: Mail },
-];
+function isActiveFooterLink(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
 export function SiteFooter() {
+  const pathname = usePathname();
+
   const scrollToTop = () => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -34,41 +29,28 @@ export function SiteFooter() {
       <div className="footer-container">
         <div className="footer-panel">
           <div className="footer-main">
-            <section className="footer-intro" aria-labelledby="footer-about-title">
+            <div className="footer-intro">
               <Link className="footer-logo" href="/" aria-label="Riad Kilani home">
                 <img
                   src="/assets/images/riad-kilani-logo.svg"
                   alt="Riad Kilani, UX Engineer and Front-end Architect"
                 />
               </Link>
+            </div>
 
-              <h2 className="screen-reader-text" id="footer-about-title">
-                About Riad Kilani
-              </h2>
-
-              <p className="footer-description">
-                I design and engineer accessible front-end systems that solve{" "}
-                <span>real</span> business problems and create better user experiences.
-              </p>
-
-              <nav className="footer-socials" aria-label="Social links">
-                <SocialMediaLinks size="lg" variant="footer" />
-              </nav>
-            </section>
-
-            <nav className="footer-navigation" aria-labelledby="footer-navigation-title">
-              <h2 id="footer-navigation-title">Navigation</h2>
-
+            <nav className="footer-navigation" aria-label="Footer navigation">
               <ul>
                 {footerNavigationItems.map((item) => {
-                  const Icon = item.icon;
+                  const isActive = isActiveFooterLink(pathname, item.href);
 
                   return (
                     <li key={item.href}>
-                      <Link href={item.href}>
-                        <Icon aria-hidden="true" />
-                        <span>{item.label}</span>
-                        <ArrowRight aria-hidden="true" />
+                      <Link
+                        aria-current={isActive ? "page" : undefined}
+                        className={isActive ? "active" : undefined}
+                        href={item.href}
+                      >
+                        {item.label}
                       </Link>
                     </li>
                   );
@@ -76,27 +58,11 @@ export function SiteFooter() {
               </ul>
             </nav>
 
-            <section className="footer-contact" aria-labelledby="footer-contact-title">
-              <div className="footer-contact-icon" aria-hidden="true">
-                <MessageCircle />
-              </div>
-
-              <h2 id="footer-contact-title">
-                Let&rsquo;s build something <span>great</span> together.
-              </h2>
-
-              <p>Available for remote, hybrid, and consulting opportunities.</p>
-
-              <Link className="button button-primary footer-cta" href="/contact">
-                <span>Let&rsquo;s Connect</span>
-                <ArrowRight aria-hidden="true" />
-              </Link>
-
-              <a className="footer-email" href={`mailto:${contactEmail}`}>
-                <Send aria-hidden="true" />
-                <span>{contactEmail}</span>
-              </a>
-            </section>
+            <nav className="footer-socials" aria-label="Social links">
+              <ul className="social-media-links" data-size="lg" data-variant="footer">
+                <SocialMediaLinks asListItems />
+              </ul>
+            </nav>
           </div>
 
           <div className="footer-bottom">

@@ -7,8 +7,7 @@ import "@/styles/pages/bio/skills-achievements.css";
 import "@/styles/pages/bio/core-capabilities.css";
 import "@/styles/pages/bio/career-highlights.css";
 import "@/styles/pages/bio/bio-recommendations.css";
-import "@/styles/pages/bio/bio-cta.css";
-import { BioCTA } from "@/components/bio/bio-cta";
+import { ContactCta } from "@/components/contact-cta";
 import { BioIntro } from "@/components/bio/bio-intro";
 import { BioRecommendations } from "@/components/bio/bio-recommendations";
 import { CareerJourneySection } from "@/components/bio/career-journey-section";
@@ -35,7 +34,15 @@ function BioPageContent() {
 
         <BioRecommendations />
 
-        <BioCTA />
+        <ContactCta
+          cta={{ label: "Get In Touch", href: ".contact" }}
+          description="I’m open to senior front-end, UX engineering, architecture, interactive design, consulting, and product design opportunities where thoughtful systems and measurable outcomes matter."
+          eyebrow="Have a complex product challenge?"
+          heading="Let’s Build Something Impactful"
+          headingId="bio-contact-cta-title"
+          secondaryText="Prefer to explore my work first? Connect with me on these platforms."
+          showSocialLinks
+        />
       </div>
     </main>
   );
