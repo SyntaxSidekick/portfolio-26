@@ -8,9 +8,9 @@
   position: relative;
   overflow: hidden;
   padding:
-    clamp(3rem, 5vw, 5rem)
-    1.5rem
-    2rem;
+    clamp(var(--space-2xl), 5vw, 5rem)
+    var(--space-lg)
+    var(--space-xl);
   isolation: isolate;
 
   /* Background and visual treatment */
@@ -90,7 +90,7 @@
   }
 
   h2 {
-    margin-bottom: 0.55rem;
+    margin-block-end: var(--space-sm);
     color: var(--text-bright);
     font-size: clamp(var(--font-size-2xl), 2vw, var(--font-size-3xl));
     letter-spacing: 0.025em;
@@ -102,7 +102,7 @@
   }
 
   a:focus-visible {
-    outline: 2px solid var(--bio-blue-bright);
+    outline: 2px solid var(--accent-light);
     outline-offset: 4px;
   }
 }
@@ -112,13 +112,13 @@
 ========================================================== */
 
 .bio .section-heading {
-  margin-bottom: clamp(1.5rem, 3vw, 2.3rem);
+  margin-block-end: clamp(var(--space-lg), 3vw, var(--space-xl));
   text-align: center;
 
   p:last-child {
     max-width: 52rem;
     margin: 0 auto;
-    color: var(--bio-muted);
+    color: var(--text-soft);
     font-size: var(--font-size-sm);
     line-height: var(--line-height-relaxed);
   }
@@ -128,15 +128,15 @@
    RESPONSIVE
 ========================================================== */
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .bio {
-    padding-inline: 1.1rem;
+    padding-inline: var(--space-md);
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .bio {
-    padding-top: 2.5rem;
+    padding-block-start: var(--space-2xl);
   }
 }
 

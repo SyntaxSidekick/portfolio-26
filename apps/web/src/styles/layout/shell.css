@@ -1,6 +1,7 @@
 .shell-placeholder {
   min-height: 52vh;
-  padding: clamp(72px, 12vw, 150px) 24px;
+  padding-block: clamp(var(--space-3xl), 12vw, 9rem);
+  padding-inline: var(--space-lg);
 }
 
 .shell-placeholder-inner {
@@ -9,7 +10,7 @@
 }
 
 .shell-eyebrow {
-  margin: 0 0 18px;
+  margin-block: 0 var(--space-lg);
   color: var(--header-blue-light);
   font-size: var(--font-size-xs);
   font-weight: 700;
@@ -27,7 +28,7 @@
 
 .shell-placeholder p:last-child {
   max-width: 640px;
-  margin: 28px 0 0;
+  margin-block: var(--space-xl) 0;
   color: var(--text-soft);
   font-size: clamp(var(--font-size-base), 2vw, var(--font-size-xl));
   line-height: var(--line-height-relaxed);

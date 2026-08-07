@@ -2,10 +2,10 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--button-gap, 14px);
+  gap: var(--button-gap, var(--space-md));
 
   min-height: var(--button-min-height, 50px);
-  padding: var(--button-padding, 12px 22px);
+  padding: var(--button-padding, var(--space-md) var(--space-lg));
 
   border: 1px solid transparent;
   border-radius: var(--button-radius, var(--radius-small));
@@ -97,10 +97,10 @@
 .button-group {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--button-group-gap, 14px);
+  gap: var(--button-group-gap, var(--space-md));
 
   &[data-stack="mobile"] {
-    @media (max-width: 420px) {
+    @media (max-width: 36rem) {
       display: grid;
 
       .button {

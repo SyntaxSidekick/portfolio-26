@@ -1,8 +1,8 @@
 .bio .bio-recommendations {
-  margin-bottom: clamp(3rem, 5vw, 4.5rem);
-  padding: clamp(1.35rem, 2.5vw, 2rem);
-  border: 1px solid var(--bio-border);
-  border-radius: var(--bio-radius-md);
+  margin-block-end: clamp(var(--space-2xl), 5vw, var(--space-3xl));
+  padding: clamp(var(--space-lg), 2.5vw, var(--space-xl));
+  border: 1px solid var(--border);
+  border-radius: var(--radius-medium);
   background:
     linear-gradient(
       135deg,
@@ -14,26 +14,26 @@
   .bio-recommendations-header {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(1.5rem, 4vw, 3rem);
+    gap: clamp(var(--space-lg), 4vw, var(--space-2xl));
     align-items: start;
-    margin-bottom: clamp(1.5rem, 3vw, 2rem);
+    margin-block-end: clamp(var(--space-lg), 3vw, var(--space-xl));
   }
 
   .bio-recommendations-title {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
-    gap: 1.25rem;
+    gap: var(--space-lg);
     align-items: start;
 
     h2 {
-      margin-bottom: 0.55rem;
+      margin-block-end: var(--space-sm);
       font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-2xl));
     }
 
     p:last-child {
       max-width: 55rem;
-      margin-bottom: 0;
-      color: var(--bio-muted);
+      margin-block-end: 0;
+      color: var(--text-soft);
       font-size: var(--font-size-sm);
     }
   }
@@ -59,13 +59,13 @@
 
   .bio-recommendations-proof {
     display: grid;
-    gap: 0.9rem;
+    gap: var(--space-md);
     justify-items: end;
     min-width: 13rem;
 
     p {
-      margin-bottom: 0;
-      color: var(--bio-blue-bright);
+      margin-block-end: 0;
+      color: var(--accent-light);
       font-size: var(--font-size-sm);
       font-weight: 800;
       line-height: var(--line-height-normal);
@@ -73,9 +73,9 @@
 
     .bio-recommendations-link {
       --button-min-height: 2.8rem;
-      --button-padding: 0.8rem 1rem;
+      --button-padding: var(--space-sm) var(--space-md);
       --button-font-size: var(--font-size-xs);
-      --button-gap: 0.65rem;
+      --button-gap: var(--space-sm);
     }
 
     svg {
@@ -97,7 +97,7 @@
     inset-block-start: 50%;
     z-index: 2;
     width: 2.75rem;
-    border-color: var(--bio-border);
+    border-color: var(--border);
     background: color-mix(in srgb, var(--surface-strong) 88%, transparent);
     box-shadow: var(--shadow-sm);
     opacity: 0.4;
@@ -155,7 +155,7 @@
     --recommendation-step: 3;
 
     display: flex;
-    gap: clamp(1rem, 2vw, 1.35rem);
+    gap: clamp(var(--space-md), 2vw, var(--space-lg));
     margin: 0;
     padding: 0;
     list-style: none;
@@ -168,7 +168,7 @@
           (
             100% - (
               (var(--visible-recommendation-cards) - 1)
-              * clamp(1rem, 2vw, 1.35rem)
+              * clamp(var(--space-md), 2vw, var(--space-lg))
             )
           ) / var(--visible-recommendation-cards)
         );
@@ -180,7 +180,7 @@
   }
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .bio .bio-recommendations {
     .bio-recommendations-header {
       grid-template-columns: 1fr;
@@ -197,7 +197,7 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .bio .bio-recommendations {
     .bio-recommendations-title {
       grid-template-columns: 1fr;

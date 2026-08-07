@@ -39,15 +39,15 @@
     --social-link-size: auto;
     --social-icon-size: 1.25rem;
     --social-link-color: var(--text-bright);
-    --social-link-hover-color: var(--bio-blue-bright);
-    --social-link-border-color: var(--bio-border);
-    --social-link-hover-border-color: var(--bio-blue-bright);
+    --social-link-hover-color: var(--accent-light);
+    --social-link-border-color: var(--border);
+    --social-link-hover-border-color: var(--accent-light);
     --social-link-background: var(--surface);
     --social-link-hover-background: var(--surface-hover);
-    --social-link-focus-color: var(--bio-blue-bright);
+    --social-link-focus-color: var(--accent-light);
 
     justify-content: center;
-    gap: 0.9rem;
+    gap: var(--space-md);
   }
 
   &[data-size="sm"] {
@@ -99,15 +99,15 @@
   }
 
   &[data-variant="bio"] .social-media-link {
-    gap: 0.65rem;
+    gap: var(--space-sm);
     min-width: 9.5rem;
     min-height: 3rem;
-    padding: 0.7rem 1rem;
+    padding: var(--space-sm) var(--space-md);
     font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
   }
 
-  @media (max-width: 38rem) {
+  @media (max-width: 48rem) {
     &[data-variant="bio"] {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -119,7 +119,7 @@
     }
   }
 
-  @media (max-width: 26rem) {
+  @media (max-width: 36rem) {
     &[data-variant="bio"] {
       grid-template-columns: 1fr;
     }

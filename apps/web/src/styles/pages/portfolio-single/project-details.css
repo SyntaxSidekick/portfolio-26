@@ -126,7 +126,7 @@
   }
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .project-details-layout {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -136,7 +136,7 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .project-details-main,
   .project-details-list {
     grid-template-columns: 1fr;

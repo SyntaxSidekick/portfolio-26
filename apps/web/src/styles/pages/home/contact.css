@@ -1,5 +1,5 @@
 .home .contact-section {
   .shared-contact-availability {
-    margin-block-start: 0.45rem;
+    margin-block-start: var(--space-sm);
   }
 }

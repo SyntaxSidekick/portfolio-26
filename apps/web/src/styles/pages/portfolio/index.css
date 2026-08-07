@@ -146,7 +146,7 @@
   flex: 1;
   flex-direction: column;
   gap: var(--space-md);
-  padding: clamp(0.95rem, 2vw, 1.15rem);
+  padding: clamp(var(--space-md), 2vw, var(--space-lg));
 
   > p {
     margin: 0;
@@ -160,7 +160,7 @@
   display: flex;
   align-items: start;
   justify-content: space-between;
-  gap: 0.8rem;
+  gap: var(--space-md);
 
   h3 {
     min-width: 0;
@@ -174,7 +174,7 @@
   span {
     flex: 0 0 auto;
     max-width: 45%;
-    padding: 0.18rem 0.45rem;
+    padding: var(--space-xs) var(--space-sm);
     border: 1px solid var(--border);
     border-radius: var(--radius-small);
     color: var(--text-soft);
@@ -189,8 +189,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-sm) var(--space-md);
-  margin-top: auto;
-  padding-top: 0.35rem;
+  margin-block-start: auto;
+  padding-block-start: var(--space-sm);
 }
 
 .portfolio-card-link {
@@ -236,13 +236,13 @@
   }
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .portfolio-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .portfolio {
     padding-inline: var(--space-md);
   }

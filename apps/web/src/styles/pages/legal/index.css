@@ -12,7 +12,7 @@
 
 .privacy h1,
 .terms h1 {
-  margin-bottom: 1.5rem;
+  margin-block-end: var(--space-lg);
 }
 
 .privacy p,
@@ -25,6 +25,6 @@
   display: grid;
   min-height: 100vh;
   place-content: center;
-  padding: 2rem;
+  padding: var(--space-xl);
   text-align: center;
 }

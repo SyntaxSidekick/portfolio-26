@@ -1,7 +1,7 @@
 .capability-grid {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 14px;
+  gap: var(--space-md);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -9,7 +9,7 @@
 
 .capability-card {
   min-height: 240px;
-  padding: 26px 18px;
+  padding: var(--space-lg) var(--space-md);
   border-radius: var(--radius-medium);
   background:
     linear-gradient(150deg, rgba(16, 28, 39, 0.94), rgba(8, 15, 22, 0.88));
@@ -31,7 +31,7 @@
   }
 
   p {
-    margin: 14px 0 0;
+    margin-block: var(--space-md) 0;
     color: var(--text-soft);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-normal);
@@ -42,7 +42,8 @@
   display: grid;
   width: 54px;
   height: 54px;
-  margin: 0 auto 20px;
+  margin-block: 0 var(--space-lg);
+  margin-inline: auto;
   place-items: center;
   border: 2px solid currentColor;
   border-radius: 50%;
@@ -93,7 +94,7 @@
   }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 80rem) {
   .capability-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -103,7 +104,7 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 48rem) {
   .capability-grid {
     grid-template-columns: 1fr;
   }

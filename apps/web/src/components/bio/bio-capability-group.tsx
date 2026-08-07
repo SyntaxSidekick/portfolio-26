@@ -36,7 +36,7 @@ export function BioCapabilityGroup({ group, icon }: BioCapabilityGroupProps) {
 function CapabilityListItem({ item }: { item: BioCapabilityItem }) {
   const technology = item.technologyKey ? technologyByKey.get(item.technologyKey) : undefined;
   const iconKey = item.iconKey ?? technology?.iconKey;
-  const brandColor = item.brandColor ?? technology?.brandColor ?? "var(--bio-blue-bright)";
+  const brandColor = item.brandColor ?? technology?.brandColor ?? "var(--accent-light)";
   const style = { "--brand-color": brandColor } as CSSProperties;
 
   return (

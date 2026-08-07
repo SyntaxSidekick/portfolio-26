@@ -1,12 +1,12 @@
 .bio .skills-achievements {
-  margin-bottom: clamp(3rem, 5vw, 4rem);
+  margin-block-end: clamp(var(--space-2xl), 5vw, var(--space-3xl));
 
   .skills-achievements-layout {
     display: grid;
     grid-template-columns:
       minmax(0, 2.55fr)
       minmax(18rem, 0.8fr);
-    gap: clamp(2rem, 4vw, 3.25rem);
+    gap: clamp(var(--space-xl), 4vw, var(--space-3xl));
     align-items: start;
 
     > * {
@@ -15,7 +15,7 @@
   }
 }
 
-@media (max-width: 75rem) {
+@media (max-width: 80rem) {
   .bio .skills-achievements {
     .skills-achievements-layout {
       grid-template-columns: 1fr;

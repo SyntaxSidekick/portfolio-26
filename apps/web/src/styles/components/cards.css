@@ -76,9 +76,9 @@
 .card-link {
     display: inline-flex;
     align-items: center;
-    gap: .5rem;
+    gap: var(--space-sm);
     width: fit-content;
-    margin-top: auto;
+    margin-block-start: auto;
     color: var(--color-primary);
     font-weight: 600;
     text-decoration: none;

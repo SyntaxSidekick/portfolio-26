@@ -105,7 +105,7 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .portfolio-single {
     padding-inline: var(--space-md);
   }

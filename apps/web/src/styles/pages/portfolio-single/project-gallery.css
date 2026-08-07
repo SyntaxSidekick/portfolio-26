@@ -32,13 +32,13 @@
   }
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .project-gallery-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .project-gallery-list {
     grid-template-columns: 1fr;
   }

@@ -48,7 +48,7 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .portfolio-category-filters {
     display: grid;
     grid-template-columns: 1fr;

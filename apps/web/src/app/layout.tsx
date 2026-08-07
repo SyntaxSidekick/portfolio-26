@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" data-scroll-behavior="smooth" suppressHydrationWarning>
       <body data-page="home">
         <StaleServiceWorkerCleanup />
         <SiteShell>{children}</SiteShell>

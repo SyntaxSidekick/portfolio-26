@@ -2,8 +2,8 @@
   display: inline-flex;
   align-items: center;
   min-height: 22px;
-  margin: 0 0 14px;
-  padding: 4px 9px;
+  margin-block: 0 var(--space-md);
+  padding: var(--space-xs) var(--space-sm);
   border: 1px solid rgba(24, 154, 255, 0.5);
   border-radius: 3px;
   color: var(--rk-blue);

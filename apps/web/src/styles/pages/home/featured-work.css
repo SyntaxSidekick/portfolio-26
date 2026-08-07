@@ -2,7 +2,7 @@
   .project-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    gap: var(--space-lg);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -58,9 +58,9 @@
   .image-label {
     position: absolute;
     z-index: 2;
-    top: 12px;
-    left: 12px;
-    padding: 5px 8px;
+    inset-block-start: var(--space-md);
+    inset-inline-start: var(--space-md);
+    padding: var(--space-xs) var(--space-sm);
     border-radius: 3px;
     color: #dff3ff;
     background: #078ee8;
@@ -71,14 +71,14 @@
   }
 
   .project-body {
-    padding: 24px 20px 19px;
+    padding: var(--space-lg) var(--space-lg) var(--space-md);
   }
 
   .project-title-row {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-    gap: 7px;
+    gap: var(--space-sm);
 
     h3 {
       margin: 0;
@@ -94,7 +94,7 @@
 
   .project-description {
     min-height: 66px;
-    margin: 12px 0 21px;
+    margin-block: var(--space-md) var(--space-lg);
     color: var(--text-soft);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-normal);
@@ -103,9 +103,9 @@
   .project-results {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
+    gap: var(--space-md);
     margin: 0;
-    padding: 17px 0;
+    padding-block: var(--space-md);
     border-block: 1px solid var(--border);
 
     > div {
@@ -120,7 +120,7 @@
     }
 
     dd {
-      margin: 6px 0 0;
+      margin-block: var(--space-sm) 0;
       color: var(--text-muted);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-normal);
@@ -128,11 +128,11 @@
   }
 
   .project-tags {
-    padding-block: 16px;
+    padding-block: var(--space-md);
   }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 64rem) {
   .featured-work {
     .project-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -140,13 +140,13 @@
 
     .project-item:last-child {
       grid-column: 1 / -1;
-      width: min(100%, calc(50% - 10px));
+      width: min(100%, calc(50% - var(--space-sm)));
       justify-self: center;
     }
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 48rem) {
   .featured-work {
     .project-grid {
       grid-template-columns: 1fr;
@@ -163,10 +163,10 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 36rem) {
   .featured-work {
     .project-results {
-      gap: 7px;
+      gap: var(--space-sm);
 
       dt {
         font-size: var(--font-size-base);

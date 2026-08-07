@@ -1,13 +1,14 @@
 .role-list {
   display: grid;
-  gap: 8px;
+  gap: var(--space-sm);
 }
 
 .role-item {
   position: relative;
   width: 100%;
   min-height: 42px;
-  padding: 8px 6px 8px 26px;
+  padding-block: var(--space-sm);
+  padding-inline: var(--space-xl) var(--space-sm);
   border: 0;
   color: var(--text-muted);
   background: transparent;
@@ -56,9 +57,9 @@
   }
 }
 
-@media (max-width: 650px) {
+@media (max-width: 48rem) {
   .role-list {
-    margin-top: 48px;
+    margin-block-start: var(--space-2xl);
   }
 
   .role-item {

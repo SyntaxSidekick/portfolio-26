@@ -1,5 +1,5 @@
 .section-action {
   display: flex;
   justify-content: center;
-  margin-top: 31px;
+  margin-block-start: var(--space-xl);
 }

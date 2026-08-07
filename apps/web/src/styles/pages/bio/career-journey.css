@@ -4,7 +4,7 @@
 
 .career-journey {
   position: relative;
-  margin-bottom: clamp(3rem, 6vw, 5rem);
+  margin-block-end: clamp(var(--space-2xl), 6vw, 5rem);
   overflow: hidden;
   padding-block: var(--section-padding-block);
 
@@ -16,8 +16,8 @@
     position: relative;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    margin-bottom: 0;
-    padding: 2rem 0 0;
+    margin-block-end: 0;
+    padding-block-start: var(--space-xl);
     list-style: none;
 
     &::before {
@@ -30,8 +30,8 @@
         linear-gradient(
           90deg,
           transparent,
-          var(--bio-border) 12%,
-          var(--bio-border) 88%,
+          var(--border) 12%,
+          var(--border) 88%,
           transparent
         );
       content: "";
@@ -42,7 +42,7 @@
   .journey-milestone {
     position: relative;
     min-width: 0;
-    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+    padding-inline: clamp(var(--space-md), 2vw, var(--space-lg));
     text-align: center;
 
     + .journey-milestone::before {
@@ -51,7 +51,7 @@
       bottom: 0;
       left: 0;
       width: 1px;
-      background: var(--bio-border);
+      background: var(--border);
       content: "";
       pointer-events: none;
     }
@@ -62,7 +62,7 @@
     justify-items: center;
 
     h3 {
-      margin-bottom: 0.7rem;
+      margin-block-end: var(--space-sm);
       color: var(--text-bright);
       font-size: var(--font-size-base);
       font-weight: 500;
@@ -76,7 +76,7 @@
     z-index: 1;
     width: 3.2rem;
     height: 3.2rem;
-    margin-bottom: 1.25rem;
+    margin-block-end: var(--space-lg);
     border: 1px solid currentColor;
     border-radius: 50%;
     background: var(--page-background);
@@ -110,8 +110,8 @@
   }
 
   .journey-years {
-    margin-bottom: 0.65rem;
-    color: var(--bio-blue-bright);
+    margin-block-end: var(--space-sm);
+    color: var(--accent-light);
     font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: var(--line-height-normal);
@@ -119,19 +119,19 @@
 
   .journey-description {
     max-width: 14.75rem;
-    margin-bottom: 0;
-    color: var(--bio-muted);
+    margin-block-end: 0;
+    color: var(--text-soft);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-relaxed);
   }
 }
 
-@media (max-width: 75rem) {
+@media (max-width: 80rem) {
   .career-journey {
     .journey-timeline {
       grid-template-columns:
         repeat(2, minmax(0, 1fr));
-      gap: 2.4rem 0;
+      gap: var(--space-2xl) 0;
 
       &::before {
         display: none;
@@ -144,12 +144,12 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .career-journey {
     .journey-timeline {
       grid-template-columns: 1fr;
       gap: 0;
-      padding-top: 0;
+      padding-block-start: 0;
 
       &::before {
         display: block;
@@ -159,17 +159,17 @@
         left: 1.6rem;
         width: 1px;
         height: auto;
-        background: var(--bio-border);
+        background: var(--border);
       }
     }
 
     .journey-milestone {
       padding-inline: 4rem 0;
-      padding-bottom: 2.2rem;
+      padding-block-end: var(--space-xl);
       text-align: left;
 
       &:last-child {
-        padding-bottom: 0;
+        padding-block-end: 0;
       }
 
       + .journey-milestone::before {
@@ -187,7 +187,7 @@
       left: 0;
       width: 3.2rem;
       height: 3.2rem;
-      margin-bottom: 0;
+      margin-block-end: 0;
     }
 
     .journey-description {

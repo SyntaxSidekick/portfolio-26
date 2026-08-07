@@ -147,7 +147,7 @@
   }
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 64rem) {
   .project-overview-panel,
   .project-narrative-panel {
     grid-template-columns: 1fr;
@@ -167,7 +167,7 @@
   }
 }
 
-@media (max-width: 42rem) {
+@media (max-width: 48rem) {
   .project-highlight-list {
     grid-template-columns: 1fr;
   }

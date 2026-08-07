@@ -1,7 +1,7 @@
 .text-link {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-sm);
   color: var(--rk-blue);
   font-size: var(--font-size-sm);
   font-weight: 600;

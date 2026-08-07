@@ -1,6 +1,6 @@
 .recommendation-card {
   width: 100%;
-  padding: 22px;
+  padding: var(--space-lg);
   border-radius: var(--radius-medium);
   background: rgba(10, 18, 27, 0.9);
   transition:
@@ -33,9 +33,9 @@
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   align-items: center;
-  gap: 14px;
-  margin-top: 22px;
-  padding-top: 16px;
+  gap: var(--space-md);
+  margin-block-start: var(--space-lg);
+  padding-block-start: var(--space-md);
   border-top: 1px solid var(--border);
 
   img,
@@ -70,7 +70,7 @@
   }
 
   p {
-    margin: 4px 0 0;
+    margin-block: var(--space-xs) 0;
     color: var(--text-muted);
     font-size: var(--font-size-xs);
     line-height: var(--line-height-normal);
@@ -87,8 +87,8 @@
 .recommendation-source {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 22px;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-lg);
   color: var(--rk-blue);
   font-size: var(--font-size-xs);
   font-weight: 700;

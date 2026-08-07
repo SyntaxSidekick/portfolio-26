@@ -13,10 +13,10 @@
 }
 .skip-link {
   position: fixed;
-  top: 16px;
-  left: 16px;
+  inset-block-start: var(--space-md);
+  inset-inline-start: var(--space-md);
   z-index: 2000;
-  padding: 12px 16px;
+  padding: var(--space-sm) var(--space-md);
   color: #00111f;
   background: var(--header-blue-light);
   border-radius: 5px;
