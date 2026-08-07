@@ -1,4 +1,6 @@
 import { ArrowRight, GitBranch } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { PublicProject } from "@/lib/portfolio-api";
 import {
   getExternalLinkProps,
@@ -35,7 +37,7 @@ function GitHubProjectCard({ project }: { project: PublicProject }) {
           href={href}
           {...getExternalLinkProps(href)}
         >
-          <GitBranch aria-hidden="true" /> View on GitHub
+          <FontAwesomeIcon icon={faGithub} aria-hidden="true" /> View on GitHub
         </a>
       </div>
     </article>

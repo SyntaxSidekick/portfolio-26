@@ -1,4 +1,6 @@
-import { Code2, GitBranch, Palette, Rocket } from "lucide-react";
+import { Box, Code2, Palette, Rocket } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import type { PortfolioCounts } from "@/lib/portfolio-data";
 
 type PortfolioHeroProps = {
@@ -10,7 +12,7 @@ export function PortfolioHero({ totalProjects, counts }: PortfolioHeroProps) {
   return (
     <section className="portfolio-hero" aria-labelledby="portfolio-title">
       <div className="portfolio-hero-content">
-        <p className="portfolio-kicker">Portfolio</p>
+        <p className="eyebrow">Portfolio</p>
         <h1 id="portfolio-title">
           Selected <span>Work</span>
         </h1>
@@ -23,8 +25,9 @@ export function PortfolioHero({ totalProjects, counts }: PortfolioHeroProps) {
       {totalProjects > 0 ? (
         <dl className="portfolio-stats" aria-label="Portfolio project counts">
           <div>
-            <dt>Total Projects</dt>
-            <dd>{totalProjects}</dd>
+            <Box aria-hidden="true" />
+            <dt>Portfolio Projects</dt>
+            <dd>{totalProjects} +</dd>
           </div>
           <div data-project-type="case-study">
             <Rocket aria-hidden="true" />
@@ -32,7 +35,7 @@ export function PortfolioHero({ totalProjects, counts }: PortfolioHeroProps) {
             <dd>{counts["case-study"]}</dd>
           </div>
           <div data-project-type="github">
-            <GitBranch aria-hidden="true" />
+            <FontAwesomeIcon icon={faGithub} aria-hidden="true" />
             <dt>GitHub Projects</dt>
             <dd>{counts.github}</dd>
           </div>

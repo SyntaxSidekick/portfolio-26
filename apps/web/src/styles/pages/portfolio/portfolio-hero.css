@@ -1,6 +1,6 @@
 .portfolio-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.85fr);
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
   gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
   align-items: end;
   padding-block-end: clamp(var(--space-xl), 4vw, var(--space-2xl));
@@ -52,15 +52,23 @@
 
   div {
     display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    justify-content: center;
     gap: var(--space-xs);
     min-width: 0;
     padding-inline: clamp(var(--space-md), 2vw, var(--space-lg));
     border-inline-start: 1px solid var(--border);
+    text-align: center;
+  }
+
+  div:first-child {
+    border-inline-start: 0;
   }
 
   svg {
-    width: 1.05rem;
-    height: 1.05rem;
+    width: var(--font-size-xl);
+    height: var(--font-size-xl);
     color: var(--section-accent, var(--rk-blue));
   }
 
@@ -81,9 +89,11 @@
   }
 
   dt {
+    grid-column: 1 / -1;
     order: 3;
     color: var(--text-soft);
     font-size: var(--font-size-xs);
+    white-space: nowrap;
   }
 
   dd {
