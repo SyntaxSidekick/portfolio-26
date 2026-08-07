@@ -1,0 +1,56 @@
+.portfolio-filtered-content {
+  display: grid;
+  gap: clamp(var(--space-md), 2vw, var(--space-lg));
+
+  &[data-active-filter="case-study"] {
+    [data-filter-section]:not([data-filter-section="case-study"]) {
+      display: none;
+    }
+  }
+
+  &[data-active-filter="github"] {
+    [data-filter-section]:not([data-filter-section="github"]) {
+      display: none;
+    }
+  }
+
+  &[data-active-filter="design"] {
+    [data-filter-section]:not([data-filter-section="design"]) {
+      display: none;
+    }
+  }
+
+  &[data-active-filter="codepen"] {
+    [data-filter-section]:not([data-filter-section="codepen"]) {
+      display: none;
+    }
+  }
+}
+
+.portfolio-category-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+
+  .button {
+    --button-min-height: 2.7rem;
+    --button-padding: var(--space-sm) var(--space-lg);
+    --button-font-size: var(--font-size-sm);
+
+    color: var(--text-soft);
+
+    &[data-active="true"] {
+      --button-secondary-border-color: color-mix(in srgb, var(--rk-blue) 72%, transparent);
+      --button-secondary-background: color-mix(in srgb, var(--rk-blue) 16%, transparent);
+
+      color: var(--text-bright);
+    }
+  }
+}
+
+@media (max-width: 42rem) {
+  .portfolio-category-filters {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

@@ -6,11 +6,11 @@
   padding: 4px 9px;
   border: 1px solid rgba(24, 154, 255, 0.5);
   border-radius: 3px;
-  color: var(--accent-bright);
+  color: var(--rk-blue);
   background: rgba(10, 112, 184, 0.08);
-  font-size: 0.62rem;
+  font-size: var(--font-size-xs);
   font-weight: 700;
-  line-height: 1;
+  line-height: var(--line-height-none);
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }

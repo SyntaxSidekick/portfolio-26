@@ -23,13 +23,6 @@
   --bio-radius-md: 0.6rem;
   --bio-radius-lg: 0.9rem;
 
-  --bio-heading-font:
-    "Trajan Pro 3",
-    "Trajan Pro",
-    Cinzel,
-    Georgia,
-    serif;
-
   --bio-shadow:
     0 1.5rem 4rem rgba(0, 0, 0, 0.3),
     0 0 2rem rgba(0, 119, 255, 0.05);

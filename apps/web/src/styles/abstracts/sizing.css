@@ -5,6 +5,4 @@
   --header-container-width: var(--container-wide);
   --header-height: 6.625rem;
 
-  --portfolio-container: var(--container-wide);
-  --portfolio-gutter: var(--page-gutter);
 }

@@ -1,0 +1,117 @@
+.portfolio-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.85fr);
+  gap: clamp(var(--space-xl), 5vw, var(--space-3xl));
+  align-items: end;
+  padding-block-end: clamp(var(--space-xl), 4vw, var(--space-2xl));
+}
+
+.portfolio-hero-content {
+  max-width: 42rem;
+}
+
+.portfolio-kicker {
+  display: inline-flex;
+  margin: 0 0 var(--space-sm);
+  padding: calc(var(--space-xs) / 2) var(--space-sm);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--rk-blue);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.portfolio h1 {
+  margin: 0;
+  font-size: clamp(var(--font-size-4xl), 5.6vw, var(--font-size-5xl));
+  line-height: var(--line-height-tight);
+
+  span {
+    color: var(--rk-blue);
+  }
+}
+
+.portfolio-intro {
+  max-width: 34rem;
+  margin: var(--space-md) 0 0;
+  color: var(--text-soft);
+  font-size: clamp(var(--font-size-base), 1.4vw, var(--font-size-lg));
+
+  strong {
+    color: var(--rk-blue);
+  }
+}
+
+.portfolio-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 0;
+
+  div {
+    display: grid;
+    gap: 0.2rem;
+    min-width: 0;
+    padding-inline: clamp(var(--space-md), 2vw, var(--space-lg));
+    border-inline-start: 1px solid var(--border);
+  }
+
+  svg {
+    width: 1.05rem;
+    height: 1.05rem;
+    color: var(--section-accent, var(--rk-blue));
+  }
+
+  [data-project-type="case-study"] {
+    --section-accent: var(--rk-blue);
+  }
+
+  [data-project-type="github"] {
+    --section-accent: var(--success);
+  }
+
+  [data-project-type="design"] {
+    --section-accent: var(--icon-design);
+  }
+
+  [data-project-type="codepen"] {
+    --section-accent: var(--icon-performance);
+  }
+
+  dt {
+    order: 3;
+    color: var(--text-soft);
+    font-size: var(--font-size-xs);
+  }
+
+  dd {
+    margin: 0;
+    font-size: clamp(var(--font-size-2xl), 3vw, var(--font-size-3xl));
+    line-height: var(--line-height-none);
+  }
+}
+
+@media (max-width: 60rem) {
+  .portfolio-hero {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 60rem) {
+  .portfolio-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-md) 0;
+  }
+}
+
+@media (max-width: 42rem) {
+  .portfolio-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    div {
+      padding-inline: var(--space-md);
+    }
+  }
+}

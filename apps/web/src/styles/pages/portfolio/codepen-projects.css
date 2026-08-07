@@ -1,0 +1,24 @@
+.codepen-projects {
+  --section-accent: var(--icon-performance);
+}
+
+.codepen-project-card {
+  .portfolio-card-play {
+    position: absolute;
+    inset: 50% auto auto 50%;
+    display: grid;
+    width: 3.2rem;
+    height: 3.2rem;
+    border: 1px solid color-mix(in srgb, var(--rk-blue) 60%, transparent);
+    border-radius: 50%;
+    color: var(--text-bright);
+    background: var(--surface);
+    transform: translate(-50%, -50%);
+    place-items: center;
+
+    svg {
+      width: 1.35rem;
+      height: 1.35rem;
+    }
+  }
+}

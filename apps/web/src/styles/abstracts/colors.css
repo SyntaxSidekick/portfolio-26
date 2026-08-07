@@ -16,12 +16,13 @@
   --text-inverse: #132437;
 
   --accent: #1591ff;
-  --accent-bright: #39b0ff;
+  --rk-blue: #1695ff;
+  --accent-bright: var(--rk-blue);
   --accent-light: #58b8ff;
   --accent-dark: #0873c8;
 
   --icon-discovery: #22d3ee;
-  --icon-architecture: var(--accent-bright);
+  --icon-architecture: var(--rk-blue);
   --icon-design: #8b5cf6;
   --icon-engineering: #6366f1;
   --icon-quality: #10b981;
@@ -53,18 +54,6 @@
   --footer-social-background: rgba(5, 23, 39, 0.84);
   --footer-social-hover-background: rgba(8, 44, 74, 0.9);
 
-  --portfolio-bg: #020913;
-  --portfolio-bg-soft: #06121f;
-  --portfolio-panel: rgba(7, 20, 33, 0.94);
-  --portfolio-panel-2: rgba(5, 15, 25, 0.96);
-  --portfolio-text: #f4f8fc;
-  --portfolio-muted: #b9c7d6;
-  --portfolio-blue: #58b8ff;
-  --portfolio-blue-strong: #168fff;
-  --portfolio-purple: #c65cff;
-  --portfolio-green: #42dc91;
-  --portfolio-gold: #f6bd28;
-  --portfolio-border: rgba(105, 154, 196, 0.23);
 }
 
 html[data-theme="light"] {

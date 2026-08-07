@@ -17,9 +17,13 @@ export type PublicProject = {
     gallery?: { id?: string; url: string; alt: string; caption?: string; order?: number; isFeatured?: boolean }[];
   };
   gallery?: { id?: string; url: string; alt: string; caption?: string; order?: number; isFeatured?: boolean }[];
-  overview?: { heading?: string; content: string };
-  challenge?: { heading?: string; content: string; iconKey?: string; accentColor?: string };
-  solution?: { heading?: string; content: string; iconKey?: string; accentColor?: string };
+  overview?: { heading?: string; content: string; iconKey?: string; media?: { url: string; alt: string } };
+  challenge?: { heading?: string; content: string; iconKey?: string; accentColor?: string; media?: { url: string; alt: string } };
+  solution?: { heading?: string; content: string; iconKey?: string; accentColor?: string; media?: { url: string; alt: string } };
+  caseStudy?: {
+    sectionOrder?: Array<"overview" | "challenge" | "solution" | "key-results" | "lessons-learned">;
+    sectionMedia?: Partial<Record<"overview" | "challenge" | "solution" | "highlights", { url: string; alt: string }>>;
+  };
   categories: { id: string; name: string; slug: string }[];
   technologies: { id: string; key?: string; name: string; slug: string; category?: string; iconKey?: string; brandColor?: string; displayOrder?: number }[];
   metrics: {

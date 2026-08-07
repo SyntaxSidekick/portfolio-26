@@ -2,8 +2,8 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--accent-bright);
-  font-size: 0.8rem;
+  color: var(--rk-blue);
+  font-size: var(--font-size-sm);
   font-weight: 600;
   text-decoration: none;
 

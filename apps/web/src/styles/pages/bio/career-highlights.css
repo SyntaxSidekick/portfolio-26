@@ -33,14 +33,14 @@
     h3 {
       margin-bottom: 0.3rem;
       color: var(--bio-blue-bright);
-      font-size: 0.79rem;
+      font-size: var(--font-size-sm);
     }
 
     p {
       margin-bottom: 0;
       color: var(--bio-muted);
-      font-size: 0.73rem;
-      line-height: 1.6;
+      font-size: var(--font-size-xs);
+      line-height: var(--line-height-normal);
     }
   }
 

@@ -66,9 +66,9 @@
       align-items: center;
       min-height: 44px;
       color: var(--header-text);
-      font-size: 0.95rem;
+      font-size: var(--font-size-base);
       font-weight: 500;
-      line-height: 1;
+      line-height: var(--line-height-none);
       letter-spacing: 0.01em;
       text-decoration: none;
       transition: color var(--header-transition), opacity var(--header-transition);
@@ -182,9 +182,9 @@
     border: 1px solid rgba(35, 158, 255, 0.68);
     border-radius: 5px;
     background: linear-gradient(110deg, rgba(7, 42, 72, 0.92), rgba(3, 20, 36, 0.94));
-    font-size: 0.9rem;
+    font-size: var(--font-size-sm);
     font-weight: 600;
-    line-height: 1;
+    line-height: var(--line-height-none);
     text-decoration: none;
     cursor: pointer;
     transition: border-color var(--header-transition), background var(--header-transition), box-shadow var(--header-transition), transform var(--header-transition);

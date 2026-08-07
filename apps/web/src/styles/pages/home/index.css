@@ -37,10 +37,9 @@
       max-width: 1000px;
       margin: 0;
       color: var(--text);
-      font-family: var(--font-heading);
-      font-size: clamp(1.8rem, 3vw, 2.75rem);
+      font-size: clamp(var(--font-size-3xl), 3vw, var(--font-size-4xl));
       font-weight: 400;
-      line-height: 1.25;
+      line-height: var(--line-height-snug);
       letter-spacing: -0.035em;
 
       span {
@@ -88,10 +87,9 @@
     h1 {
       max-width: 780px;
       margin: 0;
-      font-family: var(--font-heading);
-      font-size: clamp(2.6rem, 5vw, 3.3rem);
+      font-size: clamp(var(--font-size-4xl), 5vw, var(--font-size-5xl));
       font-weight: 400;
-      line-height: 1.18;
+      line-height: var(--line-height-tight);
       letter-spacing: -0.05em;
 
       span {
@@ -104,7 +102,7 @@
     max-width: 620px;
     margin: 24px 0 0;
     color: var(--text-soft);
-    font-size: clamp(0.94rem, 1.2vw, 1.06rem);
+    font-size: clamp(var(--font-size-base), 1.2vw, var(--font-size-lg));
   }
 
   .hero-actions {
@@ -199,7 +197,7 @@
     border-radius: 5px;
     background: rgba(6, 14, 21, 0.92);
     color: #d8e3eb;
-    font-size: 0.72rem;
+    font-size: var(--font-size-xs);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.24);
 
     > span {
@@ -218,7 +216,7 @@
     > p {
       margin: 0 0 18px;
       color: var(--text-muted);
-      font-size: 0.62rem;
+      font-size: var(--font-size-xs);
       letter-spacing: 0.08em;
       text-align: center;
       text-transform: uppercase;
@@ -270,8 +268,8 @@ html[data-theme="light"] {
   }
 
   50% {
-    background: var(--accent-bright);
-    box-shadow: 0 0 14px var(--accent-bright);
+    background: var(--rk-blue);
+    box-shadow: 0 0 14px var(--rk-blue);
   }
 }
 

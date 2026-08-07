@@ -8,7 +8,7 @@
   --social-link-hover-border-color: transparent;
   --social-link-background: transparent;
   --social-link-hover-background: transparent;
-  --social-link-focus-color: var(--accent-bright);
+  --social-link-focus-color: var(--rk-blue);
 
   display: flex;
   flex-wrap: wrap;
@@ -28,7 +28,7 @@
 
   &[data-variant="contact"] {
     --social-link-color: var(--text-soft);
-    --social-link-hover-color: var(--accent-bright);
+    --social-link-hover-color: var(--rk-blue);
     --social-link-border-color: var(--border);
     --social-link-hover-border-color: var(--border-strong);
     --social-link-background: var(--surface);
@@ -103,7 +103,7 @@
     min-width: 9.5rem;
     min-height: 3rem;
     padding: 0.7rem 1rem;
-    font-size: 0.74rem;
+    font-size: var(--font-size-xs);
     font-weight: var(--font-weight-semibold);
   }
 

@@ -24,13 +24,13 @@
     h1 {
       margin-bottom: calc(var(--space-sm) + var(--space-xs));
       color: var(--text-bright);
-      font-size: clamp(var(--font-size-4xl), 3.75vw, var(--font-size-6xl));
+      font-size: clamp(var(--font-size-4xl), 3.75vw, var(--font-size-5xl));
       letter-spacing: 0.01em;
-      line-height: 1.05;
+      line-height: var(--line-height-tight);
       white-space: nowrap;
 
       span {
-        color: var(--accent-bright);
+        color: var(--rk-blue);
       }
     }
   }
@@ -45,7 +45,7 @@
     color: var(--text-bright);
     font-size: clamp(var(--font-size-xs), 1vw, var(--font-size-sm));
     font-weight: var(--font-weight-bold);
-    line-height: var(--line-height-body);
+    line-height: var(--line-height-normal);
     list-style: none;
 
     li {
@@ -68,7 +68,7 @@
     margin-bottom: var(--space-lg);
     color: var(--text-soft);
     font-size: clamp(var(--font-size-sm), 1.1vw, var(--font-size-base));
-    line-height: var(--line-height-body);
+    line-height: var(--line-height-normal);
   }
 
   .bio-availability {
@@ -78,7 +78,7 @@
     margin-bottom: 0;
     padding: 0;
     color: var(--text-soft);
-    font-size: calc(var(--font-size-xs) - var(--space-xs) / 4);
+    font-size: var(--font-size-xs);
     list-style: none;
 
     li {
@@ -91,7 +91,7 @@
       flex: 0 0 auto;
       width: var(--space-md);
       height: var(--space-md);
-      color: var(--accent-bright);
+      color: var(--rk-blue);
       fill: none;
       stroke: currentColor;
       stroke-width: 1.8;
@@ -115,7 +115,7 @@
     background:
       linear-gradient(
         135deg,
-        color-mix(in srgb, var(--surface-strong) 92%, var(--accent-bright)),
+        color-mix(in srgb, var(--surface-strong) 92%, var(--rk-blue)),
         color-mix(in srgb, var(--page-background-deep) 96%, var(--surface-strong))
       );
     box-shadow: var(--shadow-sm);
@@ -126,7 +126,7 @@
       background:
         radial-gradient(
           circle at 76% 15%,
-          color-mix(in srgb, var(--accent-bright) 13%, transparent),
+          color-mix(in srgb, var(--rk-blue) 13%, transparent),
           transparent 13rem
         );
       content: "";
@@ -140,7 +140,7 @@
       background-image:
         radial-gradient(
           circle,
-          color-mix(in srgb, var(--accent-bright) 22%, transparent) 0 1px,
+          color-mix(in srgb, var(--rk-blue) 22%, transparent) 0 1px,
           transparent 1.4px
         );
       background-size: calc(var(--space-sm) + var(--space-xs) / 5) calc(var(--space-sm) + var(--space-xs) / 5);
@@ -177,10 +177,9 @@
     }
 
     cite {
-      color: var(--accent-bright);
-      font-family: var(--font-script);
+      color: var(--rk-blue);
       font-size: clamp(var(--font-size-3xl), 2.4vw, var(--font-size-4xl));
-      line-height: 1;
+      line-height: var(--line-height-none);
     }
   }
 
@@ -232,7 +231,7 @@
     position: absolute;
     inset: 10%;
     border-radius: 50%;
-    background: color-mix(in srgb, var(--accent-bright) 22%, transparent);
+    background: color-mix(in srgb, var(--rk-blue) 22%, transparent);
     filter: blur(var(--space-xl));
   }
 
@@ -249,10 +248,9 @@
     display: block;
     height: var(--space-xl);
     margin-bottom: calc(var(--space-xs) + var(--space-xs) / 2);
-    color: var(--accent-bright);
-    font-family: Georgia, serif;
-    font-size: calc(var(--font-size-5xl) + var(--space-xs));
-    line-height: 1;
+    color: var(--rk-blue);
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-none);
     opacity: 0.75;
   }
 }
@@ -295,7 +293,7 @@
   .bio {
     .bio-heading-group {
       h1 {
-        font-size: clamp(calc(var(--font-size-3xl) + var(--space-xs)), 11vw, var(--font-size-5xl));
+        font-size: clamp(var(--font-size-3xl), 11vw, var(--font-size-5xl));
         white-space: normal;
       }
     }

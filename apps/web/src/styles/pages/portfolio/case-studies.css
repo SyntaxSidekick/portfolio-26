@@ -1,56 +1,9 @@
-/* Case-study cards only. */
+.case-studies {
+  --section-accent: var(--rk-blue);
 
-.portfolio-case-study-card .card-media {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-}
-
-.portfolio-case-study-card .card-media img {
-  height: 100%;
-  object-fit: cover;
-}
-
-.portfolio-case-study-card .project-badge {
-  position: absolute;
-  z-index: 2;
-  top: 0.65rem;
-  left: 0;
-  padding: 0.25rem 0.65rem;
-  border-radius: 0 999px 999px 0;
-  background: #743493;
-  font-size: 0.68rem;
-  font-weight: 700;
-}
-
-.portfolio-case-study-card .card-title {
-  margin: 0;
-  color: var(--portfolio-blue);
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.portfolio-case-study-card .card-eyebrow {
-  font-size: 0.6rem;
-}
-
-.portfolio-case-study-card .card-description {
-  margin: 0;
-  color: var(--portfolio-muted);
-  font-size: 0.78rem;
-  line-height: 1.55;
-}
-
-.portfolio-case-study-card .tag-list {
-  margin: 0;
-}
-
-.portfolio-case-study-card hr {
-  width: 100%;
-  height: 1px;
-  border: 1px solid var(--portfolio-border);
-}
-
-.portfolio-case-study-card .card-link {
-  margin-top: 0;
+  .case-study-card {
+    .portfolio-card-heading h3 {
+      color: var(--rk-blue);
+    }
+  }
 }

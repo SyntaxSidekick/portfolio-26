@@ -26,15 +26,15 @@
 
   h3 {
     margin: 0;
-    font-size: 0.83rem;
-    line-height: 1.35;
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-snug);
   }
 
   p {
     margin: 14px 0 0;
     color: var(--text-soft);
-    font-size: 0.7rem;
-    line-height: 1.7;
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
   }
 }
 
@@ -47,8 +47,8 @@
   border: 2px solid currentColor;
   border-radius: 50%;
   color: var(--capability-icon-color, var(--icon-architecture));
-  font-size: 1.35rem;
-  line-height: 1;
+  font-size: var(--font-size-2xl);
+  line-height: var(--line-height-none);
   box-shadow: 0 0 20px color-mix(in srgb, currentColor 12%, transparent);
 
   svg {

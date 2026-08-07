@@ -11,11 +11,10 @@
   border-radius: var(--button-radius, var(--radius-small));
 
   color: var(--button-color, var(--text-bright));
-  font-family: inherit;
-  font-size: var(--button-font-size, 0.86rem);
+  font-size: var(--button-font-size, var(--font-size-sm));
   font-weight: var(--button-font-weight, 700);
   letter-spacing: var(--button-letter-spacing, normal);
-  line-height: 1;
+  line-height: var(--line-height-none);
   text-align: center;
   text-decoration: none;
   text-transform: var(--button-text-transform, none);

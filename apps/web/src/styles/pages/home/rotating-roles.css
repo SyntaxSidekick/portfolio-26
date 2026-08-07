@@ -11,7 +11,7 @@
   border: 0;
   color: var(--text-muted);
   background: transparent;
-  font-size: 0.77rem;
+  font-size: var(--font-size-sm);
   text-align: left;
   cursor: pointer;
   transition:
@@ -45,7 +45,7 @@
   }
 
   &.is-active {
-    color: var(--accent-bright);
+    color: var(--rk-blue);
     font-weight: 600;
 
     &::before {

@@ -98,9 +98,9 @@
       align-items: center;
       min-height: 2.75rem;
       color: var(--footer-text);
-      font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+      font-size: clamp(var(--font-size-base), 1.2vw, var(--font-size-lg));
       font-weight: var(--font-weight-medium);
-      line-height: 1;
+      line-height: var(--line-height-none);
       text-decoration: none;
       transition: color var(--footer-transition);
 
@@ -171,7 +171,7 @@
       align-items: center;
       min-height: 2.75rem;
       color: var(--footer-muted);
-      font-size: clamp(0.9rem, 1vw, 1rem);
+      font-size: clamp(var(--font-size-sm), 1vw, var(--font-size-base));
       text-decoration: none;
       transition: color var(--footer-transition);
 
@@ -191,7 +191,7 @@
   .footer-copyright {
     margin: 0;
     color: var(--footer-muted);
-    font-size: clamp(0.9rem, 1vw, 1rem);
+    font-size: clamp(var(--font-size-sm), 1vw, var(--font-size-base));
   }
 
   .back-to-top {

@@ -27,14 +27,14 @@
 
     h2 {
       margin-bottom: 0.55rem;
-      font-size: clamp(1.15rem, 2vw, 1.65rem);
+      font-size: clamp(var(--font-size-lg), 2vw, var(--font-size-2xl));
     }
 
     p:last-child {
       max-width: 55rem;
       margin-bottom: 0;
       color: var(--bio-muted);
-      font-size: 0.82rem;
+      font-size: var(--font-size-sm);
     }
   }
 
@@ -66,15 +66,15 @@
     p {
       margin-bottom: 0;
       color: var(--bio-blue-bright);
-      font-size: 0.78rem;
+      font-size: var(--font-size-sm);
       font-weight: 800;
-      line-height: 1.4;
+      line-height: var(--line-height-normal);
     }
 
     .bio-recommendations-link {
       --button-min-height: 2.8rem;
       --button-padding: 0.8rem 1rem;
-      --button-font-size: 0.74rem;
+      --button-font-size: var(--font-size-xs);
       --button-gap: 0.65rem;
     }
 
