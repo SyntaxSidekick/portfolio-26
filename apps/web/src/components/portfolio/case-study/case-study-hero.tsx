@@ -8,10 +8,11 @@ type CaseStudyHeroProps = {
 };
 
 export function CaseStudyHero({ project }: CaseStudyHeroProps) {
+  const projectTypeLabel = project.projectType === "design" ? "Design Project" : "Case Study";
   const hero = project.hero ?? {
-    subtitle: project.details?.subtype || project.client || "Case Study",
+    subtitle: project.details?.subtype || project.client || projectTypeLabel,
     summary: project.excerpt,
-    badgeText: "Case Study",
+    badgeText: projectTypeLabel,
   };
   const heroImage =
     project.media?.desktopImage ??
@@ -27,10 +28,10 @@ export function CaseStudyHero({ project }: CaseStudyHeroProps) {
 
       <div className="case-study-hero-layout">
         <div className="case-study-hero-content">
-          <p className="eyebrow">{hero.badgeText || hero.eyebrow || "Case Study"}</p>
+          <p className="eyebrow">{hero.badgeText || hero.eyebrow || projectTypeLabel}</p>
           <h1 id="project-title">{project.title}</h1>
           <p className="project-subtitle">
-            {hero.subtitle || project.details?.subtype || "Case Study"}
+            {hero.subtitle || project.details?.subtype || projectTypeLabel}
           </p>
           <p className="project-summary">{hero.summary || project.excerpt}</p>
 

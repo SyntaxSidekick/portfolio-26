@@ -2,9 +2,13 @@ import type { PublicProject } from "@/lib/portfolio-api";
 
 type ProjectGalleryProps = {
   project: PublicProject;
+  title?: string;
 };
 
-export function ProjectGallery({ project }: ProjectGalleryProps) {
+export function ProjectGallery({
+  project,
+  title = "Project Gallery",
+}: ProjectGalleryProps) {
   const gallery = [
     ...(project.media?.gallery?.length ? project.media.gallery : project.gallery ?? []),
   ].sort((first, second) => (first.order ?? 0) - (second.order ?? 0));
@@ -18,7 +22,7 @@ export function ProjectGallery({ project }: ProjectGalleryProps) {
       <div className="panel">
         <header className="project-section-header">
           <p className="project-section-kicker" aria-hidden="true" />
-          <h2 id="project-gallery-title">Project Gallery</h2>
+          <h2 id="project-gallery-title">{title}</h2>
         </header>
 
         <ul className="project-gallery-list">

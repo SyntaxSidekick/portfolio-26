@@ -4,18 +4,22 @@ import type { PublicProject } from "@/lib/portfolio-api";
 type ProjectNavigationProps = {
   previousProject?: PublicProject;
   nextProject?: PublicProject;
+  projectTypeLabel?: string;
+  indexHref?: string;
 };
 
 export function ProjectNavigation({
   previousProject,
   nextProject,
+  projectTypeLabel = "case studies",
+  indexHref = "/portfolio#case-studies",
 }: ProjectNavigationProps) {
   if (!previousProject && !nextProject) {
     return null;
   }
 
   return (
-    <nav className="project-navigation" aria-label="Case study navigation">
+    <nav className="project-navigation" aria-label={`${projectTypeLabel} navigation`}>
       {previousProject ? (
         <a href={`/portfolio/${previousProject.slug}`}>
           <ArrowLeft aria-hidden="true" />
@@ -27,7 +31,7 @@ export function ProjectNavigation({
         </a>
       ) : <span />}
 
-      <a className="project-navigation-index" href="/portfolio#case-studies" aria-label="Back to case studies">
+      <a className="project-navigation-index" href={indexHref} aria-label={`Back to ${projectTypeLabel}`}>
         <Grid2X2 aria-hidden="true" />
       </a>
 

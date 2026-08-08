@@ -7,6 +7,7 @@ import "@/styles/pages/portfolio-single/project-narrative.css";
 import "@/styles/pages/portfolio-single/project-details.css";
 import "@/styles/pages/portfolio-single/project-gallery.css";
 import "@/styles/pages/portfolio-single/project-navigation.css";
+import "@/styles/pages/portfolio-single/single-design-projects.css";
 import { ContactCta } from "@/components/contact-cta";
 import { CaseStudyHero } from "@/components/portfolio/case-study/case-study-hero";
 import { ProjectChallenge } from "@/components/portfolio/case-study/project-challenge";
@@ -28,10 +29,20 @@ type PageProps = Readonly<{
   params: Promise<{ slug: string }>;
 }>;
 
-function getCaseStudies(projects: PublicProject[]) {
+function getDetailProjects(projects: PublicProject[]) {
   return projects
-    .filter((project) => project.projectType === "case-study")
+    .filter((project) => project.projectType === "case-study" || project.projectType === "design")
     .sort((first, second) => first.displayOrder - second.displayOrder);
+}
+
+function getDetailProjectsByType(projects: PublicProject[], projectType: "case-study" | "design") {
+  return projects
+    .filter((project) => project.projectType === projectType)
+    .sort((first, second) => first.displayOrder - second.displayOrder);
+}
+
+function getProjectTypeLabel(project: PublicProject) {
+  return project.projectType === "design" ? "Design Project" : "Case Study";
 }
 
 function getPrimaryMetrics(project: PublicProject) {
@@ -54,7 +65,7 @@ function getAdjacentProjects(projects: PublicProject[], slug: string) {
 
 export async function generateStaticParams() {
   const { projects } = await tryGetPublishedProjects();
-  return getCaseStudies(projects).map((project) => ({ slug: project.slug }));
+  return getDetailProjects(projects).map((project) => ({ slug: project.slug }));
 }
 
 export async function generateMetadata({
@@ -65,9 +76,14 @@ export async function generateMetadata({
   try {
     const project = await getProjectBySlug(slug);
 
-    if (project.status !== "published" || project.projectType !== "case-study") {
+    if (
+      project.status !== "published" ||
+      (project.projectType !== "case-study" && project.projectType !== "design")
+    ) {
       return { title: "Not Found" };
     }
+
+    const projectTypeLabel = getProjectTypeLabel(project);
 
     const image =
       project.media?.featuredImage ??
@@ -77,13 +93,13 @@ export async function generateMetadata({
       project.excerpt || project.overview?.content || project.description;
 
     return {
-      title: `${project.title} | Case Study`,
+      title: `${project.title} | ${projectTypeLabel}`,
       description,
       alternates: {
         canonical: `/portfolio/${project.slug}`,
       },
       openGraph: {
-        title: `${project.title} | Case Study`,
+        title: `${project.title} | ${projectTypeLabel}`,
         description,
         images: image?.url ? [{ url: image.url, alt: image.alt || project.title }] : undefined,
       },
@@ -95,18 +111,18 @@ export async function generateMetadata({
 
 async function CaseStudyPageContent({ slug }: { slug: string }) {
   const { projects } = await tryGetPublishedProjects();
-  const caseStudies = getCaseStudies(projects);
-  const project = caseStudies.find((item) => item.slug === slug);
+  const detailProjects = getDetailProjectsByType(projects, "case-study");
+  const project = detailProjects.find((item) => item.slug === slug);
 
   if (!project) {
     notFound();
   }
 
   const primaryMetrics = getPrimaryMetrics(project);
-  const { previousProject, nextProject } = getAdjacentProjects(caseStudies, slug);
+  const { previousProject, nextProject } = getAdjacentProjects(detailProjects, slug);
 
   return (
-    <main id="case-study-page" className="page portfolio-single case-study">
+    <main id="case-study-page" className="page portfolio-single case-study" data-project-type="case-study">
       <article className="portfolio-container">
         <CaseStudyHero project={project} />
 
@@ -147,7 +163,60 @@ async function CaseStudyPageContent({ slug }: { slug: string }) {
   );
 }
 
+async function DesignProjectPageContent({ slug }: { slug: string }) {
+  const { projects } = await tryGetPublishedProjects();
+  const detailProjects = getDetailProjectsByType(projects, "design");
+  const project = detailProjects.find((item) => item.slug === slug);
+
+  if (!project) {
+    notFound();
+  }
+
+  const primaryMetrics = getPrimaryMetrics(project);
+  const { previousProject, nextProject } = getAdjacentProjects(detailProjects, slug);
+
+  return (
+    <main id="design-page" className="page portfolio-single design-page" data-project-type="design">
+      <article className="portfolio-container">
+        <CaseStudyHero project={project} />
+
+        {primaryMetrics.length > 0 ? (
+          <section className="project-section project-primary-metrics" aria-label="Primary project metrics">
+            <ProjectMetrics
+              metrics={primaryMetrics}
+              ariaLabel={`${project.title} primary metrics`}
+            />
+          </section>
+        ) : null}
+
+        <ProjectOverview project={project} />
+        <ProjectHighlights project={project} title="Key Deliverables" />
+        <ProjectGallery project={project} title="Design Project Preview" />
+        <ProjectDetails project={project} />
+        <ProjectNavigation
+          previousProject={previousProject}
+          nextProject={nextProject}
+          projectTypeLabel="design projects"
+          indexHref="/portfolio#design-projects"
+        />
+      </article>
+    </main>
+  );
+}
+
 export default async function Page({ params }: PageProps) {
   const { slug } = await params;
+  let project: PublicProject;
+
+  try {
+    project = await getProjectBySlug(slug);
+  } catch {
+    notFound();
+  }
+
+  if (project.projectType === "design") {
+    return <DesignProjectPageContent slug={slug} />;
+  }
+
   return <CaseStudyPageContent slug={slug} />;
 }

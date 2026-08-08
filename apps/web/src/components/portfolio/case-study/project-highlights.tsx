@@ -49,7 +49,15 @@ function getHighlightIcon(text: string): LucideIcon {
   return Sparkles;
 }
 
-export function ProjectHighlights({ project }: { project: PublicProject }) {
+type ProjectHighlightsProps = {
+  project: PublicProject;
+  title?: string;
+};
+
+export function ProjectHighlights({
+  project,
+  title = "Project Highlights",
+}: ProjectHighlightsProps) {
   const highlights = [...(project.highlights ?? [])].sort(
     (first, second) => first.displayOrder - second.displayOrder,
   );
@@ -65,7 +73,7 @@ export function ProjectHighlights({ project }: { project: PublicProject }) {
           <p className="project-section-kicker">
             <Star aria-hidden="true" />
           </p>
-          <h2 id="project-highlights-title">Project Highlights</h2>
+          <h2 id="project-highlights-title">{title}</h2>
         </header>
 
         <ul className="project-highlight-list">
