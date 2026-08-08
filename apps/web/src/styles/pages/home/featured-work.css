@@ -120,7 +120,7 @@
     }
 
     dd {
-      margin-block: var(--space-sm) 0;
+      margin: var(--space-sm) 0 0;
       color: var(--text-muted);
       font-size: var(--font-size-xs);
       line-height: var(--line-height-normal);

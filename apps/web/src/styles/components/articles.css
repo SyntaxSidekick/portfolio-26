@@ -103,7 +103,7 @@
     }
 
     > p {
-      min-height: 60px;
+      min-height: var(--text-preview-min-height-sm);
       margin: 0;
       color: var(--text-soft);
       font-size: var(--font-size-xs);

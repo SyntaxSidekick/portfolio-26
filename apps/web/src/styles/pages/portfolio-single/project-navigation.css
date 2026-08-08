@@ -56,7 +56,7 @@
 .project-navigation-index {
   display: grid;
   width: 3rem;
-  height: 3rem;
+  height: var(--height-lg);
   border: 1px solid var(--border);
   border-radius: 50%;
   place-items: center;

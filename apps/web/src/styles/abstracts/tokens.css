@@ -129,6 +129,31 @@
   --header-container-width: var(--container-wide);
   --header-height: 6.625rem;
 
+  /* Shared Heights */
+  --height-xs: 1.75rem;
+  --height-sm: 2.5rem;
+  --height-md: 2.75rem;
+  --height-lg: 3rem;
+  --height-xl: 3.25rem;
+  --height-2xl: 5rem;
+
+  /* Component Sizing Roles */
+  --tag-min-height: var(--height-xs);
+  --field-textarea-min-height: 12rem;
+  --text-preview-min-height-sm: 3.75rem;
+  --text-preview-min-height-md: 4rem;
+  --card-min-height-sm: 6rem;
+  --card-min-height-md: 7.5rem;
+  --card-min-height-lg: 13.125rem;
+  --card-min-height-xl: 15rem;
+  --media-min-height-lg: 25rem;
+  --content-panel-min-height-sm: 10rem;
+  --content-panel-min-height-md: 12rem;
+  --icon-frame-sm: 3.5rem;
+  --icon-frame-md: 4.25rem;
+  --icon-frame-lg: 4.75rem;
+  --icon-frame-xl: 5.75rem;
+
   /* ==================================================
     Responsive Breakpoints
 

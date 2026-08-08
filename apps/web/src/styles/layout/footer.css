@@ -96,7 +96,7 @@
       position: relative;
       display: inline-flex;
       align-items: center;
-      min-height: 2.75rem;
+      min-height: var(--height-md);
       color: var(--footer-text);
       font-size: clamp(var(--font-size-base), 1.2vw, var(--font-size-lg));
       font-weight: var(--font-weight-medium);
@@ -169,7 +169,7 @@
     a {
       display: inline-flex;
       align-items: center;
-      min-height: 2.75rem;
+      min-height: var(--height-md);
       color: var(--footer-muted);
       font-size: clamp(var(--font-size-sm), 1vw, var(--font-size-base));
       text-decoration: none;
@@ -197,7 +197,7 @@
   .back-to-top {
     display: inline-grid;
     width: 3rem;
-    height: 3rem;
+    height: var(--height-lg);
     padding: 0;
     border: 1px solid var(--footer-blue);
     border-radius: 50%;

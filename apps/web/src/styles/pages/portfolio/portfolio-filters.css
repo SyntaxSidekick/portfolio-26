@@ -33,7 +33,7 @@
   gap: var(--space-sm);
 
   .button {
-    --button-min-height: 2.7rem;
+    --button-min-height: var(--height-md);
     --button-padding: var(--space-sm) var(--space-lg);
     --button-font-size: var(--font-size-sm);
 

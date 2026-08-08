@@ -26,8 +26,8 @@
 
   .shared-contact-icon {
     display: grid;
-    width: 4.2rem;
-    height: 4.2rem;
+    width: var(--icon-frame-md);
+    height: var(--icon-frame-md);
     border: 1px solid var(--border-strong);
     border-radius: 50%;
     background: rgba(23, 20, 48, 0.52);

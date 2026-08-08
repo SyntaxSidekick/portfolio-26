@@ -91,7 +91,7 @@
 
   .project-details-quote-icon {
     width: 2rem;
-    height: 2rem;
+    height: var(--space-xl);
     margin-block-end: var(--space-md);
     color: var(--accent-bright);
   }

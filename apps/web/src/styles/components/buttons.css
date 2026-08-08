@@ -4,7 +4,7 @@
   justify-content: center;
   gap: var(--button-gap, var(--space-md));
 
-  min-height: var(--button-min-height, 50px);
+  min-height: var(--button-min-height, var(--height-xl));
   padding: var(--button-padding, var(--space-md) var(--space-lg));
 
   border: 1px solid transparent;

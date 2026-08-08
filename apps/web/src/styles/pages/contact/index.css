@@ -130,7 +130,7 @@ html {
 
 .contact .contact-hero__content {
   display: grid;
-  min-height: 185px;
+  min-height: var(--content-panel-min-height-md);
   padding: var(--space-xl) var(--space-lg);
   place-content: center;
   text-align: center;
@@ -276,9 +276,9 @@ html {
 
 .contact .contact-info-card__icon {
   display: grid;
-  flex: 0 0 42px;
-  width: 42px;
-  height: 42px;
+  flex: 0 0 var(--height-md);
+  width: var(--height-md);
+  height: var(--height-md);
   border: 1px solid rgba(131, 47, 226, 0.75);
   border-radius: 50%;
   color: #d2c2ff;
@@ -394,12 +394,12 @@ html {
 }
 
 .contact .form-field input {
-  min-height: 52px;
+  min-height: var(--height-xl);
   padding-inline: var(--space-md);
 }
 
 .contact .form-field textarea {
-  min-height: 187px;
+  min-height: var(--field-textarea-min-height);
   padding: var(--space-md);
   line-height: var(--line-height-normal);
   resize: vertical;
@@ -440,7 +440,7 @@ html {
 .contact .contact-submit {
   position: relative;
   display: inline-flex;
-  min-height: 50px;
+  min-height: var(--height-xl);
   gap: var(--space-md);
   align-items: center;
   justify-content: center;
@@ -539,7 +539,7 @@ html {
 }
 
 .contact .contact-form__status {
-  min-height: 20px;
+  min-height: var(--font-size-xl);
   color: #73d8a3;
   font-size: var(--font-size-sm);
 }
@@ -571,8 +571,8 @@ html {
 
 .contact .contact-cta__icon {
   display: grid;
-  width: 74px;
-  height: 74px;
+  width: var(--icon-frame-lg);
+  height: var(--icon-frame-lg);
   border: 1px solid rgba(87, 48, 196, 0.45);
   border-radius: 50%;
   background: radial-gradient(
@@ -588,8 +588,8 @@ html {
 
 .contact .contact-cta__icon-ring {
   display: grid;
-  width: 44px;
-  height: 44px;
+  width: var(--height-md);
+  height: var(--height-md);
   color: #b05cff;
   place-items: center;
 }
@@ -622,7 +622,7 @@ html {
 .contact .contact-cta__link {
   display: inline-flex;
   min-width: 180px;
-  min-height: 52px;
+  min-height: var(--height-xl);
   gap: var(--space-xl);
   align-items: center;
   justify-content: center;
@@ -686,7 +686,7 @@ html {
   }
 
 .contact .contact-hero__content {
-    min-height: 160px;
+    min-height: var(--content-panel-min-height-sm);
     padding-inline: 0;
   }
 

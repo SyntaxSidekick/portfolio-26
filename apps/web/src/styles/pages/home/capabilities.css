@@ -8,7 +8,7 @@
 }
 
 .capability-card {
-  min-height: 240px;
+  min-height: var(--card-min-height-xl);
   padding: var(--space-lg) var(--space-md);
   border-radius: var(--radius-medium);
   background:
@@ -40,8 +40,8 @@
 
 .capability-icon {
   display: grid;
-  width: 54px;
-  height: 54px;
+  width: var(--height-xl);
+  height: var(--height-xl);
   margin-block: 0 var(--space-lg);
   margin-inline: auto;
   place-items: center;
@@ -100,7 +100,7 @@
   }
 
   .capability-card {
-    min-height: 210px;
+    min-height: var(--card-min-height-lg);
   }
 }
 

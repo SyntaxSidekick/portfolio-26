@@ -46,8 +46,8 @@
 
   .career-highlight-icon {
     display: grid;
-    width: 3.5rem;
-    height: 3.5rem;
+    width: var(--icon-frame-sm);
+    height: var(--icon-frame-sm);
     border: 1px solid var(--accent);
     border-radius: 50%;
     box-shadow:

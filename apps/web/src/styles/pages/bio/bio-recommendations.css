@@ -40,8 +40,8 @@
 
   .bio-recommendations-mark {
     display: grid;
-    width: 4.2rem;
-    height: 4.2rem;
+    width: var(--icon-frame-md);
+    height: var(--icon-frame-md);
     border: 1px solid #a650ef;
     border-radius: 50%;
     background: rgba(23, 20, 48, 0.52);
@@ -72,7 +72,7 @@
     }
 
     .bio-recommendations-link {
-      --button-min-height: 2.8rem;
+      --button-min-height: var(--height-md);
       --button-padding: var(--space-sm) var(--space-md);
       --button-font-size: var(--font-size-xs);
       --button-gap: var(--space-sm);
@@ -89,7 +89,7 @@
   }
 
   .bio-recommendations-control {
-    --button-min-height: 2.75rem;
+    --button-min-height: var(--height-md);
     --button-padding: 0;
     --button-gap: 0;
 
